@@ -1,5 +1,516 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2017-01-20T00:40:00+05:30</updated><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="http://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="http://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00+05:30</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="http://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00+05:30</published><updated>2017-07-04T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:cv_js.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to &lt;a href="http://arxiv.org/" target="_blank"&gt;arXiv&lt;/a&gt;. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&amp;#8217;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using &lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;According to GitHub, tracking.js is a lightweight &lt;span class="caps"&gt;JS&lt;/span&gt; library that offers a variety of computer vision algorithms with &lt;span class="caps"&gt;HTML5&lt;/span&gt; and &lt;span class="caps"&gt;JS&lt;/span&gt;. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility&amp;nbsp;functions. &lt;/p&gt;
+&lt;p&gt;So let&amp;#8217;s get started&amp;nbsp;! &lt;/p&gt;
+&lt;h2&gt;Things&amp;nbsp;Required:&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Browser : This tutorial is w.r.t Chrome . I really don&amp;#8217;t know how other browsers will&amp;nbsp;perform.&lt;/li&gt;
+&lt;li&gt;Tracking &lt;span class="caps"&gt;JS&lt;/span&gt; library : You can download it github | &lt;a href="https://github.com/eduardolundgren/tracking.js/archive/master.zip" target="_blank"&gt;click here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Probably a good &lt;span class="caps"&gt;JS&lt;/span&gt; text editor ( Sublime Text is fine&amp;nbsp;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&amp;#8217;m assuming basic knowledge in &lt;span class="caps"&gt;HTML&lt;/span&gt;, &lt;span class="caps"&gt;CSS&lt;/span&gt; and &lt;span class="caps"&gt;JS&lt;/span&gt;. This tutorial is aim at a very basic level of the aforementioned&amp;nbsp;languages.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank"&gt;You can refer to the example code on my Github&lt;/a&gt; . All the code is present in the &lt;code&gt;src&lt;/code&gt; directory ; and the TrackingJS library is present in the  &lt;code&gt;TRACKING&lt;/code&gt; library. &lt;/p&gt;
+&lt;h2&gt;Basic Computer vision in the&amp;nbsp;browser:&lt;/h2&gt;
+&lt;p&gt;Computations are carried out upon images, with the fundamental unit being a pixel. Algorithms involve mathematical operations on a pixel or a group of pixels. This article addresses a few hackneyed &lt;span class="caps"&gt;CV&lt;/span&gt; algorithms and their ports to a front-end system. To start with, basic concepts like images and canvas are to be understood&amp;nbsp;first.&lt;/p&gt;
+&lt;p&gt;An &lt;span class="caps"&gt;HTML&lt;/span&gt; image element refers to the &lt;code&gt;&amp;lt;img&amp;gt;&amp;lt;/img&amp;gt;&lt;/code&gt; tag. It is, essentially, adding an image to a Web page. Similarly, to process or display any graphical units, the &lt;code&gt;&amp;lt;canvas&amp;gt;&amp;lt;/canvas&amp;gt;&lt;/code&gt; element is used. Each of these elements has attributes such as height, width, etc, and is referred to via an &lt;span class="caps"&gt;ID&lt;/span&gt;. The computation part is done using JavaScript (&lt;span class="caps"&gt;JS&lt;/span&gt;). A &lt;span class="caps"&gt;JS&lt;/span&gt; file can be included either at the head or body of an &lt;span class="caps"&gt;HTML&lt;/span&gt; document. It contains functions that will implement the aforementioned operations. For drawing any content upon a canvas, a 2D rendering reference called &lt;code&gt;context&lt;/code&gt; is supposed to be&amp;nbsp;made.&lt;/p&gt;
+&lt;p&gt;Here’s how to access images, as well as canvas and context, from &lt;span class="caps"&gt;JS&lt;/span&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="c1"&gt;//getting image, canvas and context&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;image_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;canvas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;canvas_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getContext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//accessing a rectangular set of pixels through context interface&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;pixel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="c1"&gt;//displaying image data&lt;/span&gt;
+    &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;putImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;start_point_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;start_point_y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; In this tutorial I&amp;#8217;ll be covering&amp;nbsp;:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Basic Image Color Space conversion using &lt;span class="caps"&gt;JS&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Real - time Color&amp;nbsp;Tracking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Face Capture and tag ( Temporary, not permanant storage of face&amp;nbsp;vectors)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Feature Detection in&amp;nbsp;Images&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Basic Image Color Space conversion using &lt;span class="caps"&gt;JS&lt;/span&gt;:&lt;/h2&gt;
+&lt;p&gt;For this, let&amp;#8217;s create a small application involving a live video feed from the webcam and then converting it to gray and thresholding it using &lt;span class="caps"&gt;RGB&lt;/span&gt; threshold&amp;nbsp;values.&lt;/p&gt;
+&lt;p&gt;First, we will access the webcam. Accessing a Web cam from the browser first requires user consent. Local files with a &lt;span class="caps"&gt;URL&lt;/span&gt; pattern such as &lt;code&gt;file://&lt;/code&gt; are not allowed. Regular &lt;code&gt;https://&lt;/code&gt; URLs are permitted to access media. Whenever this feature is executed, the user’s consent will be required. Any image or video captured by a camera is essentially media. Hence, there has to be a media object to set up, initialise and handle any data received by the Web cam. This ability of seamless integration is due to media APIs provided by the&amp;nbsp;browser.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/d637763f19d9f29e60f897c81a732b45.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Camera Feed :  Color Tracking&lt;/title&gt;
+    &lt;!--load css ... use bootstrap--&gt;
+    &lt;link href="../../dependencies/css/bootstrap.css" rel="stylesheet"&gt;
+    &lt;script src="watch_video.js"&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body bgcolor="#bdb76b"&gt;
+
+&lt;!--get the webcam feed--&gt;
+&lt;!--webcam access in permitted in HTML 5 only--&gt;
+    &lt;br&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-3 col-md-offset-3"&gt;
+                &lt;div id="webcam_container"&gt;
+                    &lt;video autoplay="true" id="myVideo" width="480" height="320"&gt;&lt;/video&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;br&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-4 col-md-offset-4"&gt;
+                &lt;div class="row"&gt;
+                    &lt;button class="btn btn-primary" id="btnCapture"&gt;Capture&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnGray"&gt;Gray&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnBinary"&gt;Binary&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnBlue"&gt;Blur&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnInvert"&gt;invert&lt;/button&gt;
+                    &lt;!--&lt;button class="btn btn-primary" id="downloadbtn"&gt;Download&lt;/button&gt;--&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;br&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-3 col-md-offset-3"&gt;
+                &lt;canvas id="canvas" width="480" height="320"&gt;&lt;/canvas&gt;
+            &lt;/div&gt;
+
+            &lt;!--&lt;div class="col-md-4 col-md-offset-2"&gt;--&gt;
+                &lt;!--&lt;canvas id="ipcanvas" width="480" height="320"&gt;&lt;/canvas&gt;--&gt;
+            &lt;!--&lt;/div&gt;--&gt;
+        &lt;/div&gt;
+    &lt;br&gt;
+        &lt;div class="row"&gt;&lt;/div&gt;
+
+
+    &lt;/div&gt;
+
+&lt;script&gt;INSERT RESPECTIVE JS SCRIPT FROM THE SRC@KUSHALVYAS.GITHUB.COM/TRACKINGJS_OFY;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;
+As seen, there is a &lt;code&gt;video&lt;/code&gt; element, a &lt;code&gt;canvas&lt;/code&gt; and a couple of buttons to trigger any transform that we want. Thus we write the appropriate Javascript to access the webcam and then, using the &lt;code&gt;context&lt;/code&gt; mentioned in above, convert the color&amp;nbsp;spaces.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/ddd8ef11f764c37b831558bd644c6568.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;/**
+ * Created by kushal 
+ *
+ * Usage :
+ * To access local system webcam on the internet/
+ * Couple of points to be remembered:
+ *
+ *  - Accessing the webcam using HTML5 and JS requires permission from
+ *  the browser. The url of the file has to be a valid one. Url such as file:/// in your browser will not permit the browser to access local webcam.
+ *  - Whereas, an http or https url will surely make a paved way for it. Hence, while developing, one can use Xampp, Wamp or the LAMP Stack.
+ *  - Secondly, every browser has it's own Media API. Using the browser's media api. The MediaDevices interface will provide access to connected media input devides such as microphones, camera, etc. This interface (MediaDevices) will enable a developer to access the local webcam. The method being MediaDevices.getUserMedia();
+ *
+ *
+ *  The ability of web applications to handle media in such seamless manner has been possible due to Media API.What we require is the Navigator.MediaDevices() method. This returns a mediadevices object which provides accerss to connected media.
+ *
+ *  - Apparently, not all browsers follow the same interface class designs. Hence, to make a model that is cross - browser compatible, we much check for all avaible interfacing methods with which the webcam can be accesssed.
+ *      Hence,
+ *              navigator.getUserMedia = (
+ *            //        check for all available media
+ *            //    chrome
+ *            navigator.getUserMedia ||
+ *            navigator.webkitGetUserMedia ||
+ *            navigator.mozGetUserMedia ||
+ *            navigator.msGetUserMedia );
+ *
+ *      This will return an object that is browser specific for media device interchange.
+ *
+ *
+ *
+ */
+
+var video_frame;
+var canvas ;
+var btnCapture, btnGray, btnBinary;
+var imcanvas;
+var captureFlag = false;
+
+function watch_video(){
+
+
+    /*
+        Initialize all selectors.
+        Get access of required element
+        setup event triggers.
+     */
+    //select the elements relevant to video and capture
+    video_frame = document.getElementById("myVideo");
+    canvas = document.getElementById("canvas");
+    btnCapture = document.getElementById("btnCapture");
+    btnGray = document.getElementById("btnGray");
+    btnBinary = document.getElementById("btnBinary");
+
+
+    imcanvas = canvas.getContext("2d");
+
+    //set up event listeners ..
+    btnCapture.addEventListener("click", capture);
+    btnGray.addEventListener("click", gray);
+    btnBinary.addEventListener("click", binary);
+
+
+
+
+    /*
+
+     This part of javascript code will capture frames from
+     the webcam and display on webpage.
+     */
+
+//    obtain access to browser local system connected media ..
+
+    navigator.getUserMedia = (
+    //        check for all available media
+    //    chrome
+        navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia );
+
+    //this will set a read-only boolean property to the
+//            obtained list of media devices
+
+    if(navigator.getUserMedia){
+        //log ... print in the JS console in browser
+        console.log("Browser supports media api");
+        //specify what type of media if required.
+        /*
+            navigator.getUserMedia({
+                    params include :
+                        -&gt; video
+                        -&gt; audio
+               })
+
+         */
+        navigator.getUserMedia({
+            video : true,
+        //   audio : true, //if microphone access was required
+        }, success_stream, error_stream);
+
+    }else{
+        alert("The browser does not support Media Interface");
+    }
+
+
+}
+
+function success_stream(stream){
+    //This is a callback. Please refer to javascripts callbacks for futher information
+    console.log("Streaming successful");
+//    once we have the webcam stream, we shall display it in the
+//    html video element created
+    video_frame.src = window.URL.createObjectURL(stream);
+}
+
+function error_stream(error){
+    console.log("error has occured" + error);
+}
+
+function capture(){
+    /*
+     When the button is called, this function is called.
+     Once the button is clicked, the canvas will be updated with current frame
+     */
+    captureFlag = true;
+    console.log("Button is clicked");
+    imcanvas.drawImage(video_frame, 0, 0, canvas.width, canvas.height);
+    // ipcanvas.getContext("2d").drawImage(video_frame, 0, 0, 640, 480);
+}
+
+
+function gray(){
+    /*
+    convert the image to gray scale ...
+    the formula to convert an image to gray scale is quite simple
+    every pixel  = I(x,y) -&gt; G(a,b)
+    such that G(a,b) = 0.21R + 0.72G + 0.07B
+     */
+
+    capture();
+    console.log("Gray operation to be performed");
+    // 32 bit image
+    var image = imcanvas.getImageData(0, 0, canvas.width, canvas.height);
+    console.log(image.data.length);
+    console.log(image);
+    var channels = image.data.length/4;
+    for(var i=0;i&lt;channels;i++){
+        var r = image.data[i*4 + 0];
+        var g = image.data[i*4 + 1];
+        var b = image.data[i*4 + 2];
+        var gray =  Math.round(0.21*r + 0.72*g + 0.07*b);
+        image.data[i*4 + 0] = gray;
+        image.data[i*4 + 1] = gray;
+        image.data[i*4 + 2] = gray;
+    }
+
+    console.log(image);
+    imcanvas.putImageData(image, 0, 0);
+    //imcanvas.putImageData(image.toDataURL(), 0, 0, canvas.width, canvas.height);
+    // imcanvas.drawImage();
+}
+
+function binary(){
+
+    /*
+       To convert image into binary , we will threshold it.
+       Based upon the threshold value
+
+       thresh_red, thresh_blue, thresh_green ==&gt; are the respective red, blue and green color threshold values. Any thing above this threshold value will be denoted by white color and anything below will be black
+
+     */
+
+    capture();
+    var image = imcanvas.getImageData(0, 0, canvas.width, canvas.height);
+    var thresh_red = 100;
+    var thresh_green = 100;
+    var thresh_blue = 100;
+
+    var channels = image.data.length/4;
+    for(var i=0;i&lt;channels;i++){
+        var r = image.data[i*4 + 0];
+        var g = image.data[i*4 + 1];
+        var b = image.data[i*4 + 2];
+        if( r&gt;= thresh_red &amp;&amp; g&gt;= thresh_green &amp;&amp; b&gt;=thresh_blue ){
+            image.data[i*4 + 0] = 255;
+            image.data[i*4 + 1] = 255;
+            image.data[i*4 + 2] = 255;
+        }else{
+            image.data[i*4 + 0] = 0;
+            image.data[i*4 + 1] = 0;
+            image.data[i*4 + 2] = 0;
+        }
+    }
+    imcanvas.putImageData(image, 0,  0);
+
+
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;
+In the above code, navigator.getUserMedia will be set if the media exists. To get control of media (refers to camera), use the following&amp;nbsp;code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nx"&gt;navigator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getUserMedia&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="nx"&gt;handle_video&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;report_error&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On the successful reception of a frame, the success_stream handler is called. In case of any error, error_stream is called. The success_stream function has the video stream as input, and will display each frame in the &lt;code&gt;video_frame&lt;/code&gt; (&lt;span class="caps"&gt;HTML&lt;/span&gt; video element)&amp;nbsp;.&lt;/p&gt;
+&lt;p&gt;Any of the button , if clicked, will call it&amp;#8217;s respective function. This is seen and mapped in the above &lt;span class="caps"&gt;JS&lt;/span&gt;-&lt;span class="caps"&gt;GIST&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;JS&lt;/span&gt; stores an image as a &lt;strong&gt;linear array&lt;/strong&gt; in &lt;span class="caps"&gt;RGBA&lt;/span&gt; format. Each image can be split into its respective channels, as shown&amp;nbsp;below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;channels&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;red_component_pixel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;green_component_pixel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+For the computation of gray scale images, A gray scale image is one in which all colour components are normalised to have equal weightage. If an 8-bit image is considered, the colour gray is obtained when the number of &lt;span class="caps"&gt;RGB&lt;/span&gt; bits equals 1.
+To solve this, there is a simple formula, which creates a weighted sum of pixel values to yield a gray&amp;nbsp;image:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.21&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="nx"&gt;red_component_pixel&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.72&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="nx"&gt;green_component_pixel&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.07&lt;/span&gt; &lt;span class="nx"&gt;x&lt;/span&gt; &lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On applying the above formula to each pixel, split into its components, one gets an equivalent gray&amp;nbsp;pixel.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;For computation of binary and inverted images : A binary image is in black and white (&lt;span class="caps"&gt;BW&lt;/span&gt;). The conversion of an image from colour to &lt;span class="caps"&gt;BW&lt;/span&gt; is done through a process called thresholding, which classifies each pixel as white or black based on its value. If the value is greater than a particular threshold, it will be set to 255, else&amp;nbsp;0.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;red_component_pixel&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;threshold_red&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; 
+    &lt;span class="nx"&gt;green_component_pixel&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;threshold_green&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;  
+    &lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;threshold_blue&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+    &lt;span class="c1"&gt;//make pixel == white&lt;/span&gt;
+    &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Just as we have negatives for a photograph, similarly, the inversion of colour space of any image converts all pixels into a negative. This can simply be done by subtracting each pixel value from&amp;nbsp;255&lt;/p&gt;
+&lt;p&gt;The logic is well commented within the &lt;span class="caps"&gt;GIST&lt;/span&gt;. So please refer the&amp;nbsp;Gist.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2&gt;Real Time Color&amp;nbsp;Tracking&lt;/h2&gt;
+&lt;p&gt;For implementing this, we&amp;#8217;ll use the &lt;code&gt;tracking.js&lt;/code&gt; library.&lt;/p&gt;
+&lt;p&gt;In your &lt;code&gt;head&lt;/code&gt; tag of the &lt;code&gt;HTML&lt;/code&gt; document, include the following script
+&lt;br&gt;
+*    &lt;script src="../../TRACKING/build/tracking.js"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;From now, for the &lt;span class="caps"&gt;HTML&lt;/span&gt; templates, please refer the source@github. I&amp;#8217;ll continue with explaining the javascript part. The process of declaring a video object and capturing frames in javascript remains same as above. To start using TrackingJs, we declare a &lt;strong&gt;color-tracker&lt;/strong&gt;&amp;nbsp;object.&lt;/p&gt;
+&lt;p&gt;To initialise a colour tracker, first use the following commands:
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;myTracker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ColorTracker&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;yellow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+    &lt;span class="nx"&gt;myTracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;track&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;color_tracking_callback&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;mT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;track&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#myVideo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;myTracker&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;In the above code snippet, color_tracking_callback is a callback which will receive a list of all possible locations where the given colour is present. Each location is a rectangle object, comprising attributes which are ‘x, y, width and height’. x and y are the starting points of the&amp;nbsp;rectangle.&lt;/p&gt;
+&lt;p&gt;The natural action for tracking is to make a bounding box around the region we are interested in. Therefore, the boundingBox function plots a rectangle around the region of interest. Context variable is used here to perform any canvas drawing methods. context.stroke() eventually prints it on the canvas.
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;color_tracking_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;list_rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;list_rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beginPath&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;strokeStyle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lineWidth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;stroke&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;    &lt;/p&gt;
+&lt;p&gt;Tracking.&lt;span class="caps"&gt;JS&lt;/span&gt; also provides with a trigger to either &lt;code&gt;start&lt;/code&gt; or &lt;code&gt;stop&lt;/code&gt; the streaming&amp;nbsp;process.&lt;/p&gt;
+&lt;p&gt;Incase you want to track a custom &lt;span class="caps"&gt;RGB&lt;/span&gt; range of colors, you can refer to this snippet below.
+As seen, the input to a colour tracker is a list of probable colours (e.g., [yellow]). As the definition suggests, a colour tracker must be able to track colours. Tracking.js provides a method registerColor that handles user-specified custom&amp;nbsp;colours.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ColorTracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerColor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;color_name&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;callback_color&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+The &lt;code&gt;callback_color&lt;/code&gt; callback will have input arguments as red, blue and green values. Since this is a custom colour, one has to define the &lt;span class="caps"&gt;RGB&lt;/span&gt; ranges. If the &lt;span class="caps"&gt;RGB&lt;/span&gt; argument meets the range,the function returns true, else it’ll return&amp;nbsp;false.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;callback_color&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;r_low&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;r&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;r_high&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;g&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;g_low&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;g&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;g_high&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;b_low&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;b_high&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold values, respectively. Having registered the colour, one can simply append color_name to color_list in tracking.ColorTracker&amp;nbsp;(color_list).&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Face Capture and tag ( Temporary, not permanant storage of face&amp;nbsp;vectors)&lt;/h3&gt;
+&lt;p&gt;Face detection in Tracking.js uses the &lt;a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework" target="_blank"&gt;&lt;strong&gt;Viola-Jones Framework&lt;/strong&gt;&lt;/a&gt;. You can look it up in &lt;a href="https://trackingjs.com/docs.html#viola-jones" target="_blank"&gt;the documentation&lt;/a&gt;. It also has the popular &lt;code&gt;opencv_haarcascade&lt;/code&gt; in the repository&amp;#8217;s utils&amp;nbsp;folder. &lt;/p&gt;
+&lt;p&gt;As seen in the previous examples, this code involves the same, video capture and processing function blocks. What is added is the new tracking.js face&amp;nbsp;detector.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;face_tracker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ObjectTracker&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;face&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// tuning params&lt;/span&gt;
+    &lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setInitialScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//set initial scale for featureblock scaling&lt;/span&gt;
+    &lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setEdgesDensity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//check to skip edge&lt;/span&gt;
+    &lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setStepSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;//block step size&lt;/span&gt;
+    &lt;span class="c1"&gt;// tracker on video&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;mTracker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;track&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#myVideo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;track&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;handle_faces&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;face_tracker&lt;/code&gt; is actually an object detector (uses the viola jones object detection&amp;nbsp;framework). &lt;/p&gt;
+&lt;p&gt;Make sure, to run the face detection, the following js includes must be&amp;nbsp;made&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="caps"&gt;TRACKING&lt;/span&gt;/build/tracking.js&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;span class="caps"&gt;TRACKING&lt;/span&gt;/build/data/face-min.js&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One can refer the &lt;a href="https://trackingjs.com/api/tracking.ObjectTracker.html" target="_blank"&gt;documentation&lt;/a&gt; to know about all the methods supported by the object tracker. Feel free to experient with different values as well. Default value&amp;#8217;s are mentioned in the&amp;nbsp;block.&lt;/p&gt;
+&lt;p&gt;Once a face is detected, a &lt;span class="caps"&gt;JS&lt;/span&gt; prompt is created to enter the name for the&amp;nbsp;person. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note : This is all happening in a real time video . Hence , there may be multiple occurences that a prompt for the face pops up, if the face previously detected undergoes disturbance/disappears from the frame,&amp;nbsp;etc. &lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;handle_new_faces&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="nx"&gt;imcanvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;clearRect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;canvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;canvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;data_cx&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;tmp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;data_cx&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+            &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;prompt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;enter name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;p_name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;innerHTML&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="nx"&gt;updateIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will create a face-tag for a single person and continue to track that person. Incase if anyone wants to implement a multi person &amp;#8216;tag n track&amp;#8217;, what one can do is detect all possible faces in a video frame, and tag each face with it&amp;#8217;s features. Once that is done, in the next frame, compare the newly detected faces with the stored features, minimizing the euclidean distance between the previously and newly detected facial&amp;nbsp;features&lt;/p&gt;
+&lt;h2&gt;Features extraction and&amp;nbsp;matching&lt;/h2&gt;
+&lt;p&gt;In simple terms, any significant discernible parts of the image can be defined as a feature. These can be corner points, edges or even a group of vectors oriented independently. The process of extracting such information is called feature extraction. Various implementations exist for feature extraction and descriptors, such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; (feature descriptors) and &lt;span class="caps"&gt;FAST&lt;/span&gt; (corner detection). Tracking.js implements &lt;span class="caps"&gt;BRIEF&lt;/span&gt; (Binary Robust Independent Elementary Features) and &lt;span class="caps"&gt;FAST&lt;/span&gt; (Features from Accelerated Segmentation Test). Input to the system is first a gray image. The following code extracts corner points (points of interest) based on &lt;span class="caps"&gt;FAST&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;gray&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;grayscale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;input_image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;corners&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Fast&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;findCorners&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+Each feature point can be referred to as a location. But to be able to perform any operations, these locations are converted into descriptors, which can be considered as a list of vectors that define a given feature. Comparison operators are applied upon these vectors. To find descriptors, tracking.js uses the &lt;span class="caps"&gt;BRIEF&lt;/span&gt; framework to extrapolate descriptor vectors from given feature points.
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;descriptors&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Brief&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getDescriptors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;corners&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+Having got the points of interest from an image as well as their descriptors, we can design a scenario wherein one can track based on templates. Given a video frame and a fixed image, features can be used to match and identify where the fixed image can be located. However, there can be false&amp;nbsp;positives.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;matches&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Brief&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reciprocalMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;corner_scene&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;descriptor_scene&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;corner_target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;descriptor_target&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// calculates the matching points between the scene and the target image.&lt;/span&gt;
+    &lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="c1"&gt;//matches can be further filtered by using a sorting functin&lt;/span&gt;
+        &lt;span class="c1"&gt;// Either sort according to number of matches found:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="c1"&gt;// or sort according to confidence value:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;confidence&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;confidence&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+The matches obtained can be sorted on the basis of their length, i.e., the number of matches obtained, and on their confidence value, as to how well the points match. Having arranged the matches, efficient matching of the target template image and the scene image can be carried out. It is simply a task of graphics now. Just iterate over the two arrays and mark the appropriate feature points on the canvas, as&amp;nbsp;follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;plot_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;color&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lineWidth&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2px&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fillStyle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;strokeStyle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beginPath&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;arc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;keypoint1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;keypoint1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;stroke&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas&amp;nbsp;element.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+For complete implementation , please refer to the article in &lt;strong&gt;Opensource For You as well as the Github link&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Here are some cool experiments that I did with&amp;nbsp;tracking.js&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;p&gt;Oringal webcam&amp;nbsp;image&lt;/p&gt;
+&lt;p&gt;&lt;img alt="original" src="http://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Grayscale&amp;nbsp;conversion&lt;/p&gt;
+&lt;p&gt;&lt;img alt="gray" src="http://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Binary&amp;nbsp;Conversion&lt;/p&gt;
+&lt;p&gt;&lt;img alt="binary" src="http://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="color-tracking" src="http://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="face" src="http://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Also refer the Tracking.&lt;span class="caps"&gt;JS&lt;/span&gt; website. It is very well documented , with awesome&amp;nbsp;examples. &lt;/p&gt;
+&lt;p&gt;So, using tracking.js, one can develop browser based computer vision applications with much&amp;nbsp;ease. &lt;/p&gt;
+&lt;h2&gt;References:&lt;/h2&gt;
+&lt;p&gt;[1]&lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;[2]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank"&gt;Developer Mozilla CanvasRenderingContext2D &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank"&gt;Developer Mozilla Media &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4]&lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;Exploring Front-end Computer Vision - Open Source For&amp;nbsp;You&lt;/a&gt;&lt;/p&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="http://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="http://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
 &lt;h2&gt;Basics of &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;nbsp;:&lt;/h2&gt;
 &lt;p&gt;A typical Convolutional Neural Net or &lt;strong&gt;&lt;span class="caps"&gt;CNN&lt;/span&gt;&lt;/strong&gt;, is a feed-forward neural net, with the input being an image. Its&amp;#8217; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected&amp;nbsp;layers.&lt;/p&gt;
 &lt;p&gt;One can refer &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;this post by Andrej Karpathy&lt;/a&gt; to understand the intricate details of a&amp;nbsp;ConvNet.&lt;/p&gt;
@@ -351,7 +862,7 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Image Stitching A Simplistic Tutorial</title><link href="http://kushalvyas.github.io/stitching.html" rel="alternate"></link><updated>2016-09-25T18:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-09-25:stitching.html</id><summary type="html">&lt;h3&gt;Multiple Image&amp;nbsp;Stitching&lt;/h3&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Image Stitching A Simplistic Tutorial</title><link href="http://kushalvyas.github.io/stitching.html" rel="alternate"></link><published>2016-09-25T18:00:00+05:30</published><updated>2016-09-25T18:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-09-25:stitching.html</id><summary type="html">&lt;h3&gt;Multiple Image&amp;nbsp;Stitching&lt;/h3&gt;
 &lt;p&gt;I must say, even I was enjoying while developing this tutorial . Something about image perspective and enlarged images is simply captivating to a computer vision student (&lt;span class="caps"&gt;LOL&lt;/span&gt;) . I think, image stitching is an excellent introduction to the coordinate spaces and perspectives vision. Here I am going to show how to take an ordered set of many images, &lt;strong&gt;(assuming they have been shot from left to right direction)&lt;/strong&gt;&amp;nbsp;.&lt;/p&gt;
 &lt;p&gt;So what is image stitching ? In simple terms, for an input group of images, the output is a composite image such that it is a culmination of scenes. At the same time, the logical flow between the images must be&amp;nbsp;preserved.&lt;/p&gt;
 &lt;p&gt;For example, consider the set of images below. (Taken from &lt;a href="https://www.mathworks.com/examples/matlab-computer-vision/mw/vision_product-FeatureBasedPanoramicImageStitchingExample-feature-based-panoramic-image-stitching"&gt;matlab examples&lt;/a&gt;).
@@ -836,7 +1347,7 @@ You can click as well as test on other sources which deal in panorama and image&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry><entry><title>Solving 8 Queens using Genetic Algorithms - Evolution</title><link href="http://kushalvyas.github.io/gen_8Q.html" rel="alternate"></link><updated>2016-08-18T18:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-08-18:gen_8Q.html</id><summary type="html">&lt;h1&gt;The 8 Queens Problem : An&amp;nbsp;Introduction&lt;/h1&gt;
+&lt;/script&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry><entry><title>Solving 8 Queens using Genetic Algorithms - Evolution</title><link href="http://kushalvyas.github.io/gen_8Q.html" rel="alternate"></link><published>2016-08-18T18:20:00+05:30</published><updated>2016-08-18T18:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-08-18:gen_8Q.html</id><summary type="html">&lt;h1&gt;The 8 Queens Problem : An&amp;nbsp;Introduction&lt;/h1&gt;
 &lt;p&gt;8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard &lt;span class="math"&gt;\(8\)&lt;/span&gt; x &lt;span class="math"&gt;\(8\)&lt;/span&gt; chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&amp;#8221; &lt;span class="math"&gt;\(OK\)&lt;/span&gt; &amp;#8221; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &amp;#8221; &lt;span class="math"&gt;\(X\)&lt;/span&gt; &amp;#8221; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens&amp;nbsp;problem.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;img alt="attacking_queen" src="http://kushalvyas.github.io/images/queen_attacking.png" /&gt; &amp;nbsp; &amp;nbsp;
 &lt;img alt="solution_queen" src="http://kushalvyas.github.io/images/solution.jpg" /&gt;&lt;/p&gt;
@@ -1065,7 +1576,7 @@ function calculation, to selection to cross-over and finally mutation. &lt;stron
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="AI"></category><category term="Py"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+&lt;/script&gt;</summary><category term="AI"></category><category term="Py"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -1413,7 +1924,7 @@ $$&lt;/div&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Simple Object Recognition techniques</title><link href="http://kushalvyas.github.io/Obj_CV.html" rel="alternate"></link><updated>2016-07-13T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:Obj_CV.html</id><summary type="html">&lt;p&gt;Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented&amp;nbsp;tasks. &lt;/p&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Simple Object Recognition techniques</title><link href="http://kushalvyas.github.io/Obj_CV.html" rel="alternate"></link><published>2016-07-13T00:00:00+05:30</published><updated>2016-07-13T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:Obj_CV.html</id><summary type="html">&lt;p&gt;Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented&amp;nbsp;tasks. &lt;/p&gt;
 &lt;p&gt;One can ramify between Object recognition into 4 major subsets such as&amp;nbsp;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1632,7 +2143,7 @@ int main(){
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category><category term="CV"></category></entry><entry><title>Setup Computer Vision Environment</title><link href="http://kushalvyas.github.io/setup_env.html" rel="alternate"></link><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:setup_env.html</id><summary type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category><category term="CV"></category></entry><entry><title>Setup Computer Vision Environment</title><link href="http://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00+05:30</published><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:setup_env.html</id><summary type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
 &lt;p&gt;So yes, there is a myraid choice available to start developing. I personally like &lt;a href="http://opencv.org/"&gt;OpenCV&lt;/a&gt; because of its&amp;#8217; enormous community support along with its multiplatform&amp;nbsp;facilities.&lt;/p&gt;
 &lt;p&gt;Apart from this, there is &lt;a href="http://in.mathworks.com/products/matlab/"&gt;&lt;span class="caps"&gt;MATLAB&lt;/span&gt;&lt;/a&gt;. 
 Whoaaa&amp;#8230; this is like a computing powerhouse. With so many easy to use functionality, and 
@@ -1672,7 +2183,7 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>Wiki Lookup</title><link href="http://kushalvyas.github.io/wiki_lookup.html" rel="alternate"></link><updated>2016-04-12T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-12:wiki_lookup.html</id><summary type="html">&lt;p&gt;Pin :&amp;nbsp;true&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>Wiki Lookup</title><link href="http://kushalvyas.github.io/wiki_lookup.html" rel="alternate"></link><published>2016-04-12T00:00:00+05:30</published><updated>2016-04-12T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-12:wiki_lookup.html</id><summary type="html">&lt;p&gt;Pin :&amp;nbsp;true&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;A Chrome Extension for simplifying Wikipedia Surfing.Wiki Lookup features the use of dynamically generated popups to simplify your Wikipedia Surfing Experience.Just hover over the hyperlink, and wait for a small dialog to appear.No Need to open up new tabs and feel lost while surfing wikipedia.org. Its&amp;#8217; light-weight and&amp;nbsp;compact.&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;img alt="img_normal" src="http://kushalvyas.github.io/images/Menu_026.png" /&gt;&lt;/p&gt;
@@ -1690,7 +2201,7 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 &lt;li&gt;&lt;span class="caps"&gt;OR&lt;/span&gt; Load unpacked Extension ( provide path to&amp;nbsp;repository/wiki_look_up/)&lt;/li&gt;
 &lt;li&gt;&lt;span class="caps"&gt;OR&lt;/span&gt; &lt;a href="https://chrome.google.com/webstore/detail/wiki-lookup/lkejjmneaehckeodpaknhndcnaokdokc?utm_source=chrome-ntp-icon"&gt;Get it here @ Chrome Web&amp;nbsp;Store&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Enjoy surfing wiki&amp;nbsp;:P&lt;/p&gt;</summary><category term="dev"></category><category term="technical"></category><category term="wikipedia"></category></entry><entry><title>Using the Samba Server and SSH</title><link href="http://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:Samba SSH.html</id><summary type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Enjoy surfing wiki&amp;nbsp;:P&lt;/p&gt;</summary><category term="dev"></category><category term="technical"></category><category term="wikipedia"></category></entry><entry><title>Using the Samba Server and SSH</title><link href="http://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><published>2016-04-07T15:55:00+05:30</published><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:Samba SSH.html</id><summary type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&amp;#8217;t have any files locally on my laptop.&amp;nbsp;B) &lt;/p&gt;
 &lt;p&gt;Yes.. Speaking of &lt;a href="https://www.samba.org/"&gt;Samba&lt;/a&gt;, its quite easy to setup and install it. You can refer the steps &lt;a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!"&gt;here&lt;/a&gt; but ya.. i&amp;#8217;ll be going over them&amp;nbsp;too..&lt;/p&gt;
 &lt;p&gt;For, ubuntu, I&amp;#8217;d say, simply run these&amp;nbsp;commands&lt;/p&gt;
@@ -1761,7 +2272,7 @@ If you plan on using this, i recommend that you make the server ip static. Goto 
 
 
 &lt;p&gt;Make sure , both the endpoint machines are equipped with the&amp;nbsp;dependencies.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</summary></entry><entry><title>Python Graphs and Topological Sort</title><link href="http://kushalvyas.github.io/graph_py.html" rel="alternate"></link><updated>2016-04-05T10:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-05:graph_py.html</id><summary type="html">&lt;h3&gt;Graphs using&amp;nbsp;python&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</summary></entry><entry><title>Python Graphs and Topological Sort</title><link href="http://kushalvyas.github.io/graph_py.html" rel="alternate"></link><published>2016-04-05T10:00:00+05:30</published><updated>2016-04-05T10:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-05:graph_py.html</id><summary type="html">&lt;h3&gt;Graphs using&amp;nbsp;python&lt;/h3&gt;
 &lt;p&gt;It was about yesterday that I was working on a project that involved the use of a graphs and topological sort. However, I was surprised when I saw the implementation sizes. Albeit , python uses substantially less number of &lt;span class="caps"&gt;LOC&lt;/span&gt;, this example particularly blew my mind. Ive never been able to create graphs in such an easy manner. :P :P (Im overstating cause im a bit ecstatic right now)&amp;nbsp;.&lt;/p&gt;
 &lt;p&gt;Beginning with graphs, We&amp;#8217;ll represent the graph using lists, and not matrices (saves memory you&amp;nbsp;know).. &lt;/p&gt;
 &lt;p&gt;The graph refers the one shown here (Courtesy : geeksforgeeks.com)&lt;center&gt;
@@ -1843,11 +2354,11 @@ you can create a&amp;nbsp;class.&lt;/p&gt;
 
 
 &lt;span class="n"&gt;Then&lt;/span&gt; &lt;span class="n"&gt;append&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>An introduction to Computer Vision</title><link href="http://kushalvyas.github.io/CV.html" rel="alternate"></link><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:CV.html</id><summary type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>An introduction to Computer Vision</title><link href="http://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00+05:30</published><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:CV.html</id><summary type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
 &lt;p&gt;Computer vision involves image processing, a bit of &lt;span class="caps"&gt;AI&lt;/span&gt; and various algorithms. Basically every gesture effect that you see today,  or the &lt;a href="http://www.digitalspy.com/tech/news/a476446/intel-magic-mirror-allows-shoppers-to-try-on-clothes-virtually/"&gt;Intel Magic Mirror&lt;/a&gt; all dumbs down to a few concepts of &lt;span class="caps"&gt;CV&lt;/span&gt;. One can say , that &lt;span class="caps"&gt;CV&lt;/span&gt; is the next big thing that&amp;#8217;s there today&amp;nbsp;&amp;#8230; &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;But there&amp;#8217;s this one great hell of a snag .. that is &lt;strong&gt;Illumination&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;However, there are methods to overcome that&amp;nbsp;too.&lt;/p&gt;
-&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>'The Social Network' where it all started</title><link href="http://kushalvyas.github.io/utils.html" rel="alternate"></link><updated>2016-03-24T10:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:utils.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;#8230; forgive&amp;nbsp;me&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>'The Social Network' where it all started</title><link href="http://kushalvyas.github.io/utils.html" rel="alternate"></link><published>2016-03-24T10:20:00+05:30</published><updated>2016-03-24T10:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:utils.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;#8230; forgive&amp;nbsp;me&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moving on, i think every person starting off with linux, must know a few things ..
 Specially, if you,ve just watched &lt;em&gt;&lt;a href="http://www.imdb.com/title/tt1285016/"&gt;The Social Network&lt;/a&gt;&lt;/em&gt; and you&amp;#8217;ve seen  Jesse Eisenberg hacking away at his&amp;nbsp;screen&amp;#8230; &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="http://kushalvyas.github.io/images/mkz.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
