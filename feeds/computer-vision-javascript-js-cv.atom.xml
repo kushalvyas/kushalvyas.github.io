@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/computer-vision-javascript-js-cv.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00+05:30</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="http://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00+05:30</published><updated>2017-07-04T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:cv_js.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/computer-vision-javascript-js-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00+05:30</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="https://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00+05:30</published><updated>2017-07-04T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:cv_js.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to &lt;a href="http://arxiv.org/" target="_blank"&gt;arXiv&lt;/a&gt;. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&amp;#8217;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using &lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;According to GitHub, tracking.js is a lightweight &lt;span class="caps"&gt;JS&lt;/span&gt; library that offers a variety of computer vision algorithms with &lt;span class="caps"&gt;HTML5&lt;/span&gt; and &lt;span class="caps"&gt;JS&lt;/span&gt;. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility&amp;nbsp;functions. &lt;/p&gt;
 &lt;p&gt;So let&amp;#8217;s get started&amp;nbsp;! &lt;/p&gt;
@@ -48,7 +48,6 @@
     &lt;!--load css ... use bootstrap--&gt;
     &lt;link href="../../dependencies/css/bootstrap.css" rel="stylesheet"&gt;
     &lt;script src="watch_video.js"&gt;&lt;/script&gt;
-
 &lt;/head&gt;
 &lt;body bgcolor="#bdb76b"&gt;
 
@@ -70,9 +69,6 @@
                     &lt;button class="btn btn-primary" id="btnCapture"&gt;Capture&lt;/button&gt;
                     &lt;button class="btn btn-primary" id="btnGray"&gt;Gray&lt;/button&gt;
                     &lt;button class="btn btn-primary" id="btnBinary"&gt;Binary&lt;/button&gt;
-                    &lt;button class="btn btn-primary" id="btnBlue"&gt;Blur&lt;/button&gt;
-                    &lt;button class="btn btn-primary" id="btnInvert"&gt;invert&lt;/button&gt;
-                    &lt;!--&lt;button class="btn btn-primary" id="downloadbtn"&gt;Download&lt;/button&gt;--&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -81,17 +77,8 @@
             &lt;div class="col-md-3 col-md-offset-3"&gt;
                 &lt;canvas id="canvas" width="480" height="320"&gt;&lt;/canvas&gt;
             &lt;/div&gt;
-
-            &lt;!--&lt;div class="col-md-4 col-md-offset-2"&gt;--&gt;
-                &lt;!--&lt;canvas id="ipcanvas" width="480" height="320"&gt;&lt;/canvas&gt;--&gt;
-            &lt;!--&lt;/div&gt;--&gt;
         &lt;/div&gt;
-    &lt;br&gt;
-        &lt;div class="row"&gt;&lt;/div&gt;
-
-
     &lt;/div&gt;
-
 &lt;script&gt;INSERT RESPECTIVE JS SCRIPT FROM THE SRC@KUSHALVYAS.GITHUB.COM/TRACKINGJS_OFY;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -490,20 +477,20 @@ The matches obtained can be sorted on the basis of their length, i.e., the numbe
 
 &lt;p&gt;&lt;br&gt;
 The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas&amp;nbsp;element.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;
-For complete implementation , please refer to the article in &lt;strong&gt;Opensource For You as well as the Github link&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h2&gt;Here are some cool experiments that I did with&amp;nbsp;tracking.js&lt;/h2&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;Oringal webcam&amp;nbsp;image&lt;/p&gt;
-&lt;p&gt;&lt;img alt="original" src="http://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Grayscale&amp;nbsp;conversion&lt;/p&gt;
-&lt;p&gt;&lt;img alt="gray" src="http://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Binary&amp;nbsp;Conversion&lt;/p&gt;
-&lt;p&gt;&lt;img alt="binary" src="http://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="color-tracking" src="http://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="face" src="http://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;For complete implementation , please refer to the article in Opensource For You as well as the &lt;a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank"&gt;Github link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also refer the Tracking.&lt;span class="caps"&gt;JS&lt;/span&gt; website. It is very well documented , with awesome&amp;nbsp;examples. &lt;/p&gt;
 &lt;p&gt;So, using tracking.js, one can develop browser based computer vision applications with much&amp;nbsp;ease. &lt;/p&gt;
 &lt;h2&gt;References:&lt;/h2&gt;

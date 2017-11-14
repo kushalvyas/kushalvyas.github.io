@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2017-01-20T00:40:00+05:30</updated><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="http://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="http://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-01-20T00:40:00+05:30</updated><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="https://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="https://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
 &lt;h2&gt;Basics of &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;nbsp;:&lt;/h2&gt;
 &lt;p&gt;A typical Convolutional Neural Net or &lt;strong&gt;&lt;span class="caps"&gt;CNN&lt;/span&gt;&lt;/strong&gt;, is a feed-forward neural net, with the input being an image. Its&amp;#8217; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected&amp;nbsp;layers.&lt;/p&gt;
 &lt;p&gt;One can refer &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;this post by Andrej Karpathy&lt;/a&gt; to understand the intricate details of a&amp;nbsp;ConvNet.&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="http://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /&gt;&lt;/center&gt;
 &lt;center&gt;Source : &lt;a href="https://en. wikipedia.org/wiki/File:Typical_cnn.png" target="_blank"&gt;Convolutional Neural Nets : Wiki&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Convolution Layer : &lt;span class="caps"&gt;CONV&lt;/span&gt;&lt;/strong&gt; &lt;/p&gt;
 &lt;p&gt;The primary operator is a convolution operation. For a 1-D signal it is expressed&amp;nbsp;as 
@@ -12,7 +12,7 @@
 &lt;p&gt;However, an image is a 2D signal (stored as a 2D matrix). To convolve an image, we use a convolution kernel, which is simply a 2D&amp;nbsp;matrix.&lt;/p&gt;
 &lt;div class="math"&gt;$$ convolve(I_1, I_2) = I_1[x, y] * I_2[x, y] = \sum_{n_1= - \infty}^{ n_1 = + \infty} \text{   } \sum_{n_2 = - \infty}^{ n_2 = + \infty} I_1[n_1, n_2].I_2[x - n_1, y - n_2]$$&lt;/div&gt;
 &lt;p&gt;Here&amp;#8217;s an example of how it&amp;nbsp;works&lt;/p&gt;
-&lt;p&gt;&lt;img alt="cn2d" src="http://kushalvyas.github.io/images/cnn_images/con2d.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png" /&gt;&lt;/p&gt;
 &lt;p&gt;For this 7 x 7 matrix, and a kernel of 3 x 3, the kernel will slide over the matrix one column, at a time. Once it reaches the end of the matrix (columnwise), it&amp;#8217;ll shift to the next row. At every position, the dot product is&amp;nbsp;computed. &lt;/p&gt;
 &lt;p&gt;If the kernel is overlapped with the (0 , 0) position , we find the dot product&amp;nbsp;of &lt;/p&gt;
 &lt;div class="math"&gt;$$ 
@@ -29,7 +29,7 @@
 &lt;p&gt;which essentially is&amp;nbsp;: &lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(1\times-1 + 1\times-1 + 1\times-1 + 3\times-1 + 2\times8 + 2\times-1 + 2\times-1 + 4\times-1 + 3\times-1 =&amp;nbsp;-1\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Similarly, assume an input image - &lt;span class="math"&gt;\(I\)&lt;/span&gt;  is of Size &lt;span class="math"&gt;\((200 \text{ x } 200)\)&lt;/span&gt;, and we have a kernel - &lt;span class="math"&gt;\(k\)&lt;/span&gt; of size &lt;span class="math"&gt;\((10 \text{ x } 10)\)&lt;/span&gt;. The convolution of this kernel over this image is to basically, take the kernel and slide it over the image column by column, row by row. Initially the kernel is placed at &lt;span class="math"&gt;\(I[0, 0]\)&lt;/span&gt;. Therefore the kernel covers a region of &lt;span class="math"&gt;\(10 \text{ x } 10\)&lt;/span&gt; (size of kernel) starting from &lt;span class="math"&gt;\(I[0, 0] \text{ to } I[10,10]\)&lt;/span&gt;. Once the dot product (convolution) is computed over this pixel region, the kernel is shifted by one column to the right. Now the kernel occupies an image region of &lt;span class="math"&gt;\(I[0,1 ] \text{ to } I[10, 11]\)&lt;/span&gt; and so on. 
-&lt;center&gt;&lt;img alt="conv_img" src="http://kushalvyas.github.io/images/cnn_images/convolution.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Source: &lt;a href="http://stackoverflow.com/questions/15356153/how-do-convolution-matrices-work" target="_blank"&gt;Stackoverflow : How convolution matrices work&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;A series of convolution operations take place at every layer, which extrapolates the pertinent information from the images. At every layer, multiple convolution operations take place, followed by zero padding and eventually passed through an activation layer and what is outputted is an Activation&amp;nbsp;Map. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Filters and&amp;nbsp;Stride&lt;/strong&gt;&lt;/p&gt;
@@ -44,9 +44,9 @@
 &lt;p&gt;An activation function basically defines the output of the neuron for the given input. Take a simple Hebbian Learning example . An activation function will return &lt;span class="math"&gt;\(1\)&lt;/span&gt; if input is &lt;span class="math"&gt;\( &amp;gt; 0\)&lt;/span&gt; and return &lt;span class="math"&gt;\(0\)&lt;/span&gt; otherwise. The value of input being greater that 0, is nothing but a threshold value. Instead of 0, any other value can also act as a threshold. In ConvNets, a the popular activation function used is a Rectifier or &lt;span class="caps"&gt;RELU&lt;/span&gt;. &lt;/p&gt;
 &lt;div class="math"&gt;$$f(x) = \text{max(0, x)}$$&lt;/div&gt;
 &lt;p&gt;This means that the output of the convolution is thresholded at 0. All positive values are returned as is and all negative values are made&amp;nbsp;0. &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="http://kushalvyas.github.io/images/cnn_images/relu.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;For our above example, if the convolution output is passed to the Rectifier unit, it&amp;#8217;ll set all negative values to&amp;nbsp;zero. &lt;/p&gt;
-&lt;p&gt;&lt;img alt="rell image" src="http://kushalvyas.github.io/images/cnn_images/rell.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png" /&gt;&lt;/p&gt;
 &lt;p&gt;On the other hand, the pooling operation is used to down-sample / reduce the activation map. This essentially reduces the volume of the middle-stages output. The output size is computed the same way as computed in the &lt;span class="caps"&gt;CONV&lt;/span&gt; layer. An important thing to note is that is that during the convolution layer, there is a rapid reduction in the dimensionality of the input. To maintain it at a constant size through multiple &lt;span class="caps"&gt;CONV&lt;/span&gt; layers,zero padding is used. Zero padding will pad the image with zeros on its boundaries making it of the same size as the input. It is in the pooling layer where the size reduction takes&amp;nbsp;place.&lt;/p&gt;
 &lt;h2&gt;Implementation with&amp;nbsp;Caffe&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href="http://caffe.berkeleyvision.org/" target="_blank"&gt;Caffe&lt;/a&gt;&lt;/strong&gt; is a framework for deep learning, very popular for its simplicity in implementing &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. It has been developed by the Berkely Vision &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Learning Center. You can use a &lt;span class="caps"&gt;CPU&lt;/span&gt; as well as a &lt;span class="caps"&gt;GPU&lt;/span&gt; mode. It is widely known that when it comes to matrix and other such image operations , most of which can be done in parallel, &lt;span class="caps"&gt;GPU&lt;/span&gt;&amp;#8217;s triumph over &lt;span class="caps"&gt;CPU&lt;/span&gt;&amp;#8217;s. I used my &lt;span class="caps"&gt;CPU&lt;/span&gt; machine to train a limited Caltech101 dataset, and it went on for 3&amp;nbsp;days. &lt;/p&gt;
@@ -85,8 +85,8 @@ Eventually your working directory will comprise of a train &lt;span class="caps"
 &lt;p&gt;&lt;strong&gt;Defining the Network Architecture&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Caffe network architectures are very simple to define. Create a file &amp;#8220;model.prototxt&amp;#8221; and define the network architecture as follows. We will be using the AlexNET model (winner of ImageNet challenge 2012).
 Given below is a representation of how the net looks&amp;nbsp;like.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="net_arch" src="http://kushalvyas.github.io/images/cnn_images/net_arch.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank"&gt;Click here and zoom to view&amp;nbsp;it &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank"&gt;Click here and zoom to view&amp;nbsp;it &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;To define the architecture, open the model.prototxt file. The model begins with a net name&amp;nbsp;: &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;NameoftheNET&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -280,11 +280,11 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
 &lt;p&gt;The Caltech101 dataset limited directory already has a split of data into train and&amp;nbsp;test. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="http://kushalvyas.github.io/images/cnn_images/new_a.png" /&gt;
-&lt;img alt="im2" src="http://kushalvyas.github.io/images/cnn_images/new_airplane.png" /&gt;
-&lt;img alt="im3" src="http://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /&gt;&lt;br&gt;
-&lt;img alt="im4" src="http://kushalvyas.github.io/images/cnn_images/new_motorbike.png" /&gt;
-&lt;img alt="im5" src="http://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png" /&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png" /&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /&gt;&lt;br&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png" /&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So, we have completed the tutorial on how to create a custom dataset and train it using caffe. Now you can implement this and train any dataset you want. I would recommend reading up on the references to get a better understanding of&amp;nbsp;ConvNets.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
@@ -351,7 +351,7 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="https://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -364,7 +364,7 @@ Well, recognition simply involves stating whether an image contains a specific o
 &lt;/ul&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&amp;nbsp;version)&lt;/p&gt;
-&lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="https://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Lets begin with a few introductory concepts required Bag of words. We shall cover 4 parts (so keep scrolling&amp;nbsp;!)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Clustering&lt;/li&gt;
@@ -420,7 +420,7 @@ ret =  KMeans(n_clusters = n_clusters).fit_predict(X)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;!-- output --&gt;
 
-&lt;p&gt;&lt;img alt="clusteroutput" src="http://kushalvyas.github.io/images/clusterplot1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="clusteroutput" src="https://kushalvyas.github.io/images/clusterplot1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Here&amp;#8217;s a sample output for clustering using 3 clusters on a set of 1000 samples.&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why are we using Clusterng &amp;#8230; Why Kmeans &amp;#8230;: &lt;/strong&gt;
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &amp;#8230; umm. let&amp;#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&amp;nbsp;contain,&lt;/p&gt;
@@ -430,7 +430,7 @@ KMeans performs clustering. It is one of the widely used algorithms when it come
 &lt;p&gt;First of all, you need a training set. If you&amp;#8217;re using a personal computer, I&amp;#8217;d recommend to use a truncated version of any publically available image datasets (if you&amp;#8217;re worried about your &lt;span class="caps"&gt;PC&lt;/span&gt; taking up too much time during training) or perhaps train using a minimally bounded set of features. I&amp;#8217;d recommend using &lt;a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/"&gt;Caltech101&lt;/a&gt;. Also check out Caltech256, &lt;span class="caps"&gt;CIFAR10&lt;/span&gt; datasets. They&amp;#8217;re good !! As in real&amp;nbsp;good. &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; , &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;,  &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; , &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;,  &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="https://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code&amp;nbsp;modular.&lt;/p&gt;
@@ -575,10 +575,10 @@ $$&lt;/div&gt;
 &lt;p&gt;We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms &amp;#8230;. Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said&amp;nbsp;process.&lt;/p&gt;
 &lt;p&gt;If we were to allot a definition to any of the similar words, we can simply refer them by their cluster&amp;nbsp;number.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-&lt;img alt="image" size:small="size:small" src="http://kushalvyas.github.io/images/grid.png" /&gt;
-&lt;!-- &lt;img alt="image" src="http://kushalvyas.github.io/images/vocab.png" /&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
+&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/grid.png" /&gt;
+&lt;!-- &lt;img alt="image" src="https://kushalvyas.github.io/images/vocab.png" /&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
 &lt;p&gt;A more illustrative visualization of the histogram can be observed in the adjacent&amp;nbsp;figure.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" size:small="size:small" src="http://kushalvyas.github.io/images/vocab_unnormalized.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/vocab_unnormalized.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The above image shows how a collective vocabulary will look like. Encomprising of the total number of each type of feature/word present in the training set in&amp;nbsp;totality.&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Here&amp;#8217;s some implementation snippet as to how one would implement&amp;nbsp;this&lt;/p&gt;
@@ -630,18 +630,18 @@ $$&lt;/div&gt;
 &lt;p&gt;Please maintain the aforementioned project dir structure and follow naming conventions. You may want to read the repositories readme for further details. Here&amp;#8217;s what predictions I obtained on testing and training the model against a trimmed version of Caltech101&amp;nbsp;dataset. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="http://kushalvyas.github.io/images/ac1.png" /&gt;
-&lt;img alt="im2" src="http://kushalvyas.github.io/images/bk1.png" /&gt;
-&lt;img alt="im3" src="http://kushalvyas.github.io/images/bk2.png" /&gt;
-&lt;img alt="im4" src="http://kushalvyas.github.io/images/dollar1.png" /&gt;
-&lt;img alt="im5" src="http://kushalvyas.github.io/images/sbb3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/ac1.png" /&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/bk1.png" /&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/bk2.png" /&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/dollar1.png" /&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/sbb3.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Checking for&amp;nbsp;Accuracy&lt;/h3&gt;
 &lt;p&gt;Accuracy measure is one of the most important steps in &lt;span class="caps"&gt;ML&lt;/span&gt; algorithms .A Confusion matrix is basically how many test cases were correctly classified. Hence, a confusion matrix is used to determine the accuracy of classification. On having tried it on the limited dataset, below is the &lt;span class="caps"&gt;CF&lt;/span&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-    &lt;img alt="imc" src="http://kushalvyas.github.io/images/normalized_7.png" /&gt;
+    &lt;img alt="imc" src="https://kushalvyas.github.io/images/normalized_7.png" /&gt;
 &lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;So now you know how to write your own Image Classifiers and Recognizers&amp;#8230; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a &lt;a href=""&gt;Confusion Matrix&lt;/a&gt; .Meanwhile, use the &lt;a href="http://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words&lt;/a&gt; and create some cool&amp;nbsp;stuff&lt;/p&gt;
+&lt;p&gt;So now you know how to write your own Image Classifiers and Recognizers&amp;#8230; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a &lt;a href=""&gt;Confusion Matrix&lt;/a&gt; .Meanwhile, use the &lt;a href="https://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words&lt;/a&gt; and create some cool&amp;nbsp;stuff&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Check out the &lt;a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python"&gt;Code&lt;/a&gt; on &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

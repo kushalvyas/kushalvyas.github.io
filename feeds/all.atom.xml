@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="http://kushalvyas.github.io/" rel="alternate"></link><link href="http://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>http://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00+05:30</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="http://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00+05:30</published><updated>2017-07-04T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:cv_js.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00+05:30</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="https://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00+05:30</published><updated>2017-07-04T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:cv_js.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to &lt;a href="http://arxiv.org/" target="_blank"&gt;arXiv&lt;/a&gt;. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&amp;#8217;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using &lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;According to GitHub, tracking.js is a lightweight &lt;span class="caps"&gt;JS&lt;/span&gt; library that offers a variety of computer vision algorithms with &lt;span class="caps"&gt;HTML5&lt;/span&gt; and &lt;span class="caps"&gt;JS&lt;/span&gt;. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility&amp;nbsp;functions. &lt;/p&gt;
 &lt;p&gt;So let&amp;#8217;s get started&amp;nbsp;! &lt;/p&gt;
@@ -48,7 +48,6 @@
     &lt;!--load css ... use bootstrap--&gt;
     &lt;link href="../../dependencies/css/bootstrap.css" rel="stylesheet"&gt;
     &lt;script src="watch_video.js"&gt;&lt;/script&gt;
-
 &lt;/head&gt;
 &lt;body bgcolor="#bdb76b"&gt;
 
@@ -70,9 +69,6 @@
                     &lt;button class="btn btn-primary" id="btnCapture"&gt;Capture&lt;/button&gt;
                     &lt;button class="btn btn-primary" id="btnGray"&gt;Gray&lt;/button&gt;
                     &lt;button class="btn btn-primary" id="btnBinary"&gt;Binary&lt;/button&gt;
-                    &lt;button class="btn btn-primary" id="btnBlue"&gt;Blur&lt;/button&gt;
-                    &lt;button class="btn btn-primary" id="btnInvert"&gt;invert&lt;/button&gt;
-                    &lt;!--&lt;button class="btn btn-primary" id="downloadbtn"&gt;Download&lt;/button&gt;--&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -81,17 +77,8 @@
             &lt;div class="col-md-3 col-md-offset-3"&gt;
                 &lt;canvas id="canvas" width="480" height="320"&gt;&lt;/canvas&gt;
             &lt;/div&gt;
-
-            &lt;!--&lt;div class="col-md-4 col-md-offset-2"&gt;--&gt;
-                &lt;!--&lt;canvas id="ipcanvas" width="480" height="320"&gt;&lt;/canvas&gt;--&gt;
-            &lt;!--&lt;/div&gt;--&gt;
         &lt;/div&gt;
-    &lt;br&gt;
-        &lt;div class="row"&gt;&lt;/div&gt;
-
-
     &lt;/div&gt;
-
 &lt;script&gt;INSERT RESPECTIVE JS SCRIPT FROM THE SRC@KUSHALVYAS.GITHUB.COM/TRACKINGJS_OFY;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -490,31 +477,31 @@ The matches obtained can be sorted on the basis of their length, i.e., the numbe
 
 &lt;p&gt;&lt;br&gt;
 The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas&amp;nbsp;element.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;
-For complete implementation , please refer to the article in &lt;strong&gt;Opensource For You as well as the Github link&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h2&gt;Here are some cool experiments that I did with&amp;nbsp;tracking.js&lt;/h2&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;Oringal webcam&amp;nbsp;image&lt;/p&gt;
-&lt;p&gt;&lt;img alt="original" src="http://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Grayscale&amp;nbsp;conversion&lt;/p&gt;
-&lt;p&gt;&lt;img alt="gray" src="http://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Binary&amp;nbsp;Conversion&lt;/p&gt;
-&lt;p&gt;&lt;img alt="binary" src="http://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="color-tracking" src="http://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="face" src="http://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;For complete implementation , please refer to the article in Opensource For You as well as the &lt;a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank"&gt;Github link&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Also refer the Tracking.&lt;span class="caps"&gt;JS&lt;/span&gt; website. It is very well documented , with awesome&amp;nbsp;examples. &lt;/p&gt;
 &lt;p&gt;So, using tracking.js, one can develop browser based computer vision applications with much&amp;nbsp;ease. &lt;/p&gt;
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;p&gt;[1]&lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;[2]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank"&gt;Developer Mozilla CanvasRenderingContext2D &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;[3]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank"&gt;Developer Mozilla Media &lt;span class="caps"&gt;API&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[4]&lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;Exploring Front-end Computer Vision - Open Source For&amp;nbsp;You&lt;/a&gt;&lt;/p&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="http://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="http://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
+&lt;p&gt;[4]&lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;Exploring Front-end Computer Vision - Open Source For&amp;nbsp;You&lt;/a&gt;&lt;/p&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="https://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="https://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
 &lt;h2&gt;Basics of &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;nbsp;:&lt;/h2&gt;
 &lt;p&gt;A typical Convolutional Neural Net or &lt;strong&gt;&lt;span class="caps"&gt;CNN&lt;/span&gt;&lt;/strong&gt;, is a feed-forward neural net, with the input being an image. Its&amp;#8217; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected&amp;nbsp;layers.&lt;/p&gt;
 &lt;p&gt;One can refer &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;this post by Andrej Karpathy&lt;/a&gt; to understand the intricate details of a&amp;nbsp;ConvNet.&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="http://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /&gt;&lt;/center&gt;
 &lt;center&gt;Source : &lt;a href="https://en. wikipedia.org/wiki/File:Typical_cnn.png" target="_blank"&gt;Convolutional Neural Nets : Wiki&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Convolution Layer : &lt;span class="caps"&gt;CONV&lt;/span&gt;&lt;/strong&gt; &lt;/p&gt;
 &lt;p&gt;The primary operator is a convolution operation. For a 1-D signal it is expressed&amp;nbsp;as 
@@ -523,7 +510,7 @@ For complete implementation , please refer to the article in &lt;strong&gt;Opens
 &lt;p&gt;However, an image is a 2D signal (stored as a 2D matrix). To convolve an image, we use a convolution kernel, which is simply a 2D&amp;nbsp;matrix.&lt;/p&gt;
 &lt;div class="math"&gt;$$ convolve(I_1, I_2) = I_1[x, y] * I_2[x, y] = \sum_{n_1= - \infty}^{ n_1 = + \infty} \text{   } \sum_{n_2 = - \infty}^{ n_2 = + \infty} I_1[n_1, n_2].I_2[x - n_1, y - n_2]$$&lt;/div&gt;
 &lt;p&gt;Here&amp;#8217;s an example of how it&amp;nbsp;works&lt;/p&gt;
-&lt;p&gt;&lt;img alt="cn2d" src="http://kushalvyas.github.io/images/cnn_images/con2d.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png" /&gt;&lt;/p&gt;
 &lt;p&gt;For this 7 x 7 matrix, and a kernel of 3 x 3, the kernel will slide over the matrix one column, at a time. Once it reaches the end of the matrix (columnwise), it&amp;#8217;ll shift to the next row. At every position, the dot product is&amp;nbsp;computed. &lt;/p&gt;
 &lt;p&gt;If the kernel is overlapped with the (0 , 0) position , we find the dot product&amp;nbsp;of &lt;/p&gt;
 &lt;div class="math"&gt;$$ 
@@ -540,7 +527,7 @@ For complete implementation , please refer to the article in &lt;strong&gt;Opens
 &lt;p&gt;which essentially is&amp;nbsp;: &lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(1\times-1 + 1\times-1 + 1\times-1 + 3\times-1 + 2\times8 + 2\times-1 + 2\times-1 + 4\times-1 + 3\times-1 =&amp;nbsp;-1\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Similarly, assume an input image - &lt;span class="math"&gt;\(I\)&lt;/span&gt;  is of Size &lt;span class="math"&gt;\((200 \text{ x } 200)\)&lt;/span&gt;, and we have a kernel - &lt;span class="math"&gt;\(k\)&lt;/span&gt; of size &lt;span class="math"&gt;\((10 \text{ x } 10)\)&lt;/span&gt;. The convolution of this kernel over this image is to basically, take the kernel and slide it over the image column by column, row by row. Initially the kernel is placed at &lt;span class="math"&gt;\(I[0, 0]\)&lt;/span&gt;. Therefore the kernel covers a region of &lt;span class="math"&gt;\(10 \text{ x } 10\)&lt;/span&gt; (size of kernel) starting from &lt;span class="math"&gt;\(I[0, 0] \text{ to } I[10,10]\)&lt;/span&gt;. Once the dot product (convolution) is computed over this pixel region, the kernel is shifted by one column to the right. Now the kernel occupies an image region of &lt;span class="math"&gt;\(I[0,1 ] \text{ to } I[10, 11]\)&lt;/span&gt; and so on. 
-&lt;center&gt;&lt;img alt="conv_img" src="http://kushalvyas.github.io/images/cnn_images/convolution.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Source: &lt;a href="http://stackoverflow.com/questions/15356153/how-do-convolution-matrices-work" target="_blank"&gt;Stackoverflow : How convolution matrices work&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;A series of convolution operations take place at every layer, which extrapolates the pertinent information from the images. At every layer, multiple convolution operations take place, followed by zero padding and eventually passed through an activation layer and what is outputted is an Activation&amp;nbsp;Map. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Filters and&amp;nbsp;Stride&lt;/strong&gt;&lt;/p&gt;
@@ -555,9 +542,9 @@ For complete implementation , please refer to the article in &lt;strong&gt;Opens
 &lt;p&gt;An activation function basically defines the output of the neuron for the given input. Take a simple Hebbian Learning example . An activation function will return &lt;span class="math"&gt;\(1\)&lt;/span&gt; if input is &lt;span class="math"&gt;\( &amp;gt; 0\)&lt;/span&gt; and return &lt;span class="math"&gt;\(0\)&lt;/span&gt; otherwise. The value of input being greater that 0, is nothing but a threshold value. Instead of 0, any other value can also act as a threshold. In ConvNets, a the popular activation function used is a Rectifier or &lt;span class="caps"&gt;RELU&lt;/span&gt;. &lt;/p&gt;
 &lt;div class="math"&gt;$$f(x) = \text{max(0, x)}$$&lt;/div&gt;
 &lt;p&gt;This means that the output of the convolution is thresholded at 0. All positive values are returned as is and all negative values are made&amp;nbsp;0. &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="http://kushalvyas.github.io/images/cnn_images/relu.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;For our above example, if the convolution output is passed to the Rectifier unit, it&amp;#8217;ll set all negative values to&amp;nbsp;zero. &lt;/p&gt;
-&lt;p&gt;&lt;img alt="rell image" src="http://kushalvyas.github.io/images/cnn_images/rell.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png" /&gt;&lt;/p&gt;
 &lt;p&gt;On the other hand, the pooling operation is used to down-sample / reduce the activation map. This essentially reduces the volume of the middle-stages output. The output size is computed the same way as computed in the &lt;span class="caps"&gt;CONV&lt;/span&gt; layer. An important thing to note is that is that during the convolution layer, there is a rapid reduction in the dimensionality of the input. To maintain it at a constant size through multiple &lt;span class="caps"&gt;CONV&lt;/span&gt; layers,zero padding is used. Zero padding will pad the image with zeros on its boundaries making it of the same size as the input. It is in the pooling layer where the size reduction takes&amp;nbsp;place.&lt;/p&gt;
 &lt;h2&gt;Implementation with&amp;nbsp;Caffe&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href="http://caffe.berkeleyvision.org/" target="_blank"&gt;Caffe&lt;/a&gt;&lt;/strong&gt; is a framework for deep learning, very popular for its simplicity in implementing &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. It has been developed by the Berkely Vision &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Learning Center. You can use a &lt;span class="caps"&gt;CPU&lt;/span&gt; as well as a &lt;span class="caps"&gt;GPU&lt;/span&gt; mode. It is widely known that when it comes to matrix and other such image operations , most of which can be done in parallel, &lt;span class="caps"&gt;GPU&lt;/span&gt;&amp;#8217;s triumph over &lt;span class="caps"&gt;CPU&lt;/span&gt;&amp;#8217;s. I used my &lt;span class="caps"&gt;CPU&lt;/span&gt; machine to train a limited Caltech101 dataset, and it went on for 3&amp;nbsp;days. &lt;/p&gt;
@@ -596,8 +583,8 @@ Eventually your working directory will comprise of a train &lt;span class="caps"
 &lt;p&gt;&lt;strong&gt;Defining the Network Architecture&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Caffe network architectures are very simple to define. Create a file &amp;#8220;model.prototxt&amp;#8221; and define the network architecture as follows. We will be using the AlexNET model (winner of ImageNet challenge 2012).
 Given below is a representation of how the net looks&amp;nbsp;like.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="net_arch" src="http://kushalvyas.github.io/images/cnn_images/net_arch.png" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank"&gt;Click here and zoom to view&amp;nbsp;it &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank"&gt;Click here and zoom to view&amp;nbsp;it &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;To define the architecture, open the model.prototxt file. The model begins with a net name&amp;nbsp;: &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;NameoftheNET&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -791,11 +778,11 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
 &lt;p&gt;The Caltech101 dataset limited directory already has a split of data into train and&amp;nbsp;test. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="http://kushalvyas.github.io/images/cnn_images/new_a.png" /&gt;
-&lt;img alt="im2" src="http://kushalvyas.github.io/images/cnn_images/new_airplane.png" /&gt;
-&lt;img alt="im3" src="http://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /&gt;&lt;br&gt;
-&lt;img alt="im4" src="http://kushalvyas.github.io/images/cnn_images/new_motorbike.png" /&gt;
-&lt;img alt="im5" src="http://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png" /&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png" /&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /&gt;&lt;br&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png" /&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So, we have completed the tutorial on how to create a custom dataset and train it using caffe. Now you can implement this and train any dataset you want. I would recommend reading up on the references to get a better understanding of&amp;nbsp;ConvNets.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
@@ -862,7 +849,7 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Image Stitching A Simplistic Tutorial</title><link href="http://kushalvyas.github.io/stitching.html" rel="alternate"></link><published>2016-09-25T18:00:00+05:30</published><updated>2016-09-25T18:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-09-25:stitching.html</id><summary type="html">&lt;h3&gt;Multiple Image&amp;nbsp;Stitching&lt;/h3&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Image Stitching A Simplistic Tutorial</title><link href="https://kushalvyas.github.io/stitching.html" rel="alternate"></link><published>2016-09-25T18:00:00+05:30</published><updated>2016-09-25T18:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-09-25:stitching.html</id><summary type="html">&lt;h3&gt;Multiple Image&amp;nbsp;Stitching&lt;/h3&gt;
 &lt;p&gt;I must say, even I was enjoying while developing this tutorial . Something about image perspective and enlarged images is simply captivating to a computer vision student (&lt;span class="caps"&gt;LOL&lt;/span&gt;) . I think, image stitching is an excellent introduction to the coordinate spaces and perspectives vision. Here I am going to show how to take an ordered set of many images, &lt;strong&gt;(assuming they have been shot from left to right direction)&lt;/strong&gt;&amp;nbsp;.&lt;/p&gt;
 &lt;p&gt;So what is image stitching ? In simple terms, for an input group of images, the output is a composite image such that it is a culmination of scenes. At the same time, the logical flow between the images must be&amp;nbsp;preserved.&lt;/p&gt;
 &lt;p&gt;For example, consider the set of images below. (Taken from &lt;a href="https://www.mathworks.com/examples/matlab-computer-vision/mw/vision_product-FeatureBasedPanoramicImageStitchingExample-feature-based-panoramic-image-stitching"&gt;matlab examples&lt;/a&gt;).
@@ -973,7 +960,7 @@ Also, to test, I will be using images from &lt;a href="http://study.marearts.com
 
 &lt;p&gt;&lt;br&gt;
 &lt;strong&gt; Step 1: Feature extraction&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;We shall be using opencv_contrib&amp;#8217;s &lt;span class="caps"&gt;SIFT&lt;/span&gt; descriptor. &lt;span class="caps"&gt;SIFT&lt;/span&gt; , as in Scale Invariant Feature Transform, is a very powerful &lt;span class="caps"&gt;CV&lt;/span&gt; algorithm. Please read my &lt;a href="http://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words for Image classification post&lt;/a&gt; to understand more about features.
+&lt;p&gt;We shall be using opencv_contrib&amp;#8217;s &lt;span class="caps"&gt;SIFT&lt;/span&gt; descriptor. &lt;span class="caps"&gt;SIFT&lt;/span&gt; , as in Scale Invariant Feature Transform, is a very powerful &lt;span class="caps"&gt;CV&lt;/span&gt; algorithm. Please read my &lt;a href="https://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words for Image classification post&lt;/a&gt; to understand more about features.
 Also, check out &lt;a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_intro.html"&gt;OpenCV&amp;#8217;s docs on &lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt;. They are a pretty good resource as&amp;nbsp;well! &lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="n"&gt;sift_obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xfeatures2d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIFT_create&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -1347,10 +1334,10 @@ You can click as well as test on other sources which deal in panorama and image&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry><entry><title>Solving 8 Queens using Genetic Algorithms - Evolution</title><link href="http://kushalvyas.github.io/gen_8Q.html" rel="alternate"></link><published>2016-08-18T18:20:00+05:30</published><updated>2016-08-18T18:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-08-18:gen_8Q.html</id><summary type="html">&lt;h1&gt;The 8 Queens Problem : An&amp;nbsp;Introduction&lt;/h1&gt;
+&lt;/script&gt;</summary><category term="CV"></category><category term="images"></category><category term="stitching"></category><category term="mosaicking"></category></entry><entry><title>Solving 8 Queens using Genetic Algorithms - Evolution</title><link href="https://kushalvyas.github.io/gen_8Q.html" rel="alternate"></link><published>2016-08-18T18:20:00+05:30</published><updated>2016-08-18T18:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-08-18:gen_8Q.html</id><summary type="html">&lt;h1&gt;The 8 Queens Problem : An&amp;nbsp;Introduction&lt;/h1&gt;
 &lt;p&gt;8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard &lt;span class="math"&gt;\(8\)&lt;/span&gt; x &lt;span class="math"&gt;\(8\)&lt;/span&gt; chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&amp;#8221; &lt;span class="math"&gt;\(OK\)&lt;/span&gt; &amp;#8221; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &amp;#8221; &lt;span class="math"&gt;\(X\)&lt;/span&gt; &amp;#8221; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens&amp;nbsp;problem.&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="attacking_queen" src="http://kushalvyas.github.io/images/queen_attacking.png" /&gt; &amp;nbsp; &amp;nbsp;
-&lt;img alt="solution_queen" src="http://kushalvyas.github.io/images/solution.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="attacking_queen" src="https://kushalvyas.github.io/images/queen_attacking.png" /&gt; &amp;nbsp; &amp;nbsp;
+&lt;img alt="solution_queen" src="https://kushalvyas.github.io/images/solution.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;i&gt;Images taken from chegg.com and indiamedic&lt;/i&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;There are various methods to solve the 8 queens problem. The most common being &lt;strong&gt;BackTracking&lt;/strong&gt;. It can also be solved using a variety of approaches such as as Hill climbing, Genetic Algorithms - evolution, etc. In this post, I&amp;#8217;ll explain how we approach 8 queens problem using &lt;strong&gt;Genetic Algorithms - Evolution&lt;/strong&gt;.&lt;/p&gt;
 &lt;h1&gt;First,  a bit of&amp;nbsp;Biology&amp;#8230;&lt;/h1&gt;
@@ -1359,12 +1346,12 @@ You can click as well as test on other sources which deal in panorama and image&
 &lt;p&gt;Consider 2 cells. Each cell has something called as pairs of chromosomes. A chromosome is what carries the genetic traits. The pairs and number of chromosomes isin&amp;#8217;t much of relevance. What is important is how the process of cell production causes the genes to propagate into an offspring. This method is called as meiosis. Well, there&amp;#8217;s another way called as mitosis, but in mitosis, there is no genetic diversity that is being propagated (Explained later in post). Till now we have established that the cells contain pairs of chromosomes. And that 2 cells are required for essential cell&amp;nbsp;division. &lt;/p&gt;
 &lt;p&gt;Given below is an illustration as to how the division takes place. (Image taken from&amp;nbsp;askabiologist.com)&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-&lt;img alt="celldv" src="http://kushalvyas.github.io/images/meiosis.png" /&gt;
+&lt;img alt="celldv" src="https://kushalvyas.github.io/images/meiosis.png" /&gt;
 &lt;/center&gt;
 &lt;br&gt;
 &lt;center&gt;
 Process of meiosis.
-&lt;img alt="celldv1" src="http://kushalvyas.github.io/images/crossover.png" /&gt;&lt;/p&gt;
+&lt;img alt="celldv1" src="https://kushalvyas.github.io/images/crossover.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Chromosme crossover
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Crossover - In Detail&lt;/strong&gt;: When 2 cells meet, the respective chromosome from cell1 and cell2 come together and mix. The mixing involves random parts of chromosome1 to get over-written by chromosome2. And the same in case of chromosome2. Hence, we are left with an inter mixed pair of chromosomes. Since chromosomes are carriers of genetic material, when there is mixing and intermingling of 2 chromosomes, there is also creation of new genetic sequences. Hence, this ensures genetic diversity. The formation of a more dominant / enhanced trait or a relatively sober trait can be attributed to such crossing over of chromosomes. Once crossover is through, the new offspring contains mixed characteristics for both the&amp;nbsp;parents.&lt;/p&gt;
@@ -1502,7 +1489,7 @@ def generatePopulation(population_size = 100):
 &lt;p&gt;Any of the three cases is still capable of producing a next generation. The only difference will be regarding the probability of that offspring to yield a substantially fit&amp;nbsp;offspring.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Mutation : &lt;/strong&gt;
 Biologically and statistically, mutation is continously occuring at very low frequencies. In human genetic theory, mutation involves alteration within the structure of the chromosome, within the structure of the gene. To replicate this for 8 queens problem, one can simply alter a board&amp;nbsp;arrangement. &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="fitness_cros" src="http://kushalvyas.github.io/images/fitness_cros.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="fitness_cros" src="https://kushalvyas.github.io/images/fitness_cros.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Source : Peter norvig genetic algorithm illustration&lt;/em&gt;
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;The above illustrates the entire flow from initial population to fitness
@@ -1517,7 +1504,7 @@ function calculation, to selection to cross-over and finally mutation. &lt;stron
 &lt;h1&gt;Output and termination criteria&amp;nbsp;:&lt;/h1&gt;
 &lt;p&gt;Well, it seems that such an algorithm will keep producing offsprings and again their offsprings. When to stop. In my implementation , I&amp;#8217;ve kept a limit of iteration. This is just for purposes of conviniece. However, at anytime, the most optimal solution can be described as the &lt;strong&gt;most fit board position&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-    &lt;img alt="im" src="http://kushalvyas.github.io/images/op8q.png" /&gt;&lt;/p&gt;
+    &lt;img alt="im" src="https://kushalvyas.github.io/images/op8q.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;You can check out the &lt;a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f"&gt;code&lt;/a&gt; at &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -1576,7 +1563,7 @@ function calculation, to selection to cross-over and finally mutation. &lt;stron
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="AI"></category><category term="Py"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="http://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+&lt;/script&gt;</summary><category term="AI"></category><category term="Py"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="https://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -1589,7 +1576,7 @@ Well, recognition simply involves stating whether an image contains a specific o
 &lt;/ul&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&amp;nbsp;version)&lt;/p&gt;
-&lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="https://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;Lets begin with a few introductory concepts required Bag of words. We shall cover 4 parts (so keep scrolling&amp;nbsp;!)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Clustering&lt;/li&gt;
@@ -1645,7 +1632,7 @@ ret =  KMeans(n_clusters = n_clusters).fit_predict(X)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;!-- output --&gt;
 
-&lt;p&gt;&lt;img alt="clusteroutput" src="http://kushalvyas.github.io/images/clusterplot1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="clusteroutput" src="https://kushalvyas.github.io/images/clusterplot1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Here&amp;#8217;s a sample output for clustering using 3 clusters on a set of 1000 samples.&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why are we using Clusterng &amp;#8230; Why Kmeans &amp;#8230;: &lt;/strong&gt;
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &amp;#8230; umm. let&amp;#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&amp;nbsp;contain,&lt;/p&gt;
@@ -1655,7 +1642,7 @@ KMeans performs clustering. It is one of the widely used algorithms when it come
 &lt;p&gt;First of all, you need a training set. If you&amp;#8217;re using a personal computer, I&amp;#8217;d recommend to use a truncated version of any publically available image datasets (if you&amp;#8217;re worried about your &lt;span class="caps"&gt;PC&lt;/span&gt; taking up too much time during training) or perhaps train using a minimally bounded set of features. I&amp;#8217;d recommend using &lt;a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/"&gt;Caltech101&lt;/a&gt;. Also check out Caltech256, &lt;span class="caps"&gt;CIFAR10&lt;/span&gt; datasets. They&amp;#8217;re good !! As in real&amp;nbsp;good. &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; , &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;,  &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="http://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secondly please set up either &lt;span class="caps"&gt;LIBSVM&lt;/span&gt; , &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;,  &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; ( for enhanced vision algos&amp;#8230; like sift) Library, or Any python machine learning toolkit that will provide basic &lt;span class="caps"&gt;SVM&lt;/span&gt; , Kmeans functionaliy. You can visit my previous post on &lt;a href="https://kushalvyas.github.io/setup_env.html"&gt;setting up environments&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code&amp;nbsp;modular.&lt;/p&gt;
@@ -1800,10 +1787,10 @@ $$&lt;/div&gt;
 &lt;p&gt;We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms &amp;#8230;. Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said&amp;nbsp;process.&lt;/p&gt;
 &lt;p&gt;If we were to allot a definition to any of the similar words, we can simply refer them by their cluster&amp;nbsp;number.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-&lt;img alt="image" size:small="size:small" src="http://kushalvyas.github.io/images/grid.png" /&gt;
-&lt;!-- &lt;img alt="image" src="http://kushalvyas.github.io/images/vocab.png" /&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
+&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/grid.png" /&gt;
+&lt;!-- &lt;img alt="image" src="https://kushalvyas.github.io/images/vocab.png" /&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
 &lt;p&gt;A more illustrative visualization of the histogram can be observed in the adjacent&amp;nbsp;figure.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" size:small="size:small" src="http://kushalvyas.github.io/images/vocab_unnormalized.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/vocab_unnormalized.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The above image shows how a collective vocabulary will look like. Encomprising of the total number of each type of feature/word present in the training set in&amp;nbsp;totality.&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Here&amp;#8217;s some implementation snippet as to how one would implement&amp;nbsp;this&lt;/p&gt;
@@ -1855,18 +1842,18 @@ $$&lt;/div&gt;
 &lt;p&gt;Please maintain the aforementioned project dir structure and follow naming conventions. You may want to read the repositories readme for further details. Here&amp;#8217;s what predictions I obtained on testing and training the model against a trimmed version of Caltech101&amp;nbsp;dataset. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="http://kushalvyas.github.io/images/ac1.png" /&gt;
-&lt;img alt="im2" src="http://kushalvyas.github.io/images/bk1.png" /&gt;
-&lt;img alt="im3" src="http://kushalvyas.github.io/images/bk2.png" /&gt;
-&lt;img alt="im4" src="http://kushalvyas.github.io/images/dollar1.png" /&gt;
-&lt;img alt="im5" src="http://kushalvyas.github.io/images/sbb3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/ac1.png" /&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/bk1.png" /&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/bk2.png" /&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/dollar1.png" /&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/sbb3.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Checking for&amp;nbsp;Accuracy&lt;/h3&gt;
 &lt;p&gt;Accuracy measure is one of the most important steps in &lt;span class="caps"&gt;ML&lt;/span&gt; algorithms .A Confusion matrix is basically how many test cases were correctly classified. Hence, a confusion matrix is used to determine the accuracy of classification. On having tried it on the limited dataset, below is the &lt;span class="caps"&gt;CF&lt;/span&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-    &lt;img alt="imc" src="http://kushalvyas.github.io/images/normalized_7.png" /&gt;
+    &lt;img alt="imc" src="https://kushalvyas.github.io/images/normalized_7.png" /&gt;
 &lt;/center&gt;&lt;/p&gt;
-&lt;p&gt;So now you know how to write your own Image Classifiers and Recognizers&amp;#8230; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a &lt;a href=""&gt;Confusion Matrix&lt;/a&gt; .Meanwhile, use the &lt;a href="http://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words&lt;/a&gt; and create some cool&amp;nbsp;stuff&lt;/p&gt;
+&lt;p&gt;So now you know how to write your own Image Classifiers and Recognizers&amp;#8230; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a &lt;a href=""&gt;Confusion Matrix&lt;/a&gt; .Meanwhile, use the &lt;a href="https://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words&lt;/a&gt; and create some cool&amp;nbsp;stuff&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Check out the &lt;a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python"&gt;Code&lt;/a&gt; on &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -1924,7 +1911,7 @@ $$&lt;/div&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Simple Object Recognition techniques</title><link href="http://kushalvyas.github.io/Obj_CV.html" rel="alternate"></link><published>2016-07-13T00:00:00+05:30</published><updated>2016-07-13T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:Obj_CV.html</id><summary type="html">&lt;p&gt;Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented&amp;nbsp;tasks. &lt;/p&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Simple Object Recognition techniques</title><link href="https://kushalvyas.github.io/Obj_CV.html" rel="alternate"></link><published>2016-07-13T00:00:00+05:30</published><updated>2016-07-13T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:Obj_CV.html</id><summary type="html">&lt;p&gt;Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented&amp;nbsp;tasks. &lt;/p&gt;
 &lt;p&gt;One can ramify between Object recognition into 4 major subsets such as&amp;nbsp;:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1939,7 +1926,7 @@ $$&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Graph based approach&lt;/strong&gt; : we match similar types of structures. Encode the relationship between structures rather than the geometry of the&amp;nbsp;figure.  &lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Bag of Visual Words&lt;/strong&gt; : I will cover Bag of Words in a seperate post &lt;a href="http://kushalvyas.github.io/BOV.html"&gt;Bag of Words&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bag of Visual Words&lt;/strong&gt; : I will cover Bag of Words in a seperate post &lt;a href="https://kushalvyas.github.io/BOV.html"&gt;Bag of Words&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;I&amp;#8217;ll be going through a couple of common techniques. Firstly I&amp;#8217;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using &lt;span class="caps"&gt;BOW&lt;/span&gt; models coupled with &lt;span class="caps"&gt;SVM&lt;/span&gt; , or feature extrapolation and recognition using neural&amp;nbsp;nets.&lt;/strong&gt;&lt;/p&gt;
@@ -2002,8 +1989,8 @@ if __name__ == '__main__':
 &lt;div class="math"&gt;$$R(x, y) = \sum_{i, j}\ {(\text{T}(i,j) - \text{I}(x+i, y+j))^2}$$&lt;/div&gt;
 &lt;p&gt;And here is the output ! We will search a pair of glares from this paraphenalia
 &lt;center&gt;
-&lt;img alt="crop" src="http://kushalvyas.github.io/images/tempCrop.jpg" /&gt; &lt;/p&gt;
-&lt;p&gt;&lt;img alt="original" src="http://kushalvyas.github.io/images/optemplate.png" /&gt;
+&lt;img alt="crop" src="https://kushalvyas.github.io/images/tempCrop.jpg" /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img alt="original" src="https://kushalvyas.github.io/images/optemplate.png" /&gt;
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Okay, so template matching can be established using the opencv api. Its&amp;#8217; quite simple to implement in plain ol c++ as well. Not a biggie.  We&amp;#8217;ll use the helper functions for image reading , accessing pixel value, etc. but the rest can be quite easily implemented using a bunch of &lt;code&gt;for loops&lt;/code&gt;&lt;/p&gt;
 &lt;div class="gist"&gt;
@@ -2143,7 +2130,7 @@ int main(){
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category><category term="CV"></category></entry><entry><title>Setup Computer Vision Environment</title><link href="http://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00+05:30</published><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:setup_env.html</id><summary type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
+&lt;/script&gt;</summary><category term="ObjectRecognition"></category><category term="CV"></category></entry><entry><title>Setup Computer Vision Environment</title><link href="https://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00+05:30</published><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:setup_env.html</id><summary type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
 &lt;p&gt;So yes, there is a myraid choice available to start developing. I personally like &lt;a href="http://opencv.org/"&gt;OpenCV&lt;/a&gt; because of its&amp;#8217; enormous community support along with its multiplatform&amp;nbsp;facilities.&lt;/p&gt;
 &lt;p&gt;Apart from this, there is &lt;a href="http://in.mathworks.com/products/matlab/"&gt;&lt;span class="caps"&gt;MATLAB&lt;/span&gt;&lt;/a&gt;. 
 Whoaaa&amp;#8230; this is like a computing powerhouse. With so many easy to use functionality, and 
@@ -2183,14 +2170,14 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>Wiki Lookup</title><link href="http://kushalvyas.github.io/wiki_lookup.html" rel="alternate"></link><published>2016-04-12T00:00:00+05:30</published><updated>2016-04-12T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-12:wiki_lookup.html</id><summary type="html">&lt;p&gt;Pin :&amp;nbsp;true&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>Wiki Lookup</title><link href="https://kushalvyas.github.io/wiki_lookup.html" rel="alternate"></link><published>2016-04-12T00:00:00+05:30</published><updated>2016-04-12T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-12:wiki_lookup.html</id><summary type="html">&lt;p&gt;Pin :&amp;nbsp;true&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;A Chrome Extension for simplifying Wikipedia Surfing.Wiki Lookup features the use of dynamically generated popups to simplify your Wikipedia Surfing Experience.Just hover over the hyperlink, and wait for a small dialog to appear.No Need to open up new tabs and feel lost while surfing wikipedia.org. Its&amp;#8217; light-weight and&amp;nbsp;compact.&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;br&gt;
-&lt;img alt="img_normal" src="http://kushalvyas.github.io/images/Menu_026.png" /&gt;&lt;/p&gt;
+&lt;img alt="img_normal" src="https://kushalvyas.github.io/images/Menu_026.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;Everytime you hover over a wiki link, it&amp;#8217;ll show an appropriate amount of text to define the&amp;nbsp;term.&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;br&gt;&lt;br&gt;
-&lt;img alt="img_normal" src="http://kushalvyas.github.io/images/img_ext1.png" /&gt;&lt;/p&gt;
+&lt;img alt="img_normal" src="https://kushalvyas.github.io/images/img_ext1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h2&gt;Install the Extension&amp;nbsp;:&lt;/h2&gt;
 &lt;ul&gt;
@@ -2201,7 +2188,7 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 &lt;li&gt;&lt;span class="caps"&gt;OR&lt;/span&gt; Load unpacked Extension ( provide path to&amp;nbsp;repository/wiki_look_up/)&lt;/li&gt;
 &lt;li&gt;&lt;span class="caps"&gt;OR&lt;/span&gt; &lt;a href="https://chrome.google.com/webstore/detail/wiki-lookup/lkejjmneaehckeodpaknhndcnaokdokc?utm_source=chrome-ntp-icon"&gt;Get it here @ Chrome Web&amp;nbsp;Store&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Enjoy surfing wiki&amp;nbsp;:P&lt;/p&gt;</summary><category term="dev"></category><category term="technical"></category><category term="wikipedia"></category></entry><entry><title>Using the Samba Server and SSH</title><link href="http://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><published>2016-04-07T15:55:00+05:30</published><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:Samba SSH.html</id><summary type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;Enjoy surfing wiki&amp;nbsp;:P&lt;/p&gt;</summary><category term="dev"></category><category term="technical"></category><category term="wikipedia"></category></entry><entry><title>Using the Samba Server and SSH</title><link href="https://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><published>2016-04-07T15:55:00+05:30</published><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:Samba SSH.html</id><summary type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&amp;#8217;t have any files locally on my laptop.&amp;nbsp;B) &lt;/p&gt;
 &lt;p&gt;Yes.. Speaking of &lt;a href="https://www.samba.org/"&gt;Samba&lt;/a&gt;, its quite easy to setup and install it. You can refer the steps &lt;a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!"&gt;here&lt;/a&gt; but ya.. i&amp;#8217;ll be going over them&amp;nbsp;too..&lt;/p&gt;
 &lt;p&gt;For, ubuntu, I&amp;#8217;d say, simply run these&amp;nbsp;commands&lt;/p&gt;
@@ -2272,7 +2259,7 @@ If you plan on using this, i recommend that you make the server ip static. Goto 
 
 
 &lt;p&gt;Make sure , both the endpoint machines are equipped with the&amp;nbsp;dependencies.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</summary></entry><entry><title>Python Graphs and Topological Sort</title><link href="http://kushalvyas.github.io/graph_py.html" rel="alternate"></link><published>2016-04-05T10:00:00+05:30</published><updated>2016-04-05T10:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-05:graph_py.html</id><summary type="html">&lt;h3&gt;Graphs using&amp;nbsp;python&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</summary></entry><entry><title>Python Graphs and Topological Sort</title><link href="https://kushalvyas.github.io/graph_py.html" rel="alternate"></link><published>2016-04-05T10:00:00+05:30</published><updated>2016-04-05T10:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-05:graph_py.html</id><summary type="html">&lt;h3&gt;Graphs using&amp;nbsp;python&lt;/h3&gt;
 &lt;p&gt;It was about yesterday that I was working on a project that involved the use of a graphs and topological sort. However, I was surprised when I saw the implementation sizes. Albeit , python uses substantially less number of &lt;span class="caps"&gt;LOC&lt;/span&gt;, this example particularly blew my mind. Ive never been able to create graphs in such an easy manner. :P :P (Im overstating cause im a bit ecstatic right now)&amp;nbsp;.&lt;/p&gt;
 &lt;p&gt;Beginning with graphs, We&amp;#8217;ll represent the graph using lists, and not matrices (saves memory you&amp;nbsp;know).. &lt;/p&gt;
 &lt;p&gt;The graph refers the one shown here (Courtesy : geeksforgeeks.com)&lt;center&gt;
@@ -2354,14 +2341,14 @@ you can create a&amp;nbsp;class.&lt;/p&gt;
 
 
 &lt;span class="n"&gt;Then&lt;/span&gt; &lt;span class="n"&gt;append&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;node&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;adj&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>An introduction to Computer Vision</title><link href="http://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00+05:30</published><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:CV.html</id><summary type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>An introduction to Computer Vision</title><link href="https://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00+05:30</published><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:CV.html</id><summary type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
 &lt;p&gt;Computer vision involves image processing, a bit of &lt;span class="caps"&gt;AI&lt;/span&gt; and various algorithms. Basically every gesture effect that you see today,  or the &lt;a href="http://www.digitalspy.com/tech/news/a476446/intel-magic-mirror-allows-shoppers-to-try-on-clothes-virtually/"&gt;Intel Magic Mirror&lt;/a&gt; all dumbs down to a few concepts of &lt;span class="caps"&gt;CV&lt;/span&gt;. One can say , that &lt;span class="caps"&gt;CV&lt;/span&gt; is the next big thing that&amp;#8217;s there today&amp;nbsp;&amp;#8230; &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;But there&amp;#8217;s this one great hell of a snag .. that is &lt;strong&gt;Illumination&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;However, there are methods to overcome that&amp;nbsp;too.&lt;/p&gt;
-&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>'The Social Network' where it all started</title><link href="http://kushalvyas.github.io/utils.html" rel="alternate"></link><published>2016-03-24T10:20:00+05:30</published><updated>2016-03-24T10:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:utils.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;#8230; forgive&amp;nbsp;me&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>'The Social Network' where it all started</title><link href="https://kushalvyas.github.io/utils.html" rel="alternate"></link><published>2016-03-24T10:20:00+05:30</published><updated>2016-03-24T10:20:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:utils.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;#8230; forgive&amp;nbsp;me&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moving on, i think every person starting off with linux, must know a few things ..
 Specially, if you,ve just watched &lt;em&gt;&lt;a href="http://www.imdb.com/title/tt1285016/"&gt;The Social Network&lt;/a&gt;&lt;/em&gt; and you&amp;#8217;ve seen  Jesse Eisenberg hacking away at his&amp;nbsp;screen&amp;#8230; &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="http://kushalvyas.github.io/images/mkz.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="https://kushalvyas.github.io/images/mkz.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;You&amp;#8217;re probably wondering what is &lt;em&gt;wget&lt;/em&gt;, &lt;em&gt;emacs&lt;/em&gt;, &lt;em&gt;apache&lt;/em&gt; and much more. If not, please rewatch the movie with&amp;nbsp;subtitiles.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Wget&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://www.gnu.org/software/wget/" target="_blank"&gt;Wget&lt;/a&gt; is a basic downloading utility, actually calling it basic would be an understatement
@@ -2405,7 +2392,7 @@ more details, check out this &lt;a href="http://www.linuxjournal.com/content/dow
 &lt;p&gt;Using grep with wget to cli search a webpage&lt;br&gt;&lt;code&gt;wget -O - url | grep keyword&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;center&gt;&lt;a href="http://kushalvyas.github.io/images/blog_grep.png"&gt;&lt;img alt="grep" src="http://kushalvyas.github.io/images/blog_grep.png" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="https://kushalvyas.github.io/images/blog_grep.png"&gt;&lt;img alt="grep" src="https://kushalvyas.github.io/images/blog_grep.png" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;I can go on and on about the utilities, but now I think, it&amp;#8217;s time to check them 
 out&amp;nbsp;yourself.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Last thing, before I sign out&amp;nbsp;.. &lt;/p&gt;
@@ -2414,6 +2401,6 @@ out&amp;nbsp;yourself.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;sudo apt-get install cmatrix&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;and this is the beauty of it
 &lt;center&gt;
-&lt;img alt="cmatrix" src="http://kushalvyas.github.io/images/cmatrix.png" /&gt;&lt;/p&gt;
+&lt;img alt="cmatrix" src="https://kushalvyas.github.io/images/cmatrix.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;strong&gt;Enjoy , Browse, &amp;#34; Make the world a better place&amp;#34;(Courtesy : &lt;a href="https://www.youtube.com/watch?v=69V__a49xtw"&gt;Silicon Valley&lt;/a&gt; )&amp;nbsp;:P  &lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;</summary><category term="utils"></category></entry></feed>
