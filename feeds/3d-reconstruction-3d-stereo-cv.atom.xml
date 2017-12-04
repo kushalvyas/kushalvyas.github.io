@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/3d-reconstruction-3d-stereo-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-12-03T20:40:00+05:30</updated><entry><title>Structured Light 3D Reconstruction</title><link href="https://kushalvyas.github.io/sl_3d.html" rel="alternate"></link><published>2017-12-03T20:40:00+05:30</published><updated>2017-12-03T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-12-03:sl_3d.html</id><summary type="html">&lt;h3&gt;Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to&amp;nbsp;load.&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h3&gt;Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last&amp;nbsp;year.&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h3&gt;Cool stuff: I&amp;#8217;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &amp;#8230; all the way to working with 3D&amp;nbsp;files.&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h3&gt;I&amp;#8217;ll probably host it as a GitBook.&amp;nbsp;:)&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h2&gt;Setup:&lt;/h2&gt;
+&lt;p&gt;I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&amp;#8217;s paper on using a single-camera-projector arrangement for 3D geometry&amp;nbsp;acquisition.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="setup1" src="https://kushalvyas.github.io/images/sl_3d/setup1.jpg" /&gt;
+    &lt;br&gt;
+    Initial Chessboard for calibration
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="setup2" src="https://kushalvyas.github.io/images/sl_3d/setup2.jpg" /&gt;
+    &lt;br&gt;
+    Setup Image (backview)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="setup3" src="https://kushalvyas.github.io/images/sl_3d/setup3.jpg" /&gt;
+    &lt;br&gt;
+    Setup Image (side view)
+    &lt;br&gt;&lt;br&gt;
+&lt;/center&gt;
+&lt;hr&gt;&lt;/p&gt;
+&lt;h2&gt;Outputs&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="david1" src="https://kushalvyas.github.io/images/sl_3d/david1.png" /&gt;
+    &lt;br&gt;
+    Surface View 1 of David Scan (from dataset)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="david3" src="https://kushalvyas.github.io/images/sl_3d/david3.png" /&gt;
+    &lt;br&gt;
+    Surface View 2 of David Scan (from dataset)
+    &lt;br&gt;&lt;br&gt;
+    &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/sqdaPVvP_BU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;br&gt;&lt;br&gt;
+    Although, for live condition, there is a lot of noise.
+    &lt;br&gt;
+    &lt;img alt="bottle1" src="https://kushalvyas.github.io/images/sl_3d/bottle1.png" /&gt;
+    &lt;br&gt;
+    Tupperware Bottle Scan - Stage 1 (Improves later on)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="cap" src="https://kushalvyas.github.io/images/sl_3d/bottle_closeup.png" /&gt;
+    &lt;br&gt;
+    Closeup of Bottle Scan (next stage). If you look closely, I have made a dimension as well. The cap length shows to be 26.23 mm.
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="bottle2" src="https://kushalvyas.github.io/images/sl_3d/bottle2.png" /&gt;
+    &lt;br&gt;
+    Random Bottle Scan (later stage). I cannot find a picture set for the above tupperware bottle.
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="bottle_closeup2" src="https://kushalvyas.github.io/images/sl_3d/bclose.jpg" /&gt;
+    &lt;br&gt;
+    Cleaner scan of above object (End Stage)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/woodland1.png" /&gt;
+    &lt;br&gt;
+    And here&amp;#8217;s a 3D scan of my shoes :P 
+    &lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;h3&gt;the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&amp;#8217;s for sure to be expected by the coming&amp;nbsp;year.&lt;/h3&gt;</summary><category term="sl_3d"></category></entry></feed>

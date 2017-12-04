@@ -18,10 +18,10 @@
         <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shThemeRDark.css" rel="stylesheet" type="text/css" /> -->
         <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/lamboz.css" media="all">
-        <title>BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
+        <title>Structured Light 3D&nbsp;Reconstruction - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
         <meta charset="utf-8" />
         <link href="https://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Full Atom Feed" />
-        <link href="https://kushalvyas.github.io/feeds/ai.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
+        <link href="https://kushalvyas.github.io/feeds/3d-reconstruction-3d-stereo-cv.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
   
 
         <script src="//load.sumome.com/" data-sumo-site-id="cecf6965e36602158241ee45155d77c8c02f27706e5178b61597811ab112b3a8" async="async"></script>   
@@ -50,11 +50,12 @@
             <li style="float :right;" class=""><a href="https://in.linkedin.com/in/kushal-vyas-44529ba9" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
         </ul>
     </div>
-<div class="hp-header" style="height:33%;">
+<div class="hp-header-inner">
     <div class="page-header">
         <div class="content-header">
             <div id="title-block">
-                <h1 style="font-size:3em; color:white;">Articles in the AI category </h1>
+            <h1>  <a href="https://kushalvyas.github.io/sl_3d.html" rel="bookmark"
+                    title="Permalink to Structured Light 3D Reconstruction">Structured Light 3D&nbsp;Reconstruction</a></h1>
             </div>
         </div>
     </div>
@@ -63,24 +64,113 @@
         <div class="data-holder">
         <div class="row">
            <div class="large-10 content-column column">
-
-
-
-
-
-
-<blocks cols="2">
-        <div class="sec-article">
-            <div class="read-more">Thu 18 August 2016</div>
-
-            <h3><a href="https://kushalvyas.github.io/gen_8Q.html" rel=Bookmark title="Permalink to Solving 8 Queens using Genetic Algorithms - Evolution">Solving 8 Queens using Genetic Algorithms -&nbsp;Evolution</a></h3>
-            <p>
-            <p>Solution to the problem of arranging 8 queens on a chessboard such that they donot attack each&nbsp;other.</p>            
-            </p>
+<div class="content-article">
+    <header class="header-article">
+        <div class="read-more">Posted on Sun 03 December 2017</div>
+ 
+   </header>
+    <section class='article'>
+        
+        <div class="entry-summary">
+            <p>A few results on 3D&nbsp;reconstruction</p>
         </div>
+    
+        <div class="entry-content">
+            <h3>Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to&nbsp;load.</h3>
+<hr>
 
-</blocks>
+<h3>Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last&nbsp;year.</h3>
+<hr>
 
+<h3>Cool stuff: I&#8217;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &#8230; all the way to working with 3D&nbsp;files.</h3>
+<hr>
+
+<h3>I&#8217;ll probably host it as a GitBook.&nbsp;:)</h3>
+<hr>
+
+<h2>Setup:</h2>
+<p>I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&#8217;s paper on using a single-camera-projector arrangement for 3D geometry&nbsp;acquisition.</p>
+<p><center>
+    <img alt="setup1" src="https://kushalvyas.github.io/images/sl_3d/setup1.jpg" />
+    <br>
+    Initial Chessboard for calibration
+    <br><br>
+    <img alt="setup2" src="https://kushalvyas.github.io/images/sl_3d/setup2.jpg" />
+    <br>
+    Setup Image (backview)
+    <br><br>
+    <img alt="setup3" src="https://kushalvyas.github.io/images/sl_3d/setup3.jpg" />
+    <br>
+    Setup Image (side view)
+    <br><br>
+</center>
+<hr></p>
+<h2>Outputs</h2>
+<p><center>
+    <img alt="david1" src="https://kushalvyas.github.io/images/sl_3d/david1.png" />
+    <br>
+    Surface View 1 of David Scan (from dataset)
+    <br><br>
+    <img alt="david3" src="https://kushalvyas.github.io/images/sl_3d/david3.png" />
+    <br>
+    Surface View 2 of David Scan (from dataset)
+    <br><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sqdaPVvP_BU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    <br><br>
+    Although, for live condition, there is a lot of noise.
+    <br>
+    <img alt="bottle1" src="https://kushalvyas.github.io/images/sl_3d/bottle1.png" />
+    <br>
+    Tupperware Bottle Scan - Stage 1 (Improves later on)
+    <br><br>
+    <img alt="cap" src="https://kushalvyas.github.io/images/sl_3d/bottle_closeup.png" />
+    <br>
+    Closeup of Bottle Scan (next stage). If you look closely, I have made a dimension as well. The cap length shows to be 26.23 mm.
+    <br><br>
+    <img alt="bottle2" src="https://kushalvyas.github.io/images/sl_3d/bottle2.png" />
+    <br>
+    Random Bottle Scan (later stage). I cannot find a picture set for the above tupperware bottle.
+    <br><br>
+    <img alt="bottle_closeup2" src="https://kushalvyas.github.io/images/sl_3d/bclose.jpg" />
+    <br>
+    Cleaner scan of above object (End Stage)
+    <br><br>
+    <img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/woodland1.png" />
+    <br>
+    And here&#8217;s a 3D scan of my shoes :P 
+    <br><br></p>
+<p></center></p>
+<h3>the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&#8217;s for sure to be expected by the coming&nbsp;year.</h3>
+        </div>
+    </section>
+    <footer class="footer-article">
+        <div class="tags-and-categories">Filed under <a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a>
+        | Tagged: <a href="https://kushalvyas.github.io/tag/sl_3d.html">sl_3d </a>
+        | <a href="https://kushalvyas.github.io/sl_3d.html" rel="bookmark"
+         title="Permalink to Structured Light 3D Reconstruction">Permalink</a>            
+        </div>
+        <!-- metaldata 
+        -->
+    </footer>
+    <!-- disqus bitsmakemecrazy -->
+        <hr>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = "bitsmakemecrazy"; // required: replace example with your forum shortname
+            var disqus_identifier = "structured-light-3d-reconstruction";
+            var disqus_url = "https://kushalvyas.github.io/sl_3d.html";
+            var disqus_title = "Structured Light 3D Reconstruction";
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
             </div>
          
             <div class="large-2 aside column" id="SIDEID">
@@ -172,8 +262,8 @@
             <div class="large-3 category-column column">
                 <h3>Categories</h3>
                 <ul>
-                    <li><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
-                    <li class="active"><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
+                    <li class="active"><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
