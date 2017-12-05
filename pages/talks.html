@@ -18,10 +18,9 @@
         <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shThemeRDark.css" rel="stylesheet" type="text/css" /> -->
         <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/lamboz.css" media="all">
-        <title>&#39;The Social Network&#39; where it all&nbsp;started - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
+        <title>Talks</title>
         <meta charset="utf-8" />
         <link href="https://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Full Atom Feed" />
-        <link href="https://kushalvyas.github.io/feeds/utils.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
   
 
         <script src="//load.sumome.com/" data-sumo-site-id="cecf6965e36602158241ee45155d77c8c02f27706e5178b61597811ab112b3a8" async="async"></script>   
@@ -42,7 +41,7 @@
             <li ><a href="https://kushalvyas.github.io/pages/technical.html">Computer&nbsp;Vision</a></li>
             <li ><a href="https://kushalvyas.github.io/pages/projects.html">Projects</a></li>
             <li ><a href="https://kushalvyas.github.io/pages/Music.html">My&nbsp;Music</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/talks.html">Talks</a></li>
+            <li  class="active"><a href="https://kushalvyas.github.io/pages/talks.html">Talks</a></li>
 
             <li style="float :right;" class=""><a href="https://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
             <li style="float :right;" class=""><a href="mailto:kushalvyaskv[at][DOMAIN=gmail][dot]com" target="_blank"><i class="fa fa-envelope-o fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
@@ -52,11 +51,11 @@
         </ul>
     </div>
 <div class="hp-header-inner">
+
     <div class="page-header">
         <div class="content-header">
             <div id="title-block">
-            <h1>  <a href="https://kushalvyas.github.io/utils.html" rel="bookmark"
-                    title="Permalink to 'The Social Network' where it all started">&#39;The Social Network&#39; where it all&nbsp;started</a></h1>
+            <h1>Talks</h1>
             </div>
         </div>
     </div>
@@ -65,107 +64,43 @@
         <div class="data-holder">
         <div class="row">
            <div class="large-10 content-column column">
-<div class="content-article">
-    <header class="header-article">
-        <div class="read-more">Posted on Thu 24 March 2016</div>
- 
-   </header>
-    <section class='article'>
-        
-        <div class="entry-summary">
-            <p>A few utilities , good practices and other&nbsp;stuff</p>
-        </div>
+    <section class="article">
     
-        <div class="entry-content">
-            <p><strong><em>Disclaimer : </em>If ur a windows user &#8230; forgive&nbsp;me</strong></p>
-<p>Moving on, i think every person starting off with linux, must know a few things ..
-Specially, if you,ve just watched <em><a href="http://www.imdb.com/title/tt1285016/">The Social Network</a></em> and you&#8217;ve seen  Jesse Eisenberg hacking away at his&nbsp;screen&#8230; </p>
-<p><center><img alt="gif" src="https://kushalvyas.github.io/images/mkz.gif" /></center></p>
-<p>You&#8217;re probably wondering what is <em>wget</em>, <em>emacs</em>, <em>apache</em> and much more. If not, please rewatch the movie with&nbsp;subtitiles.</p>
-<p><strong>Wget</strong></p>
-<p><a href="https://www.gnu.org/software/wget/" target="_blank">Wget</a> is a basic downloading utility, actually calling it basic would be an understatement
-You can download files, directories, recursive download, filter through files and download them, ftp, multiple downloads, get selected elements and crawl through pages&#8230;It&#8217;s an amazing&nbsp;utility. </p>
-<ul>
+    <p>Here are a couple of slides from either Talks, lectures, or Hackathon&nbsp;pitches.</p>
+<h3>Talks / Guest Lectures /&nbsp;Presentations</h3>
+<ol>
 <li>
-<p>If you don&#8217;t have wget, simple run an apt-get wget <br><code>wget http://www.example.com</code></p>
+<p>Guest  Lecturer  for  “Convolutioal  Neural  Networks  for  Object  Detection”:   at  Mukesh  Patel  School  ofTechnology, Management <span class="amp">&amp;</span> Engineering, for students of M.Tech (depth :  Image&nbsp;Processing)</p>
+<p><a href="https://kushalvyas.github.io/extra/dcv.pdf"><span class="caps">PPT</span></a>  <a href="https://drive.google.com/drive/folders/1_eoREVBrm9jfK6FYVN9HHEMBcdWG91FK?usp=sharing">Code on&nbsp;drive</a></p>
 </li>
 <li>
-<p>Or if you want to get all files from the browser directory, <br> <code>wget -r --no-parent http://your_directory_url</code></p>
+<p>Guest Lecturer for “OpenCV and Python”:  for <span class="caps">ISTE</span>, Short-Term Training Program for Faculty, and M.Techstudents at Department of Electronics Engineering, Sardar Patel Institute of&nbsp;Technology</p>
+<p><a href="https://drive.google.com/drive/folders/1kBYUYi2AkE2xf-NhvisWChg5Mdv1sSTh?usp=sharing">Code on&nbsp;Drive</a></p>
 </li>
 <li>
-<p>or if you go all <span class="caps">SPARTA</span> on the website, <br><code>wget 
-     --recursive 
-     --no-clobber 
-     --page-requisites 
-     --html-extension 
-     --convert-links 
-     --restrict-file-names=windows 
-     --domains url_domain 
-     --no-parent 
-         url</code>
-more details, check out this <a href="http://www.linuxjournal.com/content/downloading-entire-web-site-wget" target="_blank">linux journal post</a> or head out to <a href="https://www.gnu.org/manual/manual.html" target="_blank">Wget</a> </p>
-</li>
-</ul>
-<p>Go through the docs .. find whatever suits your&nbsp;need</p>
-<p><strong>Emacs <span class="amp">&amp;</span> <span class="caps">VI</span></strong>&nbsp;: </p>
-<p><a href="https://en.wikipedia.org/wiki/Editor_war">Emacs or <span class="caps">VI</span></a> , you&#8217;d better end up choosing one and not telling the other side. People will go to war with you, if you say emacs is better than <span class="caps">VI</span> or vice versa .
-<center><img alt="evn" src="http://kalyanvarma.net/images/struggle1.gif" /></p>
-<p>And the my favourite .. click to play
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/R0Kzgno5wxA" frameborder="0" allowfullscreen></iframe></center><!-- 
-<a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" title="Should I Learn Emacs or Vi?">klzzwxh:0016</a>{:target='_blank'} --></center></p>
-<p>Learning either is useful. These are highly customizable editors. You will absolutely stop using other tools once u get accustomed to either of these. Read along <a href="http://unix.stackexchange.com/questions/986/what-are-the-pros-and-cons-of-vim-and-emacs" target="_blank">this <span class="caps">SO</span> post</a> to uncover&nbsp;more.</p>
-<p><strong><span class="caps">GREP</span>&nbsp;:</strong></p>
-<p><span class="caps">GREP</span>, is by far my favourite utility. An amazing tools to perform searches. It uses a regular expression pattern matcher, so it&#8217;s quite easy to detect&nbsp;substrings.</p>
-<ul>
-<li>
-<p>Using grep for cli searches:<br><code>ls --all | grep filname</code></p>
+<p>Guest  Lecturer  for  Framework  Design:  “Building  with  Python  -  C++using  PyObjects”,  “Framework  Designusing Boost-Python” for Senior and Junior year students at D. J . Sanghvi&nbsp;CoE</p>
+<p><a href="https://gitlab.com/kushalvyas/python_cpp_extensions">Code on&nbsp;Gitlab</a></p>
 </li>
 <li>
-<p>Using grep with wget to cli search a webpage<br><code>wget -O - url | grep keyword</code></p>
+<p>Course Workshop on Web-development <span class="caps">CPL501</span>: “JavaScript Event Binders <span class="amp">&amp;</span> <span class="caps">AJAX</span> ” for Junior year studentsat <span class="caps">D.J.</span> Sanghvi&nbsp;CoE.</p>
+<p><a href="https://github.com/kushalvyas/JS-Tutorial-DJSCE">Code on&nbsp;Github</a></p>
 </li>
-</ul>
-<p><center><a href="https://kushalvyas.github.io/images/blog_grep.png"><img alt="grep" src="https://kushalvyas.github.io/images/blog_grep.png" /></a></center></p>
-<p><strong>I can go on and on about the utilities, but now I think, it&#8217;s time to check them 
-out&nbsp;yourself.</strong></p>
-<p>Last thing, before I sign out&nbsp;.. </p>
-<p><strong>C-Matrix</strong></p>
-<p>So, pretending to be a hacker, like in those <span class="caps">MATRIX</span> movies, is pretty cool.. and probably, you can pick up someone (let&#8217;s assume that , that&#8217;s&nbsp;possible)</p>
-<p><code>sudo apt-get install cmatrix</code></p>
-<p>and this is the beauty of it
-<center>
-<img alt="cmatrix" src="https://kushalvyas.github.io/images/cmatrix.png" /></p>
-<p></center></p>
-<p><strong><strong>Enjoy , Browse, &#34; Make the world a better place&#34;(Courtesy : <a href="https://www.youtube.com/watch?v=69V__a49xtw">Silicon Valley</a> )&nbsp;:P  </strong></strong></p>
-        </div>
+</ol>
+<hr>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ASR4z4KFQPs" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
+<p><hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ep1d4hgIhmk" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sfTRFQwZsrM" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pUf3mYM0aPo" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<hr>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TJs-m-FUM9I" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<hr></p>
+
     </section>
-    <footer class="footer-article">
-        <div class="tags-and-categories">Filed under <a href="https://kushalvyas.github.io/category/utils.html">utils</a>
-        | Tagged: <a href="https://kushalvyas.github.io/tag/utils.html">utils </a>
-        | <a href="https://kushalvyas.github.io/utils.html" rel="bookmark"
-         title="Permalink to 'The Social Network' where it all started">Permalink</a>            
-        </div>
-        <!-- metaldata 
-        -->
-    </footer>
-    <!-- disqus bitsmakemecrazy -->
-        <hr>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = "bitsmakemecrazy"; // required: replace example with your forum shortname
-            var disqus_identifier = "&#39;the-social-network&#39;-where-it-all-started";
-            var disqus_url = "https://kushalvyas.github.io/utils.html";
-            var disqus_title = "&#39;The Social Network&#39; where it all started";
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
             </div>
          
             <div class="large-2 aside column" id="SIDEID">
@@ -267,7 +202,7 @@ out&nbsp;yourself.</strong></p>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/technical-dev.html">technical, dev</a> (1)</li>
-                    <li class="active"><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
                 </ul>
              
             </div>
