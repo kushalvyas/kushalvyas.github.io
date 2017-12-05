@@ -108,4 +108,14 @@
     &lt;br&gt;&lt;br&gt;
 &lt;/center&gt;
 &lt;hr&gt;&lt;/p&gt;
-&lt;h3&gt;the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&amp;#8217;s for sure to be expected by the coming&amp;nbsp;year.&lt;/h3&gt;</summary><category term="3D"></category></entry></feed>
+&lt;h3&gt;the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&amp;#8217;s for sure to be expected by the coming&amp;nbsp;year.&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h3&gt;Results and Summary&amp;nbsp;:&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="results" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-11.jpg" /&gt;
+&lt;br&gt;&lt;br&gt;
+As seen, there is a error of about 3mm. Which can be resolved by further robust calibration, and less interference/disturbance of surrounding light  - &lt;span class="caps"&gt;SO&lt;/span&gt; that an accurate &lt;span class="caps"&gt;BRDF&lt;/span&gt; value can be computed. Also, the material/object under scanning can be coated with a &lt;span class="caps"&gt;MATT&lt;/span&gt;-&lt;span class="caps"&gt;FINISH&lt;/span&gt; &lt;span class="caps"&gt;POLISH&lt;/span&gt;, to avoid surface reflection (as seen in the bottle).
+&lt;/center&gt;
+&lt;hr&gt;&lt;/p&gt;
+&lt;p&gt;Anyways.. I&amp;#8217;ll get the complete series online soon. Stay tuned !&amp;nbsp;;)&lt;/p&gt;</summary><category term="3D"></category></entry></feed>
