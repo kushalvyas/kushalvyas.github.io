@@ -81,7 +81,7 @@
 <h2>Basics of <span class="caps">CNN</span>&nbsp;:</h2>
 <p>A typical Convolutional Neural Net or <strong><span class="caps">CNN</span></strong>, is a feed-forward neural net, with the input being an image. Its&#8217; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected&nbsp;layers.</p>
 <p>One can refer <a href="http://cs231n.github.io/convolutional-networks/" target="_blank">this post by Andrej Karpathy</a> to understand the intricate details of a&nbsp;ConvNet.</p>
-<p><center><img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /></center>
+<p><center><img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png"></center>
 <center>Source : <a href="https://en. wikipedia.org/wiki/File:Typical_cnn.png" target="_blank">Convolutional Neural Nets : Wiki</a></center></p>
 <p><strong>Convolution Layer : <span class="caps">CONV</span></strong> </p>
 <p>The primary operator is a convolution operation. For a 1-D signal it is expressed&nbsp;as 
@@ -90,7 +90,7 @@
 <p>However, an image is a 2D signal (stored as a 2D matrix). To convolve an image, we use a convolution kernel, which is simply a 2D&nbsp;matrix.</p>
 <div class="math">$$ convolve(I_1, I_2) = I_1[x, y] * I_2[x, y] = \sum_{n_1= - \infty}^{ n_1 = + \infty} \text{   } \sum_{n_2 = - \infty}^{ n_2 = + \infty} I_1[n_1, n_2].I_2[x - n_1, y - n_2]$$</div>
 <p>Here&#8217;s an example of how it&nbsp;works</p>
-<p><img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png" /></p>
+<p><img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png"></p>
 <p>For this 7 x 7 matrix, and a kernel of 3 x 3, the kernel will slide over the matrix one column, at a time. Once it reaches the end of the matrix (columnwise), it&#8217;ll shift to the next row. At every position, the dot product is&nbsp;computed. </p>
 <p>If the kernel is overlapped with the (0 , 0) position , we find the dot product&nbsp;of </p>
 <div class="math">$$ 
@@ -107,7 +107,7 @@
 <p>which essentially is&nbsp;: </p>
 <p><span class="math">\(1\times-1 + 1\times-1 + 1\times-1 + 3\times-1 + 2\times8 + 2\times-1 + 2\times-1 + 4\times-1 + 3\times-1 =&nbsp;-1\)</span></p>
 <p>Similarly, assume an input image - <span class="math">\(I\)</span>  is of Size <span class="math">\((200 \text{ x } 200)\)</span>, and we have a kernel - <span class="math">\(k\)</span> of size <span class="math">\((10 \text{ x } 10)\)</span>. The convolution of this kernel over this image is to basically, take the kernel and slide it over the image column by column, row by row. Initially the kernel is placed at <span class="math">\(I[0, 0]\)</span>. Therefore the kernel covers a region of <span class="math">\(10 \text{ x } 10\)</span> (size of kernel) starting from <span class="math">\(I[0, 0] \text{ to } I[10,10]\)</span>. Once the dot product (convolution) is computed over this pixel region, the kernel is shifted by one column to the right. Now the kernel occupies an image region of <span class="math">\(I[0,1 ] \text{ to } I[10, 11]\)</span> and so on. 
-<center><img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png" /></center></p>
+<center><img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png"></center></p>
 <p><center>Source: <a href="http://stackoverflow.com/questions/15356153/how-do-convolution-matrices-work" target="_blank">Stackoverflow : How convolution matrices work</a></center></p>
 <p>A series of convolution operations take place at every layer, which extrapolates the pertinent information from the images. At every layer, multiple convolution operations take place, followed by zero padding and eventually passed through an activation layer and what is outputted is an Activation&nbsp;Map. </p>
 <p><strong>Filters and&nbsp;Stride</strong></p>
@@ -122,9 +122,9 @@
 <p>An activation function basically defines the output of the neuron for the given input. Take a simple Hebbian Learning example . An activation function will return <span class="math">\(1\)</span> if input is <span class="math">\( &gt; 0\)</span> and return <span class="math">\(0\)</span> otherwise. The value of input being greater that 0, is nothing but a threshold value. Instead of 0, any other value can also act as a threshold. In ConvNets, a the popular activation function used is a Rectifier or <span class="caps">RELU</span>. </p>
 <div class="math">$$f(x) = \text{max(0, x)}$$</div>
 <p>This means that the output of the convolution is thresholded at 0. All positive values are returned as is and all negative values are made&nbsp;0. </p>
-<p><center><img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png" /></center></p>
+<p><center><img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png"></center></p>
 <p>For our above example, if the convolution output is passed to the Rectifier unit, it&#8217;ll set all negative values to&nbsp;zero. </p>
-<p><img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png" /></p>
+<p><img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png"></p>
 <p>On the other hand, the pooling operation is used to down-sample / reduce the activation map. This essentially reduces the volume of the middle-stages output. The output size is computed the same way as computed in the <span class="caps">CONV</span> layer. An important thing to note is that is that during the convolution layer, there is a rapid reduction in the dimensionality of the input. To maintain it at a constant size through multiple <span class="caps">CONV</span> layers,zero padding is used. Zero padding will pad the image with zeros on its boundaries making it of the same size as the input. It is in the pooling layer where the size reduction takes&nbsp;place.</p>
 <h2>Implementation with&nbsp;Caffe</h2>
 <p><strong><a href="http://caffe.berkeleyvision.org/" target="_blank">Caffe</a></strong> is a framework for deep learning, very popular for its simplicity in implementing <span class="caps">CNN</span>&#8217;s. It has been developed by the Berkely Vision <span class="amp">&amp;</span> Learning Center. You can use a <span class="caps">CPU</span> as well as a <span class="caps">GPU</span> mode. It is widely known that when it comes to matrix and other such image operations , most of which can be done in parallel, <span class="caps">GPU</span>&#8217;s triumph over <span class="caps">CPU</span>&#8217;s. I used my <span class="caps">CPU</span> machine to train a limited Caltech101 dataset, and it went on for 3&nbsp;days. </p>
@@ -135,7 +135,7 @@
 <p><strong>Preparing <span class="caps">LMDB</span> format&nbsp;data</strong></p>
 <p>This article will now cover how to make a custom dataset , and train it using caffe. There are constraints, wherein caffe uses an lmdb data format, and it is important to convert your dataset into the respective&nbsp;formats.</p>
 <p>Next is converting the images into an lmdb format. The caffe documentation mentions to generate a txt file comprising of the image path with its associated class number. You can write a simple python script listing contents of your training and testing directories into such text&nbsp;files</p>
-<div class="highlight"><pre><span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">sunflower</span><span class="o">/</span><span class="n">image_0020</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">sunflower</span><span class="o">/</span><span class="n">image_0020</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">0</span>
 <span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">Motorbike</span><span class="o">/</span><span class="n">image_0033</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">1</span>
 <span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">soccer_ball</span><span class="o">/</span><span class="n">image_0042</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">4</span>
 <span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">accordion</span><span class="o">/</span><span class="n">image_0258</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">6</span>
@@ -146,16 +146,16 @@
 
 <p><br>
 Once done, use the Caffe <code>convert_imageset</code> to convert these images into the leveldb/lmdb data format. The default backend option is an lmdb backend. The <code>convert_imageset</code>  can be found at <code>caffe/build/tools</code>. </p>
-<div class="highlight"><pre><span class="p">.</span><span class="o">/</span><span class="n">convert_imageset</span> <span class="o">--</span><span class="n">resize_height</span><span class="o">=</span><span class="mi">200</span> <span class="o">--</span><span class="n">resize_width</span><span class="o">=</span><span class="mi">200</span> <span class="o">--</span><span class="n">shuffle</span> <span class="err">$</span><span class="n">PATH_TO_IMAGESET</span> <span class="err">$</span><span class="n">PATH_TO_TEXT_FILE_CRAEATED_ABOVE</span><span class="p">.</span><span class="n">txt</span> <span class="err">$</span><span class="n">OUTPUT_LMDB_LOCATION</span>
+<div class="highlight"><pre><span></span>./convert_imageset --resize_height=200 --resize_width=200 --shuffle $PATH_TO_IMAGESET $PATH_TO_TEXT_FILE_CRAEATED_ABOVE.txt $OUTPUT_LMDB_LOCATION
 </pre></div>
 
 
 <p>Or simply change the paths and location inside the <code>caffe/examples/imagenet/create_imagnet.sh</code> file</p>
 <p><br>
 Eventually your working directory will comprise of a train <span class="caps">LMDB</span> directory and a test <span class="caps">LMDB</span>&nbsp;directory.    </p>
-<div class="highlight"><pre>    <span class="o">|-</span> <span class="n">src</span>
-    <span class="o">|-</span> <span class="n">train_lmdb_folder</span>
-    <span class="o">|-</span> <span class="n">test_lmdb_folder</span>
+<div class="highlight"><pre><span></span>    |- src
+    |- train_lmdb_folder
+    |- test_lmdb_folder
 </pre></div>
 
 
@@ -163,83 +163,83 @@ Eventually your working directory will comprise of a train <span class="caps">LM
 <p><strong>Defining the Network Architecture</strong>:</p>
 <p>Caffe network architectures are very simple to define. Create a file &#8220;model.prototxt&#8221; and define the network architecture as follows. We will be using the AlexNET model (winner of ImageNet challenge 2012).
 Given below is a representation of how the net looks&nbsp;like.</p>
-<p><img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png" /></p>
+<p><img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png"></p>
 <p><a href="https://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank">Click here and zoom to view&nbsp;it </a></p>
 <p>To define the architecture, open the model.prototxt file. The model begins with a net name&nbsp;: </p>
-<div class="highlight"><pre>        <span class="n">name</span> <span class="o">:</span> <span class="s">&quot;NameoftheNET&quot;</span>
+<div class="highlight"><pre><span></span>        name : &quot;NameoftheNET&quot;
 </pre></div>
 
 
 <p>Then sequentially start defining layers. 
 First comes the data layer. Any layer that needs to be defined has a few mandatory parameters, that help in the definition of the neural net structure. To begin with, each layer is associated with a type (data, conv, relu, pool, etc) and its location - whether it on top of a previous layer, and beneath the next layer. Similarly, the data layer is serves as the input to the&nbsp;ConvNet. </p>
-<div class="highlight"><pre>        <span class="n">layer</span> <span class="p">{</span>
-          <span class="nl">name:</span> <span class="s">&quot;data&quot;</span>
-          <span class="nl">type:</span> <span class="s">&quot;Data&quot;</span>
-          <span class="nl">top:</span> <span class="s">&quot;data&quot;</span>
-          <span class="nl">top:</span> <span class="s">&quot;label&quot;</span>
-          <span class="n">include</span> <span class="p">{</span>
-            <span class="nl">phase:</span> <span class="n">TRAIN</span>
-          <span class="p">}</span>
-          <span class="n">transform_param</span> <span class="p">{</span> 
-            <span class="n">mirror</span><span class="o">:</span> <span class="nb">true</span>
-            <span class="nl">crop_size:</span> <span class="mi">200</span>
-            <span class="nl">mean_file:</span> <span class="s">&quot;mean.binaryproto&quot;</span>
-          <span class="p">}</span>
-          <span class="n">data_param</span> <span class="p">{</span>
-            <span class="nl">source:</span> <span class="s">&quot;path - to - train_lmdb_folder&quot;</span>
-            <span class="nl">batch_size:</span> <span class="mi">256</span>
-            <span class="nl">backend:</span> <span class="n">LMDB</span>
-          <span class="p">}</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span>        layer {
+          name: &quot;data&quot;
+          type: &quot;Data&quot;
+          top: &quot;data&quot;
+          top: &quot;label&quot;
+          include {
+            phase: TRAIN
+          }
+          transform_param { 
+            mirror: true
+            crop_size: 200
+            mean_file: &quot;mean.binaryproto&quot;
+          }
+          data_param {
+            source: &quot;path - to - train_lmdb_folder&quot;
+            batch_size: 256
+            backend: LMDB
+          }
+        }
 </pre></div>
 
 
 <p>As seen, the next layer is a <code>conv</code> layer. Defining layers in Caffe is quite straightforward. Each convolutional layer has a number of required and optional parameters. The required parameters involve num_inputs i.e. input size, and the kernel size. Optional parameters comprise of strides, padding width,&nbsp;etc. </p>
-<div class="highlight"><pre>        <span class="n">layer</span> <span class="p">{</span>
-            <span class="nl">name:</span> <span class="s">&quot;conv1&quot;</span>
-            <span class="nl">type:</span> <span class="s">&quot;Convolution&quot;</span>
-            <span class="nl">bottom:</span> <span class="s">&quot;data&quot;</span>
-            <span class="nl">top:</span> <span class="s">&quot;conv1&quot;</span>
+<div class="highlight"><pre><span></span>        layer {
+            name: &quot;conv1&quot;
+            type: &quot;Convolution&quot;
+            bottom: &quot;data&quot;
+            top: &quot;conv1&quot;
 
-            <span class="p">....</span>
-            <span class="p">....</span>
-            <span class="p">....</span>
+            ....
+            ....
+            ....
 
-            <span class="n">convolution_param</span> <span class="p">{</span>
-                <span class="nl">num_output:</span> <span class="mi">96</span>
-                <span class="nl">kernel_size:</span> <span class="mi">11</span>
-                <span class="nl">stride:</span> <span class="mi">4</span>
-                <span class="p">...</span>
-                <span class="p">...</span>
-                <span class="p">...</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+            convolution_param {
+                num_output: 96
+                kernel_size: 11
+                stride: 4
+                ...
+                ...
+                ...
+            }
+        }
 </pre></div>
 
 
 <p>Moving on, we talked about Pool and ReLU layers before as an integral part of ConvNets. Here&#8217;s how to define&nbsp;them.</p>
-<div class="highlight"><pre>        <span class="n">layer</span><span class="p">{</span>                              <span class="n">layer</span><span class="p">{</span>
-            <span class="nl">name:</span> <span class="s">&quot;relu1&quot;</span>                       <span class="n">name</span><span class="o">:</span> <span class="s">&quot;pool1&quot;</span>
-            <span class="nl">type:</span> <span class="s">&quot;ReLU&quot;</span>                        <span class="n">type</span><span class="o">:</span> <span class="s">&quot;Pooling&quot;</span>
-            <span class="nl">bottom:</span> <span class="s">&quot;conv1&quot;</span>                     <span class="n">bottom</span><span class="o">:</span> <span class="s">&quot;norm1&quot;</span>
-            <span class="nl">top:</span> <span class="s">&quot;conv1&quot;</span>                        <span class="n">top</span><span class="o">:</span> <span class="s">&quot;pool1&quot;</span>
-        <span class="p">}</span>                                       <span class="n">pooling_param</span><span class="p">{</span>
-                                                    <span class="nl">pool:</span> <span class="n">MAX</span> <span class="err">#</span> <span class="n">MAX</span> <span class="n">POOL</span> <span class="n">algorithm</span>
-                                                    <span class="n">kernel_size</span> <span class="o">:</span> <span class="mi">3</span>
-                                                    <span class="nl">stride:</span> <span class="mi">2</span>
-                                                <span class="p">}</span>
+<div class="highlight"><pre><span></span>        layer{                              layer{
+            name: &quot;relu1&quot;                       name: &quot;pool1&quot;
+            type: &quot;ReLU&quot;                        type: &quot;Pooling&quot;
+            bottom: &quot;conv1&quot;                     bottom: &quot;norm1&quot;
+            top: &quot;conv1&quot;                        top: &quot;pool1&quot;
+        }                                       pooling_param{
+                                                    pool: MAX # MAX POOL algorithm
+                                                    kernel_size : 3
+                                                    stride: 2
+                                                }
 </pre></div>
 
 
 <p><br>
 A ReLU will simply activate the convolution layer output and essentially threshold it to 0. (refer Rectifier activation function). Whereas the pooling will reduce the size of the output. AlexNet also uses a normalization layer, which is not much used nowadays.  Similarly, one can keep defining layers in order according to the architecture you want. Lastly, each ConvNet has a fully connected layer, where the input is a column vector ( 1&nbsp;D). </p>
-<div class="highlight"><pre>        <span class="n">layer</span> <span class="p">{</span>
-            <span class="nl">name:</span> <span class="s">&quot;loss&quot;</span>
-            <span class="nl">type:</span> <span class="s">&quot;SoftmaxWithLoss&quot;</span>
-            <span class="nl">bottom:</span> <span class="s">&quot;fc8&quot;</span>
-            <span class="nl">bottom:</span> <span class="s">&quot;label&quot;</span>
-            <span class="nl">top:</span> <span class="s">&quot;loss&quot;</span>
-        <span class="p">}</span>
+<div class="highlight"><pre><span></span>        layer {
+            name: &quot;loss&quot;
+            type: &quot;SoftmaxWithLoss&quot;
+            bottom: &quot;fc8&quot;
+            bottom: &quot;label&quot;
+            top: &quot;loss&quot;
+        }
 </pre></div>
 
 
@@ -248,18 +248,18 @@ A ReLU will simply activate the convolution layer output and essentially thresho
 <p><strong>Training your data</strong>:</p>
 <p>Training can be done in either ways. You can write a python script (which I will update to the blog in a few days)  or you can use the <em>caffe tool</em> to do so. For now, I&#8217;ll be explaining w.r.t the caffe tool which can be found in <code>$caffe_root_dir/build/tools/caffe</code></p>
 <p>Once the network architecture has been fixed, all your training lmdb files created the next step is to define the Caffe Solver, defining the learning rate, momentum, solving mode (either <span class="caps">CPU</span> or <span class="caps">GPU</span>), and path for saving snapshots of the&nbsp;model.</p>
-<div class="highlight"><pre>        <span class="nl">net:</span> <span class="s">&quot;model.prototxt&quot;</span>
-        <span class="nl">base_lr:</span> <span class="mf">0.01</span>
-        <span class="nl">lr_policy:</span> <span class="s">&quot;step&quot;</span>
-        <span class="nl">gamma:</span> <span class="mf">0.1</span>
-        <span class="nl">stepsize:</span> <span class="mi">100000</span>
-        <span class="nl">display:</span> <span class="mi">5</span>
-        <span class="nl">max_iter:</span> <span class="mi">4500</span>
-        <span class="nl">momentum:</span> <span class="mf">0.9</span>
-        <span class="nl">weight_decay:</span> <span class="mf">0.0005</span>
-        <span class="nl">snapshot:</span> <span class="mi">1000</span>
-        <span class="nl">snapshot_prefix:</span> <span class="s">&quot;snapshots1/caltechNET_train&quot;</span>
-        <span class="nl">solver_mode:</span> <span class="n">CPU</span>
+<div class="highlight"><pre><span></span>        net: &quot;model.prototxt&quot;
+        base_lr: 0.01
+        lr_policy: &quot;step&quot;
+        gamma: 0.1
+        stepsize: 100000
+        display: 5
+        max_iter: 4500
+        momentum: 0.9
+        weight_decay: 0.0005
+        snapshot: 1000
+        snapshot_prefix: &quot;snapshots1/caltechNET_train&quot;
+        solver_mode: CPU
 </pre></div>
 
 
@@ -318,19 +318,19 @@ Make sure that the solver contains the correct name of the neural net&nbsp;model
 <p><br>
 Next, the caffe model needs to be&nbsp;loaded. </p>
 <p><br></p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">net</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">Classifier</span><span class="p">(</span><span class="s">&quot;path_to_model.prototxt&quot;</span><span class="p">,</span> <span class="s">&quot;snapshot_file.caffemodel&quot;</span><span class="p">,</span> 
-                       <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s">&#39;means.npy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">net</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">Classifier</span><span class="p">(</span><span class="s2">&quot;path_to_model.prototxt&quot;</span><span class="p">,</span> <span class="s2">&quot;snapshot_file.caffemodel&quot;</span><span class="p">,</span> 
+                       <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;means.npy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
                        <span class="n">channel_swap</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
                        <span class="n">raw_scale</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
                        <span class="n">image_dims</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">im</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s">&quot;path_to_image&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">im</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s2">&quot;path_to_image&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">im</span><span class="p">])</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">class_id</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="c"># this returns the class id or the class number</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">class_id</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="c1"># this returns the class id or the class number</span>
 
 <span class="o">...</span> 
 <span class="o">...</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">classname</span><span class="p">[</span><span class="n">class_id</span><span class="p">]</span> <span class="c"># to print the name of the class</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">classname</span><span class="p">[</span><span class="n">class_id</span><span class="p">]</span> <span class="c1"># to print the name of the class</span>
 </pre></div>
 
 
@@ -338,17 +338,17 @@ Next, the caffe model needs to be&nbsp;loaded. </p>
 <strong>Some tricks</strong>&nbsp;: </p>
 <p>There may be some cases where the means file is stored as a means.binaryproto. There is a quick way to convert it to a npy file. <a href="https://github.com/BVLC/caffe/issues/808" target="_blank">Refer issue #808</a> for the conversion of .binaryproto to .npy files.
 <br></p>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># solution github issue 808 by @mafiosso</span>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="c1"># solution github issue 808 by @mafiosso</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">channels</span> <span class="o">=</span> <span class="mi">3</span> 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">blob</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">caffe_pb2</span><span class="o">.</span><span class="n">BlobProto</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;mean.binaryproto&#39;</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mean.binaryproto&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">blob</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">data</span> 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="c"># size of image. </span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="c1"># size of image. </span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;means.npy&quot;</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;means.npy&quot;</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
 </pre></div>
 
 
@@ -358,11 +358,11 @@ It is highly recommended that you use <span class="caps">GPU</span>&#8217;s to t
 <p>The Caltech101 dataset limited directory already has a split of data into train and&nbsp;test. </p>
 <p><center></p>
 <p>There are a few snaps of outputs when the model was tested on the limited version of the dataset&nbsp;.</p>
-<p><img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png" />
-<img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png" />
-<img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /><br>
-<img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png" />
-<img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /></p>
+<p><img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png">
+<img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png">
+<img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png"><br>
+<img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png">
+<img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png"></p>
 <p></center></p>
 <p>So, we have completed the tutorial on how to create a custom dataset and train it using caffe. Now you can implement this and train any dataset you want. I would recommend reading up on the references to get a better understanding of&nbsp;ConvNets.</p>
 <p><br>
@@ -385,11 +385,9 @@ It is highly recommended that you use <span class="caps">GPU</span>&#8217;s to t
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -547,8 +545,9 @@ It is highly recommended that you use <span class="caps">GPU</span>&#8217;s to t
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -563,6 +562,7 @@ It is highly recommended that you use <span class="caps">GPU</span>&#8217;s to t
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li class="active"><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

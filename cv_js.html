@@ -93,7 +93,7 @@
 <p>Computations are carried out upon images, with the fundamental unit being a pixel. Algorithms involve mathematical operations on a pixel or a group of pixels. This article addresses a few hackneyed <span class="caps">CV</span> algorithms and their ports to a front-end system. To start with, basic concepts like images and canvas are to be understood&nbsp;first.</p>
 <p>An <span class="caps">HTML</span> image element refers to the <code>&lt;img&gt;&lt;/img&gt;</code> tag. It is, essentially, adding an image to a Web page. Similarly, to process or display any graphical units, the <code>&lt;canvas&gt;&lt;/canvas&gt;</code> element is used. Each of these elements has attributes such as height, width, etc, and is referred to via an <span class="caps">ID</span>. The computation part is done using JavaScript (<span class="caps">JS</span>). A <span class="caps">JS</span> file can be included either at the head or body of an <span class="caps">HTML</span> document. It contains functions that will implement the aforementioned operations. For drawing any content upon a canvas, a 2D rendering reference called <code>context</code> is supposed to be&nbsp;made.</p>
 <p>Here’s how to access images, as well as canvas and context, from <span class="caps">JS</span>:</p>
-<div class="highlight"><pre>    <span class="c1">//getting image, canvas and context</span>
+<div class="highlight"><pre><span></span>    <span class="c1">//getting image, canvas and context</span>
     <span class="kd">var</span> <span class="nx">im</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;image_id&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;canvas_id&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
@@ -370,7 +370,7 @@ function binary(){
 </div>
 <p><br>
 In the above code, navigator.getUserMedia will be set if the media exists. To get control of media (refers to camera), use the following&nbsp;code:</p>
-<div class="highlight"><pre>    <span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+<div class="highlight"><pre><span></span>    <span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
             <span class="nx">video</span><span class="o">:</span> <span class="kc">true</span>
         <span class="p">},</span><span class="nx">handle_video</span><span class="p">,</span> <span class="nx">report_error</span> <span class="p">);</span>
 </pre></div>
@@ -379,7 +379,7 @@ In the above code, navigator.getUserMedia will be set if the media exists. To ge
 <p>On the successful reception of a frame, the success_stream handler is called. In case of any error, error_stream is called. The success_stream function has the video stream as input, and will display each frame in the <code>video_frame</code> (<span class="caps">HTML</span> video element)&nbsp;.</p>
 <p>Any of the button , if clicked, will call it&#8217;s respective function. This is seen and mapped in the above <span class="caps">JS</span>-<span class="caps">GIST</span>. </p>
 <p><span class="caps">JS</span> stores an image as a <strong>linear array</strong> in <span class="caps">RGBA</span> format. Each image can be split into its respective channels, as shown&nbsp;below:</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">channels</span> <span class="o">==</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
 <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">channels</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">red_component_pixel</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">0</span><span class="p">];</span>
@@ -392,14 +392,14 @@ In the above code, navigator.getUserMedia will be set if the media exists. To ge
 <p><br>
 For the computation of gray scale images, A gray scale image is one in which all colour components are normalised to have equal weightage. If an 8-bit image is considered, the colour gray is obtained when the number of <span class="caps">RGB</span> bits equals 1.
 To solve this, there is a simple formula, which creates a weighted sum of pixel values to yield a gray&nbsp;image:</p>
-<div class="highlight"><pre><span class="nx">gray</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.21</span> <span class="nx">x</span> <span class="nx">red_component_pixel</span> <span class="o">+</span> <span class="mf">0.72</span> <span class="nx">x</span> <span class="nx">green_component_pixel</span> <span class="o">+</span> <span class="mf">0.07</span> <span class="nx">x</span> <span class="nx">blue_component_pixel</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><span class="nx">gray</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.21</span> <span class="nx">x</span> <span class="nx">red_component_pixel</span> <span class="o">+</span> <span class="mf">0.72</span> <span class="nx">x</span> <span class="nx">green_component_pixel</span> <span class="o">+</span> <span class="mf">0.07</span> <span class="nx">x</span> <span class="nx">blue_component_pixel</span><span class="err">&#39;</span>
 </pre></div>
 
 
 <p>On applying the above formula to each pixel, split into its components, one gets an equivalent gray&nbsp;pixel.</p>
 <p><br></p>
 <p>For computation of binary and inverted images : A binary image is in black and white (<span class="caps">BW</span>). The conversion of an image from colour to <span class="caps">BW</span> is done through a process called thresholding, which classifies each pixel as white or black based on its value. If the value is greater than a particular threshold, it will be set to 255, else&nbsp;0.</p>
-<div class="highlight"><pre><span class="k">if</span><span class="p">(</span><span class="nx">red_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_red</span> <span class="o">&amp;&amp;</span> 
+<div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nx">red_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_red</span> <span class="o">&amp;&amp;</span> 
     <span class="nx">green_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_green</span> <span class="o">&amp;&amp;</span>  
     <span class="nx">blue_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_blue</span><span class="p">){</span>
     <span class="c1">//make pixel == white</span>
@@ -421,7 +421,7 @@ To solve this, there is a simple formula, which creates a weighted sum of pixel 
 <p>From now, for the <span class="caps">HTML</span> templates, please refer the source@github. I&#8217;ll continue with explaining the javascript part. The process of declaring a video object and capturing frames in javascript remains same as above. To start using TrackingJs, we declare a <strong>color-tracker</strong>&nbsp;object.</p>
 <p>To initialise a colour tracker, first use the following commands:
 <br></p>
-<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">myTracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">([</span><span class="s1">&#39;yellow&#39;</span><span class="p">]);</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">myTracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">([</span><span class="s1">&#39;yellow&#39;</span><span class="p">]);</span>
     <span class="nx">myTracker</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;track&quot;</span><span class="p">,</span> <span class="nx">color_tracking_callback</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">mT</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;#myVideo&quot;</span><span class="p">,</span> <span class="nx">myTracker</span><span class="p">);</span>
 </pre></div>
@@ -431,7 +431,7 @@ To solve this, there is a simple formula, which creates a weighted sum of pixel 
 <p>In the above code snippet, color_tracking_callback is a callback which will receive a list of all possible locations where the given colour is present. Each location is a rectangle object, comprising attributes which are ‘x, y, width and height’. x and y are the starting points of the&nbsp;rectangle.</p>
 <p>The natural action for tracking is to make a bounding box around the region we are interested in. Therefore, the boundingBox function plots a rectangle around the region of interest. Context variable is used here to perform any canvas drawing methods. context.stroke() eventually prints it on the canvas.
 <br></p>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">color_tracking_callback</span><span class="p">(</span><span class="nx">list_rect</span><span class="p">){</span>
+<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">color_tracking_callback</span><span class="p">(</span><span class="nx">list_rect</span><span class="p">){</span>
         <span class="nx">list_rect</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">drawBoundingBox</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -449,13 +449,13 @@ To solve this, there is a simple formula, which creates a weighted sum of pixel 
 <p>Tracking.<span class="caps">JS</span> also provides with a trigger to either <code>start</code> or <code>stop</code> the streaming&nbsp;process.</p>
 <p>Incase you want to track a custom <span class="caps">RGB</span> range of colors, you can refer to this snippet below.
 As seen, the input to a colour tracker is a list of probable colours (e.g., [yellow]). As the definition suggests, a colour tracker must be able to track colours. Tracking.js provides a method registerColor that handles user-specified custom&nbsp;colours.</p>
-<div class="highlight"><pre>    <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">.</span><span class="nx">registerColor</span><span class="p">(</span><span class="s1">&#39;&lt;color_name&gt;&#39;</span> <span class="p">,</span> <span class="nx">callback_color</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>    <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">.</span><span class="nx">registerColor</span><span class="p">(</span><span class="s1">&#39;&lt;color_name&gt;&#39;</span> <span class="p">,</span> <span class="nx">callback_color</span><span class="p">);</span>
 </pre></div>
 
 
 <p><br>
 The <code>callback_color</code> callback will have input arguments as red, blue and green values. Since this is a custom colour, one has to define the <span class="caps">RGB</span> ranges. If the <span class="caps">RGB</span> argument meets the range,the function returns true, else it’ll return&nbsp;false.</p>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">callback_color</span><span class="p">(</span><span class="nx">r</span> <span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">callback_color</span><span class="p">(</span><span class="nx">r</span> <span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">&gt;</span> <span class="nx">r_low</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span> <span class="o">&lt;</span> <span class="nx">r_high</span> <span class="o">&amp;&amp;</span> <span class="nx">g</span> <span class="o">&gt;</span> <span class="nx">g_low</span> <span class="o">&amp;&amp;</span> <span class="nx">g</span> <span class="o">&lt;</span> <span class="nx">g_high</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="o">&gt;</span> <span class="nx">b_low</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="o">&lt;</span> <span class="nx">b_high</span><span class="p">){</span>
             <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
         <span class="p">}</span>
@@ -470,7 +470,7 @@ Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold v
 <h3>Face Capture and tag ( Temporary, not permanant storage of face&nbsp;vectors)</h3>
 <p>Face detection in Tracking.js uses the <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework" target="_blank"><strong>Viola-Jones Framework</strong></a>. You can look it up in <a href="https://trackingjs.com/docs.html#viola-jones" target="_blank">the documentation</a>. It also has the popular <code>opencv_haarcascade</code> in the repository&#8217;s utils&nbsp;folder. </p>
 <p>As seen in the previous examples, this code involves the same, video capture and processing function blocks. What is added is the new tracking.js face&nbsp;detector.</p>
-<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">face_tracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ObjectTracker</span><span class="p">(</span><span class="s2">&quot;face&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">face_tracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ObjectTracker</span><span class="p">(</span><span class="s2">&quot;face&quot;</span><span class="p">);</span>
     <span class="c1">// tuning params</span>
     <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setInitialScale</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">//set initial scale for featureblock scaling</span>
     <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setEdgesDensity</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span> <span class="c1">//check to skip edge</span>
@@ -495,7 +495,7 @@ Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold v
 <p>One can refer the <a href="https://trackingjs.com/api/tracking.ObjectTracker.html" target="_blank">documentation</a> to know about all the methods supported by the object tracker. Feel free to experient with different values as well. Default value&#8217;s are mentioned in the&nbsp;block.</p>
 <p>Once a face is detected, a <span class="caps">JS</span> prompt is created to enter the name for the&nbsp;person. </p>
 <p><strong>Note : This is all happening in a real time video . Hence , there may be multiple occurences that a prompt for the face pops up, if the face previously detected undergoes disturbance/disappears from the frame,&nbsp;etc. </strong></p>
-<div class="highlight"><pre>    <span class="kd">function</span> <span class="nx">handle_new_faces</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">handle_new_faces</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
         <span class="nx">imcanvas2</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas2</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas2</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
         <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">data_cx</span> <span class="k">in</span> <span class="nx">data</span><span class="p">){</span>
             <span class="kd">var</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">data_cx</span><span class="p">];</span>
@@ -511,7 +511,7 @@ Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold v
 <p>This will create a face-tag for a single person and continue to track that person. Incase if anyone wants to implement a multi person &#8216;tag n track&#8217;, what one can do is detect all possible faces in a video frame, and tag each face with it&#8217;s features. Once that is done, in the next frame, compare the newly detected faces with the stored features, minimizing the euclidean distance between the previously and newly detected facial&nbsp;features</p>
 <h2>Features extraction and&nbsp;matching</h2>
 <p>In simple terms, any significant discernible parts of the image can be defined as a feature. These can be corner points, edges or even a group of vectors oriented independently. The process of extracting such information is called feature extraction. Various implementations exist for feature extraction and descriptors, such as <span class="caps">SIFT</span>, <span class="caps">SURF</span> (feature descriptors) and <span class="caps">FAST</span> (corner detection). Tracking.js implements <span class="caps">BRIEF</span> (Binary Robust Independent Elementary Features) and <span class="caps">FAST</span> (Features from Accelerated Segmentation Test). Input to the system is first a gray image. The following code extracts corner points (points of interest) based on <span class="caps">FAST</span>.</p>
-<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">gray</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">grayscale</span><span class="p">(</span><span class="nx">input_image</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">gray</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">grayscale</span><span class="p">(</span><span class="nx">input_image</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">corners</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Fast</span><span class="p">.</span><span class="nx">findCorners</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
 </pre></div>
 
@@ -519,13 +519,13 @@ Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold v
 <p><br>
 Each feature point can be referred to as a location. But to be able to perform any operations, these locations are converted into descriptors, which can be considered as a list of vectors that define a given feature. Comparison operators are applied upon these vectors. To find descriptors, tracking.js uses the <span class="caps">BRIEF</span> framework to extrapolate descriptor vectors from given feature points.
 <br></p>
-<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">descriptors</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">getDescriptors</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">corners</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">descriptors</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">getDescriptors</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">corners</span><span class="p">);</span>
 </pre></div>
 
 
 <p><br>
 Having got the points of interest from an image as well as their descriptors, we can design a scenario wherein one can track based on templates. Given a video frame and a fixed image, features can be used to match and identify where the fixed image can be located. However, there can be false&nbsp;positives.</p>
-<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">reciprocalMatch</span><span class="p">(</span><span class="nx">corner_scene</span><span class="p">,</span> <span class="nx">descriptor_scene</span> <span class="p">,</span><span class="nx">corner_target</span><span class="p">,</span> <span class="nx">descriptor_target</span><span class="p">);</span>
+<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">reciprocalMatch</span><span class="p">(</span><span class="nx">corner_scene</span><span class="p">,</span> <span class="nx">descriptor_scene</span> <span class="p">,</span><span class="nx">corner_target</span><span class="p">,</span> <span class="nx">descriptor_target</span><span class="p">);</span>
     <span class="c1">// calculates the matching points between the scene and the target image.</span>
     <span class="nx">matches</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
         <span class="c1">//matches can be further filtered by using a sorting functin</span>
@@ -539,7 +539,7 @@ Having got the points of interest from an image as well as their descriptors, we
 
 <p><br>
 The matches obtained can be sorted on the basis of their length, i.e., the number of matches obtained, and on their confidence value, as to how well the points match. Having arranged the matches, efficient matching of the target template image and the scene image can be carried out. It is simply a task of graphics now. Just iterate over the two arrays and mark the appropriate feature points on the canvas, as&nbsp;follows:</p>
-<div class="highlight"><pre>        <span class="kd">function</span> <span class="nx">plot_matches</span><span class="p">(</span><span class="nx">matches</span><span class="p">){</span>
+<div class="highlight"><pre><span></span>        <span class="kd">function</span> <span class="nx">plot_matches</span><span class="p">(</span><span class="nx">matches</span><span class="p">){</span>
             <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
                 <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="s2">&quot;2px&quot;</span><span class="p">;</span>
@@ -559,13 +559,13 @@ The above function plots the matches only for the scene image, since the referen
 <h2>Here are some cool experiments that I did with&nbsp;tracking.js</h2>
 <p><center></p>
 <p>Oringal webcam&nbsp;image</p>
-<p><img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png" /></p>
+<p><img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png"></p>
 <p>Grayscale&nbsp;conversion</p>
-<p><img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png" /></p>
+<p><img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png"></p>
 <p>Binary&nbsp;Conversion</p>
-<p><img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png" /></p>
-<p><img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png" /></p>
-<p><img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png" /></p>
+<p><img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png"></p>
+<p><img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png"></p>
+<p><img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png"></p>
 <p></center></p>
 <p><br></p>
 <p>For complete implementation , please refer to the article in Opensource For You as well as the <a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank">Github link</a>.</p>
@@ -693,8 +693,9 @@ The above function plots the matches only for the scene image, since the referen
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -709,6 +710,7 @@ The above function plots the matches only for the scene image, since the referen
                     <li class="active"><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

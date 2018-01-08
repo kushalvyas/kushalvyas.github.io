@@ -81,7 +81,7 @@
 <p>Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&#8217;t have any files locally on my laptop.&nbsp;B) </p>
 <p>Yes.. Speaking of <a href="https://www.samba.org/">Samba</a>, its quite easy to setup and install it. You can refer the steps <a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!">here</a> but ya.. i&#8217;ll be going over them&nbsp;too..</p>
 <p>For, ubuntu, I&#8217;d say, simply run these&nbsp;commands</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">samba</span>
 </pre></div>
 
@@ -93,7 +93,7 @@
 </li>
 <li>
 <p>Next,    </p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span> <span class="o">~</span>
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span> <span class="o">~</span>
 </pre></div>
 
 
@@ -101,7 +101,7 @@
 </li>
 <li>
 <p>Further,</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="o">&lt;</span><span class="n">nano</span> <span class="o">|</span> <span class="n">vi</span> <span class="o">|</span> <span class="n">gedit</span><span class="o">|</span> <span class="n">basically</span> <span class="n">anytexteditor</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span>
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">&lt;</span><span class="n">nano</span> <span class="o">|</span> <span class="n">vi</span> <span class="o">|</span> <span class="n">gedit</span><span class="o">|</span> <span class="n">basically</span> <span class="n">anytexteditor</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span>
 </pre></div>
 
 
@@ -111,7 +111,7 @@
 </li>
 <li>
 <p>Add the following&nbsp;snippet</p>
-<div class="highlight"><pre><span class="p">[</span><span class="o">&lt;</span><span class="n">name_of_folder</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">name_of_folder</span><span class="p">]</span>
 <span class="n">path</span><span class="o">=/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/&lt;</span><span class="n">name_of_folder</span><span class="o">&gt;</span>
 <span class="n">read</span> <span class="n">only</span> <span class="o">=</span> <span class="n">no</span>
 </pre></div>
@@ -120,7 +120,7 @@
 </li>
 <li>
 <p>Save the file and restart&nbsp;samba </p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">service</span> <span class="n">smbd</span> <span class="n">restart</span>
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">smbd</span> <span class="n">restart</span>
 </pre></div>
 
 
@@ -128,7 +128,7 @@
 <li>
 <p>To access any samba file, install smbclient. You can run an apt-get install&nbsp;smbclient</p>
 </li>
-<li>To checkin <div class="highlight"><pre><span class="n">smbclient</span> <span class="o">//</span><span class="n">ipaddress</span><span class="o">/</span><span class="n">foldername</span>
+<li>To checkin <div class="highlight"><pre><span></span><span class="n">smbclient</span> <span class="o">//</span><span class="n">ipaddress</span><span class="o">/</span><span class="n">foldername</span>
 </pre></div>
 
 
@@ -138,12 +138,12 @@
 If you plan on using this, i recommend that you make the server ip static. Goto your router settings and reserve the ip for whichever system you are putting this on. It&#8217;s much simpler to do&nbsp;so.</p>
 <p>Next I also recommend you to set up an <span class="caps">SSH</span> connection over your local machines. This is what I use. Using samba for convinient file transfers and <span class="caps">SSH</span> to control further&nbsp;commands.</p>
 <p>Setting up <span class="caps">SSH</span> for local networks is very simple. Install <span class="caps">SSH</span> using&nbsp;`</p>
-<div class="highlight"><pre><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">SSH</span>
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">SSH</span>
 </pre></div>
 
 
 <p>and simply&nbsp;type</p>
-<div class="highlight"><pre><span class="n">ssh</span> <span class="n">user</span><span class="nd">@IP</span>
+<div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">user</span><span class="nd">@IP</span>
 </pre></div>
 
 
@@ -266,8 +266,9 @@ If you plan on using this, i recommend that you make the server ip static. Goto 
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -282,6 +283,7 @@ If you plan on using this, i recommend that you make the server ip static. Goto 
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li class="active"><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

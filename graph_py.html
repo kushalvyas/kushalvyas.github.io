@@ -81,16 +81,16 @@
 <p>It was about yesterday that I was working on a project that involved the use of a graphs and topological sort. However, I was surprised when I saw the implementation sizes. Albeit , python uses substantially less number of <span class="caps">LOC</span>, this example particularly blew my mind. Ive never been able to create graphs in such an easy manner. :P :P (Im overstating cause im a bit ecstatic right now)&nbsp;.</p>
 <p>Beginning with graphs, We&#8217;ll represent the graph using lists, and not matrices (saves memory you&nbsp;know).. </p>
 <p>The graph refers the one shown here (Courtesy : geeksforgeeks.com)<center>
-    <img alt="graphimage" src="http://d1gjlxt8vb0knt.cloudfront.net//wp-content/uploads/graph.png" />
+    <img alt="graphimage" src="http://d1gjlxt8vb0knt.cloudfront.net//wp-content/uploads/graph.png">
 </center></p>
 <p>Let&#8217;s write the python code. We shall read the file, and then create the adjacency lists out of&nbsp;it.</p>
-<div class="highlight"><pre><span class="c"># number of vertices</span>
+<div class="highlight"><pre><span></span><span class="c1"># number of vertices</span>
 <span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
 
-<span class="c">#create adj lists</span>
+<span class="c1">#create adj lists</span>
 <span class="n">adj</span> <span class="o">=</span><span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)]</span>
 
-<span class="c">#create a function to set an edges</span>
+<span class="c1">#create a function to set an edges</span>
 <span class="k">def</span> <span class="nf">set_edge</span><span class="p">(</span><span class="n">vertex_no</span><span class="p">,</span> <span class="n">node_no</span><span class="p">):</span>
     <span class="nb">globals</span><span class="p">()</span>
     <span class="n">adj</span><span class="p">[</span><span class="n">vertex_no</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_no</span><span class="p">)</span>
@@ -101,12 +101,12 @@
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="c"># print adj</span>
+<span class="c1"># print adj</span>
 </pre></div>
 
 
 <p>Let&#8217;s write a toposort now. A topological sort will give the order as to which node is to be processed first in order of execution. It has to start with a node having in degree as 0. You can <a href="https://en.wikipedia.org/wiki/Topological_sorting">read here </a> for more&nbsp;details</p>
-<div class="highlight"><pre><span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
+<div class="highlight"><pre><span></span><span class="n">vertices</span> <span class="o">=</span> <span class="mi">6</span>
 <span class="n">adj</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)</span> <span class="p">]</span>
 <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">)]</span>
 <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
@@ -123,9 +123,9 @@
         <span class="k">print</span> <span class="n">each</span><span class="p">,</span> <span class="n">visited</span><span class="p">[</span><span class="n">each</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">each</span><span class="p">]:</span>
             <span class="n">toposort</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
-    <span class="c">#print &quot;i = &quot;, i</span>
+    <span class="c1">#print &quot;i = &quot;, i</span>
     <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="c">#print output</span>
+    <span class="c1">#print output</span>
 
 
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -134,7 +134,7 @@
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">set_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="c"># print adj</span>
+<span class="c1"># print adj</span>
 
 
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
@@ -153,8 +153,8 @@
 
 <p>If you want to make customised nodes, with some attributes, 
 you can create a&nbsp;class.</p>
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_no</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_no</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="n">initialize</span> <span class="n">your</span> <span class="n">node_no</span> <span class="p">,</span> <span class="n">params</span>
 
 
@@ -277,8 +277,9 @@ you can create a&nbsp;class.</p>
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -293,6 +294,7 @@ you can create a&nbsp;class.</p>
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li class="active"><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

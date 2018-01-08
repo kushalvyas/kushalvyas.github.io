@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2016-06-20T00:00:00+05:30</updated><entry><title>Setup Computer Vision Environment</title><link href="https://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00+05:30</published><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:setup_env.html</id><summary type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog - CV</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2016-06-20T00:00:00+05:30</updated><entry><title>Setup Computer Vision Environment</title><link href="https://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00+05:30</published><updated>2016-06-20T00:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:/setup_env.html</id><summary type="html">&lt;p&gt;Setting up computer vision&amp;nbsp;env&lt;/p&gt;</summary><content type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;#8217;s that one can use, or how to setup your&amp;nbsp;system.&lt;/p&gt;
 &lt;p&gt;So yes, there is a myraid choice available to start developing. I personally like &lt;a href="http://opencv.org/"&gt;OpenCV&lt;/a&gt; because of its&amp;#8217; enormous community support along with its multiplatform&amp;nbsp;facilities.&lt;/p&gt;
 &lt;p&gt;Apart from this, there is &lt;a href="http://in.mathworks.com/products/matlab/"&gt;&lt;span class="caps"&gt;MATLAB&lt;/span&gt;&lt;/a&gt;. 
 Whoaaa&amp;#8230; this is like a computing powerhouse. With so many easy to use functionality, and 
@@ -18,7 +18,7 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 &lt;li&gt;Use &lt;span class="caps"&gt;CMAKE&lt;/span&gt;. It&amp;#8217;s much simpler to compile using&amp;nbsp;cmake&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;You can use this boiler plate file if incase&amp;nbsp;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Filename : CMakeLists.txt&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Filename : CMakeLists.txt&lt;/span&gt;
 &lt;span class="n"&gt;cmake_minimum_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VERSION&lt;/span&gt; &lt;span class="mf"&gt;2.8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;project_name&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;find_package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;OpenCV&lt;/span&gt; &lt;span class="n"&gt;REQUIRED&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
@@ -28,19 +28,19 @@ simply clicking your way into outputs, &lt;span class="caps"&gt;MATLAB&lt;/span&
 
 
 &lt;p&gt;simply execute&amp;nbsp;: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;cmake&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cmake&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="n"&gt;make&lt;/span&gt; 
 &lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;project_name&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Incase you&amp;#8217;re using &lt;strong&gt;python&lt;/strong&gt;, &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</summary><category term="CV"></category></entry><entry><title>An introduction to Computer Vision</title><link href="https://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00+05:30</published><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:CV.html</id><summary type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;To be&amp;nbsp;continued&lt;/strong&gt;&lt;/p&gt;</content><category term="CV"></category></entry><entry><title>An introduction to Computer Vision</title><link href="https://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00+05:30</published><updated>2016-04-04T08:00:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:/CV.html</id><summary type="html">&lt;p&gt;Basically , everything about &lt;span class="caps"&gt;CV&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Computer&amp;nbsp;Vision&lt;/h3&gt;
 &lt;p&gt;Computer vision involves image processing, a bit of &lt;span class="caps"&gt;AI&lt;/span&gt; and various algorithms. Basically every gesture effect that you see today,  or the &lt;a href="http://www.digitalspy.com/tech/news/a476446/intel-magic-mirror-allows-shoppers-to-try-on-clothes-virtually/"&gt;Intel Magic Mirror&lt;/a&gt; all dumbs down to a few concepts of &lt;span class="caps"&gt;CV&lt;/span&gt;. One can say , that &lt;span class="caps"&gt;CV&lt;/span&gt; is the next big thing that&amp;#8217;s there today&amp;nbsp;&amp;#8230; &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;But there&amp;#8217;s this one great hell of a snag .. that is &lt;strong&gt;Illumination&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;However, there are methods to overcome that&amp;nbsp;too.&lt;/p&gt;
-&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</summary><category term="CV"></category></entry></feed>
+&lt;p&gt;In this blog, I&amp;#8217;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable&amp;nbsp;snippets.&lt;/p&gt;</content><category term="CV"></category></entry></feed>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-01-20T00:40:00+05:30</updated><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="https://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:caffe_cnn.html</id><summary type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="https://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog - Object Recognition, Classification, CV</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/object-recognition-classification-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-01-20T00:40:00+05:30</updated><entry><title>Caffe + ConvNets : Visual Recognition Made Easy</title><link href="https://kushalvyas.github.io/caffe_cnn.html" rel="alternate"></link><published>2017-01-20T00:40:00+05:30</published><updated>2017-01-20T00:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-01-20:/caffe_cnn.html</id><summary type="html">&lt;p&gt;Train and test Convolutional Nets on a dataset using&amp;nbsp;Caffe&lt;/p&gt;</summary><content type="html">&lt;p&gt;To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on &lt;a href="https://kushalvyas.github.io/BOV.html" target="_blank"&gt;Bag of Visual Words Model for Image Classification and Recognition&lt;/a&gt; illustrates one such model. Today I write about &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;Convolutional Neural Networks&lt;/a&gt; and how to implement them in &lt;a href="http://caffe.berkeleyvision.org" target="_blank"&gt;Caffe&lt;/a&gt;. and how to train a &lt;span class="caps"&gt;CNN&lt;/span&gt; for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar&amp;nbsp;fashion.&lt;/p&gt;
 &lt;h2&gt;Basics of &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;nbsp;:&lt;/h2&gt;
 &lt;p&gt;A typical Convolutional Neural Net or &lt;strong&gt;&lt;span class="caps"&gt;CNN&lt;/span&gt;&lt;/strong&gt;, is a feed-forward neural net, with the input being an image. Its&amp;#8217; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected&amp;nbsp;layers.&lt;/p&gt;
 &lt;p&gt;One can refer &lt;a href="http://cs231n.github.io/convolutional-networks/" target="_blank"&gt;this post by Andrej Karpathy&lt;/a&gt; to understand the intricate details of a&amp;nbsp;ConvNet.&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png" /&gt;&lt;/center&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="typical_conv" src="https://kushalvyas.github.io/images/cnn_images/typical_cnn.png"&gt;&lt;/center&gt;
 &lt;center&gt;Source : &lt;a href="https://en. wikipedia.org/wiki/File:Typical_cnn.png" target="_blank"&gt;Convolutional Neural Nets : Wiki&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Convolution Layer : &lt;span class="caps"&gt;CONV&lt;/span&gt;&lt;/strong&gt; &lt;/p&gt;
 &lt;p&gt;The primary operator is a convolution operation. For a 1-D signal it is expressed&amp;nbsp;as 
@@ -12,7 +12,7 @@
 &lt;p&gt;However, an image is a 2D signal (stored as a 2D matrix). To convolve an image, we use a convolution kernel, which is simply a 2D&amp;nbsp;matrix.&lt;/p&gt;
 &lt;div class="math"&gt;$$ convolve(I_1, I_2) = I_1[x, y] * I_2[x, y] = \sum_{n_1= - \infty}^{ n_1 = + \infty} \text{   } \sum_{n_2 = - \infty}^{ n_2 = + \infty} I_1[n_1, n_2].I_2[x - n_1, y - n_2]$$&lt;/div&gt;
 &lt;p&gt;Here&amp;#8217;s an example of how it&amp;nbsp;works&lt;/p&gt;
-&lt;p&gt;&lt;img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="cn2d" src="https://kushalvyas.github.io/images/cnn_images/con2d.png"&gt;&lt;/p&gt;
 &lt;p&gt;For this 7 x 7 matrix, and a kernel of 3 x 3, the kernel will slide over the matrix one column, at a time. Once it reaches the end of the matrix (columnwise), it&amp;#8217;ll shift to the next row. At every position, the dot product is&amp;nbsp;computed. &lt;/p&gt;
 &lt;p&gt;If the kernel is overlapped with the (0 , 0) position , we find the dot product&amp;nbsp;of &lt;/p&gt;
 &lt;div class="math"&gt;$$ 
@@ -29,7 +29,7 @@
 &lt;p&gt;which essentially is&amp;nbsp;: &lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\(1\times-1 + 1\times-1 + 1\times-1 + 3\times-1 + 2\times8 + 2\times-1 + 2\times-1 + 4\times-1 + 3\times-1 =&amp;nbsp;-1\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Similarly, assume an input image - &lt;span class="math"&gt;\(I\)&lt;/span&gt;  is of Size &lt;span class="math"&gt;\((200 \text{ x } 200)\)&lt;/span&gt;, and we have a kernel - &lt;span class="math"&gt;\(k\)&lt;/span&gt; of size &lt;span class="math"&gt;\((10 \text{ x } 10)\)&lt;/span&gt;. The convolution of this kernel over this image is to basically, take the kernel and slide it over the image column by column, row by row. Initially the kernel is placed at &lt;span class="math"&gt;\(I[0, 0]\)&lt;/span&gt;. Therefore the kernel covers a region of &lt;span class="math"&gt;\(10 \text{ x } 10\)&lt;/span&gt; (size of kernel) starting from &lt;span class="math"&gt;\(I[0, 0] \text{ to } I[10,10]\)&lt;/span&gt;. Once the dot product (convolution) is computed over this pixel region, the kernel is shifted by one column to the right. Now the kernel occupies an image region of &lt;span class="math"&gt;\(I[0,1 ] \text{ to } I[10, 11]\)&lt;/span&gt; and so on. 
-&lt;center&gt;&lt;img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;center&gt;&lt;img alt="conv_img" src="https://kushalvyas.github.io/images/cnn_images/convolution.png"&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Source: &lt;a href="http://stackoverflow.com/questions/15356153/how-do-convolution-matrices-work" target="_blank"&gt;Stackoverflow : How convolution matrices work&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;A series of convolution operations take place at every layer, which extrapolates the pertinent information from the images. At every layer, multiple convolution operations take place, followed by zero padding and eventually passed through an activation layer and what is outputted is an Activation&amp;nbsp;Map. &lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Filters and&amp;nbsp;Stride&lt;/strong&gt;&lt;/p&gt;
@@ -44,9 +44,9 @@
 &lt;p&gt;An activation function basically defines the output of the neuron for the given input. Take a simple Hebbian Learning example . An activation function will return &lt;span class="math"&gt;\(1\)&lt;/span&gt; if input is &lt;span class="math"&gt;\( &amp;gt; 0\)&lt;/span&gt; and return &lt;span class="math"&gt;\(0\)&lt;/span&gt; otherwise. The value of input being greater that 0, is nothing but a threshold value. Instead of 0, any other value can also act as a threshold. In ConvNets, a the popular activation function used is a Rectifier or &lt;span class="caps"&gt;RELU&lt;/span&gt;. &lt;/p&gt;
 &lt;div class="math"&gt;$$f(x) = \text{max(0, x)}$$&lt;/div&gt;
 &lt;p&gt;This means that the output of the convolution is thresholded at 0. All positive values are returned as is and all negative values are made&amp;nbsp;0. &lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="relu_plot" src="https://kushalvyas.github.io/images/cnn_images/relu.png"&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;For our above example, if the convolution output is passed to the Rectifier unit, it&amp;#8217;ll set all negative values to&amp;nbsp;zero. &lt;/p&gt;
-&lt;p&gt;&lt;img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rell image" src="https://kushalvyas.github.io/images/cnn_images/rell.png"&gt;&lt;/p&gt;
 &lt;p&gt;On the other hand, the pooling operation is used to down-sample / reduce the activation map. This essentially reduces the volume of the middle-stages output. The output size is computed the same way as computed in the &lt;span class="caps"&gt;CONV&lt;/span&gt; layer. An important thing to note is that is that during the convolution layer, there is a rapid reduction in the dimensionality of the input. To maintain it at a constant size through multiple &lt;span class="caps"&gt;CONV&lt;/span&gt; layers,zero padding is used. Zero padding will pad the image with zeros on its boundaries making it of the same size as the input. It is in the pooling layer where the size reduction takes&amp;nbsp;place.&lt;/p&gt;
 &lt;h2&gt;Implementation with&amp;nbsp;Caffe&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href="http://caffe.berkeleyvision.org/" target="_blank"&gt;Caffe&lt;/a&gt;&lt;/strong&gt; is a framework for deep learning, very popular for its simplicity in implementing &lt;span class="caps"&gt;CNN&lt;/span&gt;&amp;#8217;s. It has been developed by the Berkely Vision &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Learning Center. You can use a &lt;span class="caps"&gt;CPU&lt;/span&gt; as well as a &lt;span class="caps"&gt;GPU&lt;/span&gt; mode. It is widely known that when it comes to matrix and other such image operations , most of which can be done in parallel, &lt;span class="caps"&gt;GPU&lt;/span&gt;&amp;#8217;s triumph over &lt;span class="caps"&gt;CPU&lt;/span&gt;&amp;#8217;s. I used my &lt;span class="caps"&gt;CPU&lt;/span&gt; machine to train a limited Caltech101 dataset, and it went on for 3&amp;nbsp;days. &lt;/p&gt;
@@ -57,7 +57,7 @@
 &lt;p&gt;&lt;strong&gt;Preparing &lt;span class="caps"&gt;LMDB&lt;/span&gt; format&amp;nbsp;data&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This article will now cover how to make a custom dataset , and train it using caffe. There are constraints, wherein caffe uses an lmdb data format, and it is important to convert your dataset into the respective&amp;nbsp;formats.&lt;/p&gt;
 &lt;p&gt;Next is converting the images into an lmdb format. The caffe documentation mentions to generate a txt file comprising of the image path with its associated class number. You can write a simple python script listing contents of your training and testing directories into such text&amp;nbsp;files&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path_to_caltech101&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;limited&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sunflower&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image_0020&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path_to_caltech101&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;limited&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sunflower&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image_0020&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path_to_caltech101&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;limited&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Motorbike&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image_0033&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path_to_caltech101&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;limited&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;soccer_ball&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image_0042&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
 &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path_to_caltech101&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&lt;/span&gt;&lt;span class="n"&gt;limited&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;train&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;accordion&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;image_0258&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;jpg&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;
@@ -68,16 +68,16 @@
 
 &lt;p&gt;&lt;br&gt;
 Once done, use the Caffe &lt;code&gt;convert_imageset&lt;/code&gt; to convert these images into the leveldb/lmdb data format. The default backend option is an lmdb backend. The &lt;code&gt;convert_imageset&lt;/code&gt;  can be found at &lt;code&gt;caffe/build/tools&lt;/code&gt;. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;convert_imageset&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resize_height&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;resize_width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;shuffle&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PATH_TO_IMAGESET&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;PATH_TO_TEXT_FILE_CRAEATED_ABOVE&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;OUTPUT_LMDB_LOCATION&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;./convert_imageset --resize_height=200 --resize_width=200 --shuffle $PATH_TO_IMAGESET $PATH_TO_TEXT_FILE_CRAEATED_ABOVE.txt $OUTPUT_LMDB_LOCATION
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Or simply change the paths and location inside the &lt;code&gt;caffe/examples/imagenet/create_imagnet.sh&lt;/code&gt; file&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
 Eventually your working directory will comprise of a train &lt;span class="caps"&gt;LMDB&lt;/span&gt; directory and a test &lt;span class="caps"&gt;LMDB&lt;/span&gt;&amp;nbsp;directory.    &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;
-    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;train_lmdb_folder&lt;/span&gt;
-    &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;test_lmdb_folder&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    |- src
+    |- train_lmdb_folder
+    |- test_lmdb_folder
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -85,83 +85,83 @@ Eventually your working directory will comprise of a train &lt;span class="caps"
 &lt;p&gt;&lt;strong&gt;Defining the Network Architecture&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Caffe network architectures are very simple to define. Create a file &amp;#8220;model.prototxt&amp;#8221; and define the network architecture as follows. We will be using the AlexNET model (winner of ImageNet challenge 2012).
 Given below is a representation of how the net looks&amp;nbsp;like.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="net_arch" src="https://kushalvyas.github.io/images/cnn_images/net_arch.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://kushalvyas.github.io/images/cnn_images/net_arch.png" target="_blank"&gt;Click here and zoom to view&amp;nbsp;it &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;To define the architecture, open the model.prototxt file. The model begins with a net name&amp;nbsp;: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;NameoftheNET&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        name : &amp;quot;NameoftheNET&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Then sequentially start defining layers. 
 First comes the data layer. Any layer that needs to be defined has a few mandatory parameters, that help in the definition of the neural net structure. To begin with, each layer is associated with a type (data, conv, relu, pool, etc) and its location - whether it on top of a previous layer, and beneath the next layer. Similarly, the data layer is serves as the input to the&amp;nbsp;ConvNet. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;layer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-          &lt;span class="nl"&gt;name:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;
-          &lt;span class="nl"&gt;type:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Data&amp;quot;&lt;/span&gt;
-          &lt;span class="nl"&gt;top:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;
-          &lt;span class="nl"&gt;top:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;
-          &lt;span class="n"&gt;include&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nl"&gt;phase:&lt;/span&gt; &lt;span class="n"&gt;TRAIN&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;
-          &lt;span class="n"&gt;transform_param&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
-            &lt;span class="n"&gt;mirror&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;
-            &lt;span class="nl"&gt;crop_size:&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;
-            &lt;span class="nl"&gt;mean_file:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;mean.binaryproto&amp;quot;&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;
-          &lt;span class="n"&gt;data_param&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nl"&gt;source:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;path - to - train_lmdb_folder&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;batch_size:&lt;/span&gt; &lt;span class="mi"&gt;256&lt;/span&gt;
-            &lt;span class="nl"&gt;backend:&lt;/span&gt; &lt;span class="n"&gt;LMDB&lt;/span&gt;
-          &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        layer {
+          name: &amp;quot;data&amp;quot;
+          type: &amp;quot;Data&amp;quot;
+          top: &amp;quot;data&amp;quot;
+          top: &amp;quot;label&amp;quot;
+          include {
+            phase: TRAIN
+          }
+          transform_param { 
+            mirror: true
+            crop_size: 200
+            mean_file: &amp;quot;mean.binaryproto&amp;quot;
+          }
+          data_param {
+            source: &amp;quot;path - to - train_lmdb_folder&amp;quot;
+            batch_size: 256
+            backend: LMDB
+          }
+        }
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;As seen, the next layer is a &lt;code&gt;conv&lt;/code&gt; layer. Defining layers in Caffe is quite straightforward. Each convolutional layer has a number of required and optional parameters. The required parameters involve num_inputs i.e. input size, and the kernel size. Optional parameters comprise of strides, padding width,&amp;nbsp;etc. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;layer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nl"&gt;name:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;conv1&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;type:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Convolution&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;bottom:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;data&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;top:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;conv1&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        layer {
+            name: &amp;quot;conv1&amp;quot;
+            type: &amp;quot;Convolution&amp;quot;
+            bottom: &amp;quot;data&amp;quot;
+            top: &amp;quot;conv1&amp;quot;
 
-            &lt;span class="p"&gt;....&lt;/span&gt;
-            &lt;span class="p"&gt;....&lt;/span&gt;
-            &lt;span class="p"&gt;....&lt;/span&gt;
+            ....
+            ....
+            ....
 
-            &lt;span class="n"&gt;convolution_param&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                &lt;span class="nl"&gt;num_output:&lt;/span&gt; &lt;span class="mi"&gt;96&lt;/span&gt;
-                &lt;span class="nl"&gt;kernel_size:&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;
-                &lt;span class="nl"&gt;stride:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
-                &lt;span class="p"&gt;...&lt;/span&gt;
-                &lt;span class="p"&gt;...&lt;/span&gt;
-                &lt;span class="p"&gt;...&lt;/span&gt;
-            &lt;span class="p"&gt;}&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+            convolution_param {
+                num_output: 96
+                kernel_size: 11
+                stride: 4
+                ...
+                ...
+                ...
+            }
+        }
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Moving on, we talked about Pool and ReLU layers before as an integral part of ConvNets. Here&amp;#8217;s how to define&amp;nbsp;them.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;layer&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;                              &lt;span class="n"&gt;layer&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nl"&gt;name:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;relu1&amp;quot;&lt;/span&gt;                       &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pool1&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;type:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ReLU&amp;quot;&lt;/span&gt;                        &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Pooling&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;bottom:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;conv1&amp;quot;&lt;/span&gt;                     &lt;span class="n"&gt;bottom&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;norm1&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;top:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;conv1&amp;quot;&lt;/span&gt;                        &lt;span class="n"&gt;top&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pool1&amp;quot;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;                                       &lt;span class="n"&gt;pooling_param&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-                                                    &lt;span class="nl"&gt;pool:&lt;/span&gt; &lt;span class="n"&gt;MAX&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;MAX&lt;/span&gt; &lt;span class="n"&gt;POOL&lt;/span&gt; &lt;span class="n"&gt;algorithm&lt;/span&gt;
-                                                    &lt;span class="n"&gt;kernel_size&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-                                                    &lt;span class="nl"&gt;stride:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-                                                &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        layer{                              layer{
+            name: &amp;quot;relu1&amp;quot;                       name: &amp;quot;pool1&amp;quot;
+            type: &amp;quot;ReLU&amp;quot;                        type: &amp;quot;Pooling&amp;quot;
+            bottom: &amp;quot;conv1&amp;quot;                     bottom: &amp;quot;norm1&amp;quot;
+            top: &amp;quot;conv1&amp;quot;                        top: &amp;quot;pool1&amp;quot;
+        }                                       pooling_param{
+                                                    pool: MAX # MAX POOL algorithm
+                                                    kernel_size : 3
+                                                    stride: 2
+                                                }
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;br&gt;
 A ReLU will simply activate the convolution layer output and essentially threshold it to 0. (refer Rectifier activation function). Whereas the pooling will reduce the size of the output. AlexNet also uses a normalization layer, which is not much used nowadays.  Similarly, one can keep defining layers in order according to the architecture you want. Lastly, each ConvNet has a fully connected layer, where the input is a column vector ( 1&amp;nbsp;D). &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="n"&gt;layer&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-            &lt;span class="nl"&gt;name:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;loss&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;type:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;SoftmaxWithLoss&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;bottom:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;fc8&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;bottom:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;
-            &lt;span class="nl"&gt;top:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;loss&amp;quot;&lt;/span&gt;
-        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        layer {
+            name: &amp;quot;loss&amp;quot;
+            type: &amp;quot;SoftmaxWithLoss&amp;quot;
+            bottom: &amp;quot;fc8&amp;quot;
+            bottom: &amp;quot;label&amp;quot;
+            top: &amp;quot;loss&amp;quot;
+        }
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -170,18 +170,18 @@ A ReLU will simply activate the convolution layer output and essentially thresho
 &lt;p&gt;&lt;strong&gt;Training your data&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Training can be done in either ways. You can write a python script (which I will update to the blog in a few days)  or you can use the &lt;em&gt;caffe tool&lt;/em&gt; to do so. For now, I&amp;#8217;ll be explaining w.r.t the caffe tool which can be found in &lt;code&gt;$caffe_root_dir/build/tools/caffe&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Once the network architecture has been fixed, all your training lmdb files created the next step is to define the Caffe Solver, defining the learning rate, momentum, solving mode (either &lt;span class="caps"&gt;CPU&lt;/span&gt; or &lt;span class="caps"&gt;GPU&lt;/span&gt;), and path for saving snapshots of the&amp;nbsp;model.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;        &lt;span class="nl"&gt;net:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;model.prototxt&amp;quot;&lt;/span&gt;
-        &lt;span class="nl"&gt;base_lr:&lt;/span&gt; &lt;span class="mf"&gt;0.01&lt;/span&gt;
-        &lt;span class="nl"&gt;lr_policy:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;step&amp;quot;&lt;/span&gt;
-        &lt;span class="nl"&gt;gamma:&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;
-        &lt;span class="nl"&gt;stepsize:&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt;
-        &lt;span class="nl"&gt;display:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
-        &lt;span class="nl"&gt;max_iter:&lt;/span&gt; &lt;span class="mi"&gt;4500&lt;/span&gt;
-        &lt;span class="nl"&gt;momentum:&lt;/span&gt; &lt;span class="mf"&gt;0.9&lt;/span&gt;
-        &lt;span class="nl"&gt;weight_decay:&lt;/span&gt; &lt;span class="mf"&gt;0.0005&lt;/span&gt;
-        &lt;span class="nl"&gt;snapshot:&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;
-        &lt;span class="nl"&gt;snapshot_prefix:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;snapshots1/caltechNET_train&amp;quot;&lt;/span&gt;
-        &lt;span class="nl"&gt;solver_mode:&lt;/span&gt; &lt;span class="n"&gt;CPU&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;        net: &amp;quot;model.prototxt&amp;quot;
+        base_lr: 0.01
+        lr_policy: &amp;quot;step&amp;quot;
+        gamma: 0.1
+        stepsize: 100000
+        display: 5
+        max_iter: 4500
+        momentum: 0.9
+        weight_decay: 0.0005
+        snapshot: 1000
+        snapshot_prefix: &amp;quot;snapshots1/caltechNET_train&amp;quot;
+        solver_mode: CPU
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -240,19 +240,19 @@ Make sure that the solver contains the correct name of the neural net&amp;nbsp;m
 &lt;p&gt;&lt;br&gt;
 Next, the caffe model needs to be&amp;nbsp;loaded. &lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;caffe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;path_to_model.prototxt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;snapshot_file.caffemodel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-                       &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;means.npy&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;caffe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Classifier&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;path_to_model.prototxt&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;snapshot_file.caffemodel&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+                       &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;means.npy&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                        &lt;span class="n"&gt;channel_swap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                        &lt;span class="n"&gt;raw_scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                        &lt;span class="n"&gt;image_dims&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;caffe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;path_to_image&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;caffe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;path_to_image&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;net&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;class_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# this returns the class id or the class number&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;class_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;out&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmax&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# this returns the class id or the class number&lt;/span&gt;
 
 &lt;span class="o"&gt;...&lt;/span&gt; 
 &lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;classname&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;class_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c"&gt;# to print the name of the class&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;classname&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;class_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# to print the name of the class&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -260,17 +260,17 @@ Next, the caffe model needs to be&amp;nbsp;loaded. &lt;/p&gt;
 &lt;strong&gt;Some tricks&lt;/strong&gt;&amp;nbsp;: &lt;/p&gt;
 &lt;p&gt;There may be some cases where the means file is stored as a means.binaryproto. There is a quick way to convert it to a npy file. &lt;a href="https://github.com/BVLC/caffe/issues/808" target="_blank"&gt;Refer issue #808&lt;/a&gt; for the conversion of .binaryproto to .npy files.
 &lt;br&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="c"&gt;# solution github issue 808 by @mafiosso&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="c1"&gt;# solution github issue 808 by @mafiosso&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;channels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; 
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;blob&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;caffe&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;caffe_pb2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BlobProto&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;mean.binaryproto&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mean.binaryproto&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;blob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ParseFromString&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;blob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; 
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asarray&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; 
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# size of image. &lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# size of image. &lt;/span&gt;
 &lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;means.npy&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;means.npy&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;means&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -280,11 +280,11 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
 &lt;p&gt;The Caltech101 dataset limited directory already has a split of data into train and&amp;nbsp;test. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png" /&gt;
-&lt;img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png" /&gt;
-&lt;img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png" /&gt;&lt;br&gt;
-&lt;img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png" /&gt;
-&lt;img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/cnn_images/new_a.png"&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/cnn_images/new_airplane.png"&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/cnn_images/new_soccer_ball.png"&gt;&lt;br&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/cnn_images/new_motorbike.png"&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/cnn_images/new_sunflower.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So, we have completed the tutorial on how to create a custom dataset and train it using caffe. Now you can implement this and train any dataset you want. I would recommend reading up on the references to get a better understanding of&amp;nbsp;ConvNets.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
@@ -307,11 +307,9 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -351,7 +349,7 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="https://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:BOV.html</id><summary type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
+&lt;/script&gt;</content><category term="ObjectRecognition"></category></entry><entry><title>Bag of Visual Words Model for Image Classification and Recognition</title><link href="https://kushalvyas.github.io/BOV.html" rel="alternate"></link><published>2016-07-13T20:40:00+05:30</published><updated>2016-07-13T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-07-13:/BOV.html</id><summary type="html">&lt;p&gt;Implementing Bag of Visual words for Object&amp;nbsp;Recognition&lt;/p&gt;</summary><content type="html">&lt;p&gt;Bag of Visual Words is an extention to the &lt;span class="caps"&gt;NLP&lt;/span&gt; algorithm Bag of Words used for image classification. Other than &lt;span class="caps"&gt;CNN&lt;/span&gt;, it is quite widely used. I sure want to tell that &lt;span class="caps"&gt;BOVW&lt;/span&gt; is one of the finest things I&amp;#8217;ve encountered in my vision explorations until&amp;nbsp;now.&lt;/p&gt;
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -373,7 +371,7 @@ Well, recognition simply involves stating whether an image contains a specific o
 &lt;li&gt;Training and&amp;nbsp;testing&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;br&gt;&lt;/br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Clustering&lt;/strong&gt; : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;Clustering&lt;/strong&gt; : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&amp;#8217;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of &lt;strong&gt;color only&lt;/strong&gt;.&lt;br&gt;
 So moving on to a more complex situation that would give a much profound meaning to clustering. Suppose there is a room full of utilities, be it accesories, clothing, utensils, electronics, etc. Now, if someone is told to seperate out into well formed groups of similar items, one would essentially be performing&amp;nbsp;clustering. &lt;/p&gt;
 &lt;p&gt;So yes, clustering can be said as the grouping a set of objects in such a way that objects in the same group are much similar, than to those in other&amp;nbsp;groups/sets&lt;/p&gt;
 &lt;p&gt;Moving on, lets&amp;#8217; decide as to how we perform clustering. The selection of clustering algorithm depends more on what kind of similarity model is to be chosen. There are cases wherein, the plain&amp;#8217;ol clustering impression that everyone so simply elucidates may not be the right choice. For example, there exists various models, such as centroid oriented - Kmeans, or Distribution based models - that involve clustering for statistical data; such places require Density based clustering (&lt;span class="caps"&gt;DBSCAN&lt;/span&gt;) ,&amp;nbsp;etc. &lt;/p&gt;
@@ -420,7 +418,7 @@ ret =  KMeans(n_clusters = n_clusters).fit_predict(X)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;!-- output --&gt;
 
-&lt;p&gt;&lt;img alt="clusteroutput" src="https://kushalvyas.github.io/images/clusterplot1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="clusteroutput" src="https://kushalvyas.github.io/images/clusterplot1.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;Here&amp;#8217;s a sample output for clustering using 3 clusters on a set of 1000 samples.&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Why are we using Clusterng &amp;#8230; Why Kmeans &amp;#8230;: &lt;/strong&gt;
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &amp;#8230; umm. let&amp;#8217;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image&amp;nbsp;contain,&lt;/p&gt;
@@ -459,7 +457,7 @@ You can find my implementation on &lt;a href="https://github.com/kushalvyas/Bag-
  --&gt;
 
 &lt;p&gt;Project Architecture&amp;nbsp;: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="nb"&gt;dir&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
     &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
             &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;
                 &lt;span class="o"&gt;|-&lt;/span&gt; &lt;span class="n"&gt;obj1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
@@ -499,7 +497,7 @@ You can find my implementation on &lt;a href="https://github.com/kushalvyas/Bag-
 17
 18
 19
-20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FileHelper&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;FileHelper&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;getFiles&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    - returns  a dictionary of all files &lt;/span&gt;
@@ -508,12 +506,12 @@ You can find my implementation on &lt;a href="https://github.com/kushalvyas/Bag-
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="n"&gt;imlist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
     &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; #### Reading image category &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; ##### &amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;word&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; #### Reading image category &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot; ##### &amp;quot;&lt;/span&gt;
         &lt;span class="n"&gt;imlist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Reading file &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;/*&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Reading file &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;imagefile&lt;/span&gt;
             &lt;span class="n"&gt;im&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imagefile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;imlist&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;word&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;im&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="n"&gt;count&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
@@ -533,8 +531,8 @@ You can find my implementation on &lt;a href="https://github.com/kushalvyas/Bag-
  8
  9
 10
-11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ImageHelpers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+11&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ImageHelpers&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sift_object&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xfeatures2d&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SIFT_create&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -575,10 +573,10 @@ $$&lt;/div&gt;
 &lt;p&gt;We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms &amp;#8230;. Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said&amp;nbsp;process.&lt;/p&gt;
 &lt;p&gt;If we were to allot a definition to any of the similar words, we can simply refer them by their cluster&amp;nbsp;number.&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/grid.png" /&gt;
-&lt;!-- &lt;img alt="image" src="https://kushalvyas.github.io/images/vocab.png" /&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
+&lt;img alt="image" size:small src="https://kushalvyas.github.io/images/grid.png"&gt;
+&lt;!-- &lt;img alt="image" src="https://kushalvyas.github.io/images/vocab.png"&gt; &lt;/center&gt; --&gt;&lt;/p&gt;
 &lt;p&gt;A more illustrative visualization of the histogram can be observed in the adjacent&amp;nbsp;figure.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="image" size:small="size:small" src="https://kushalvyas.github.io/images/vocab_unnormalized.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image" size:small src="https://kushalvyas.github.io/images/vocab_unnormalized.png"&gt;&lt;/p&gt;
 &lt;p&gt;The above image shows how a collective vocabulary will look like. Encomprising of the total number of each type of feature/word present in the training set in&amp;nbsp;totality.&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Here&amp;#8217;s some implementation snippet as to how one would implement&amp;nbsp;this&lt;/p&gt;
@@ -619,9 +617,9 @@ $$&lt;/div&gt;
 &lt;p&gt;Our &lt;span class="math"&gt;\(mega\_histrogram\)&lt;/span&gt; is basically an array of size &lt;span class="math"&gt;\(n\_samples, n\_significantFeatures\)&lt;/span&gt;. Meaning, the number of rows, that are defined as the &lt;span class="math"&gt;\(n\_imagses\)&lt;/span&gt; in the above snippet, are nothing but samples we need to train. Each row contains a distribution/combination of visual words used to describe the image. All we need is a multiclass classifier to distinguish between similar images and to define classes for the&amp;nbsp;same.&lt;/p&gt;
 &lt;p&gt;for classification purposes, I&amp;#8217;d recommend to use sklearn. Its by far the most easily adaptable &lt;span class="caps"&gt;API&lt;/span&gt; i&amp;#8217;ve used. And goes very well with numpy&amp;nbsp;datastructures. &lt;/p&gt;
 &lt;p&gt;Just so you know, Coding up an &lt;span class="caps"&gt;SVM&lt;/span&gt; on your own is a herculean task, hence we follow a 1-2-3 methodology as projected by &lt;span class="caps"&gt;SKLEARN&lt;/span&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;clf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SVC&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c"&gt;# make classifier object&lt;/span&gt;
-&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;train_labels&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;# train the model&lt;/span&gt;
-&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;classes&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c"&gt;#returns a list of prediction for each test_data&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;SVC&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# make classifier object&lt;/span&gt;
+&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;train_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;train_labels&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# train the model&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;classes&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#returns a list of prediction for each test_data&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -630,16 +628,16 @@ $$&lt;/div&gt;
 &lt;p&gt;Please maintain the aforementioned project dir structure and follow naming conventions. You may want to read the repositories readme for further details. Here&amp;#8217;s what predictions I obtained on testing and training the model against a trimmed version of Caltech101&amp;nbsp;dataset. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;/p&gt;
 &lt;p&gt;There are a few snaps of outputs when the model was tested on the limited version of the dataset&amp;nbsp;.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/ac1.png" /&gt;
-&lt;img alt="im2" src="https://kushalvyas.github.io/images/bk1.png" /&gt;
-&lt;img alt="im3" src="https://kushalvyas.github.io/images/bk2.png" /&gt;
-&lt;img alt="im4" src="https://kushalvyas.github.io/images/dollar1.png" /&gt;
-&lt;img alt="im5" src="https://kushalvyas.github.io/images/sbb3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/ac1.png"&gt;
+&lt;img alt="im2" src="https://kushalvyas.github.io/images/bk1.png"&gt;
+&lt;img alt="im3" src="https://kushalvyas.github.io/images/bk2.png"&gt;
+&lt;img alt="im4" src="https://kushalvyas.github.io/images/dollar1.png"&gt;
+&lt;img alt="im5" src="https://kushalvyas.github.io/images/sbb3.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;h3&gt;Checking for&amp;nbsp;Accuracy&lt;/h3&gt;
 &lt;p&gt;Accuracy measure is one of the most important steps in &lt;span class="caps"&gt;ML&lt;/span&gt; algorithms .A Confusion matrix is basically how many test cases were correctly classified. Hence, a confusion matrix is used to determine the accuracy of classification. On having tried it on the limited dataset, below is the &lt;span class="caps"&gt;CF&lt;/span&gt;. &lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-    &lt;img alt="imc" src="https://kushalvyas.github.io/images/normalized_7.png" /&gt;
+    &lt;img alt="imc" src="https://kushalvyas.github.io/images/normalized_7.png"&gt;
 &lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;So now you know how to write your own Image Classifiers and Recognizers&amp;#8230; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a &lt;a href=""&gt;Confusion Matrix&lt;/a&gt; .Meanwhile, use the &lt;a href="https://kushalvyas.github.io/BOV.html"&gt;Bag of Visual Words&lt;/a&gt; and create some cool&amp;nbsp;stuff&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt; Check out the &lt;a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python"&gt;Code&lt;/a&gt; on &lt;a href="https://www.github.com/kushalvyas/"&gt;Github&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -655,11 +653,9 @@ $$&lt;/div&gt;
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -699,4 +695,4 @@ $$&lt;/div&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</summary><category term="ObjectRecognition"></category></entry></feed>
+&lt;/script&gt;</content><category term="ObjectRecognition"></category></entry></feed>

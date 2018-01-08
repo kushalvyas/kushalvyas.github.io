@@ -79,8 +79,8 @@
         <div class="entry-content">
             <h1>The 8 Queens Problem : An&nbsp;Introduction</h1>
 <p>8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard <span class="math">\(8\)</span> x <span class="math">\(8\)</span> chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&#8221; <span class="math">\(OK\)</span> &#8221; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &#8221; <span class="math">\(X\)</span> &#8221; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens&nbsp;problem.</p>
-<p><center><img alt="attacking_queen" src="https://kushalvyas.github.io/images/queen_attacking.png" /> &nbsp; &nbsp;
-<img alt="solution_queen" src="https://kushalvyas.github.io/images/solution.jpg" /></p>
+<p><center><img alt="attacking_queen" src="https://kushalvyas.github.io/images/queen_attacking.png"> &nbsp; &nbsp;
+<img alt="solution_queen" src="https://kushalvyas.github.io/images/solution.jpg"></p>
 <p><i>Images taken from chegg.com and indiamedic</i></center></p>
 <p>There are various methods to solve the 8 queens problem. The most common being <strong>BackTracking</strong>. It can also be solved using a variety of approaches such as as Hill climbing, Genetic Algorithms - evolution, etc. In this post, I&#8217;ll explain how we approach 8 queens problem using <strong>Genetic Algorithms - Evolution</strong>.</p>
 <h1>First,  a bit of&nbsp;Biology&#8230;</h1>
@@ -89,12 +89,12 @@
 <p>Consider 2 cells. Each cell has something called as pairs of chromosomes. A chromosome is what carries the genetic traits. The pairs and number of chromosomes isin&#8217;t much of relevance. What is important is how the process of cell production causes the genes to propagate into an offspring. This method is called as meiosis. Well, there&#8217;s another way called as mitosis, but in mitosis, there is no genetic diversity that is being propagated (Explained later in post). Till now we have established that the cells contain pairs of chromosomes. And that 2 cells are required for essential cell&nbsp;division. </p>
 <p>Given below is an illustration as to how the division takes place. (Image taken from&nbsp;askabiologist.com)</p>
 <p><center>
-<img alt="celldv" src="https://kushalvyas.github.io/images/meiosis.png" />
+<img alt="celldv" src="https://kushalvyas.github.io/images/meiosis.png">
 </center>
 <br>
 <center>
 Process of meiosis.
-<img alt="celldv1" src="https://kushalvyas.github.io/images/crossover.png" /></p>
+<img alt="celldv1" src="https://kushalvyas.github.io/images/crossover.png"></p>
 <p>Chromosme crossover
 </center></p>
 <p><strong>Crossover - In Detail</strong>: When 2 cells meet, the respective chromosome from cell1 and cell2 come together and mix. The mixing involves random parts of chromosome1 to get over-written by chromosome2. And the same in case of chromosome2. Hence, we are left with an inter mixed pair of chromosomes. Since chromosomes are carriers of genetic material, when there is mixing and intermingling of 2 chromosomes, there is also creation of new genetic sequences. Hence, this ensures genetic diversity. The formation of a more dominant / enhanced trait or a relatively sober trait can be attributed to such crossing over of chromosomes. Once crossover is through, the new offspring contains mixed characteristics for both the&nbsp;parents.</p>
@@ -127,7 +127,7 @@ Therefore, the new population can be said to be a list dynamically populated by
 the children&nbsp;computed.</li>
 </ul>
 <h1>The&nbsp;Algorithm:</h1>
-<div class="highlight"><pre><span class="k">function</span><span class="w"> </span><span class="nf">Genetic-Algorithm</span><span class="p">(</span> population, Fitness-fn<span class="p">)</span><span class="w"> </span><span class="n">returns</span> <span class="n">an</span> <span class="n">individual</span>
+<div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="nf">Genetic-Algorithm</span><span class="p">(</span> population, Fitness-fn<span class="p">)</span><span class="w"> </span><span class="n">returns</span> <span class="n">an</span> <span class="n">individual</span>
     <span class="n">inputs</span><span class="p">:</span> <span class="n">population</span> <span class="o">-&gt;</span> <span class="n">set</span> <span class="n">of</span> <span class="n">individuals</span>
             <span class="n">Fitness</span><span class="o">-</span><span class="n">fn</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="k">function</span> <span class="n">that</span> <span class="n">measures</span> <span class="n">the</span> <span class="n">fitness</span> <span class="n">of</span> <span class="n">an</span> <span class="n">individual</span>
 
@@ -151,7 +151,7 @@ I said that the fitness fn is proportional to the number of clashes amongst the 
 <h1>Implementation&nbsp;:</h1>
 <p>You can checkout my implementation <a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f">here</a></p>
 <p><strong> Setting up population </strong> : Your population is eventually going to determine the output. Each individual of the population is a board arrangement. So, firstly let&#8217;s describe the&nbsp;individual</p>
-<div class="highlight"><pre><span class="n">BoardPosition</span> <span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="n">BoardPosition</span> <span class="p">:</span>
     <span class="n">Attributes</span> <span class="p">:</span> 
         <span class="o">-</span> <span class="n">Sequence</span>
         <span class="o">-</span> <span class="n">Fitness</span>
@@ -195,14 +195,14 @@ def generatePopulation(population_size = 100):
 <p>The ideal case can yield upton 28 arrangements of non attacking&nbsp;pairs.</p>
 <p>Therefore max fitness = <span class="math">\(&nbsp;28.\)</span></p>
 <p>Hence fitness val returned will be <span class="math">\( 28 - \text{&lt;number of&nbsp;clashes&gt;}\)</span> </p>
-<div class="highlight"><pre><span class="n">clashes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="c"># calculate row and column clashes</span>
-<span class="c"># just subtract the unique length of array from total length of array</span>
-<span class="c"># [1,1,1,2,2,2] - [1,2] =&gt; 4 clashes</span>
+<div class="highlight"><pre><span></span><span class="n">clashes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1"># calculate row and column clashes</span>
+<span class="c1"># just subtract the unique length of array from total length of array</span>
+<span class="c1"># [1,1,1,2,2,2] - [1,2] =&gt; 4 clashes</span>
 <span class="n">row_col_clashes</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)))</span>
 <span class="n">clashes</span> <span class="o">+=</span> <span class="n">row_col_clashes</span>
 
-<span class="c"># calculate diagonal clashes</span>
+<span class="c1"># calculate diagonal clashes</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)):</span>
         <span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">):</span>
@@ -232,7 +232,7 @@ def generatePopulation(population_size = 100):
 <p>Any of the three cases is still capable of producing a next generation. The only difference will be regarding the probability of that offspring to yield a substantially fit&nbsp;offspring.</p>
 <p><strong>Mutation : </strong>
 Biologically and statistically, mutation is continously occuring at very low frequencies. In human genetic theory, mutation involves alteration within the structure of the chromosome, within the structure of the gene. To replicate this for 8 queens problem, one can simply alter a board&nbsp;arrangement. </p>
-<p><center><img alt="fitness_cros" src="https://kushalvyas.github.io/images/fitness_cros.png" /></p>
+<p><center><img alt="fitness_cros" src="https://kushalvyas.github.io/images/fitness_cros.png"></p>
 <p><em>Source : Peter norvig genetic algorithm illustration</em>
 </center></p>
 <p>The above illustrates the entire flow from initial population to fitness
@@ -247,7 +247,7 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
 <h1>Output and termination criteria&nbsp;:</h1>
 <p>Well, it seems that such an algorithm will keep producing offsprings and again their offsprings. When to stop. In my implementation , I&#8217;ve kept a limit of iteration. This is just for purposes of conviniece. However, at anytime, the most optimal solution can be described as the <strong>most fit board position</strong>.</p>
 <p><center>
-    <img alt="im" src="https://kushalvyas.github.io/images/op8q.png" /></p>
+    <img alt="im" src="https://kushalvyas.github.io/images/op8q.png"></p>
 <p></center></p>
 <p><strong>You can check out the <a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f">code</a> at <a href="https://www.github.com/kushalvyas/">Github</a>.</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -262,11 +262,9 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -424,8 +422,9 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -440,6 +439,7 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

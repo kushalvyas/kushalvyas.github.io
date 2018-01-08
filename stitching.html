@@ -113,7 +113,7 @@ The implementation will be carried out in python programming&nbsp;language. </p>
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">images</span> <span class="p">[]</span> <span class="o">&lt;--</span> <span class="n">Input</span> <span class="n">images</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="n">images</span> <span class="p">[]</span> <span class="o">&lt;--</span> <span class="n">Input</span> <span class="n">images</span>
     <span class="n">Assuming</span><span class="p">,</span> <span class="n">that</span> <span class="n">the</span> <span class="n">center</span> <span class="n">image</span> <span class="ow">is</span> <span class="n">no_of_images</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">let</span> <span class="n">centerIdx</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
 
@@ -130,15 +130,15 @@ The implementation will be carried out in python programming&nbsp;language. </p>
 The algorithm is time consuming, due to the number of iterations involved, it is best that hte input number of images is not too high or not of very high resolution (eg. 4000x3000). 
 My implementation is based on a 2 <span class="caps">GB</span> <span class="caps">RAM</span> computer having intel i3 processor (Not tested it on my machine yet !). Feel free to upgrade/scale this model using higher specs, or maybe <span class="caps">GPU</span>&#8217;s .It&#8217;s never too late to&nbsp;try.</p>
 <h3>Project Architecture&nbsp;:</h3>
-<div class="highlight"><pre>    <span class="o">|</span><span class="n">_</span> <span class="n">code</span> <span class="o">-|</span>
-    <span class="o">|</span>        <span class="o">|--</span> <span class="n">pano</span><span class="p">.</span><span class="n">py</span>
-    <span class="o">|</span>        <span class="o">|--</span> <span class="n">txtlists</span><span class="o">-|</span>
-    <span class="o">|</span>                     <span class="o">|--</span><span class="n">files1</span><span class="p">.</span><span class="n">txt</span> <span class="p">....</span> 
-    <span class="o">|</span>   
-    <span class="o">|</span><span class="n">_</span> <span class="n">images</span> <span class="o">-</span> <span class="o">|</span>
-    <span class="o">|</span>           <span class="o">|-</span> <span class="n">img1</span><span class="p">.</span><span class="n">jpg</span>
-    <span class="o">|</span>           <span class="o">|-</span> <span class="n">abc</span><span class="p">.</span><span class="n">jpg</span> 
-    <span class="o">|</span>           <span class="p">....</span> <span class="n">and</span> <span class="n">so</span> <span class="n">on</span> <span class="p">...</span>
+<div class="highlight"><pre><span></span>    <span class="p">|</span>_ code -<span class="p">|</span>
+    <span class="p">|</span>        <span class="p">|</span>-- pano.py
+    <span class="p">|</span>        <span class="p">|</span>-- txtlists-<span class="p">|</span>
+    <span class="p">|</span>                     <span class="p">|</span>--files1.txt .... 
+    <span class="p">|</span>   
+    <span class="p">|</span>_ images - <span class="p">|</span>
+    <span class="p">|</span>           <span class="p">|</span>- img1.jpg
+    <span class="p">|</span>           <span class="p">|</span>- abc.jpg 
+    <span class="p">|</span>           .... and so on ...
 </pre></div>
 
 
@@ -176,13 +176,13 @@ Also, to test, I will be using images from <a href="http://study.marearts.com/20
 <p><br></p>
 <p><strong>How to identify points to calculate homography&nbsp;!</strong></p>
 <p>One of the straight forward methods is as&nbsp;follows</p>
-<div class="highlight"><pre>    <span class="n">Compute</span> <span class="n">similar</span> <span class="n">features</span> <span class="n">in</span> <span class="n">both</span> <span class="n">images</span>
+<div class="highlight"><pre><span></span>    Compute similar features in both images
 
-    <span class="n">Out</span> <span class="n">of</span> <span class="n">them</span> <span class="p">,</span> <span class="n">filter</span> <span class="n">out</span> <span class="n">good</span> <span class="n">features</span> <span class="p">(</span><span class="n">you</span><span class="err">&#39;</span><span class="n">ll</span> <span class="n">find</span> <span class="n">plenty</span> <span class="n">of</span> <span class="n">tutorials</span> <span class="n">on</span> <span class="n">these</span> <span class="p">)</span>
+    Out of them , filter out good features (you&#39;ll find plenty of tutorials on these )
 
-    <span class="n">Make</span> <span class="n">an</span> <span class="n">array</span> <span class="n">sorts</span> <span class="n">of</span> <span class="p">;</span> <span class="n">featuresofI1</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="n">srcPoints</span><span class="p">],</span> <span class="n">featuresofI2</span> <span class="o">==&gt;</span><span class="p">[</span><span class="n">dstPoints</span><span class="p">]</span> <span class="p">(</span><span class="n">using</span> <span class="n">opencv</span> <span class="n">nomenclature</span><span class="p">)</span>
+    Make an array sorts of ; featuresofI1 ==&gt; [srcPoints], featuresofI2 ==&gt;[dstPoints] (using opencv nomenclature)
 
-    <span class="n">Compute</span> <span class="n">Homography</span> <span class="n">matrix</span> <span class="n">using</span> <span class="n">RANSAC</span> <span class="n">algorithm</span>
+    Compute Homography matrix using RANSAC algorithm
 </pre></div>
 
 
@@ -191,7 +191,7 @@ Also, to test, I will be using images from <a href="http://study.marearts.com/20
 <p>We shall be using opencv_contrib&#8217;s <span class="caps">SIFT</span> descriptor. <span class="caps">SIFT</span> , as in Scale Invariant Feature Transform, is a very powerful <span class="caps">CV</span> algorithm. Please read my <a href="https://kushalvyas.github.io/BOV.html">Bag of Visual Words for Image classification post</a> to understand more about features.
 Also, check out <a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_intro.html">OpenCV&#8217;s docs on <span class="caps">SIFT</span></a>. They are a pretty good resource as&nbsp;well! </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="n">sift_obj</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">xfeatures2d</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="n">sift_obj</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">xfeatures2d</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
     <span class="n">descriptors</span><span class="p">,</span> <span class="n">keypoints</span> <span class="o">=</span> <span class="n">sift_obj</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">image_gray</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
@@ -224,10 +224,10 @@ Also, check out <a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_in
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="c"># FLANN parameters</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="c1"># FLANN parameters</span>
     <span class="n">FLANN_INDEX_KDTREE</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">index_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">FLANN_INDEX_KDTREE</span><span class="p">,</span> <span class="n">trees</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="n">search_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">checks</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>   <span class="c"># or pass empty dictionary</span>
+    <span class="n">search_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">checks</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>   <span class="c1"># or pass empty dictionary</span>
 
     <span class="n">flann</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FlannBasedMatcher</span><span class="p">(</span><span class="n">index_params</span><span class="p">,</span><span class="n">search_params</span><span class="p">)</span>
 
@@ -235,7 +235,7 @@ Also, check out <a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_in
 
     <span class="n">img3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">drawMatchesKnn</span><span class="p">(</span><span class="n">img1c</span><span class="p">,</span><span class="n">kp1</span><span class="p">,</span><span class="n">img2c</span><span class="p">,</span><span class="n">kp2</span><span class="p">,</span><span class="n">matches</span><span class="p">,</span><span class="bp">None</span><span class="p">,</span><span class="o">**</span><span class="n">draw_params</span><span class="p">)</span>
 
-    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;correspondences&quot;</span><span class="p">,</span> <span class="n">img3</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;correspondences&quot;</span><span class="p">,</span> <span class="n">img3</span><span class="p">)</span>
     <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
@@ -266,7 +266,7 @@ i.e. it&#8217;ll solve for the equation
 <p> </center>
 Hence, it solves for the matrix <span class="math">\(H\)</span></p>
 <p>Well,  to estimate the homography is a simple task. If you are using opencv, it&#8217;s a two line code. However , I&#8217;d recommend that one implements&nbsp;oneself.</p>
-<div class="highlight"><pre><span class="n">H</span><span class="p">,</span> <span class="n">__</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findHomography</span><span class="p">(</span><span class="n">srcPoints</span><span class="p">,</span> <span class="n">dstPoints</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RANSAC</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">H</span><span class="p">,</span> <span class="n">__</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findHomography</span><span class="p">(</span><span class="n">srcPoints</span><span class="p">,</span> <span class="n">dstPoints</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RANSAC</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 
 
@@ -294,7 +294,7 @@ Also, you can play around with <span class="math">\(h_\text{13} \text{ and } \  
 </ul>
 <p>Each model has its&#8217; own application. For the purposes of this tutorial, I&#8217;ll stick to planar homography and&nbsp;warping.</p>
 <p>So , to warp, essentially change the field of view, we apply the homography matrix to the&nbsp;image.</p>
-<div class="highlight"><pre><span class="n">warped_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">homography_matrix</span><span class="p">,</span> <span class="n">dimension_of_warped_image</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">warped_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">homography_matrix</span><span class="p">,</span> <span class="n">dimension_of_warped_image</span><span class="p">)</span>
 </pre></div>
 
 
@@ -338,29 +338,29 @@ This is the implementation snippet from the actual code. Please look at the full
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">leftstitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c"># self.left_list = reversed(self.left_list)</span>
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">leftstitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># self.left_list = reversed(self.left_list)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher_obj</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s">&#39;left&#39;</span><span class="p">)</span>
-            <span class="k">print</span> <span class="s">&quot;Homography is : &quot;</span><span class="p">,</span> <span class="n">H</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher_obj</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s2">&quot;Homography is : &quot;</span><span class="p">,</span> <span class="n">H</span>
             <span class="n">xh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
-            <span class="k">print</span> <span class="s">&quot;Inverse Homography :&quot;</span><span class="p">,</span> <span class="n">xh</span>
-            <span class="c"># start_p is denoted by f1</span>
+            <span class="k">print</span> <span class="s2">&quot;Inverse Homography :&quot;</span><span class="p">,</span> <span class="n">xh</span>
+            <span class="c1"># start_p is denoted by f1</span>
             <span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
             <span class="n">f1</span> <span class="o">=</span> <span class="n">f1</span><span class="o">/</span><span class="n">f1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="c"># transforming the matrix </span>
+            <span class="c1"># transforming the matrix </span>
             <span class="n">xh</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">xh</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">]))</span>
             <span class="n">offsety</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
             <span class="n">offsetx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-            <span class="c"># dimension of warped image</span>
+            <span class="c1"># dimension of warped image</span>
             <span class="n">dsize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="n">offsetx</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">offsety</span><span class="p">)</span>
-            <span class="k">print</span> <span class="s">&quot;image dsize =&gt;&quot;</span><span class="p">,</span> <span class="n">dsize</span>
+            <span class="k">print</span> <span class="s2">&quot;image dsize =&gt;&quot;</span><span class="p">,</span> <span class="n">dsize</span>
             <span class="n">tmp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xh</span><span class="p">,</span> <span class="n">dsize</span><span class="p">)</span>
-            <span class="c"># cv2.imshow(&quot;warped&quot;, tmp)</span>
-            <span class="c"># cv2.waitKey()</span>
+            <span class="c1"># cv2.imshow(&quot;warped&quot;, tmp)</span>
+            <span class="c1"># cv2.waitKey()</span>
             <span class="n">tmp</span><span class="p">[</span><span class="n">offsety</span><span class="p">:</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offsety</span><span class="p">,</span> <span class="n">offsetx</span><span class="p">:</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offsetx</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">tmp</span>
 </pre></div>
@@ -396,7 +396,7 @@ The logic is simple. Input to the method will be the steadyimage and warpedImage
 24
 25
 26
-27</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">def</span> <span class="nf">mix_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leftImage</span><span class="p">,</span> <span class="n">warpedImage</span><span class="p">)</span>
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">mix_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leftImage</span><span class="p">,</span> <span class="n">warpedImage</span><span class="p">)</span>
         <span class="n">i1y</span><span class="p">,</span> <span class="n">i1x</span> <span class="o">=</span> <span class="n">leftImage</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">i2y</span><span class="p">,</span> <span class="n">i2x</span> <span class="o">=</span> <span class="n">warpedImage</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 
@@ -406,13 +406,13 @@ The logic is simple. Input to the method will be the steadyimage and warpedImage
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span> <span class="ow">and</span>  \
                         <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))):</span>
-                        <span class="c"># print &quot;BLACK&quot;</span>
-                        <span class="c"># instead of just putting it with black, </span>
-                        <span class="c"># take average of all nearby values and avg it.</span>
+                        <span class="c1"># print &quot;BLACK&quot;</span>
+                        <span class="c1"># instead of just putting it with black, </span>
+                        <span class="c1"># take average of all nearby values and avg it.</span>
                         <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])):</span>
-                            <span class="c"># print &quot;PIXEL&quot;</span>
+                            <span class="c1"># print &quot;PIXEL&quot;</span>
                             <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
                         <span class="k">else</span><span class="p">:</span>
                             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]):</span>
@@ -420,8 +420,8 @@ The logic is simple. Input to the method will be the steadyimage and warpedImage
                                 <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bl</span><span class="p">,</span><span class="n">gl</span><span class="p">,</span><span class="n">rl</span><span class="p">]</span>
                 <span class="k">except</span><span class="p">:</span>
                     <span class="k">pass</span>
-        <span class="c"># cv2.imshow(&quot;waRPED mix&quot;, warpedImage)</span>
-        <span class="c"># cv2.waitKey()</span>
+        <span class="c1"># cv2.imshow(&quot;waRPED mix&quot;, warpedImage)</span>
+        <span class="c1"># cv2.waitKey()</span>
         <span class="k">return</span> <span class="n">warpedImage</span>
 </pre></div>
 </td></tr></table>
@@ -443,20 +443,20 @@ But this method will iterate over soooo many pixels. .. It&#8217;s very slow, fo
 12
 13
 14
-15</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">args</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">args</span> <span class="o">=</span> <span class="s">&quot;txtlists/files1.txt&quot;</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;txtlists/files1.txt&quot;</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="k">print</span> <span class="s">&quot;Parameters : &quot;</span><span class="p">,</span> <span class="n">args</span>
+            <span class="k">print</span> <span class="s2">&quot;Parameters : &quot;</span><span class="p">,</span> <span class="n">args</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">Stitch</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
         <span class="n">s</span><span class="o">.</span><span class="n">leftshift</span><span class="p">()</span>
-        <span class="c"># s.showImage(&#39;left&#39;)</span>
+        <span class="c1"># s.showImage(&#39;left&#39;)</span>
         <span class="n">s</span><span class="o">.</span><span class="n">rightshift</span><span class="p">()</span>
-        <span class="k">print</span> <span class="s">&quot;done&quot;</span>
-        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">&quot;test.jpg&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">leftImage</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;image written&quot;</span>
+        <span class="k">print</span> <span class="s2">&quot;done&quot;</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;test.jpg&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">leftImage</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s2">&quot;image written&quot;</span>
         <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
 </pre></div>
 </td></tr></table>
@@ -518,11 +518,9 @@ You can click as well as test on other sources which deal in panorama and image&
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -680,8 +678,9 @@ You can click as well as test on other sources which deal in panorama and image&
                     <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
@@ -696,6 +695,7 @@ You can click as well as test on other sources which deal in panorama and image&
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
                     <li class="active"><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>

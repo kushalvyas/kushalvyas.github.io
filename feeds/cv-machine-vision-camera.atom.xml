@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog - CV, Machine Vision, Camera</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/cv-machine-vision-camera.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2018-01-05T20:40:00+05:30</updated><entry><title>Using GigE Cameras with Aravis | OpenCV | Gstreamer</title><link href="https://kushalvyas.github.io/gige_ubuntu.html" rel="alternate"></link><published>2018-01-05T20:40:00+05:30</published><updated>2018-01-05T20:40:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2018-01-05:/gige_ubuntu.html</id><summary type="html">&lt;p&gt;Configuring Imaging Source GigE Cameras on Ubuntu 14.04 / Linux using Aravis, and&amp;nbsp;OpenCV&lt;/p&gt;</summary><content type="html">&lt;p&gt;So I&amp;#8217;m working on this awesome vision project and I&amp;#8217;m using the Imaging Source&amp;#8217;s &lt;span class="caps"&gt;DML&lt;/span&gt; &lt;span class="caps"&gt;33GR0134&lt;/span&gt; camera which is &lt;span class="caps"&gt;POE&lt;/span&gt; ! (powered over ethernet). This is cool!. Still I&amp;#8217;m using the 12V supply rather than the 48V. Anyway, here&amp;#8217;s a tutorial on how to configure these camera for ubuntu. Imaging Source gives Windows softwares and have provided a github repository as&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/TheImagingSource/tiscamera"&gt;https://github.com/TheImagingSource/tiscamera&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Here you&amp;nbsp;go!&lt;/p&gt;
+&lt;p&gt;Now Ill move on to the article. I&amp;#8217;ll start with setting up the above repository, followed by tutorials on aravis, and lastly using opencv with&amp;nbsp;it.&lt;/p&gt;
+&lt;p&gt;Thing&amp;nbsp;covered: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Setting up &lt;a href="https://github.com/TheImagingSource/tiscamera"&gt;&lt;code&gt;tiscamera&lt;/code&gt;&lt;/a&gt; (Imaging Source&amp;nbsp;Module)&lt;/li&gt;
+&lt;li&gt;Setting up &lt;a href="https://github.com/AravisProject/aravis"&gt;&lt;code&gt;Aravis&lt;/code&gt;&lt;/a&gt; (Utility for GigE&amp;nbsp;cameras)&lt;/li&gt;
+&lt;li&gt;Using Aravis : &lt;code&gt;arv.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Opencv with&amp;nbsp;Aravis&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img alt="im3" src="https://kushalvyas.github.io/images/gige_cam/im3.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;The camera is a GigE camera ; meaning Gigabit Ethernet Camera. &lt;a href="https://en.wikipedia.org/wiki/GigE_Vision"&gt;GigE Vision&lt;/a&gt; as described on Wiki, is an industrial standard for high performance camera. You can connect multiple cameras over ethernet networks. One of the manufacturers is &lt;a href="https://www.theimagingsource.com/"&gt;Imaging Source&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Lets&amp;nbsp;proceed &lt;/p&gt;
+&lt;h3&gt;&lt;span class="caps"&gt;TISCAMERA&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;This is the &lt;code&gt;The Imaging Source Linux Repository&lt;/code&gt; and it has multiple elements such&amp;nbsp;as &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;gstreamer&amp;nbsp;elements&lt;/li&gt;
+&lt;li&gt;gobject&amp;nbsp;introspection&lt;/li&gt;
+&lt;li&gt;uvc&amp;nbsp;extensions&lt;/li&gt;
+&lt;li&gt;firmware update&amp;nbsp;tools&lt;/li&gt;
+&lt;li&gt;examples on how to interact with your&amp;nbsp;camera&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Installing &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;All of it is mentioned on the repository&amp;#8217;s &lt;span class="caps"&gt;README&lt;/span&gt;. I&amp;#8217;m just rewriting it here. these instructions are simply copied from their &lt;span class="caps"&gt;README&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Firstly, for &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt; , we will need to download the following&amp;nbsp;packages&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    git cmake pkg-config libudev-dev libtinyxml-dev libgstreamer1.0-dev libglib2.0-dev libgirepository1.0-dev libusb-1.0-0-dev libzip-dev python-setuptools libxml2-dev libaudit-dev libpcap-dev libnotify-dev
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;you can simply do &lt;code&gt;sudo apt-get install&lt;/code&gt; followed by the above list. If some of the packages are unable to get located, just google search with the packages&amp;#8217; name, and you&amp;#8217;ll get the&amp;nbsp;alternative. &lt;/p&gt;
+&lt;p&gt;For Ubuntu 14.04,  you can just wrap it up&amp;nbsp;in &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    # Build dependencies
+    sudo apt-get install git g++ cmake pkg-config libudev-dev libudev1 libtinyxml-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libglib2.0-dev libgirepository1.0-dev libusb-1.0-0-dev libzip-dev uvcdynctrl python-setuptools libxml2-dev libpcap-dev libaudit-dev libnotify-dev autoconf intltool gtk-doc-tools
+
+    # Runtime dependencies
+    sudo apt-get install gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libxml2 libpcap0.8 libaudit1 libnotify4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Building &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First , clone the&amp;nbsp;repository &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    git clone --recursive https://github.com/TheImagingSource/tiscamera.git
+    cd tiscamera
+    mkdir build
+    cd build
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;
+Now, we want to build with &lt;span class="caps"&gt;ARAVIS&lt;/span&gt;,  because GigE camera&amp;#8217;s use &lt;span class="caps"&gt;ARAVIS&lt;/span&gt;.&amp;nbsp;Hence, &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    # With ARAVIS:
+    cmake -DBUILD_ARAVIS=ON -DBUILD_GST_1_0=ON -DBUILD_TOOLS=ON -DBUILD_V4L2=ON -DCMAKE_INSTALL_PREFIX=/usr ..
+    # Without ARAVIS
+    cmake -DBUILD_ARAVIS=OFF -DBUILD_GST_1_0=ON -DBUILD_TOOLS=ON -DBUILD_V4L2=ON -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    make
+    sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And that&amp;#8217;s all. You have finished installing &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt; and &lt;span class="caps"&gt;ARAVIS&lt;/span&gt;&amp;nbsp;together.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Running the &lt;code&gt;gige-daemon&lt;/code&gt; on &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The gige-daemon is a daemon process to check the incoming of the gige camera. Once your &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt; has been installed, goto &lt;code&gt;build/tools/gige-daemon&lt;/code&gt; where you can run this&amp;nbsp;process.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &amp;lt;path_to_tiscamera&amp;gt;/build/tools/gige-daemon/./gige-daemon start  # this starts the daemon
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Configuring a GigE camera for&amp;nbsp;tiscamera:&lt;/h3&gt;
+&lt;p&gt;This is &lt;span class="caps"&gt;W.R.&lt;/span&gt;T Imaging Source GigE camera (please check their documentation for more options). We will setup a static &lt;span class="caps"&gt;IP&lt;/span&gt; address over the Ethernet&amp;nbsp;port.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img_network" src="https://kushalvyas.github.io/images/gige_cam/network.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;Only after doing this, will you be able to even detect the&amp;nbsp;camera&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Building &lt;span class="caps"&gt;ARAVIS&lt;/span&gt; (if you have already not done it with &lt;span class="caps"&gt;TISCAMERA&lt;/span&gt;)&lt;/h3&gt;
+&lt;p&gt;Clone the repository from &lt;a href="https://github.com/AravisProject/aravis"&gt;https://github.com/AravisProject/aravis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Run &lt;code&gt;./configure&lt;/code&gt; (you can check for options by doing ./configure &amp;#8212;help)
+Then run &lt;code&gt;make&lt;/code&gt;
+Eventually &lt;code&gt;make install&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And we&amp;#8217;re&amp;nbsp;done.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Test&amp;nbsp;it&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    arv-tool-&amp;lt;version_number&amp;gt; list
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This gives you the connected &lt;span class="caps"&gt;IP&lt;/span&gt;&amp;nbsp;camera&lt;/p&gt;
+&lt;p&gt;Lastly, add this to your profile / bsarhc / or_where_ever_you store your&amp;nbsp;paths&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    #### aravis exports #####
+    export GI_TYPELIB_PATH=&amp;quot;$GI_TYPELIB_PATH:&amp;lt;path to aravis&amp;gt;/src&amp;quot;
+    export LD_LIBRARY_PATH=&amp;quot;$LD_LIBRARY_PATH:&amp;lt;path to aravis&amp;gt;/src/.libs&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Building &lt;span class="caps"&gt;ARAVIS&lt;/span&gt; with&amp;nbsp;OpenCV&lt;/h3&gt;
+&lt;p&gt;This is also as small as the above&amp;nbsp;installation. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone the repository at &lt;a href="https://github.com/opencv/opencv"&gt;https://github.com/opencv/opencv&lt;/a&gt;. OpenCV has &lt;span class="caps"&gt;ARAVIS&lt;/span&gt; support from version 3.2. You can look at the &lt;a href="https://github.com/opencv/opencv/wiki/ChangeLog#version32"&gt;Changelog&lt;/a&gt; (thanks to&amp;nbsp;@ArkadiuszRaj) &lt;/li&gt;
+&lt;li&gt;cd &amp;lt;opencv_source_path&gt;&lt;/li&gt;
+&lt;li&gt;mkdir build &amp;amp;&amp;amp; cd&amp;nbsp;build&lt;/li&gt;
+&lt;li&gt;Run &lt;span class="caps"&gt;CMAKE&lt;/span&gt; &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cmake -D CMAKE_BUILD_TYPE=RELEASE -D INSTALL_C_EXAMPLES=OFF -D PYTHON_EXECUTABLE=&amp;lt;path_to_python_venv&amp;gt;/aravis_opencv/gige_py/bin/python -D WITH_GSTREAMER=ON  -D WITH_ARAVIS=ON  ..
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Make sure you have a &lt;code&gt;WITH_ARAVIS=ON&lt;/code&gt; flag as your &lt;span class="caps"&gt;CMAKE&lt;/span&gt;&amp;nbsp;parameter&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;make&amp;nbsp;-j4&lt;/li&gt;
+&lt;li&gt;sudo make install / make install (if you plan to link and include opencv with every c/c++&amp;nbsp;program)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Using &lt;span class="caps"&gt;ARAVIS&lt;/span&gt;&amp;nbsp;standalone&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*  TEST SETUP FOR CAMERA  */&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// system and aravis includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;glib.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;arv.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;signal.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+
+        &lt;span class="n"&gt;ArvCamera&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;ArvBuffer&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;test.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;camera&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arv_camera_new&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arv_camera_acquisition&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ARV_IS_BUFFER&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;)){&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Image successfully acquired&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;arv_save_png&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_str&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+          &lt;span class="p"&gt;}&lt;/span&gt;
+          &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Failed to acquire a single image&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+           &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;g_clear_object&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;g_clear_object&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To compile use the following G++&amp;nbsp;Command&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;g++ -o main  main.cpp -L/usr/lib -L/usr/local/lib -I/home/path_to_installs/gige/utils/aravis/src/ -L/home/path_to_installs/gige/utils/aravis/src/.libs/ -I/usr/include/glib-2.0/ -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -laravis-0.6 -lglib-2.0 -lm -pthread -lgio-2.0 -lgobject-2.0 -lxml2 -lgthread-2.0 -lglib-2.0 -lz -lusb-1.0  -lpng
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Using Opencv with &lt;span class="caps"&gt;ARAVIS&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;If you open opencv&amp;#8217;s video I/O source code, you can find the following&amp;nbsp;lines&lt;/p&gt;
+&lt;p&gt;&lt;img alt="aravis_doc" src="https://kushalvyas.github.io/images/gige_cam/aravis_doc.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;as seen, the flag is CAP_ARAVIS, which has a value of 2100&lt;/code&gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cm"&gt;/*  TEST SETUP FOR CAMERA  */&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// system and aravis includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;glib.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;arv.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;signal.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+
+    &lt;span class="c1"&gt;// opencv includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;opencv2/opencv.hpp&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+
+    &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;OpenCV Version : &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;CV_VERSION&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Value of CAP_ARAVIS is %d&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;CAP_ARAVIS&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;VideoCapture&lt;/span&gt; &lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// constant for ARAVIS SDK&lt;/span&gt;
+        &lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2100&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Camera Status : &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isOpened&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isOpened&lt;/span&gt;&lt;span class="p"&gt;()){&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Error in opening camera&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;namedWindow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;frame&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;true&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="kr"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;imshow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;frame&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;waitKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="mh"&gt;0xFF&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; 
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ch&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;27&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="n"&gt;cam&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;release&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;destroyAllWindows&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Converting &lt;span class="caps"&gt;ARAVIS&lt;/span&gt; Packet to OpenCV Mat/&amp;nbsp;IPLImage&lt;/h3&gt;
+&lt;p&gt;But, there&amp;#8217;s is one problem here. There are many places, and even I have personally faced that using &lt;code&gt;VideoCaptures&lt;/code&gt; set property methods sometimes don&amp;#8217;t yield the desired results. Hence, one can actually set them through &lt;code&gt;Aravis&lt;/code&gt; and then use the aravis acquired image through opencv. This is what I&amp;#8217;m covering&amp;nbsp;next. &lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ll just use the above code to explain what additions are&amp;nbsp;made&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;// system and aravis includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;glib.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;arv.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;signal.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// my includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;camera_settings.h&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;save_png.c&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// opencv includes&lt;/span&gt;
+    &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;quot;opencv2/opencv.hpp&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+    &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+
+    &lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;char&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="n"&gt;ArvCamera&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;ArvBuffer&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="kr"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;framebuffer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;framebuffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;IplImage&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;frame&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;camera&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arv_camera_new&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+
+        &lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;            Here I am setting gain to 5.85 db&lt;/span&gt;
+
+&lt;span class="cm"&gt;         */&lt;/span&gt;
+        &lt;span class="n"&gt;arv_camera_set_gain&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.85&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="nf"&gt;buffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arv_camera_acquisition&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ARV_IS_BUFFER&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;)){&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Image successfully acquired&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; Converting Image to MAT&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="n"&gt;IplImage&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+            &lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;buffer_size&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="n"&gt;framebuffer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kr"&gt;void&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;arv_buffer_get_data&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;buffer_size&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="n"&gt;cvInitImageHeader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cvSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="mi"&gt;1280&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;960&lt;/span&gt; &lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;IPL_DEPTH_8U&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IPL_ORIGIN_TL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;cvSetData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;framebuffer&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;widthStep&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nf"&gt;width&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;width&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; \
+                &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="nf"&gt;height&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;height&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; \
+                &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; \
+                &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;nChannels&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nChannels&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="n"&gt;cvReleaseImage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+                    &lt;span class="n"&gt;frame&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cvCreateImage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;cvGetSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;depth&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="n"&gt;cvCopy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;    
+            &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;Mat&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cvarrToMat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="n"&gt;imshow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;frame&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;waitKey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="n"&gt;destroyAllWindows&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;printf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Failed to acquire a single image&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="n"&gt;g_clear_object&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;camera&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;g_clear_object&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nf"&gt;buffer&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;EXIT_SUCCESS&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;#8217;re done with simple connection of camera and single photo capture using Aravis and OpenCv, now&amp;#8217;s the time to write a live video preview application. Aravis uses &lt;span class="caps"&gt;GLIB&lt;/span&gt; to manage threading, and handle callbacks. So will we!. We&amp;#8217;ll integrate gstreamer, aravis for streaming. Also, feel free to incorporate features like controlling camera properties using a &lt;span class="caps"&gt;GUI&lt;/span&gt;/much like &lt;code&gt;ARAVIS Viewer&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Just an &lt;span class="caps"&gt;FYI&lt;/span&gt;, there are some of the properties one can set using a &lt;code&gt;DMK[A-Za-z0-9]+&lt;/code&gt; camera (yea.. that was regexp&amp;nbsp;:P). &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_region( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_binning( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_pixel_format( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_acquisition_mode( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_frame_count( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arv_camera_set_frame_rate( )&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&lt;/li&gt;
+&lt;li&gt;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&lt;/li&gt;
+&lt;li&gt;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&amp;#8230;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href="https://aravisproject.github.io/docs/aravis-0.5/ArvCamera.html"&gt;Check out the docs here. there&amp;#8217;s a big list of such implementations that will help make the best use of the&amp;nbsp;camera.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;ANYWAY&lt;/span&gt;&lt;/strong&gt;, I&amp;#8217;m impatient for writing the video streamer now.. It&amp;#8217;s just amazing to use Glib. (it&amp;#8217;s my first time with using&amp;nbsp;glib)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;COMING&lt;/span&gt; &lt;span class="caps"&gt;TOMORROW&lt;/span&gt; :!! I&amp;#8217;m pushing this post right now, and I&amp;#8217;ll add the video-streamer part tomorrow. I&amp;#8217;m shifting systems from Ubuntu to Debian. So till then enjoy. Also, Big thanks to &lt;a href="https://github.com/AravisProject/aravis"&gt;&lt;span class="caps"&gt;THE&lt;/span&gt; &lt;span class="caps"&gt;ARAVIS&lt;/span&gt; &lt;span class="caps"&gt;PROJECT&lt;/span&gt;&lt;/a&gt; for making our lives easy&amp;nbsp;:)&lt;/strong&gt;&lt;/p&gt;</content><category term="Machine Vision"></category></entry></feed>

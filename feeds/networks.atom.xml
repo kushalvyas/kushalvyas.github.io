@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/networks.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2016-04-07T15:55:00+05:30</updated><entry><title>Using the Samba Server and SSH</title><link href="https://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><published>2016-04-07T15:55:00+05:30</published><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:Samba SSH.html</id><summary type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>BitsMakeMeCrazy Kushal Vyas's Blog - networks</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/networks.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2016-04-07T15:55:00+05:30</updated><entry><title>Using the Samba Server and SSH</title><link href="https://kushalvyas.github.io/Samba%20SSH.html" rel="alternate"></link><published>2016-04-07T15:55:00+05:30</published><updated>2016-04-07T15:55:00+05:30</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-07:/Samba SSH.html</id><summary type="html">&lt;p&gt;Using the samba server along with &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;h3&gt;The Samba Server and &lt;span class="caps"&gt;SSH&lt;/span&gt;&lt;/h3&gt;
 &lt;p&gt;Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&amp;#8217;t have any files locally on my laptop.&amp;nbsp;B) &lt;/p&gt;
 &lt;p&gt;Yes.. Speaking of &lt;a href="https://www.samba.org/"&gt;Samba&lt;/a&gt;, its quite easy to setup and install it. You can refer the steps &lt;a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!"&gt;here&lt;/a&gt; but ya.. i&amp;#8217;ll be going over them&amp;nbsp;too..&lt;/p&gt;
 &lt;p&gt;For, ubuntu, I&amp;#8217;d say, simply run these&amp;nbsp;commands&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;samba&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -15,7 +15,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Next,    &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;samba&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;samba&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -23,7 +23,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Further,&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;gedit&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;basically&lt;/span&gt; &lt;span class="n"&gt;anytexteditor&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;samba&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;nano&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;gedit&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;basically&lt;/span&gt; &lt;span class="n"&gt;anytexteditor&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;samba&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;smb&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -33,7 +33,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Add the following&amp;nbsp;snippet&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;name_of_folder&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;name_of_folder&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;username&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;/&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;name_of_folder&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;span class="n"&gt;read&lt;/span&gt; &lt;span class="n"&gt;only&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;no&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -42,7 +42,7 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Save the file and restart&amp;nbsp;samba &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;smbd&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;smbd&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -50,7 +50,7 @@
 &lt;li&gt;
 &lt;p&gt;To access any samba file, install smbclient. You can run an apt-get install&amp;nbsp;smbclient&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;To checkin &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;smbclient&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ipaddress&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;foldername&lt;/span&gt;
+&lt;li&gt;To checkin &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;smbclient&lt;/span&gt; &lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;ipaddress&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;foldername&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -60,14 +60,14 @@
 If you plan on using this, i recommend that you make the server ip static. Goto your router settings and reserve the ip for whichever system you are putting this on. It&amp;#8217;s much simpler to do&amp;nbsp;so.&lt;/p&gt;
 &lt;p&gt;Next I also recommend you to set up an &lt;span class="caps"&gt;SSH&lt;/span&gt; connection over your local machines. This is what I use. Using samba for convinient file transfers and &lt;span class="caps"&gt;SSH&lt;/span&gt; to control further&amp;nbsp;commands.&lt;/p&gt;
 &lt;p&gt;Setting up &lt;span class="caps"&gt;SSH&lt;/span&gt; for local networks is very simple. Install &lt;span class="caps"&gt;SSH&lt;/span&gt; using&amp;nbsp;`&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;SSH&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;SSH&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;and simply&amp;nbsp;type&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="nd"&gt;@IP&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;ssh&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="nd"&gt;@IP&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Make sure , both the endpoint machines are equipped with the&amp;nbsp;dependencies.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;Just fire it up and enjoy&amp;#8230; Access your files freely and sit back on your bean bags and&amp;nbsp;relax&lt;/strong&gt;&lt;/p&gt;</content></entry></feed>
