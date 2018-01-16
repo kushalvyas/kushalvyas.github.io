@@ -18,7 +18,7 @@
         <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shThemeRDark.css" rel="stylesheet" type="text/css" /> -->
         <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/lamboz.css" media="all">
-        <title>Using GigE Cameras with <br> Aravis | OpenCV |&nbsp;Gstreamer - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
+        <title>Using GigE Cameras with <br> Aravis | OpenCV | Gstreamer [<span class="caps">UPDATED</span>] - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
         <meta charset="utf-8" />
         <link href="https://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Full Atom Feed" />
         <link href="https://kushalvyas.github.io/feeds/cv-machine-vision-camera.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
@@ -56,7 +56,7 @@
         <div class="content-header">
             <div id="title-block">
             <h1>  <a href="https://kushalvyas.github.io/gige_ubuntu.html" rel="bookmark"
-                    title="Permalink to Using GigE Cameras with Aravis | OpenCV | Gstreamer">Using GigE Cameras with <br> Aravis | OpenCV |&nbsp;Gstreamer</a></h1>
+                    title="Permalink to Using GigE Cameras with Aravis | OpenCV | Gstreamer [UPDATED]">Using GigE Cameras with <br> Aravis | OpenCV | Gstreamer [<span class="caps">UPDATED</span>]</a></h1>
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
     <section class='article'>
         
         <div class="entry-summary">
-            <p>Configuring Imaging Source GigE Cameras on Ubuntu 14.04 / Linux using Aravis, and&nbsp;OpenCV</p>
+            <p>Configuring Imaging Source GigE Cameras on Ubuntu 14.04 / Linux using Aravis, and OpenCV (Updated with&nbsp;Python-Aravis)</p>
         </div>
     
         <div class="entry-content">
@@ -294,6 +294,9 @@ Eventually <code>make install</code></p>
 
     <span class="c1">// my includes</span>
     <span class="cp">#include</span> <span class="cpf">&quot;camera_settings.h&quot;</span><span class="cp"></span>
+
+    <span class="c1">// awesome github repo for saving aravis buffers to png</span>
+    <span class="c1">// check it out at https://github.com/szmoore/aravis-save-png</span>
     <span class="cp">#include</span> <span class="cpf">&quot;save_png.c&quot;</span><span class="cp"></span>
 
     <span class="c1">// opencv includes</span>
@@ -363,6 +366,7 @@ Eventually <code>make install</code></p>
 
 
 <p><br></p>
+<p>In the above code, do check out <code>save_png.c</code>, created by <code>git-@szmoore</code>. This is the repo link :&nbsp;https://github.com/szmoore/aravis-save-png</p>
 <p>We&#8217;re done with simple connection of camera and single photo capture using Aravis and OpenCv, now&#8217;s the time to write a live video preview application. Aravis uses <span class="caps">GLIB</span> to manage threading, and handle callbacks. So will we!. We&#8217;ll integrate gstreamer, aravis for streaming. Also, feel free to incorporate features like controlling camera properties using a <span class="caps">GUI</span>/much like <code>ARAVIS Viewer</code>.</p>
 <p>Just an <span class="caps">FYI</span>, there are some of the properties one can set using a <code>DMK[A-Za-z0-9]+</code> camera (yea.. that was regexp&nbsp;:P). </p>
 <ol>
@@ -372,20 +376,123 @@ Eventually <code>make install</code></p>
 <li><code>arv_camera_set_acquisition_mode()</code></li>
 <li><code>arv_camera_set_frame_count()</code></li>
 <li><code>arv_camera_set_frame_rate()</code></li>
-<li>&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;</li>
-<li>&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;</li>
-<li>&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;</li>
+<li>and many&nbsp;more</li>
 </ol>
 <p><a href="https://aravisproject.github.io/docs/aravis-0.5/ArvCamera.html">Check out the docs here. there&#8217;s a big list of such implementations that will help make the best use of the&nbsp;camera.</a></p>
-<p><strong><span class="caps">ANYWAY</span></strong>, I&#8217;m impatient for writing the video streamer now.. It&#8217;s just amazing to use Glib. (it&#8217;s my first time with using&nbsp;glib)</p>
-<p><strong><span class="caps">COMING</span> <span class="caps">TOMORROW</span> :!! I&#8217;m pushing this post right now, and I&#8217;ll add the video-streamer part tomorrow. I&#8217;m shifting systems from Ubuntu to Debian. So till then enjoy. Also, Big thanks to <a href="https://github.com/AravisProject/aravis"><span class="caps">THE</span> <span class="caps">ARAVIS</span> <span class="caps">PROJECT</span></a> for making our lives easy&nbsp;:)</strong></p>
+<p>It&#8217;s just amazing to use Glib. (it&#8217;s my first time with using&nbsp;glib)</p>
+<p>I&#8217;m shifting systems from Ubuntu to Debian. So till then enjoy. Also, Big thanks to <a href="https://github.com/AravisProject/aravis"><span class="caps">THE</span> <span class="caps">ARAVIS</span> <span class="caps">PROJECT</span></a> for making our lives easy&nbsp;:)</p>
+<h3><strong><span class="caps">UPDATED</span> <span class="caps">WITH</span> <span class="caps">PYTHON</span>-<span class="caps">ARARVIS</span></strong></h3>
+<p>So aravis has beautiful python bindings, making my job a lot lot easier (atleast in the prototyping phase. However, I&#8217;ll have to write in bare bones C for deployment on DebianRT. Can&#8217;t use python everywhere :P ). Hence I&#8217;ll just illustrate a short example on capturing frames with aravis in&nbsp;Python.</p>
+<p>Now, you can connect a real camera to the ehternet card, or use the <span class="caps">ARV</span>-<span class="caps">FAKE</span>-<span class="caps">GV</span>-<span class="caps">CAM</span>, with the command <code>arv-fake-gv-camera-0.6</code>. </p>
+<div class="highlight"><pre><span></span>    kushal@kushal:~/kushalvyas.github.io$ arv-fake-gv-camera-0.6
+
+    And to see the output, use the arv-tool
+
+    kushal@kushal:~/kushalvyas.github.io$ arv-tool-0.6 
+    &gt;&gt;&gt; Aravis-GV01 <span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span>
+</pre></div>
+
+
+<p><br></p>
+<p>I&#8217;m assuming that the reader has already &#8220;build and make&#8221; Aravis, so the python bindings are already generated. Also, the <code>gi-repository</code> in python has been&nbsp;installed.</p>
+<div class="highlight"><pre><span></span>    <span class="c1"># Ararvis python videcapture</span>
+    <span class="kn">import</span> <span class="nn">gi</span>
+    <span class="n">gi</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;Aravis&quot;</span><span class="p">,</span> <span class="s2">&quot;0.6&quot;</span><span class="p">)</span> <span class="c1"># or whatever version number you have installed</span>
+    <span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Aravis</span>
+
+    <span class="c1"># other imports</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
+    <span class="kn">import</span> <span class="nn">ctypes</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+</pre></div>
+
+
+<p><br></p>
+<p>Initializing Aravis, setup Camera, Buffer, and Stream. As seen in the above C code, we had initialized Aravis camera, buffer and stream pointers. We do the same in&nbsp;python.</p>
+<div class="highlight"><pre><span></span>    <span class="c1">#continue code from above</span>
+
+    <span class="n">Aravis</span><span class="o">.</span><span class="n">enable_interface</span><span class="p">(</span><span class="s2">&quot;Fake&quot;</span><span class="p">)</span> <span class="c1"># using arv-fake-gv-camera-0.6</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">Aravis</span><span class="o">.</span><span class="n">Camera</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">create_stream</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_payload</span> <span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
+        <span class="n">stream</span><span class="o">.</span><span class="n">push_buffer</span> <span class="p">(</span><span class="n">Aravis</span><span class="o">.</span><span class="n">Buffer</span><span class="o">.</span><span class="n">new_allocate</span> <span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; explained later &#39;&#39;&#39;</span>
+</pre></div>
+
+
+<p>Moving on, to video&nbsp;capture.</p>
+<div class="highlight"><pre><span></span>    <span class="c1">#continue code from above</span>
+
+    <span class="k">print</span> <span class="s2">&quot;Start acquisition&quot;</span>
+    <span class="n">camera</span><span class="o">.</span><span class="n">start_acquisition</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="nb">buffer</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">try_pop_buffer</span><span class="p">()</span>
+        <span class="k">print</span> <span class="nb">buffer</span> 
+        <span class="k">if</span> <span class="nb">buffer</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">push_buffer</span><span class="p">(</span><span class="nb">buffer</span><span class="p">)</span> <span class="c1">#push buffer back into stream</span>
+
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="mi">27</span> <span class="ow">or</span> <span class="n">ch</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">):</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;imagename.png&quot;</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+
+
+    <span class="n">camera</span><span class="o">.</span><span class="n">stop_acquisition</span><span class="p">()</span>
+
+<span class="c1">###################################################################</span>
+</pre></div>
+
+
+<p><strong>Output</strong></p>
+<p><img alt="output" src="https://kushalvyas.github.io/images/gige_cam/output.png"></p>
+<p><br>
+As seen in the above code snippet, I have used a function <code>convert(buffer)</code>. This method converts the Aravis buffer to a numpy array. It&#8217;s source can be found at the <code>Python-Aravis binding</code> on github: <a href="https://github.com/SintefRaufossManufacturing/python-aravis">https://github.com/SintefRaufossManufacturing/python-aravis</a>. However i&#8217;ll still put it here. All credits goes to <code>https://github.com/SintefRaufossManufacturing/python-aravis</code> for creating it. Plus, they have awesome examples on their repository, so check it out&nbsp;too.</p>
+<div class="highlight"><pre><span></span>    <span class="sd">&#39;&#39;&#39; </span>
+<span class="sd">    https://github.com/SintefRaufossManufacturing/python-aravis/blob/master/aravis.py#L181</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="n">pixel_format</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_image_pixel_format</span><span class="p">()</span>
+        <span class="n">bits_per_pixel</span> <span class="o">=</span> <span class="n">pixel_format</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span> <span class="o">&amp;</span> <span class="mh">0xff</span>
+        <span class="k">if</span> <span class="n">bits_per_pixel</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="n">INTP</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint8</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">INTP</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint16</span><span class="p">)</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="n">ptr</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">INTP</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">get_image_height</span><span class="p">(),</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_image_width</span><span class="p">()))</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">im</span>
+</pre></div>
+
+
+<p><br>
+<strong>Lastly, since I&#8217;ll be exploring more of gige cams, using them with Glib / python / opencv / c I&#8217;ll keep updating this article continuously with new&nbsp;snippets.</strong></p>
+<h4>Also, a small trick for OpenCv users. There are many time (even I have faced such) where using the <code>Opencv set property</code> method for VideoCapture objects doesn&#8217;t seem to work. One fix that I&#8217;ve used is to first use <code>Aravis *camera</code> to set the property as shown above. Then call a <code>g_object_clear(camera)</code>, and then call OpenCV&#8217;s <code>VideoCapture cam(2100);</code>. The camera inherits the last&nbsp;setting.</h4>
+<p>Anyway, GigE cams are fun to work with, and we&#8217;ll see each other next time i update this post&#8230; which will be soon&nbsp;enough.</p>
+<h3>References:</h3>
+<p>[1]. <a href="https://github.com/AravisProject/aravis">Aravis :&nbsp;https://github.com/AravisProject/aravis</a></p>
+<p>[2]. <a href="https://github.com/szmoore/aravis-save-png">Save_png.c :&nbsp;https://github.com/szmoore/aravis-save-png</a> </p>
+<p>[3]. <a href="https://github.com/SintefRaufossManufacturing/python-aravis">Python-Aravis Bindings :&nbsp;https://github.com/SintefRaufossManufacturing/python-aravis</a></p>
+<p>[4]. <a href="https://github.com/TheImagingSource/tiscamera">The Imaging Source Linux&nbsp;Repository</a></p>
         </div>
     </section>
     <footer class="footer-article">
         <div class="tags-and-categories">Filed under <a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a>
         | Tagged: <a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision </a>
         | <a href="https://kushalvyas.github.io/gige_ubuntu.html" rel="bookmark"
-         title="Permalink to Using GigE Cameras with Aravis | OpenCV | Gstreamer">Permalink</a>            
+         title="Permalink to Using GigE Cameras with Aravis | OpenCV | Gstreamer [UPDATED]">Permalink</a>            
         </div>
         <!-- metaldata 
         -->
@@ -396,9 +503,9 @@ Eventually <code>make install</code></p>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = "bitsmakemecrazy"; // required: replace example with your forum shortname
-            var disqus_identifier = "using-gige-cameras-with--aravis-|-opencv-|-gstreamer";
+            var disqus_identifier = "using-gige-cameras-with--aravis-|-opencv-|-gstreamer-[updated]";
             var disqus_url = "https://kushalvyas.github.io/gige_ubuntu.html";
-            var disqus_title = "Using GigE Cameras with Aravis | OpenCV | Gstreamer";
+            var disqus_title = "Using GigE Cameras with Aravis | OpenCV | Gstreamer [UPDATED]";
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
                 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
