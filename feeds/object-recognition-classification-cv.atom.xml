@@ -353,13 +353,11 @@ It is highly recommended that you use &lt;span class="caps"&gt;GPU&lt;/span&gt;&
 &lt;p&gt;So what&amp;#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&amp;nbsp;image.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="caps"&gt;BOV&lt;/span&gt; was developed by &lt;a href="" target="_blank"&gt;CSurka et. al&lt;/a&gt; essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple&amp;nbsp;steps&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Determination of Image features of a given&amp;nbsp;label &lt;/li&gt;
-&lt;li&gt;Construction of visual vocabulary by clustering, followed by frequency&amp;nbsp;analysis&lt;/li&gt;
-&lt;li&gt;Classification of images based on vocabulary&amp;nbsp;genereated&lt;/li&gt;
-&lt;li&gt;Obtain most optimum class for query&amp;nbsp;image &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;span class="caps"&gt;BOV&lt;/span&gt; was developed by &lt;a href="" target="_blank"&gt;CSurka et. al&lt;/a&gt; essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple steps
+- Determination of Image features of a given label 
+- Construction of visual vocabulary by clustering, followed by frequency analysis
+- Classification of images based on vocabulary genereated
+- Obtain most optimum class for query&amp;nbsp;image &lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&amp;nbsp;version)&lt;/p&gt;
 &lt;p&gt;Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, &lt;span class="caps"&gt;DOG&lt;/span&gt; , etc. And to ease out our troubles, &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;David Lowe&lt;/a&gt; developed &lt;a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"&gt;&lt;span class="caps"&gt;SIFT&lt;/span&gt;&lt;/a&gt; : Scale Invariant Feature Transform. &lt;span class="caps"&gt;SIFT&lt;/span&gt; is extensively used today. We will be using &lt;span class="caps"&gt;SIFT&lt;/span&gt; as well. Please note, that algorithms such as &lt;span class="caps"&gt;SIFT&lt;/span&gt;, &lt;span class="caps"&gt;SURF&lt;/span&gt; which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or &lt;span class="caps"&gt;VLFEAT&lt;/span&gt; (You may want to check out my &lt;a href="https://kushalvyas.github.io/setup_env.html"&gt;previous post on environment settings &lt;/a&gt;).&lt;/p&gt;

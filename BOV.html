@@ -91,13 +91,11 @@
 <p>So what&#8217;s the difference between Object Detection and Objet Recognition .. !! 
 Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the&nbsp;image.</p>
 <p><br></p>
-<p><span class="caps">BOV</span> was developed by <a href="" target="_blank">CSurka et. al</a> essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple&nbsp;steps</p>
-<ul>
-<li>Determination of Image features of a given&nbsp;label </li>
-<li>Construction of visual vocabulary by clustering, followed by frequency&nbsp;analysis</li>
-<li>Classification of images based on vocabulary&nbsp;genereated</li>
-<li>Obtain most optimum class for query&nbsp;image </li>
-</ul>
+<p><span class="caps">BOV</span> was developed by <a href="" target="_blank">CSurka et. al</a> essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple steps
+- Determination of Image features of a given label 
+- Construction of visual vocabulary by clustering, followed by frequency analysis
+- Classification of images based on vocabulary genereated
+- Obtain most optimum class for query&nbsp;image </p>
 <p><br></p>
 <p>To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed&nbsp;version)</p>
 <p>Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, <span class="caps">DOG</span> , etc. And to ease out our troubles, <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">David Lowe</a> developed <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank"><span class="caps">SIFT</span></a> : Scale Invariant Feature Transform. <span class="caps">SIFT</span> is extensively used today. We will be using <span class="caps">SIFT</span> as well. Please note, that algorithms such as <span class="caps">SIFT</span>, <span class="caps">SURF</span> which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or <span class="caps">VLFEAT</span> (You may want to check out my <a href="https://kushalvyas.github.io/setup_env.html">previous post on environment settings </a>).</p>
@@ -471,18 +469,16 @@ $$</div>
                 <!-- <h3>Trending</h3>
                 <ul>
 
-                    <li><a href="https://kushalvyas.github.io/cv_js.html">Computer Vision in the Browser</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>
+                    <li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>
 
                     <li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>
 
                     <li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>
+
+                    <li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>
                 </ul>
                 <h3>Coming Soon</h3>
                 <ul>
-                        <li><a href="#" onclick="executeComingSoonPopUp();">Semantic Segmentation</a></li>
-                        <li><a href="#" onclick="executeComingSoonPopUp();">Gender Detection</a></li>
                 </ul> -->
             </div>
             <script>
@@ -495,16 +491,14 @@ $$</div>
                         var side= $("#SIDEID");
                         var data = "<h3>Trending</h3>";
                         data += "<ul>";
-                           data += '<li><a href="https://kushalvyas.github.io/cv_js.html">Computer Vision in the Browser</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>';
+                           data += '<li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>';
                            data += '<li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>';
                            data += '<li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>';
+                           data += '<li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>';
                         data += "</ul>";
 
                         data +="<h3>Coming Soon</h3>";
                         data+="<ul>";
-                            data+='<li><a href="">Semantic Segmentation</a></li>';
-                            data+='<li><a href="">Gender Detection</a></li>';
                         data += '</ul>';
                         side.append(data);
                     }
@@ -556,6 +550,7 @@ $$</div>
                     <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
+                    <li><a href="https://kushalvyas.github.io/tag/camera-calibration.html">Camera Calibration</a>(1)</li>
                     <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
                     <li><a href="https://kushalvyas.github.io/tag/objectrecognition.html">ObjectRecognition</a>(4)</li>
                 </ul>
@@ -566,7 +561,7 @@ $$</div>
                     <li><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (2)</li>
+                    <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (3)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
                     <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
