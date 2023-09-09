@@ -1,130 +1,134 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/materialize.min.css">
-        <!-- <link rel="stylesheet" type="text/css" href=""> -->
-        <script src="https://kushalvyas.github.io/theme/js/jquery-1.11.3.min.js"></script>
-        <script src="https://kushalvyas.github.io/theme/js/materialize.min.js"></script>
-        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/foundation.min.css" media="all">
-        <script type="text/javascript" src="https://kushalvyas.github.io/theme/js/modernizr.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/pygments.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/subscribe.css">
-        <!-- <script src="https://kushalvyas.github.io/theme/syntax/scripts/shAutoloader.js" type="text/javascript"></script> -->
-        <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shCore.css" rel="stylesheet" type="text/css" /> -->
-        <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shThemeRDark.css" rel="stylesheet" type="text/css" /> -->
-        <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/lamboz.css" media="all">
-        <title>Computer Vision in the Browser <br> Trying out Tracking.<span class="caps">JS</span> - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
-        <meta charset="utf-8" />
-        <link href="https://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Full Atom Feed" />
-        <link href="https://kushalvyas.github.io/feeds/computer-vision-javascript-js-cv.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
-  
 
-        <script src="//load.sumome.com/" data-sumo-site-id="cecf6965e36602158241ee45155d77c8c02f27706e5178b61597811ab112b3a8" async="async"></script>   
-        <style type="text/css">
-        /*deactivate materialize ul li effecr*/
-            ul li {
-                list-style: browser-default;
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
             }
-            li { list-style: circle; }
+            
         </style>
 
-
-        <!-- google adsense -->
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-4973127946428760",
-            enable_page_level_ads: true
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
             });
-        </script>
-       
+        </script>   
 </head>
 <body>
-    <div class="pages">
-        <ul>
-            <li class="home"><a href="https://kushalvyas.github.io/index.html">Home</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/about-me.html">About&nbsp;me</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/technical.html">Computer&nbsp;Vision</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/projects.html">Projects</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/Music.html">My&nbsp;Music</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/talks.html">Talks</a></li>
-
-            <li style="float :right;" class=""><a href="https://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="mailto:kushalvyaskv[at][DOMAIN=gmail][dot]com" target="_blank"><i class="fa fa-envelope-o fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://twitter.com/kushal_kv" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://www.youtube.com/channel/UCoAFKWmi3Wca8hj5GSEriRQ" target="_blank"><i class="fa fa-youtube fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://in.linkedin.com/in/kushalvyaskv" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-        </ul>
-    </div>
-<div class="hp-header-inner">
-    <div class="page-header">
-        <div class="content-header">
-            <div id="title-block">
-            <h1>  <a href="https://kushalvyas.github.io/cv_js.html" rel="bookmark"
-                    title="Permalink to Computer Vision in the Browser Trying out Tracking.JS">Computer Vision in the Browser <br> Trying out Tracking.<span class="caps">JS</span></a></h1>
-            </div>
-        </div>
-    </div>
-</div>
-    <div class="content">
-        <div class="data-holder">
-        <div class="row">
-           <div class="large-10 content-column column">
-<div class="content-article">
-    <header class="header-article">
-        <div class="read-more">Posted on Tue 04 July 2017</div>
- 
-   </header>
-    <section class='article'>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
         
-        <div class="entry-summary">
-            <p>Using Computer Vision in the browser ( with&nbsp;TrackingJS)</p>
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Computer Vision in the Browser <br> Trying out Tracking.JS</h1>
+            <h4 class="mb-3"> <p>Using Computer Vision in the browser ( with TrackingJS)</p> </h4>
+          </div>
         </div>
-    
-        <div class="entry-content">
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
             <p><strong>I had written this article during last year, and was waiting for it to get  printed in <a href="http://opensourceforu.com/" target="_blank">Open Source For You</a> . You can read my article <a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank">here</a></strong></p>
-<p>So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to <a href="http://arxiv.org/" target="_blank">arXiv</a>. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&#8217;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using <a href="https://trackingjs.com/" target="_blank">TrackingJS</a>. </p>
-<p>According to GitHub, tracking.js is a lightweight <span class="caps">JS</span> library that offers a variety of computer vision algorithms with <span class="caps">HTML5</span> and <span class="caps">JS</span>. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility&nbsp;functions. </p>
-<p>So let&#8217;s get started&nbsp;! </p>
-<h2>Things&nbsp;Required:</h2>
+<p>So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to <a href="http://arxiv.org/" target="_blank">arXiv</a>. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&rsquo;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using <a href="https://trackingjs.com/" target="_blank">TrackingJS</a>. </p>
+<p>According to GitHub, tracking.js is a lightweight JS library that offers a variety of computer vision algorithms with HTML5 and JS. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility functions. </p>
+<p>So let&rsquo;s get started ! </p>
+<h2 id="things-required">Things Required:<a class="headerlink" href="#things-required" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Browser : This tutorial is w.r.t Chrome . I really don&#8217;t know how other browsers will&nbsp;perform.</li>
-<li>Tracking <span class="caps">JS</span> library : You can download it github | <a href="https://github.com/eduardolundgren/tracking.js/archive/master.zip" target="_blank">click here</a>.</li>
-<li>Probably a good <span class="caps">JS</span> text editor ( Sublime Text is fine&nbsp;)</li>
+<li>Browser : This tutorial is w.r.t Chrome . I really don&rsquo;t know how other browsers will perform.</li>
+<li>Tracking JS library : You can download it github | <a href="https://github.com/eduardolundgren/tracking.js/archive/master.zip" target="_blank">click here</a>.</li>
+<li>Probably a good JS text editor ( Sublime Text is fine )</li>
 </ol>
-<p>I&#8217;m assuming basic knowledge in <span class="caps">HTML</span>, <span class="caps">CSS</span> and <span class="caps">JS</span>. This tutorial is aim at a very basic level of the aforementioned&nbsp;languages.</p>
+<p>I&rsquo;m assuming basic knowledge in HTML, CSS and JS. This tutorial is aim at a very basic level of the aforementioned languages.</p>
 <p><a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank">You can refer to the example code on my Github</a> . All the code is present in the <code>src</code> directory ; and the TrackingJS library is present in the  <code>TRACKING</code> library. </p>
-<h2>Basic Computer vision in the&nbsp;browser:</h2>
-<p>Computations are carried out upon images, with the fundamental unit being a pixel. Algorithms involve mathematical operations on a pixel or a group of pixels. This article addresses a few hackneyed <span class="caps">CV</span> algorithms and their ports to a front-end system. To start with, basic concepts like images and canvas are to be understood&nbsp;first.</p>
-<p>An <span class="caps">HTML</span> image element refers to the <code>&lt;img&gt;&lt;/img&gt;</code> tag. It is, essentially, adding an image to a Web page. Similarly, to process or display any graphical units, the <code>&lt;canvas&gt;&lt;/canvas&gt;</code> element is used. Each of these elements has attributes such as height, width, etc, and is referred to via an <span class="caps">ID</span>. The computation part is done using JavaScript (<span class="caps">JS</span>). A <span class="caps">JS</span> file can be included either at the head or body of an <span class="caps">HTML</span> document. It contains functions that will implement the aforementioned operations. For drawing any content upon a canvas, a 2D rendering reference called <code>context</code> is supposed to be&nbsp;made.</p>
-<p>Here’s how to access images, as well as canvas and context, from <span class="caps">JS</span>:</p>
-<div class="highlight"><pre><span></span>    <span class="c1">//getting image, canvas and context</span>
-    <span class="kd">var</span> <span class="nx">im</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;image_id&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;canvas_id&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
+<h2 id="basic-computer-vision-in-the-browser">Basic Computer vision in the browser:<a class="headerlink" href="#basic-computer-vision-in-the-browser" title="Permanent link">&para;</a></h2>
+<p>Computations are carried out upon images, with the fundamental unit being a pixel. Algorithms involve mathematical operations on a pixel or a group of pixels. This article addresses a few hackneyed CV algorithms and their ports to a front-end system. To start with, basic concepts like images and canvas are to be understood first.</p>
+<p>An HTML image element refers to the <code>&lt;img&gt;&lt;/img&gt;</code> tag. It is, essentially, adding an image to a Web page. Similarly, to process or display any graphical units, the <code>&lt;canvas&gt;&lt;/canvas&gt;</code> element is used. Each of these elements has attributes such as height, width, etc, and is referred to via an ID. The computation part is done using JavaScript (JS). A JS file can be included either at the head or body of an HTML document. It contains functions that will implement the aforementioned operations. For drawing any content upon a canvas, a 2D rendering reference called <code>context</code> is supposed to be made.</p>
+<p>Here’s how to access images, as well as canvas and context, from JS:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">//getting image, canvas and context</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;image_id&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">canvas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;canvas_id&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
 
-    <span class="c1">//accessing a rectangular set of pixels through context interface</span>
-    <span class="kd">var</span> <span class="nx">pixel</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//accessing a rectangular set of pixels through context interface</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">pixel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
 
-    <span class="c1">//displaying image data</span>
-    <span class="nx">context</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="nx">start_point_x</span><span class="p">,</span> <span class="nx">start_point_y</span><span class="p">);</span>
-</pre></div>
-
+<span class="w">    </span><span class="c1">//displaying image data</span>
+<span class="w">    </span><span class="nx">context</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span><span class="w"> </span><span class="nx">start_point_x</span><span class="p">,</span><span class="w"> </span><span class="nx">start_point_y</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br><br></p>
-<p><strong> In this tutorial I&#8217;ll be covering&nbsp;:</strong></p>
-<p><strong>1. Basic Image Color Space conversion using <span class="caps">JS</span></strong></p>
-<p><strong>2. Real - time Color&nbsp;Tracking</strong></p>
-<p><strong>3. Face Capture and tag ( Temporary, not permanant storage of face&nbsp;vectors)</strong></p>
-<p><strong>4. Feature Detection in&nbsp;Images</strong></p>
-<h2>Basic Image Color Space conversion using <span class="caps">JS</span>:</h2>
-<p>For this, let&#8217;s create a small application involving a live video feed from the webcam and then converting it to gray and thresholding it using <span class="caps">RGB</span> threshold&nbsp;values.</p>
-<p>First, we will access the webcam. Accessing a Web cam from the browser first requires user consent. Local files with a <span class="caps">URL</span> pattern such as <code>file://</code> are not allowed. Regular <code>https://</code> URLs are permitted to access media. Whenever this feature is executed, the user’s consent will be required. Any image or video captured by a camera is essentially media. Hence, there has to be a media object to set up, initialise and handle any data received by the Web cam. This ability of seamless integration is due to media APIs provided by the&nbsp;browser.</p>
+<p>** In this tutorial I&rsquo;ll be covering :**</p>
+<p><strong>1. Basic Image Color Space conversion using JS</strong></p>
+<p><strong>2. Real - time Color Tracking</strong></p>
+<p><strong>3. Face Capture and tag ( Temporary, not permanant storage of face vectors)</strong></p>
+<p><strong>4. Feature Detection in Images</strong></p>
+<h2 id="basic-image-color-space-conversion-using-js">Basic Image Color Space conversion using JS:<a class="headerlink" href="#basic-image-color-space-conversion-using-js" title="Permanent link">&para;</a></h2>
+<p>For this, let&rsquo;s create a small application involving a live video feed from the webcam and then converting it to gray and thresholding it using RGB threshold values.</p>
+<p>First, we will access the webcam. Accessing a Web cam from the browser first requires user consent. Local files with a URL pattern such as <code>file://</code> are not allowed. Regular <code>https://</code> URLs are permitted to access media. Whenever this feature is executed, the user’s consent will be required. Any image or video captured by a camera is essentially media. Hence, there has to be a media object to set up, initialise and handle any data received by the Web cam. This ability of seamless integration is due to media APIs provided by the browser.</p>
 <div class="gist">
     <script src='https://gist.github.com/d637763f19d9f29e60f897c81a732b45.js'></script>
     <noscript>
@@ -173,7 +177,7 @@
     </noscript>
 </div>
 <p><br>
-As seen, there is a <code>video</code> element, a <code>canvas</code> and a couple of buttons to trigger any transform that we want. Thus we write the appropriate Javascript to access the webcam and then, using the <code>context</code> mentioned in above, convert the color&nbsp;spaces.</p>
+As seen, there is a <code>video</code> element, a <code>canvas</code> and a couple of buttons to trigger any transform that we want. Thus we write the appropriate Javascript to access the webcam and then, using the <code>context</code> mentioned in above, convert the color spaces.</p>
 <div class="gist">
     <script src='https://gist.github.com/ddd8ef11f764c37b831558bd644c6568.js'></script>
     <noscript>
@@ -379,360 +383,212 @@ function binary(){
     </noscript>
 </div>
 <p><br>
-In the above code, navigator.getUserMedia will be set if the media exists. To get control of media (refers to camera), use the following&nbsp;code:</p>
-<div class="highlight"><pre><span></span>    <span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
-            <span class="nx">video</span><span class="o">:</span> <span class="kc">true</span>
-        <span class="p">},</span><span class="nx">handle_video</span><span class="p">,</span> <span class="nx">report_error</span> <span class="p">);</span>
-</pre></div>
+In the above code, navigator.getUserMedia will be set if the media exists. To get control of media (refers to camera), use the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">navigator</span><span class="p">.</span><span class="nx">getUserMedia</span><span class="p">({</span>
+<span class="w">            </span><span class="nx">video</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">},</span><span class="nx">handle_video</span><span class="p">,</span><span class="w"> </span><span class="nx">report_error</span><span class="w"> </span><span class="p">);</span>
+</code></pre></div>
 
-
-<p>On the successful reception of a frame, the success_stream handler is called. In case of any error, error_stream is called. The success_stream function has the video stream as input, and will display each frame in the <code>video_frame</code> (<span class="caps">HTML</span> video element)&nbsp;.</p>
-<p>Any of the button , if clicked, will call it&#8217;s respective function. This is seen and mapped in the above <span class="caps">JS</span>-<span class="caps">GIST</span>. </p>
-<p><span class="caps">JS</span> stores an image as a <strong>linear array</strong> in <span class="caps">RGBA</span> format. Each image can be split into its respective channels, as shown&nbsp;below:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">channels</span> <span class="o">==</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">channels</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="kd">var</span> <span class="nx">red_component_pixel</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">0</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">green_component_pixel</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="kd">var</span> <span class="nx">blue_component_pixel</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+<p>On the successful reception of a frame, the success_stream handler is called. In case of any error, error_stream is called. The success_stream function has the video stream as input, and will display each frame in the <code>video_frame</code> (HTML video element) .</p>
+<p>Any of the button , if clicked, will call it&rsquo;s respective function. This is seen and mapped in the above JS-GIST. </p>
+<p>JS stores an image as a <strong>linear array</strong> in RGBA format. Each image can be split into its respective channels, as shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">channels</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="mf">4</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">channels</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">red_component_pixel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">green_component_pixel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1</span><span class="p">];</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">blue_component_pixel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mf">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">];</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><br>
-For the computation of gray scale images, A gray scale image is one in which all colour components are normalised to have equal weightage. If an 8-bit image is considered, the colour gray is obtained when the number of <span class="caps">RGB</span> bits equals 1.
-To solve this, there is a simple formula, which creates a weighted sum of pixel values to yield a gray&nbsp;image:</p>
-<div class="highlight"><pre><span></span><span class="nx">gray</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.21</span> <span class="nx">x</span> <span class="nx">red_component_pixel</span> <span class="o">+</span> <span class="mf">0.72</span> <span class="nx">x</span> <span class="nx">green_component_pixel</span> <span class="o">+</span> <span class="mf">0.07</span> <span class="nx">x</span> <span class="nx">blue_component_pixel</span><span class="err">&#39;</span>
-</pre></div>
+For the computation of gray scale images, A gray scale image is one in which all colour components are normalised to have equal weightage. If an 8-bit image is considered, the colour gray is obtained when the number of RGB bits equals 1.
+To solve this, there is a simple formula, which creates a weighted sum of pixel values to yield a gray image:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">gray</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.21</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="nx">red_component_pixel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.72</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="nx">green_component_pixel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.07</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="nx">blue_component_pixel</span><span class="err">&#39;</span>
+</code></pre></div>
 
-
-<p>On applying the above formula to each pixel, split into its components, one gets an equivalent gray&nbsp;pixel.</p>
+<p>On applying the above formula to each pixel, split into its components, one gets an equivalent gray pixel.</p>
 <p><br></p>
-<p>For computation of binary and inverted images : A binary image is in black and white (<span class="caps">BW</span>). The conversion of an image from colour to <span class="caps">BW</span> is done through a process called thresholding, which classifies each pixel as white or black based on its value. If the value is greater than a particular threshold, it will be set to 255, else&nbsp;0.</p>
-<div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="nx">red_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_red</span> <span class="o">&amp;&amp;</span> 
-    <span class="nx">green_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_green</span> <span class="o">&amp;&amp;</span>  
-    <span class="nx">blue_component_pixel</span> <span class="o">&gt;</span> <span class="nx">threshold_blue</span><span class="p">){</span>
-    <span class="c1">//make pixel == white</span>
-    <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span><span class="p">;</span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-
+<p>For computation of binary and inverted images : A binary image is in black and white (BW). The conversion of an image from colour to BW is done through a process called thresholding, which classifies each pixel as white or black based on its value. If the value is greater than a particular threshold, it will be set to 255, else 0.</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="nx">red_component_pixel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">threshold_red</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">green_component_pixel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">threshold_green</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>
+<span class="w">    </span><span class="nx">blue_component_pixel</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">threshold_blue</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//make pixel == white</span>
+<span class="w">    </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">255</span><span class="p">;</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"> </span><span class="nx">image</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">pixel</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
 
 <p><br></p>
-<p>Just as we have negatives for a photograph, similarly, the inversion of colour space of any image converts all pixels into a negative. This can simply be done by subtracting each pixel value from&nbsp;255</p>
-<p>The logic is well commented within the <span class="caps">GIST</span>. So please refer the&nbsp;Gist.</p>
+<p>Just as we have negatives for a photograph, similarly, the inversion of colour space of any image converts all pixels into a negative. This can simply be done by subtracting each pixel value from 255</p>
+<p>The logic is well commented within the GIST. So please refer the Gist.</p>
 <p><br><br></p>
-<h2>Real Time Color&nbsp;Tracking</h2>
-<p>For implementing this, we&#8217;ll use the <code>tracking.js</code> library.</p>
+<h2 id="real-time-color-tracking">Real Time Color Tracking<a class="headerlink" href="#real-time-color-tracking" title="Permanent link">&para;</a></h2>
+<p>For implementing this, we&rsquo;ll use the <code>tracking.js</code> library.</p>
 <p>In your <code>head</code> tag of the <code>HTML</code> document, include the following script
 <br>
 *    <script src="../../TRACKING/build/tracking.js"></script></p>
 <p><br></p>
-<p>From now, for the <span class="caps">HTML</span> templates, please refer the source@github. I&#8217;ll continue with explaining the javascript part. The process of declaring a video object and capturing frames in javascript remains same as above. To start using TrackingJs, we declare a <strong>color-tracker</strong>&nbsp;object.</p>
+<p>From now, for the HTML templates, please refer the source@github. I&rsquo;ll continue with explaining the javascript part. The process of declaring a video object and capturing frames in javascript remains same as above. To start using TrackingJs, we declare a <strong>color-tracker</strong> object.</p>
 <p>To initialise a colour tracker, first use the following commands:
 <br></p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">myTracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">([</span><span class="s1">&#39;yellow&#39;</span><span class="p">]);</span>
-    <span class="nx">myTracker</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;track&quot;</span><span class="p">,</span> <span class="nx">color_tracking_callback</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">mT</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;#myVideo&quot;</span><span class="p">,</span> <span class="nx">myTracker</span><span class="p">);</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">myTracker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">([</span><span class="s1">&#39;yellow&#39;</span><span class="p">]);</span>
+<span class="w">    </span><span class="nx">myTracker</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;track&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">color_tracking_callback</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">mT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;#myVideo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">myTracker</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br></p>
-<p>In the above code snippet, color_tracking_callback is a callback which will receive a list of all possible locations where the given colour is present. Each location is a rectangle object, comprising attributes which are ‘x, y, width and height’. x and y are the starting points of the&nbsp;rectangle.</p>
+<p>In the above code snippet, color_tracking_callback is a callback which will receive a list of all possible locations where the given colour is present. Each location is a rectangle object, comprising attributes which are ‘x, y, width and height’. x and y are the starting points of the rectangle.</p>
 <p>The natural action for tracking is to make a bounding box around the region we are interested in. Therefore, the boundingBox function plots a rectangle around the region of interest. Context variable is used here to perform any canvas drawing methods. context.stroke() eventually prints it on the canvas.
 <br></p>
-<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">color_tracking_callback</span><span class="p">(</span><span class="nx">list_rect</span><span class="p">){</span>
-        <span class="nx">list_rect</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">drawBoundingBox</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">color_tracking_callback</span><span class="p">(</span><span class="nx">list_rect</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">list_rect</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">drawBoundingBox</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    <span class="kd">function</span> <span class="nx">drawBoundingBox</span><span class="p">(</span><span class="nx">rect</span><span class="p">){</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="p">;</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="nx">rect</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-    <span class="p">}</span>
-</pre></div>
-
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">drawBoundingBox</span><span class="p">(</span><span class="nx">rect</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">context</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="nx">rect</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">rect</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 
 <p><br>    </p>
-<p>Tracking.<span class="caps">JS</span> also provides with a trigger to either <code>start</code> or <code>stop</code> the streaming&nbsp;process.</p>
-<p>Incase you want to track a custom <span class="caps">RGB</span> range of colors, you can refer to this snippet below.
-As seen, the input to a colour tracker is a list of probable colours (e.g., [yellow]). As the definition suggests, a colour tracker must be able to track colours. Tracking.js provides a method registerColor that handles user-specified custom&nbsp;colours.</p>
-<div class="highlight"><pre><span></span>    <span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">.</span><span class="nx">registerColor</span><span class="p">(</span><span class="s1">&#39;&lt;color_name&gt;&#39;</span> <span class="p">,</span> <span class="nx">callback_color</span><span class="p">);</span>
-</pre></div>
-
-
-<p><br>
-The <code>callback_color</code> callback will have input arguments as red, blue and green values. Since this is a custom colour, one has to define the <span class="caps">RGB</span> ranges. If the <span class="caps">RGB</span> argument meets the range,the function returns true, else it’ll return&nbsp;false.</p>
-<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">callback_color</span><span class="p">(</span><span class="nx">r</span> <span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">&gt;</span> <span class="nx">r_low</span> <span class="o">&amp;&amp;</span> <span class="nx">r</span> <span class="o">&lt;</span> <span class="nx">r_high</span> <span class="o">&amp;&amp;</span> <span class="nx">g</span> <span class="o">&gt;</span> <span class="nx">g_low</span> <span class="o">&amp;&amp;</span> <span class="nx">g</span> <span class="o">&lt;</span> <span class="nx">g_high</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="o">&gt;</span> <span class="nx">b_low</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span> <span class="o">&lt;</span> <span class="nx">b_high</span><span class="p">){</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-
+<p>Tracking.JS also provides with a trigger to either <code>start</code> or <code>stop</code> the streaming process.</p>
+<p>Incase you want to track a custom RGB range of colors, you can refer to this snippet below.
+As seen, the input to a colour tracker is a list of probable colours (e.g., [yellow]). As the definition suggests, a colour tracker must be able to track colours. Tracking.js provides a method registerColor that handles user-specified custom colours.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">ColorTracker</span><span class="p">.</span><span class="nx">registerColor</span><span class="p">(</span><span class="s1">&#39;&lt;color_name&gt;&#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">callback_color</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br>
-Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold values, respectively. Having registered the colour, one can simply append color_name to color_list in tracking.ColorTracker&nbsp;(color_list).</p>
+The <code>callback_color</code> callback will have input arguments as red, blue and green values. Since this is a custom colour, one has to define the RGB ranges. If the RGB argument meets the range,the function returns true, else it’ll return false.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">callback_color</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="nx">g</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">r_low</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">r_high</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">g</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">g_low</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">g</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">g_high</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">b_low</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">b_high</span><span class="p">){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<p><br>
+Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold values, respectively. Having registered the colour, one can simply append color_name to color_list in tracking.ColorTracker (color_list).</p>
 <p><br><br></p>
-<h3>Face Capture and tag ( Temporary, not permanant storage of face&nbsp;vectors)</h3>
-<p>Face detection in Tracking.js uses the <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework" target="_blank"><strong>Viola-Jones Framework</strong></a>. You can look it up in <a href="https://trackingjs.com/docs.html#viola-jones" target="_blank">the documentation</a>. It also has the popular <code>opencv_haarcascade</code> in the repository&#8217;s utils&nbsp;folder. </p>
-<p>As seen in the previous examples, this code involves the same, video capture and processing function blocks. What is added is the new tracking.js face&nbsp;detector.</p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">face_tracker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">ObjectTracker</span><span class="p">(</span><span class="s2">&quot;face&quot;</span><span class="p">);</span>
-    <span class="c1">// tuning params</span>
-    <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setInitialScale</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">//set initial scale for featureblock scaling</span>
-    <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setEdgesDensity</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span> <span class="c1">//check to skip edge</span>
-    <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setStepSize</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">//block step size</span>
-    <span class="c1">// tracker on video</span>
-    <span class="kd">var</span> <span class="nx">mTracker</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;#myVideo&quot;</span><span class="p">,</span> <span class="nx">face_tracker</span><span class="p">,</span> <span class="p">{</span><span class="nx">camera</span><span class="o">:</span><span class="s1">&#39;true&#39;</span><span class="p">});</span>
-    <span class="nx">face_tracker</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;track&quot;</span><span class="p">,</span> <span class="nx">handle_faces</span><span class="p">);</span>
-</pre></div>
-
+<h3 id="face-capture-and-tag-temporary-not-permanant-storage-of-face-vectors">Face Capture and tag ( Temporary, not permanant storage of face vectors)<a class="headerlink" href="#face-capture-and-tag-temporary-not-permanant-storage-of-face-vectors" title="Permanent link">&para;</a></h3>
+<p>Face detection in Tracking.js uses the <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework" target="_blank"><strong>Viola-Jones Framework</strong></a>. You can look it up in <a href="https://trackingjs.com/docs.html#viola-jones" target="_blank">the documentation</a>. It also has the popular <code>opencv_haarcascade</code> in the repository&rsquo;s utils folder. </p>
+<p>As seen in the previous examples, this code involves the same, video capture and processing function blocks. What is added is the new tracking.js face detector.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">face_tracker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">ObjectTracker</span><span class="p">(</span><span class="s2">&quot;face&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// tuning params</span>
+<span class="w">    </span><span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setInitialScale</span><span class="p">(</span><span class="mf">4</span><span class="p">);</span><span class="w"> </span><span class="c1">//set initial scale for featureblock scaling</span>
+<span class="w">    </span><span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setEdgesDensity</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span><span class="w"> </span><span class="c1">//check to skip edge</span>
+<span class="w">    </span><span class="nx">face_tracker</span><span class="p">.</span><span class="nx">setStepSize</span><span class="p">(</span><span class="mf">2</span><span class="p">);</span><span class="w"> </span><span class="c1">//block step size</span>
+<span class="w">    </span><span class="c1">// tracker on video</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">mTracker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s2">&quot;#myVideo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">face_tracker</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">camera</span><span class="o">:</span><span class="s1">&#39;true&#39;</span><span class="p">});</span>
+<span class="w">    </span><span class="nx">face_tracker</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;track&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">handle_faces</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br></p>
-<p><code>face_tracker</code> is actually an object detector (uses the viola jones object detection&nbsp;framework). </p>
-<p>Make sure, to run the face detection, the following js includes must be&nbsp;made</p>
+<p><code>face_tracker</code> is actually an object detector (uses the viola jones object detection framework). </p>
+<p>Make sure, to run the face detection, the following js includes must be made</p>
 <ul>
 <li>
-<p><span class="caps">TRACKING</span>/build/tracking.js</p>
+<p>TRACKING/build/tracking.js</p>
 </li>
 <li>
-<p><span class="caps">TRACKING</span>/build/data/face-min.js</p>
+<p>TRACKING/build/data/face-min.js</p>
 </li>
 </ul>
-<p>One can refer the <a href="https://trackingjs.com/api/tracking.ObjectTracker.html" target="_blank">documentation</a> to know about all the methods supported by the object tracker. Feel free to experient with different values as well. Default value&#8217;s are mentioned in the&nbsp;block.</p>
-<p>Once a face is detected, a <span class="caps">JS</span> prompt is created to enter the name for the&nbsp;person. </p>
-<p><strong>Note : This is all happening in a real time video . Hence , there may be multiple occurences that a prompt for the face pops up, if the face previously detected undergoes disturbance/disappears from the frame,&nbsp;etc. </strong></p>
-<div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">handle_new_faces</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-        <span class="nx">imcanvas2</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas2</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas2</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
-        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">data_cx</span> <span class="k">in</span> <span class="nx">data</span><span class="p">){</span>
-            <span class="kd">var</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">data_cx</span><span class="p">];</span>
-            <span class="nx">name</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;enter name&quot;</span><span class="p">);</span>
-            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p_name&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="o">=</span>  <span class="nx">name</span><span class="p">;</span>
-            <span class="nx">drawBoundingBox</span><span class="p">(</span><span class="nx">tmp</span><span class="p">);</span>
-            <span class="nx">updateIndex</span><span class="p">(</span><span class="nx">tmp</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</pre></div>
+<p>One can refer the <a href="https://trackingjs.com/api/tracking.ObjectTracker.html" target="_blank">documentation</a> to know about all the methods supported by the object tracker. Feel free to experient with different values as well. Default value&rsquo;s are mentioned in the block.</p>
+<p>Once a face is detected, a JS prompt is created to enter the name for the person. </p>
+<p>**Note : This is all happening in a real time video . Hence , there may be multiple occurences that a prompt for the face pops up, if the face previously detected undergoes disturbance/disappears from the frame, etc. **</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">handle_new_faces</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">imcanvas2</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="nx">canvas2</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">canvas2</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">data_cx</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">data</span><span class="p">){</span>
+<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">[</span><span class="nx">data_cx</span><span class="p">];</span>
+<span class="w">            </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;enter name&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;p_name&quot;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="o">=</span><span class="w">  </span><span class="nx">name</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">drawBoundingBox</span><span class="p">(</span><span class="nx">tmp</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">updateIndex</span><span class="p">(</span><span class="nx">tmp</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 
-
-<p>This will create a face-tag for a single person and continue to track that person. Incase if anyone wants to implement a multi person &#8216;tag n track&#8217;, what one can do is detect all possible faces in a video frame, and tag each face with it&#8217;s features. Once that is done, in the next frame, compare the newly detected faces with the stored features, minimizing the euclidean distance between the previously and newly detected facial&nbsp;features</p>
-<h2>Features extraction and&nbsp;matching</h2>
-<p>In simple terms, any significant discernible parts of the image can be defined as a feature. These can be corner points, edges or even a group of vectors oriented independently. The process of extracting such information is called feature extraction. Various implementations exist for feature extraction and descriptors, such as <span class="caps">SIFT</span>, <span class="caps">SURF</span> (feature descriptors) and <span class="caps">FAST</span> (corner detection). Tracking.js implements <span class="caps">BRIEF</span> (Binary Robust Independent Elementary Features) and <span class="caps">FAST</span> (Features from Accelerated Segmentation Test). Input to the system is first a gray image. The following code extracts corner points (points of interest) based on <span class="caps">FAST</span>.</p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">gray</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">grayscale</span><span class="p">(</span><span class="nx">input_image</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">corners</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Fast</span><span class="p">.</span><span class="nx">findCorners</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-</pre></div>
-
+<p>This will create a face-tag for a single person and continue to track that person. Incase if anyone wants to implement a multi person &lsquo;tag n track&rsquo;, what one can do is detect all possible faces in a video frame, and tag each face with it&rsquo;s features. Once that is done, in the next frame, compare the newly detected faces with the stored features, minimizing the euclidean distance between the previously and newly detected facial features</p>
+<h2 id="features-extraction-and-matching">Features extraction and matching<a class="headerlink" href="#features-extraction-and-matching" title="Permanent link">&para;</a></h2>
+<p>In simple terms, any significant discernible parts of the image can be defined as a feature. These can be corner points, edges or even a group of vectors oriented independently. The process of extracting such information is called feature extraction. Various implementations exist for feature extraction and descriptors, such as SIFT, SURF (feature descriptors) and FAST (corner detection). Tracking.js implements BRIEF (Binary Robust Independent Elementary Features) and FAST (Features from Accelerated Segmentation Test). Input to the system is first a gray image. The following code extracts corner points (points of interest) based on FAST.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">gray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">Image</span><span class="p">.</span><span class="nx">grayscale</span><span class="p">(</span><span class="nx">input_image</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">corners</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">Fast</span><span class="p">.</span><span class="nx">findCorners</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">height</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br>
-Each feature point can be referred to as a location. But to be able to perform any operations, these locations are converted into descriptors, which can be considered as a list of vectors that define a given feature. Comparison operators are applied upon these vectors. To find descriptors, tracking.js uses the <span class="caps">BRIEF</span> framework to extrapolate descriptor vectors from given feature points.
+Each feature point can be referred to as a location. But to be able to perform any operations, these locations are converted into descriptors, which can be considered as a list of vectors that define a given feature. Comparison operators are applied upon these vectors. To find descriptors, tracking.js uses the BRIEF framework to extrapolate descriptor vectors from given feature points.
 <br></p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">descriptors</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">getDescriptors</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">corners</span><span class="p">);</span>
-</pre></div>
-
-
-<p><br>
-Having got the points of interest from an image as well as their descriptors, we can design a scenario wherein one can track based on templates. Given a video frame and a fixed image, features can be used to match and identify where the fixed image can be located. However, there can be false&nbsp;positives.</p>
-<div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">reciprocalMatch</span><span class="p">(</span><span class="nx">corner_scene</span><span class="p">,</span> <span class="nx">descriptor_scene</span> <span class="p">,</span><span class="nx">corner_target</span><span class="p">,</span> <span class="nx">descriptor_target</span><span class="p">);</span>
-    <span class="c1">// calculates the matching points between the scene and the target image.</span>
-    <span class="nx">matches</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-        <span class="c1">//matches can be further filtered by using a sorting functin</span>
-        <span class="c1">// Either sort according to number of matches found:</span>
-        <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-        <span class="c1">// or sort according to confidence value:</span>
-        <span class="k">return</span> <span class="nx">b</span><span class="p">.</span><span class="nx">confidence</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">confidence</span>
-    <span class="p">}</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">descriptors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">getDescriptors</span><span class="p">(</span><span class="nx">gray</span><span class="p">,</span><span class="w"> </span><span class="nx">width</span><span class="p">,</span><span class="w"> </span><span class="nx">corners</span><span class="p">);</span>
+</code></pre></div>
 
 <p><br>
-The matches obtained can be sorted on the basis of their length, i.e., the number of matches obtained, and on their confidence value, as to how well the points match. Having arranged the matches, efficient matching of the target template image and the scene image can be carried out. It is simply a task of graphics now. Just iterate over the two arrays and mark the appropriate feature points on the canvas, as&nbsp;follows:</p>
-<div class="highlight"><pre><span></span>        <span class="kd">function</span> <span class="nx">plot_matches</span><span class="p">(</span><span class="nx">matches</span><span class="p">){</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="s2">&quot;2px&quot;</span><span class="p">;</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">keypoint1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">keypoint1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">);</span>
-                <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-</pre></div>
-
+Having got the points of interest from an image as well as their descriptors, we can design a scenario wherein one can track based on templates. Given a video frame and a fixed image, features can be used to match and identify where the fixed image can be located. However, there can be false positives.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">tracking</span><span class="p">.</span><span class="nx">Brief</span><span class="p">.</span><span class="nx">reciprocalMatch</span><span class="p">(</span><span class="nx">corner_scene</span><span class="p">,</span><span class="w"> </span><span class="nx">descriptor_scene</span><span class="w"> </span><span class="p">,</span><span class="nx">corner_target</span><span class="p">,</span><span class="w"> </span><span class="nx">descriptor_target</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// calculates the matching points between the scene and the target image.</span>
+<span class="w">    </span><span class="nx">matches</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">){</span>
+<span class="w">        </span><span class="c1">//matches can be further filtered by using a sorting functin</span>
+<span class="w">        </span><span class="c1">// Either sort according to number of matches found:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// or sort according to confidence value:</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">confidence</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">confidence</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
 
 <p><br>
-The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas&nbsp;element.</p>
+The matches obtained can be sorted on the basis of their length, i.e., the number of matches obtained, and on their confidence value, as to how well the points match. Having arranged the matches, efficient matching of the target template image and the scene image can be carried out. It is simply a task of graphics now. Just iterate over the two arrays and mark the appropriate feature points on the canvas, as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="kd">function</span><span class="w"> </span><span class="nx">plot_matches</span><span class="p">(</span><span class="nx">matches</span><span class="p">){</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2px&quot;</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color</span><span class="p">;</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">keypoint1</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="w"> </span><span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">keypoint1</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="o">*</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">);</span>
+<span class="w">                </span><span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+
+<p><br>
+The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas element.</p>
 <p><br></p>
-<h2>Here are some cool experiments that I did with&nbsp;tracking.js</h2>
+<h2 id="here-are-some-cool-experiments-that-i-did-with-trackingjs">Here are some cool experiments that I did with tracking.js<a class="headerlink" href="#here-are-some-cool-experiments-that-i-did-with-trackingjs" title="Permanent link">&para;</a></h2>
 <p><center></p>
-<p>Oringal webcam&nbsp;image</p>
-<p><img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png"></p>
-<p>Grayscale&nbsp;conversion</p>
-<p><img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png"></p>
-<p>Binary&nbsp;Conversion</p>
-<p><img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png"></p>
-<p><img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png"></p>
-<p><img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png"></p>
+<p>Oringal webcam image</p>
+<p><img alt="original" src="./images/cv_js/1.png" /></p>
+<p>Grayscale conversion</p>
+<p><img alt="gray" src="./images/cv_js/3.png" /></p>
+<p>Binary Conversion</p>
+<p><img alt="binary" src="./images/cv_js/2.png" /></p>
+<p><img alt="color-tracking" src="./images/cv_js/5.png" /></p>
+<p><img alt="face" src="./images/cv_js/7.png" /></p>
 <p></center></p>
 <p><br></p>
 <p>For complete implementation , please refer to the article in Opensource For You as well as the <a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank">Github link</a>.</p>
-<p>Also refer the Tracking.<span class="caps">JS</span> website. It is very well documented , with awesome&nbsp;examples. </p>
-<p>So, using tracking.js, one can develop browser based computer vision applications with much&nbsp;ease. </p>
-<h2>References:</h2>
+<p>Also refer the Tracking.JS website. It is very well documented , with awesome examples. </p>
+<p>So, using tracking.js, one can develop browser based computer vision applications with much ease. </p>
+<h2 id="references">References:<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>[1]<a href="https://trackingjs.com/" target="_blank">TrackingJS</a>. </p>
-<p>[2]<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank">Developer Mozilla CanvasRenderingContext2D <span class="caps">API</span></a>.</p>
-<p>[3]<a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank">Developer Mozilla Media <span class="caps">API</span></a></p>
-<p>[4]<a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank">Exploring Front-end Computer Vision - Open Source For&nbsp;You</a></p>
+<p>[2]<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank">Developer Mozilla CanvasRenderingContext2D API</a>.</p>
+<p>[3]<a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank">Developer Mozilla Media API</a></p>
+<p>[4]<a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank">Exploring Front-end Computer Vision - Open Source For You</a></p>
         </div>
-    </section>
-    <footer class="footer-article">
-        <div class="tags-and-categories">Filed under <a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a>
-        | Tagged: <a href="https://kushalvyas.github.io/tag/objectrecognition.html">ObjectRecognition </a>
-        | <a href="https://kushalvyas.github.io/cv_js.html" rel="bookmark"
-         title="Permalink to Computer Vision in the Browser Trying out Tracking.JS">Permalink</a>            
-        </div>
-        <!-- metaldata 
-        -->
-    </footer>
-    <!-- disqus bitsmakemecrazy -->
-        <hr>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = "bitsmakemecrazy"; // required: replace example with your forum shortname
-            var disqus_identifier = "computer-vision-in-the-browser--trying-out-tracking.js";
-            var disqus_url = "https://kushalvyas.github.io/cv_js.html";
-            var disqus_title = "Computer Vision in the Browser Trying out Tracking.JS";
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-            </div>
-         
-            <div class="large-2 aside column" id="SIDEID">
-         
-                <!-- <h3>Trending</h3>
-                <ul>
-
-                    <li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/sl_3d.html">Structured Light 3D Reconstruction</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>
-                </ul>
-                <h3>Coming Soon</h3>
-                <ul>
-                </ul> -->
-            </div>
-            <script>
-                function load_sideID(){
-                    var curr_url=  document.URL;
-                    if(curr_url.indexOf('projects')>0){
-                        console.log("on project page");
-                    }else{
-                        console.log("not on project page");
-                        var side= $("#SIDEID");
-                        var data = "<h3>TOP ARTICLES</h3>";
-                        data += "<ul>";
-                           data += '<li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/sl_3d.html">Structured Light 3D Reconstruction</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>';
-                        data += "</ul>";
-
-                        data +="<h3>Coming Soon</h3>";
-                        data+="<ul>";
-                        data += '</ul>';
-                        side.append(data);
-                    }
-                }
-                load_sideID();
-            </script>
-
-            <script>
-                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                ga('create', 'UA-75632170-1', 'auto');
-                ga('send', 'pageview');
-            </script>
-            <script async src='https://www.google-analytics.com/analytics.js'></script>
-
-          
-         </div>
+    </article>
     </div>
 </div>
-    <div class="footer">
-        <div class="data-holder">
-        <div class="row">
-            <div class="large-3 column">
-<div class="credits">
-    <h3>Stuff and credits</h3>
-    <p>
-    Proudly powered by <a href="http://getpelican.com/" target="_blank">Pelican</a>, 
-    which takes great advantage of <a href="http://python.org" target="_blank">Python</a>.
-    </p>
-    <p>Theme is a modified Pelican Bricks</p>
-    <p>
-    This site also makes use of <a href="http://foundation.zurb.com" target="_blank">Zurb Foundation Framework</a>
-    and is typeset using the blocky -- but quite good-looking indeed -- 
-    <a href="https://www.google.com/fonts/specimen/Exo%202" target="_blank">Exo 2</a> fonts,
-    which comes in a lot of weight and styles. 
-    </p>
-    <p>Enjoy!</a>
-</div>           </div>
-           <div class="large-6 tag-cloud column">
-                <h3>Tags</h3>
-                <ul>
-                    <li><a href="https://kushalvyas.github.io/tag/stitching.html">stitching</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/mosaicking.html">mosaicking</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/ai.html">AI</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/camera-calibration.html">Camera Calibration</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/objectrecognition.html">ObjectRecognition</a>(4)</li>
-                </ul>
-            </div>
-            <div class="large-3 category-column column">
-                <h3>Categories</h3>
-                <ul>
-                    <li><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
-                    <li class="active"><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (3)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
-                    <li><a href="https://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/technical-dev.html">technical, dev</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
-                </ul>
-             
-            </div>
-        </row>
-        </div>
+        
     </div>
 
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
 </body>
 </html>

@@ -1,106 +1,109 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/materialize.min.css">
-        <!-- <link rel="stylesheet" type="text/css" href=""> -->
-        <script src="https://kushalvyas.github.io/theme/js/jquery-1.11.3.min.js"></script>
-        <script src="https://kushalvyas.github.io/theme/js/materialize.min.js"></script>
-        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/foundation.min.css" media="all">
-        <script type="text/javascript" src="https://kushalvyas.github.io/theme/js/modernizr.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Exo+2:400,300,700,300italic,400italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/pygments.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/subscribe.css">
-        <!-- <script src="https://kushalvyas.github.io/theme/syntax/scripts/shAutoloader.js" type="text/javascript"></script> -->
-        <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shCore.css" rel="stylesheet" type="text/css" /> -->
-        <!-- <link href="https://kushalvyas.github.io/theme/syntax/styles/shThemeRDark.css" rel="stylesheet" type="text/css" /> -->
-        <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/lamboz.css" media="all">
-        <title>Structured Light 3D&nbsp;Reconstruction - BitsMakeMeCrazy <br> Kushal Vyas's Blog</title>
-        <meta charset="utf-8" />
-        <link href="https://kushalvyas.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Full Atom Feed" />
-        <link href="https://kushalvyas.github.io/feeds/3d-reconstruction-3d-stereo-cv.atom.xml" type="application/atom+xml" rel="alternate" title="BitsMakeMeCrazy <br> Kushal Vyas's Blog Categories Atom Feed" />
-  
 
-        <script src="//load.sumome.com/" data-sumo-site-id="cecf6965e36602158241ee45155d77c8c02f27706e5178b61597811ab112b3a8" async="async"></script>   
-        <style type="text/css">
-        /*deactivate materialize ul li effecr*/
-            ul li {
-                list-style: browser-default;
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
             }
-            li { list-style: circle; }
+            
         </style>
 
-
-        <!-- google adsense -->
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-4973127946428760",
-            enable_page_level_ads: true
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
             });
-        </script>
-       
+        </script>   
 </head>
 <body>
-    <div class="pages">
-        <ul>
-            <li class="home"><a href="https://kushalvyas.github.io/index.html">Home</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/about-me.html">About&nbsp;me</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/technical.html">Computer&nbsp;Vision</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/projects.html">Projects</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/Music.html">My&nbsp;Music</a></li>
-            <li ><a href="https://kushalvyas.github.io/pages/talks.html">Talks</a></li>
-
-            <li style="float :right;" class=""><a href="https://www.github.com/kushalvyas" target="_blank"><i class="fa fa-github fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="mailto:kushalvyaskv[at][DOMAIN=gmail][dot]com" target="_blank"><i class="fa fa-envelope-o fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://twitter.com/kushal_kv" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://www.youtube.com/channel/UCoAFKWmi3Wca8hj5GSEriRQ" target="_blank"><i class="fa fa-youtube fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-            <li style="float :right;" class=""><a href="https://in.linkedin.com/in/kushalvyaskv" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden='true'></i>&nbsp;&nbsp;</a></li>
-        </ul>
-    </div>
-<div class="hp-header-inner">
-    <div class="page-header">
-        <div class="content-header">
-            <div id="title-block">
-            <h1>  <a href="https://kushalvyas.github.io/sl_3d.html" rel="bookmark"
-                    title="Permalink to Structured Light 3D Reconstruction">Structured Light 3D&nbsp;Reconstruction</a></h1>
-            </div>
-        </div>
-    </div>
-</div>
-    <div class="content">
-        <div class="data-holder">
-        <div class="row">
-           <div class="large-10 content-column column">
-<div class="content-article">
-    <header class="header-article">
-        <div class="read-more">Posted on Sun 03 December 2017</div>
- 
-   </header>
-    <section class='article'>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
         
-        <div class="entry-summary">
-            <p>A few results on 3D&nbsp;reconstruction</p>
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Structured Light 3D Reconstruction</h1>
+            <h4 class="mb-3"> <p>A few results on 3D reconstruction</p> </h4>
+          </div>
         </div>
-    
-        <div class="entry-content">
-            <h3>Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to&nbsp;load.</h3>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <h3 id="disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load">Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to load.<a class="headerlink" href="#disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year">Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last year.<a class="headerlink" href="#secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year" title="Permanent link">&para;</a></h3>
 <hr>
 
-<h3>Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last&nbsp;year.</h3>
+<h3 id="cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files">Cool stuff: I&rsquo;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &hellip; all the way to working with 3D files.<a class="headerlink" href="#cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="ill-probably-host-it-as-a-gitbook">I&rsquo;ll probably host it as a GitBook. :)<a class="headerlink" href="#ill-probably-host-it-as-a-gitbook" title="Permanent link">&para;</a></h3>
 <hr>
 
-<h3>Cool stuff: I&#8217;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &#8230; all the way to working with 3D&nbsp;files.</h3>
-<hr>
-
-<h3>I&#8217;ll probably host it as a GitBook.&nbsp;:)</h3>
-<hr>
-
-<h2>Setup:</h2>
-<p>I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&#8217;s paper on using a single-camera-projector arrangement for 3D geometry&nbsp;acquisition.</p>
+<h2 id="setup">Setup:<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&rsquo;s paper on using a single-camera-projector arrangement for 3D geometry acquisition.</p>
 <!-- <center>
     ![setup1]({filename}/images/sl_3d/setup1.jpg)
     <br>
@@ -115,245 +118,114 @@
     Setup Image (side view)
     <br><br>
 </center> -->
-
 <p><center>
-    <img alt="setup1" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-1.jpg">
+    <img alt="setup1" src="./images/sl_3d/th_op/crop-1.jpg" />
     <br>
     Initial Setup using projector and camera
     <br><br>
-    <img alt="setup2" src="https://kushalvyas.github.io/images/sl_3d/th_op/c1.jpg" width:400px_="width:400px;">
-    <img alt="setup3" src="https://kushalvyas.github.io/images/sl_3d/th_op/c2.jpg">
+    <img alt="setup2" src="./images/sl_3d/th_op/c1.jpg" width:400px_="width:400px;" />
+    <img alt="setup3" src="./images/sl_3d/th_op/c2.jpg" />
     <br>
-    Camera Calibration using <span class="caps">SL</span> patterns
+    Camera Calibration using SL patterns
     <br><br>
-    <img alt="setup4" src="https://kushalvyas.github.io/images/sl_3d/th_op/draw3.png">
-</center>
-<hr></p>
-<h2>Outputs</h2>
+    <img alt="setup4" src="./images/sl_3d/th_op/draw3.png" />
+</center></p>
+<hr>
+
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
 <hr>
 
 <p><center>
-    <img alt="crop12" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-12.jpg">
+    <img alt="crop12" src="./images/sl_3d/th_op/crop-12.jpg" />
     <br>
     Registration of David Bust, and Bottle
-</center>
-<hr></p>
+</center></p>
+<hr>
+
 <p><center>
-    <img alt="david1" src="https://kushalvyas.github.io/images/sl_3d/david1.png">
+    <img alt="david1" src="./images/sl_3d/david1.png" />
     <br>
     Surface View 1 of David Scan (from dataset)
     <br><br>
-    <img alt="david3" src="https://kushalvyas.github.io/images/sl_3d/david3.png">
+    <img alt="david3" src="./images/sl_3d/david3.png" />
     <br>
     Surface View 2 of David Scan (from dataset)
     <br><br>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/sqdaPVvP_BU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
     <br><br>
-</center>
+</center></p>
 <hr>
-<center>
+<p><center>
     Although, for live condition, there is a lot of noise.
     <br>
-    <img alt="bottle_set" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_bottle.png">
+    <img alt="bottle_set" src="./images/sl_3d/th_op/montage_bottle.png" />
     <br>
     Structured Light in runtime with Bottle example
     <br><br>
-    <img alt="bottle1" src="https://kushalvyas.github.io/images/sl_3d/bottle1.png">
+    <img alt="bottle1" src="./images/sl_3d/bottle1.png" />
     <br>
     Tupperware Bottle Scan - Stage 1 (Improves later on)
     <br><br>
-    <img alt="cap" src="https://kushalvyas.github.io/images/sl_3d/bottle_closeup.png">
+    <img alt="cap" src="./images/sl_3d/bottle_closeup.png" />
     <br>
     Closeup of Bottle Scan (next stage). If you look closely, I have made a dimension as well. The cap length shows to be 26.23 mm.
     <br><br>
-    <img alt="images_crop4" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-4.jpg">
-</center>
-<hr></p>
+    <img alt="images_crop4" src="./images/sl_3d/th_op/crop-4.jpg" />
+</center></p>
+<hr>
+
 <p><center>
-    <img alt="im_crop5" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_bindi.png">
+    <img alt="im_crop5" src="./images/sl_3d/th_op/montage_bindi.png" />
     <br>
     Structured Light Sequences projected on Bottle 2
     <br><br>
-    <img alt="bottle2" src="https://kushalvyas.github.io/images/sl_3d/bottle2.png">
+    <img alt="bottle2" src="./images/sl_3d/bottle2.png" />
     <br>
     Random Bottle Scan (later stage). I cannot find a picture set for the above tupperware bottle.
     <br><br>
-    <img alt="bottle_closeup2" src="https://kushalvyas.github.io/images/sl_3d/bclose.jpg">
+    <img alt="bottle_closeup2" src="./images/sl_3d/bclose.jpg" />
     <br>
     Cleaner scan of above object (End Stage)
     <br><br></p>
-<p></center>
+<p></center></p>
 <hr>
-<center>
-    <img alt="woodlandmontage" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_woodland.png">
+<p><center>
+    <img alt="woodlandmontage" src="./images/sl_3d/th_op/montage_woodland.png" />
     <br>
     Structured Light Sequences on Woodland Shoes
     <br><br>
-    <img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/woodland1.png">
-    <img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-7.jpg">
+    <img alt="woodland" src="./images/sl_3d/woodland1.png" />
+    <img alt="woodland" src="./images/sl_3d/th_op/crop-7.jpg" />
     <br>
-    And here&#8217;s a 3D scan of my shoes :P 
+    And here&rsquo;s a 3D scan of my shoes :P 
     <br><br>
-</center>
-<hr></p>
-<h3>the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&#8217;s for sure to be expected by the coming&nbsp;year.</h3>
+</center></p>
 <hr>
 
-<h3>Results and Summary&nbsp;:</h3>
+<h3 id="the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year">the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&rsquo;s for sure to be expected by the coming year.<a class="headerlink" href="#the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="results-and-summary">Results and Summary :<a class="headerlink" href="#results-and-summary" title="Permanent link">&para;</a></h3>
 <p><center>
-<img alt="results" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-11.jpg">
+<img alt="results" src="./images/sl_3d/th_op/crop-11.jpg" />
 <br><br>
-As seen, there is a error of about 3mm. Which can be resolved by further robust calibration, and less interference/disturbance of surrounding light  - <span class="caps">SO</span> that an accurate <span class="caps">BRDF</span> value can be computed. Also, the material/object under scanning can be coated with a <span class="caps">MATT</span>-<span class="caps">FINISH</span> <span class="caps">POLISH</span>, to avoid surface reflection (as seen in the bottle).
-</center>
-<hr></p>
-<p>Anyways.. I&#8217;ll get the complete series online soon. Stay tuned !&nbsp;;)</p>
+As seen, there is a error of about 3mm. Which can be resolved by further robust calibration, and less interference/disturbance of surrounding light  - SO that an accurate BRDF value can be computed. Also, the material/object under scanning can be coated with a MATT-FINISH POLISH, to avoid surface reflection (as seen in the bottle).
+</center></p>
+<hr>
+
+<p>Anyways.. I&rsquo;ll get the complete series online soon. Stay tuned ! ;)</p>
         </div>
-    </section>
-    <footer class="footer-article">
-        <div class="tags-and-categories">Filed under <a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a>
-        | Tagged: <a href="https://kushalvyas.github.io/tag/3d.html">3D </a>
-        | <a href="https://kushalvyas.github.io/sl_3d.html" rel="bookmark"
-         title="Permalink to Structured Light 3D Reconstruction">Permalink</a>            
-        </div>
-        <!-- metaldata 
-        -->
-    </footer>
-    <!-- disqus bitsmakemecrazy -->
-        <hr>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = "bitsmakemecrazy"; // required: replace example with your forum shortname
-            var disqus_identifier = "structured-light-3d-reconstruction";
-            var disqus_url = "https://kushalvyas.github.io/sl_3d.html";
-            var disqus_title = "Structured Light 3D Reconstruction";
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-</div>
-            </div>
-         
-            <div class="large-2 aside column" id="SIDEID">
-         
-                <!-- <h3>Trending</h3>
-                <ul>
-
-                    <li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/sl_3d.html">Structured Light 3D Reconstruction</a></li>
-
-                    <li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>
-                </ul>
-                <h3>Coming Soon</h3>
-                <ul>
-                </ul> -->
-            </div>
-            <script>
-                function load_sideID(){
-                    var curr_url=  document.URL;
-                    if(curr_url.indexOf('projects')>0){
-                        console.log("on project page");
-                    }else{
-                        console.log("not on project page");
-                        var side= $("#SIDEID");
-                        var data = "<h3>TOP ARTICLES</h3>";
-                        data += "<ul>";
-                           data += '<li><a href="https://kushalvyas.github.io/calib.html">Camera Calibration</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/stitching.html">Image Stitching</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/BOV.html#BOV">Bag of Visual Words</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/sl_3d.html">Structured Light 3D Reconstruction</a></li>';
-                           data += '<li><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets</a></li>';
-                        data += "</ul>";
-
-                        data +="<h3>Coming Soon</h3>";
-                        data+="<ul>";
-                        data += '</ul>';
-                        side.append(data);
-                    }
-                }
-                load_sideID();
-            </script>
-
-            <script>
-                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                ga('create', 'UA-75632170-1', 'auto');
-                ga('send', 'pageview');
-            </script>
-            <script async src='https://www.google-analytics.com/analytics.js'></script>
-
-          
-         </div>
+    </article>
     </div>
 </div>
-    <div class="footer">
-        <div class="data-holder">
-        <div class="row">
-            <div class="large-3 column">
-<div class="credits">
-    <h3>Stuff and credits</h3>
-    <p>
-    Proudly powered by <a href="http://getpelican.com/" target="_blank">Pelican</a>, 
-    which takes great advantage of <a href="http://python.org" target="_blank">Python</a>.
-    </p>
-    <p>Theme is a modified Pelican Bricks</p>
-    <p>
-    This site also makes use of <a href="http://foundation.zurb.com" target="_blank">Zurb Foundation Framework</a>
-    and is typeset using the blocky -- but quite good-looking indeed -- 
-    <a href="https://www.google.com/fonts/specimen/Exo%202" target="_blank">Exo 2</a> fonts,
-    which comes in a lot of weight and styles. 
-    </p>
-    <p>Enjoy!</a>
-</div>           </div>
-           <div class="large-6 tag-cloud column">
-                <h3>Tags</h3>
-                <ul>
-                    <li><a href="https://kushalvyas.github.io/tag/stitching.html">stitching</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/mosaicking.html">mosaicking</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/ai.html">AI</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/utils.html">utils</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/py.html">Py</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/wikipedia.html">wikipedia</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/machine-vision.html">Machine Vision</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/technical.html">technical</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/dev.html">dev</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/images.html">images</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/3d.html">3D</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/camera-calibration.html">Camera Calibration</a>(1)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/cv.html">CV</a>(4)</li>
-                    <li><a href="https://kushalvyas.github.io/tag/objectrecognition.html">ObjectRecognition</a>(4)</li>
-                </ul>
-            </div>
-            <div class="large-3 category-column column">
-                <h3>Categories</h3>
-                <ul>
-                    <li class="active"><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (3)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
-                    <li><a href="https://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/technical-dev.html">technical, dev</a> (1)</li>
-                    <li><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
-                </ul>
-             
-            </div>
-        </row>
-        </div>
+        
     </div>
 
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
 </body>
 </html>
