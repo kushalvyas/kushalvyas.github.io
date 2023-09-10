@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Using the Samba Server and SSH</h1>
+            <h4 class="mb-3"> <p>Using the samba server along with SSH</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <h3 id="the-samba-server-and-ssh">The Samba Server and SSH<a class="headerlink" href="#the-samba-server-and-ssh" title="Permanent link">&para;</a></h3>
+<p>Well,this article was long due. Speaking from the perspective of a newcomer to linux, the samba server was something that had caught my eye in my sophomore year. That very next day I had setup a small system at my home. The blog that you are reading right now is stored in my home server. I don&rsquo;t have any files locally on my laptop. B) </p>
+<p>Yes.. Speaking of <a href="https://www.samba.org/">Samba</a>, its quite easy to setup and install it. You can refer the steps <a href="https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20(Command-line%20interface/Linux%20Terminal)%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!">here</a> but ya.. i&rsquo;ll be going over them too..</p>
+<p>For, ubuntu, I&rsquo;d say, simply run these commands</p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">samba</span>
+</code></pre></div>
+
+<p>Once you have installed samba, open the <code>/etc/samba/smb.conf</code> file and make the changes as below.</p>
+<ol>
+<li>
+<p>Create a folder to be shared on the network ( /home/<username>/<name_of_folder> )</p>
+</li>
+<li>
+<p>Next,    </p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span> <span class="o">~</span>
+</code></pre></div>
+
+<p>Here you are essentially copying and placing the samba conf file in a safe location.</p>
+</li>
+<li>
+<p>Further,</p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="o">&lt;</span><span class="n">nano</span> <span class="o">|</span> <span class="n">vi</span> <span class="o">|</span> <span class="n">gedit</span><span class="o">|</span> <span class="n">basically</span> <span class="n">anytexteditor</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">samba</span><span class="o">/</span><span class="n">smb</span><span class="o">.</span><span class="n">conf</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Go to the very end of the file . (If your using nano , simply press &lsquo;ALT /&rsquo; </p>
+</li>
+<li>
+<p>Add the following snippet</p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="o">&lt;</span><span class="n">name_of_folder</span><span class="p">]</span>
+<span class="n">path</span><span class="o">=/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">username</span><span class="o">&gt;/&lt;</span><span class="n">name_of_folder</span><span class="o">&gt;</span>
+<span class="n">read</span> <span class="n">only</span> <span class="o">=</span> <span class="n">no</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Save the file and restart samba </p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="n">service</span> <span class="n">smbd</span> <span class="n">restart</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>To access any samba file, install smbclient. You can run an apt-get install smbclient</p>
+</li>
+<li>To checkin <div class="highlight"><pre><span></span><code><span class="n">smbclient</span> <span class="o">//</span><span class="n">ipaddress</span><span class="o">/</span><span class="n">foldername</span>
+</code></pre></div>
+
+</li>
+</ol>
+<p><strong>Some Tips</strong>
+If you plan on using this, i recommend that you make the server ip static. Goto your router settings and reserve the ip for whichever system you are putting this on. It&rsquo;s much simpler to do so.</p>
+<p>Next I also recommend you to set up an SSH connection over your local machines. This is what I use. Using samba for convinient file transfers and SSH to control further commands.</p>
+<p>Setting up SSH for local networks is very simple. Install SSH using `</p>
+<div class="highlight"><pre><span></span><code><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">SSH</span>
+</code></pre></div>
+
+<p>and simply type</p>
+<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="n">user</span><span class="nd">@IP</span>
+</code></pre></div>
+
+<p>Make sure , both the endpoint machines are equipped with the dependencies.</p>
+<p><strong>Just fire it up and enjoy&hellip; Access your files freely and sit back on your bean bags and relax</strong></p>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

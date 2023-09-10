@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Solving 8 Queens using Genetic Algorithms - Evolution</h1>
+            <h4 class="mb-3"> <p>Solution to the problem of arranging 8 queens on a chessboard such that they donot attack each other.</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <h1 id="the-8-queens-problem-an-introduction">The 8 Queens Problem : An Introduction<a class="headerlink" href="#the-8-queens-problem-an-introduction" title="Permanent link">&para;</a></h1>
+<p>8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard <span class="math">\(8\)</span> x <span class="math">\(8\)</span> chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&rdquo; <span class="math">\(OK\)</span> &rdquo; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &rdquo; <span class="math">\(X\)</span> &rdquo; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens problem.</p>
+<p><center><img alt="attacking_queen" src="./images/queen_attacking.png" /> &nbsp; &nbsp;
+<img alt="solution_queen" src="./images/solution.jpg" /></p>
+<p><i>Images taken from chegg.com and indiamedic</i></center></p>
+<p>There are various methods to solve the 8 queens problem. The most common being <strong>BackTracking</strong>. It can also be solved using a variety of approaches such as as Hill climbing, Genetic Algorithms - evolution, etc. In this post, I&rsquo;ll explain how we approach 8 queens problem using <strong>Genetic Algorithms - Evolution</strong>.</p>
+<h1 id="first-a-bit-of-biology">First,  a bit of Biology&hellip;<a class="headerlink" href="#first-a-bit-of-biology" title="Permanent link">&para;</a></h1>
+<p>Yea.. I know,. Why Biology ?  Well, get used to the hard truth. Most of our intelligence algorithms are made by ripping off nature. Be it neural networks or simple fibonacci sequence, our great mathematical models are merely a derivative of nature. But this does not make it any less valuable. Rather as my friend says, &ldquo;Math is the universal language&rdquo;. (I hope he reads this article) So yea, a bit of biology.</p>
+<p>Let&rsquo;s begin with basic cells and their multiplication and some genetics.</p>
+<p>Consider 2 cells. Each cell has something called as pairs of chromosomes. A chromosome is what carries the genetic traits. The pairs and number of chromosomes isin&rsquo;t much of relevance. What is important is how the process of cell production causes the genes to propagate into an offspring. This method is called as meiosis. Well, there&rsquo;s another way called as mitosis, but in mitosis, there is no genetic diversity that is being propagated (Explained later in post). Till now we have established that the cells contain pairs of chromosomes. And that 2 cells are required for essential cell division. </p>
+<p>Given below is an illustration as to how the division takes place. (Image taken from askabiologist.com)</p>
+<p><center>
+<img alt="celldv" src="./images/meiosis.png" />
+</center>
+<br>
+<center>
+Process of meiosis.
+<img alt="celldv1" src="./images/crossover.png" /></p>
+<p>Chromosme crossover
+</center></p>
+<p><strong>Crossover - In Detail</strong>: When 2 cells meet, the respective chromosome from cell1 and cell2 come together and mix. The mixing involves random parts of chromosome1 to get over-written by chromosome2. And the same in case of chromosome2. Hence, we are left with an inter mixed pair of chromosomes. Since chromosomes are carriers of genetic material, when there is mixing and intermingling of 2 chromosomes, there is also creation of new genetic sequences. Hence, this ensures genetic diversity. The formation of a more dominant / enhanced trait or a relatively sober trait can be attributed to such crossing over of chromosomes. Once crossover is through, the new offspring contains mixed characteristics for both the parents.</p>
+<p><em>Then what is mutation ?</em> : In rare cases, when the crossing over causes some unexpected trait to be formed. This is termed as mutation. Statistically, mutation is very rare. A common example for mutation is cancer. Mutation can be either good or bad. Even evolution is a result of mutation. Single celled organisms have mutated to form multi-celled organisms and so on .... </p>
+<p>Once the simple process of cell reproduction is complete, we have a brand new offspring. The offspring contains traits of both the parents in random proportions. 
+Similarly, many parents create multiple offspring, each offspring containing their traits. This set of offspring can be termed as a generation. We call it first generation. Again, when these offsprings (children) become parent , and produce their own offsprings, it gives rise to generation 2. Hence, when the process continues to go on, every generation can be said to have characteristics of the previous generation. Since the previous generation has characteristics of its&rsquo; previous generation, we can say that any randomly picked generation will have characteristics from all the previous generations.</p>
+<h1 id="the-cs-stuff">The CS Stuff !!<a class="headerlink" href="#the-cs-stuff" title="Permanent link">&para;</a></h1>
+<p><em>Now where do we apply all this biology ?</em> Just as we have an offspring which is equivalent to a weighted addition of the characteristics of the two parents, similarly, a chessboard with a certain arrangement of queens can be said to be an offspring of 2 parent chessboards that may have similar arrangements. For example, suppose we have 2 parent chessboards (C1 and C2). And on reproduction, C1 and C2 produce the offspring chessboard OC. Based on the aforemention biological evidence, I can say that </p>
+<div class="math">$$ OC = f(C1, C2) $$</div>
+<p> where <span class="math">\( f( )\)</span> is simply a function that combines random characteristics of C1 with the remaining characteristics of C2.</p>
+<p>So any chessboard arrangement of 8 queens can be computed as selections of certain arrangements from C1 and C2. Thereby, asserting the fact that I am creating OC through random probabilistic selection and not any pre-processed criteria. This is strictly following the model prescribed by nature. By keeping everything random, we are essentially replicating the random &ldquo;crossing over of genes&rdquo; that occurs in cells.</p>
+<p>**Core Working: **</p>
+<ul>
+<li><em>Initialization</em> : The initialization contains of the randomly distributed population
+that is generated. Lower population size will lead to lots of time in computation of
+approximate solution. And higher value will cause internal iterations to increase.
+Therefore choose population size carefully. In this example we have tried with
+population size of 100 , 500 and 1000</li>
+<li><em>Selection of parents</em>: Just as evolutionary biology requires two parents to undergo
+meiosis, so does GA. Therefore there is need to select two parents which
+determine a child. The calculation in determining the parents is elaborated later</li>
+<li><em>CrossOver / Reproduction</em> : Once parents having high fitness are selected,
+crossover essentially marks the recombining of genetic materials / chromosomes
+to produce a healthy offspring</li>
+<li><em>Mutation</em> : Mutation may or maynot occur. In case mutation occurs, it forces a
+random value of child to change , thereby shifting the algorithm in either a
+positive or negative route</li>
+<li><em>Generation of new population</em> : For all population, a child must be computed.
+Therefore, the new population can be said to be a list dynamically populated by
+the children computed.</li>
+</ul>
+<h1 id="the-algorithm">The Algorithm:<a class="headerlink" href="#the-algorithm" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><span class="k">function</span><span class="w"> </span><span class="nf">Genetic-Algorithm</span><span class="p">(</span> population, Fitness-fn<span class="p">)</span><span class="w"> </span><span class="n">returns</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">individual</span>
+<span class="w">    </span><span class="n">inputs</span><span class="p">:</span><span class="w"> </span><span class="n">population</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">individuals</span>
+<span class="w">            </span><span class="n">Fitness</span><span class="o">-</span><span class="n">fn</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">measures</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">fitness</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">individual</span>
+
+<span class="w">    </span><span class="n">repeat</span>
+<span class="w">        </span><span class="n">parents</span><span class="w"> </span><span class="o">&lt;--</span><span class="w"> </span><span class="n">Select</span><span class="w"> </span><span class="n">parents</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">Population</span>
+<span class="w">        </span><span class="n">population</span><span class="w"> </span><span class="o">&lt;--</span><span class="w"> </span><span class="n">Offsprings</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">parents</span>
+
+<span class="w">    </span><span class="n">repeat</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="n">desired</span><span class="w"> </span><span class="n">fit</span><span class="w"> </span><span class="n">individual</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">obtained</span>
+
+<span class="k">return</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="n">individual</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">population</span>
+</code></pre></div>
+
+<p>Above is a simulated evolution algorithm that mimics production of offspring generation from a given population. The population refers to the possible inputs.The population can be defined as simply a collection of many individuals. So it simply means, all possible arrangements of the queens on a chessboard. 
+Consider this. Just as every human being can be defined by the presence of characteristics, any solution to the 8 queens problem can be defined by the placement of the queens in non attacking arrangements. Hence, each parent is a chessboard having some arbitary arrangement of the queens. Moving on, every individual can be regarded as a strong offspring or a weak one. We measure stregth of a human offspring through physical strength, immunity, etc. Whereas in the case of 8 queens, the fitness of a board arrangement can be considered as the number of clashes that take place between the queens. So the measure of <strong>fitness of any individual (chessboard arrangement)</strong> is attributed to <strong>number of clashes amongst attacking positions of queens</strong>.  </p>
+<p>**Fitness fn : **
+I said that the fitness fn is proportional to the number of clashes amongst the queens. If seen, there are 28 clashes possible in an 8 x 8 chessboard. Therefore, if an individual has high fitness, I can say that it will have lower number of clashes.</p>
+<div class="math">$$ \text{Let clashes} = \text{number of clashing queens}$$</div>
+<div class="math">$$ \therefore fitness = 28 - clashes $$</div>
+<p>Then, any individual with the maximum fitness will be having least number of clashes.</p>
+<h1 id="implementation">Implementation :<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h1>
+<p>You can checkout my implementation <a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f">here</a></p>
+<p>** Setting up population ** : Your population is eventually going to determine the output. Each individual of the population is a board arrangement. So, firstly let&rsquo;s describe the individual</p>
+<div class="highlight"><pre><span></span><code><span class="n">BoardPosition</span> <span class="p">:</span>
+    <span class="n">Attributes</span> <span class="p">:</span> 
+        <span class="o">-</span> <span class="n">Sequence</span>
+        <span class="o">-</span> <span class="n">Fitness</span>
+        <span class="o">-</span> <span class="n">Survival</span>
+</code></pre></div>
+
+<div class="gist">
+    <script src='https://gist.github.com/ac3593026e0a431bbc47aaf4e025fe67.js'></script>
+    <noscript>
+        <pre><code>def generateChromosome():
+	# randomly generates a sequence of board states.
+	global nQueens
+	init_distribution = np.arange(nQueens)
+	np.random.shuffle(init_distribution)
+	return init_distribution
+
+def generatePopulation(population_size = 100):
+	global POPULATION
+
+	POPULATION = population_size
+
+	population = [BoardPosition() for i in range(population_size)]
+	for i in range(population_size):
+		population[i].setSequence(generateChromosome())
+		population[i].setFitness(fitness(population[i].sequence))
+
+	return population
+</code></pre>
+    </noscript>
+</div>
+<p>As seen, each board position contains a sequence : the arrangement of queens on the board. A fitness value ( as discussed above) and a survival value. We need a survival value simply because evolutionary primitives say so. According to Darwin&rsquo;s theory, &lsquo;Survival of the fittest&rsquo;, each parent (board position) has to be able to survive. This survival influences the ability of the parent to reproduce.</p>
+<p>** Determining Fitness **</p>
+<p>Secondly, we define a fitness function. As discussed above, we shall characterize fitness as a maximum value. Even though less number of clashes mean higher fitness , for implementation purposes, we consider maximum values of fitness. This can be done becuase we subtract number of clashes from 28.</p>
+<p>To determine clashes, each queen has to be checked for </p>
+<ul>
+<li>Row clashes</li>
+<li>Column clashes</li>
+<li>Diagonal clashes</li>
+</ul>
+<p>The ideal case can yield upton 28 arrangements of non attacking pairs.</p>
+<p>Therefore max fitness = <span class="math">\(  28.\)</span></p>
+<p>Hence fitness val returned will be <span class="math">\( 28 - \text{&lt;number of clashes&gt;}\)</span> </p>
+<div class="highlight"><pre><span></span><code><span class="n">clashes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1"># calculate row and column clashes</span>
+<span class="c1"># just subtract the unique length of array from total length of array</span>
+<span class="c1"># [1,1,1,2,2,2] - [1,2] =&gt; 4 clashes</span>
+<span class="n">row_col_clashes</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)))</span>
+<span class="n">clashes</span> <span class="o">+=</span> <span class="n">row_col_clashes</span>
+
+<span class="c1"># calculate diagonal clashes</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">):</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">dy</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">chromosome</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">chromosome</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">dx</span> <span class="o">==</span> <span class="n">dy</span><span class="p">):</span>
+                <span class="n">clashes</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="k">return</span> <span class="mi">28</span> <span class="o">-</span> <span class="n">clashes</span>
+</code></pre></div>
+
+<p>** Determining Survival of individual **</p>
+<p>Having demostrated how to calculate the fitness value, we can now move on to defining a survival function. A survival function will determine as to how able is a particular parent to survive and produce a healthy offspring. If out of 1000 people, the probability of any random person getting picked is <span class="math">\( \frac{1}{1000}\)</span>, similarly, the survival function can be written as a normalized probability of a individual getting selected based upon the fitness :</p>
+<p><center></p>
+<div class="math">$$ \text{Survival for} i^{th} \text{individual} = \frac{f_i}{\sum_{j=1}^{j=populationSize} f_j } $$</div>
+<p></center></p>
+<p>** Selection of Parents  &amp; Crossover**</p>
+<p>Parent selection is quite straightforward. Simply selecting 2 random - non equal parent will do the trick, but is very inaccurate and time costing. Hence, by using the survival function, elimination of weaker parent can be performed. Eventually, the parents left will be ones that are more likely to produce a fit offspring. Analogous to biology, two dominant traits will more likely produce a dominant trait cause it won&rsquo;t matter which of the dominant trait is selected. </p>
+<p>Once two parents are selected, the proceeding part is crossover. Crossover involves selecting a part of parent 1 and concatenating it with parent 2. Why &hellip; Because our chromosomes do so. This selective addition of chessboard board sequences will create an offspring that may have one of these three characteristics</p>
+<ul>
+<li>It may either be a solution to the 8 queens problem. In that case, save the output and discard those parents &ndash;&gt; child path. </li>
+<li>It may have a higher fitness than either parent. This will also help in its survival</li>
+<li>It may have a lower fitness value, thereby lowering its survival</li>
+</ul>
+<p>Any of the three cases is still capable of producing a next generation. The only difference will be regarding the probability of that offspring to yield a substantially fit offspring.</p>
+<p>**Mutation : **
+Biologically and statistically, mutation is continously occuring at very low frequencies. In human genetic theory, mutation involves alteration within the structure of the chromosome, within the structure of the gene. To replicate this for 8 queens problem, one can simply alter a board arrangement. </p>
+<p><center><img alt="fitness_cros" src="./images/fitness_cros.png" /></p>
+<p><em>Source : Peter norvig genetic algorithm illustration</em>
+</center></p>
+<p>The above illustrates the entire flow from initial population to fitness
+function calculation, to selection to cross-over and finally mutation. <strong>Note : Mutation may or may not provide with the solution.</strong></p>
+<h1 id="how-to-interpret-input-and-output-sequences">How to interpret input and output sequences:<a class="headerlink" href="#how-to-interpret-input-and-output-sequences" title="Permanent link">&para;</a></h1>
+<p>Each row of the chess row is indexed from <span class="math">\(0 \text{-&gt;} 7\)</span> . The sequence <span class="math">\([\text{ a b c d  .... }]\)</span> means that in <span class="math">\(0^{\text{th}}\)</span> column, <span class="math">\(a^{\text{th}}\)</span> row,  the queen is present and so on. The following are example sequences that are (not) a solution to the problem.</p>
+<ul>
+<li><span class="math">\([\text{1 1 1 1 1 1 1 1}]\)</span> : This is certainly not a solution. All queens lie in the <span class="math">\(1^{\text{st}}\)</span> row of the board. Hence all are conflicting</li>
+<li><span class="math">\([\text{1 1 0 4 2 1 2 4}]\)</span> : Similarly, thi aint a solution either.</li>
+<li><span class="math">\([\text{1 6 2 5 7 4 0 3}]\)</span> : This satisfies 8 queen problem and hence a solution.</li>
+</ul>
+<h1 id="output-and-termination-criteria">Output and termination criteria :<a class="headerlink" href="#output-and-termination-criteria" title="Permanent link">&para;</a></h1>
+<p>Well, it seems that such an algorithm will keep producing offsprings and again their offsprings. When to stop. In my implementation , I&rsquo;ve kept a limit of iteration. This is just for purposes of conviniece. However, at anytime, the most optimal solution can be described as the <strong>most fit board position</strong>.</p>
+<p><center>
+    <img alt="im" src="./images/op8q.png" /></p>
+<p></center></p>
+<p><strong>You can check out the <a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f">code</a> at <a href="https://www.github.com/kushalvyas/">Github</a>.</strong></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

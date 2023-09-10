@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Caffe + ConvNets : Visual Recognition Made Easy</h1>
+            <h4 class="mb-3"> <p>Train and test Convolutional Nets on a dataset using Caffe</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <p>To classify, recognize and localize objects in an image is a hot topic in Computer Vision and  throughout the years various models have been established for the same. My previous post on <a href="./BOV.html" target="_blank">Bag of Visual Words Model for Image Classification and Recognition</a> illustrates one such model. Today I write about <a href="http://cs231n.github.io/convolutional-networks/" target="_blank">Convolutional Neural Networks</a> and how to implement them in <a href="http://caffe.berkeleyvision.org" target="_blank">Caffe</a>. and how to train a CNN for your own dataset. We will be using the standard dataset, but you can organize any other/personal dataset in a similar fashion.</p>
+<h2 id="basics-of-cnn">Basics of CNN :<a class="headerlink" href="#basics-of-cnn" title="Permanent link">&para;</a></h2>
+<p>A typical Convolutional Neural Net or <strong>CNN</strong>, is a feed-forward neural net, with the input being an image. Its&rsquo; major objective it to establish a hierarchy of spatial features present in an image using which it is able to classify. The architecture of the net comprises of convolutional layers, pooling layers , activation layer, and fully connected layers.</p>
+<p>One can refer <a href="http://cs231n.github.io/convolutional-networks/" target="_blank">this post by Andrej Karpathy</a> to understand the intricate details of a ConvNet.</p>
+<p><center><img alt="typical_conv" src="./images/cnn_images/typical_cnn.png" /></center>
+<center>Source : <a href="https://en. wikipedia.org/wiki/File:Typical_cnn.png" target="_blank">Convolutional Neural Nets : Wiki</a></center></p>
+<p><strong>Convolution Layer : CONV</strong> </p>
+<p>The primary operator is a convolution operation. For a 1-D signal it is expressed as 
+</p>
+<div class="math">$$ y(n) = x(n) * h(n) = \sum_{k = - \infty}^{k = + \infty}x[k] . h[n-k]$$</div>
+<p>However, an image is a 2D signal (stored as a 2D matrix). To convolve an image, we use a convolution kernel, which is simply a 2D matrix.</p>
+<div class="math">$$ convolve(I_1, I_2) = I_1[x, y] * I_2[x, y] = \sum_{n_1= - \infty}^{ n_1 = + \infty} \text{   } \sum_{n_2 = - \infty}^{ n_2 = + \infty} I_1[n_1, n_2].I_2[x - n_1, y - n_2]$$</div>
+<p>Here&rsquo;s an example of how it works</p>
+<p><img alt="cn2d" src="./images/cnn_images/con2d.png" /></p>
+<p>For this 7 x 7 matrix, and a kernel of 3 x 3, the kernel will slide over the matrix one column, at a time. Once it reaches the end of the matrix (columnwise), it&rsquo;ll shift to the next row. At every position, the dot product is computed. </p>
+<p>If the kernel is overlapped with the (0 , 0) position , we find the dot product of </p>
+<div class="math">$$ 
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 \\ 
+3 &amp; 2 &amp; 2 \\ 
+2 &amp; 4 &amp; 3
+\end{bmatrix} \text{ * }
+\begin{bmatrix} 
+-1 &amp; -1 &amp; -1 \\ 
+-1 &amp; 8 &amp; -1 \\ 
+-1 &amp; -1 &amp;  -1 
+\end{bmatrix} = \text{-1}$$</div>
+<p>which essentially is : </p>
+<p><span class="math">\(1\times-1 + 1\times-1 + 1\times-1 + 3\times-1 + 2\times8 + 2\times-1 + 2\times-1 + 4\times-1 + 3\times-1 = -1\)</span></p>
+<p>Similarly, assume an input image - <span class="math">\(I\)</span>  is of Size <span class="math">\((200 \text{ x } 200)\)</span>, and we have a kernel - <span class="math">\(k\)</span> of size <span class="math">\((10 \text{ x } 10)\)</span>. The convolution of this kernel over this image is to basically, take the kernel and slide it over the image column by column, row by row. Initially the kernel is placed at <span class="math">\(I[0, 0]\)</span>. Therefore the kernel covers a region of <span class="math">\(10 \text{ x } 10\)</span> (size of kernel) starting from <span class="math">\(I[0, 0] \text{ to } I[10,10]\)</span>. Once the dot product (convolution) is computed over this pixel region, the kernel is shifted by one column to the right. Now the kernel occupies an image region of <span class="math">\(I[0,1 ] \text{ to } I[10, 11]\)</span> and so on. 
+<center><img alt="conv_img" src="./images/cnn_images/convolution.png" /></center></p>
+<p><center>Source: <a href="http://stackoverflow.com/questions/15356153/how-do-convolution-matrices-work" target="_blank">Stackoverflow : How convolution matrices work</a></center></p>
+<p>A series of convolution operations take place at every layer, which extrapolates the pertinent information from the images. At every layer, multiple convolution operations take place, followed by zero padding and eventually passed through an activation layer and what is outputted is an Activation Map. </p>
+<p><strong>Filters and Stride</strong></p>
+<p>An image can be represented as a 3D array. The dimension being <span class="math">\(rows, cols, depth\)</span>. The 
+&lsquo;depth&rsquo; refers to the channels of the image, namely <span class="math">\(\text{red, green and blue}\)</span>. Hence, a color RGB image of size <span class="math">\(200 \text{ x } 200\)</span> is actually of size <span class="math">\(200 \text{ x } 200 \text{ x } 3\)</span>. To convolve this image, we need a kernel that not only convolves spatially, i.e along the rows and columns but also reaches out to the values in all the channels. Hence, the kernel used will be of a size <span class="math">\(k = 10 \text{ x } 10 \text{ x } 3\)</span>. <strong>Why 3?</strong> Because this will convolve through the depth of the image. The filter depth must be same as the depth of the input from the previous layer. Each filter can be moved over the image, column by column and row by row -&gt; this means that the stride is 1. Inshort, The number of pixels skipped whilst the filter traverses the image is stride. One can have a filter with stride &lsquo;s&rsquo;, implying that it&rsquo;ll skip &lsquo;s&rsquo; rows/columns while moving towards the other end of the image, convolving at each step.</p>
+<!-- <center>![conv_layer]({filename}/images/cnn_images/conv_layer.png)</center>
+<center>Source : [Convolutional Neural Nets : Wiki](https://en.wikipedia.org/wiki/File:Conv_layer.png)</center>
+
+ -->
+<p><strong>Activation and Pooling</strong></p>
+<p>An activation function basically defines the output of the neuron for the given input. Take a simple Hebbian Learning example . An activation function will return <span class="math">\(1\)</span> if input is <span class="math">\( &gt; 0\)</span> and return <span class="math">\(0\)</span> otherwise. The value of input being greater that 0, is nothing but a threshold value. Instead of 0, any other value can also act as a threshold. In ConvNets, a the popular activation function used is a Rectifier or RELU. </p>
+<div class="math">$$f(x) = \text{max(0, x)}$$</div>
+<p>This means that the output of the convolution is thresholded at 0. All positive values are returned as is and all negative values are made 0. </p>
+<p><center><img alt="relu_plot" src="./images/cnn_images/relu.png" /></center></p>
+<p>For our above example, if the convolution output is passed to the Rectifier unit, it&rsquo;ll set all negative values to zero. </p>
+<p><img alt="rell image" src="./images/cnn_images/rell.png" /></p>
+<p>On the other hand, the pooling operation is used to down-sample / reduce the activation map. This essentially reduces the volume of the middle-stages output. The output size is computed the same way as computed in the CONV layer. An important thing to note is that is that during the convolution layer, there is a rapid reduction in the dimensionality of the input. To maintain it at a constant size through multiple CONV layers,zero padding is used. Zero padding will pad the image with zeros on its boundaries making it of the same size as the input. It is in the pooling layer where the size reduction takes place.</p>
+<h2 id="implementation-with-caffe">Implementation with Caffe<a class="headerlink" href="#implementation-with-caffe" title="Permanent link">&para;</a></h2>
+<p><strong><a href="http://caffe.berkeleyvision.org/" target="_blank">Caffe</a></strong> is a framework for deep learning, very popular for its simplicity in implementing CNN&rsquo;s. It has been developed by the Berkely Vision &amp; Learning Center. You can use a CPU as well as a GPU mode. It is widely known that when it comes to matrix and other such image operations , most of which can be done in parallel, GPU&rsquo;s triumph over CPU&rsquo;s. I used my CPU machine to train a limited Caltech101 dataset, and it went on for 3 days. </p>
+<p><strong>Setting Up</strong></p>
+<p>The example covers a classification tutorial with Caffe and your own dataset. Before starting off, it is important that Caffe and the following modules are setup.</p>
+<p><em><a href="https://www.vision.caltech.edu/Image_Datasets/Caltech101/" target="_blank">Caltech101 limted dataset</a></em> : This comprises of 101 object categories which can be used to test and learn classification. You can download and extract the dataset in the working directory. </p>
+<p><em><a href="https://www.dropbox.com/s/y3k1tnlhymo2xd8/caltechNET_train_iter_356.caffemodel?dl=0" target="_blank">My Pre-Trained Caltech101 Model</a></em> : Incase you are low on computing power, or would just like to test the code, you can simply download my pretrained network.</p>
+<p><strong>Preparing LMDB format data</strong></p>
+<p>This article will now cover how to make a custom dataset , and train it using caffe. There are constraints, wherein caffe uses an lmdb data format, and it is important to convert your dataset into the respective formats.</p>
+<p>Next is converting the images into an lmdb format. The caffe documentation mentions to generate a txt file comprising of the image path with its associated class number. You can write a simple python script listing contents of your training and testing directories into such text files</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">sunflower</span><span class="o">/</span><span class="n">image_0020</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">0</span>
+<span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">Motorbike</span><span class="o">/</span><span class="n">image_0033</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">1</span>
+<span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">soccer_ball</span><span class="o">/</span><span class="n">image_0042</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">4</span>
+<span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">accordion</span><span class="o">/</span><span class="n">image_0258</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">6</span>
+<span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">dollar_bill</span><span class="o">/</span><span class="n">image_0673</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">2</span>
+<span class="o">&lt;</span><span class="n">path_to_caltech101</span><span class="o">&gt;/</span><span class="n">limited</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">airplanes</span><span class="o">/</span><span class="n">image_0050</span><span class="o">.</span><span class="n">jpg</span> <span class="mi">3</span>
+</code></pre></div>
+
+<p><br>
+Once done, use the Caffe <code>convert_imageset</code> to convert these images into the leveldb/lmdb data format. The default backend option is an lmdb backend. The <code>convert_imageset</code>  can be found at <code>caffe/build/tools</code>. </p>
+<div class="highlight"><pre><span></span><code>./convert_imageset --resize_height=200 --resize_width=200 --shuffle $PATH_TO_IMAGESET $PATH_TO_TEXT_FILE_CRAEATED_ABOVE.txt $OUTPUT_LMDB_LOCATION
+</code></pre></div>
+
+<p>Or simply change the paths and location inside the <code>caffe/examples/imagenet/create_imagnet.sh</code> file</p>
+<p><br>
+Eventually your working directory will comprise of a train LMDB directory and a test LMDB directory.    </p>
+<div class="highlight"><pre><span></span><code>    |- src
+    |- train_lmdb_folder
+    |- test_lmdb_folder
+</code></pre></div>
+
+<p><br><br></p>
+<p><strong>Defining the Network Architecture</strong>:</p>
+<p>Caffe network architectures are very simple to define. Create a file &ldquo;model.prototxt&rdquo; and define the network architecture as follows. We will be using the AlexNET model (winner of ImageNet challenge 2012).
+Given below is a representation of how the net looks like.</p>
+<p><img alt="net_arch" src="./images/cnn_images/net_arch.png" /></p>
+<p><a href="./images/cnn_images/net_arch.png" target="_blank">Click here and zoom to view it </a></p>
+<p>To define the architecture, open the model.prototxt file. The model begins with a net name : </p>
+<div class="highlight"><pre><span></span><code>        name : &quot;NameoftheNET&quot;
+</code></pre></div>
+
+<p>Then sequentially start defining layers. 
+First comes the data layer. Any layer that needs to be defined has a few mandatory parameters, that help in the definition of the neural net structure. To begin with, each layer is associated with a type (data, conv, relu, pool, etc) and its location - whether it on top of a previous layer, and beneath the next layer. Similarly, the data layer is serves as the input to the ConvNet. </p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="nx">layer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;data&quot;</span>
+<span class="w">          </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Data&quot;</span>
+<span class="w">          </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;data&quot;</span>
+<span class="w">          </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;label&quot;</span>
+<span class="w">          </span><span class="nx">include</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">phase</span><span class="p">:</span><span class="w"> </span><span class="nx">TRAIN</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="nx">transform_param</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">mirror</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="nx">crop_size</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span>
+<span class="w">            </span><span class="nx">mean_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mean.binaryproto&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="nx">data_param</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;path - to - train_lmdb_folder&quot;</span>
+<span class="w">            </span><span class="nx">batch_size</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span>
+<span class="w">            </span><span class="nx">backend</span><span class="p">:</span><span class="w"> </span><span class="nx">LMDB</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+
+<p>As seen, the next layer is a <code>conv</code> layer. Defining layers in Caffe is quite straightforward. Each convolutional layer has a number of required and optional parameters. The required parameters involve num_inputs i.e. input size, and the kernel size. Optional parameters comprise of strides, padding width, etc. </p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="nx">layer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;conv1&quot;</span>
+<span class="w">            </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Convolution&quot;</span>
+<span class="w">            </span><span class="nx">bottom</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;data&quot;</span>
+<span class="w">            </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;conv1&quot;</span>
+
+<span class="w">            </span><span class="o">...</span><span class="p">.</span>
+<span class="w">            </span><span class="o">...</span><span class="p">.</span>
+<span class="w">            </span><span class="o">...</span><span class="p">.</span>
+
+<span class="w">            </span><span class="nx">convolution_param</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">num_output</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span>
+<span class="w">                </span><span class="nx">kernel_size</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span>
+<span class="w">                </span><span class="nx">stride</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">                </span><span class="o">...</span>
+<span class="w">                </span><span class="o">...</span>
+<span class="w">                </span><span class="o">...</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+
+<p>Moving on, we talked about Pool and ReLU layers before as an integral part of ConvNets. Here&rsquo;s how to define them.</p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="nx">layer</span><span class="p">{</span><span class="w">                              </span><span class="nx">layer</span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;relu1&quot;</span><span class="w">                       </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pool1&quot;</span>
+<span class="w">            </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ReLU&quot;</span><span class="w">                        </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Pooling&quot;</span>
+<span class="w">            </span><span class="nx">bottom</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;conv1&quot;</span><span class="w">                     </span><span class="nx">bottom</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;norm1&quot;</span>
+<span class="w">            </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;conv1&quot;</span><span class="w">                        </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;pool1&quot;</span>
+<span class="w">        </span><span class="p">}</span><span class="w">                                       </span><span class="nx">pooling_param</span><span class="p">{</span>
+<span class="w">                                                    </span><span class="nx">pool</span><span class="p">:</span><span class="w"> </span><span class="nx">MAX</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="nx">MAX</span><span class="w"> </span><span class="nx">POOL</span><span class="w"> </span><span class="nx">algorithm</span>
+<span class="w">                                                    </span><span class="nx">kernel_size</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">                                                    </span><span class="nx">stride</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                                                </span><span class="p">}</span>
+</code></pre></div>
+
+<p><br>
+A ReLU will simply activate the convolution layer output and essentially threshold it to 0. (refer Rectifier activation function). Whereas the pooling will reduce the size of the output. AlexNet also uses a normalization layer, which is not much used nowadays.  Similarly, one can keep defining layers in order according to the architecture you want. Lastly, each ConvNet has a fully connected layer, where the input is a column vector ( 1 D). </p>
+<div class="highlight"><pre><span></span><code><span class="w">        </span><span class="nx">layer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;loss&quot;</span>
+<span class="w">            </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SoftmaxWithLoss&quot;</span>
+<span class="w">            </span><span class="nx">bottom</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;fc8&quot;</span>
+<span class="w">            </span><span class="nx">bottom</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;label&quot;</span>
+<span class="w">            </span><span class="nx">top</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;loss&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+
+<p><br></p>
+<p>You can view the <a href="https://gist.github.com/kushalvyas/31e595bf1fca3a2dd50227ab524427a7" target="_blank">complete AlexNet architecture : gist</a></p>
+<p><strong>Training your data</strong>:</p>
+<p>Training can be done in either ways. You can write a python script (which I will update to the blog in a few days)  or you can use the <em>caffe tool</em> to do so. For now, I&rsquo;ll be explaining w.r.t the caffe tool which can be found in <code>$caffe_root_dir/build/tools/caffe</code></p>
+<p>Once the network architecture has been fixed, all your training lmdb files created the next step is to define the Caffe Solver, defining the learning rate, momentum, solving mode (either CPU or GPU), and path for saving snapshots of the model.</p>
+<div class="highlight"><pre><span></span><code>        net: &quot;model.prototxt&quot;
+        base_lr: 0.01
+        lr_policy: &quot;step&quot;
+        gamma: 0.1
+        stepsize: 100000
+        display: 5
+        max_iter: 4500
+        momentum: 0.9
+        weight_decay: 0.0005
+        snapshot: 1000
+        snapshot_prefix: &quot;snapshots1/caltechNET_train&quot;
+        solver_mode: CPU
+</code></pre></div>
+
+<p><br>
+Make sure that the solver contains the correct name of the neural net model.</p>
+<p><em>Computing Image means</em> : <a href="http://caffe.berkeleyvision.org/gathered/examples/imagenet.html" target="_blank">The AlexNet model requires to subtract each image instance from the mean</a>. You can refer to the <code>caffe_root_dir/examples/imagenet/make_imagenet_mean.sh</code> file to compute the mean.</p>
+<p>The  model, solver, means file and lmdb imagesets have been made. Next, is to sit and train the model. This can be done using the caffe executable file.</p>
+<p><code>$caffe_root_dir/build/tools/caffe train --solver=solver.prototxt</code></p>
+<p>Literally, sit back and enjoy ! Your snapshots directory will get updated with the model snapshots as and when.</p>
+<p><br></p>
+<p><strong>Testing</strong>:</p>
+<p>The final trained net is available in 
+<code>snapshots/&lt;file_iter_number&gt;.caffemodel</code> file. There are a few tricks to test a particular image.</p>
+<p>Firstly, it is important that we map the training classes to their respective class names. If you see above, in the part where the data was being prepared, we made a txtfile of the following pattern</p>
+<p>&lt;path_to_caltech101&gt;/limited/train/sunflower/image_0020.jpg 0</p>
+<p>The class &lsquo;sunflower&rsquo; has been mapped to 0. and so on with other classes.
+<br></p>
+<table>
+<thead>
+<tr>
+<th>Class name</th>
+<th>Mapped to class number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunflower</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Motorbike</td>
+<td>1</td>
+</tr>
+<tr>
+<td>dollar_bill</td>
+<td>2</td>
+</tr>
+<tr>
+<td>airplanes</td>
+<td>3</td>
+</tr>
+<tr>
+<td>soccer_ball</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Faces</td>
+<td>5</td>
+</tr>
+<tr>
+<td>accordion</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+Next, the caffe model needs to be loaded. </p>
+<p><br></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">net</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">Classifier</span><span class="p">(</span><span class="s2">&quot;path_to_model.prototxt&quot;</span><span class="p">,</span> <span class="s2">&quot;snapshot_file.caffemodel&quot;</span><span class="p">,</span> 
+                       <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;means.npy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+                       <span class="n">channel_swap</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                       <span class="n">raw_scale</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+                       <span class="n">image_dims</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">im</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s2">&quot;path_to_image&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">im</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">class_id</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="c1"># this returns the class id or the class number</span>
+
+<span class="o">...</span> 
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">classname</span><span class="p">[</span><span class="n">class_id</span><span class="p">]</span> <span class="c1"># to print the name of the class</span>
+</code></pre></div>
+
+<p><br><br>
+<strong>Some tricks</strong> : </p>
+<p>There may be some cases where the means file is stored as a means.binaryproto. There is a quick way to convert it to a npy file. <a href="https://github.com/BVLC/caffe/issues/808" target="_blank">Refer issue #808</a> for the conversion of .binaryproto to .npy files.
+<br></p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># solution github issue 808 by @mafiosso</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">channels</span> <span class="o">=</span> <span class="mi">3</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">blob</span> <span class="o">=</span> <span class="n">caffe</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">caffe_pb2</span><span class="o">.</span><span class="n">BlobProto</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;mean.binaryproto&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">blob</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">blob</span><span class="o">.</span><span class="n">data</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">means</span><span class="o">.</span><span class="n">shape</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="c1"># size of image. </span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;means.npy&quot;</span><span class="p">,</span> <span class="n">means</span><span class="p">)</span>
+</code></pre></div>
+
+<p><br>
+It is highly recommended that you use GPU&rsquo;s to tarin networks. However, feel free to experiment with your personal computers. Works just fine !</p>
+<h2 id="classification-results">Classification results<a class="headerlink" href="#classification-results" title="Permanent link">&para;</a></h2>
+<p>The Caltech101 dataset limited directory already has a split of data into train and test. </p>
+<p><center></p>
+<p>There are a few snaps of outputs when the model was tested on the limited version of the dataset .</p>
+<p><img alt="im1" src="./images/cnn_images/new_a.png" />
+<img alt="im2" src="./images/cnn_images/new_airplane.png" />
+<img alt="im3" src="./images/cnn_images/new_soccer_ball.png" /><br>
+<img alt="im4" src="./images/cnn_images/new_motorbike.png" />
+<img alt="im5" src="./images/cnn_images/new_sunflower.png" /></p>
+<p></center></p>
+<p>So, we have completed the tutorial on how to create a custom dataset and train it using caffe. Now you can implement this and train any dataset you want. I would recommend reading up on the references to get a better understanding of ConvNets.</p>
+<p><br>
+<strong>I will keep updating this article with newly pretrained models and adding more about python interfacing with Caffe. Till then, have fun implementing CNN&rsquo;s.</strong></p>
+<p><br><br><br></p>
+<h2 id="references">References:<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>[1] <a href="http://cs231n.github.io/convolutional-networks/" target="_blank">Convolutional Neural Networks for Visual Recognition - CS231n Stanford</a></p>
+<p>[2] <a href="http://caffe.berkeleyvision.org" target="_blank">Berkely Vision Lab - Caffe</a></p>
+<p>[3] <a href="http://caffe.berkeleyvision.org/gathered/examples/imagenet.html" target="_blank">ImageNet tutorial - Caffe Docs</a></p>
+<p>[4] <a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank">AlexNet Paper</a></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

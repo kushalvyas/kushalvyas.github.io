@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Image Stitching: A Simplistic Tutorial</h1>
+            <h4 class="mb-3"> <p>Creating a panorama using multiple images</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <h3 id="multiple-image-stitching">Multiple Image Stitching<a class="headerlink" href="#multiple-image-stitching" title="Permanent link">&para;</a></h3>
+<p>I must say, even I was enjoying while developing this tutorial . Something about image perspective and enlarged images is simply captivating to a computer vision student (LOL) . I think, image stitching is an excellent introduction to the coordinate spaces and perspectives vision. Here I am going to show how to take an ordered set of many images, <strong>(assuming they have been shot from left to right direction)</strong> .</p>
+<p>So what is image stitching ? In simple terms, for an input group of images, the output is a composite image such that it is a culmination of scenes. At the same time, the logical flow between the images must be preserved.</p>
+<p>For example, consider the set of images below. (Taken from <a href="https://www.mathworks.com/examples/matlab-computer-vision/mw/vision_product-FeatureBasedPanoramicImageStitchingExample-feature-based-panoramic-image-stitching">matlab examples</a>).
+From a group of an input montage, we are essentially creating a singular stitched image. One that explains the full scene in detail. It is quite an interesting algorithm !
+<center>
+<img src="images/stitching/matlab_montage.png" width="400" height="300" >
+<img src="images/stitching/matlab_pano.png" width="400" height="300"><br>
+<caption>(Taken from <a href="https://www.mathworks.com/examples/matlab-computer-vision/mw/vision_product-FeatureBasedPanoramicImageStitchingExample-feature-based-panoramic-image-stitching">matlab examples</a>).</caption>
+</center></p>
+<p><strong>Topics being covered</strong>
+The implementation will be carried out in python programming language. </p>
+<ul>
+<li>Reading multiple images ( in order)</li>
+<li>Finding logical consistencies within images (this will be done using homography).</li>
+<li>Stitching Up images. </li>
+</ul>
+<p>In need for any literature reference, please refer this <a href="http://matthewalunbrown.com/papers/ijcv2007.pdf">paper by Mathew Brown</a></p>
+<h3 id="lets-begin">Let&rsquo;s begin &hellip;<a class="headerlink" href="#lets-begin" title="Permanent link">&para;</a></h3>
+<p>Let&rsquo;s first understand the concept of mosaicking or image stitching. Basically if you want to capture a big scene. Now your camera can only provide an image of a specific resolution and that resolution , say 640 by 480 , is certainly not enough to capture the big panoramic view. So , what one can do is capture multiple images of the entire scene and then put together all bits and pieces into one big mat of images. Yes, it seems good .. right ! Such photographs , which pose as an ordered collection of a scene are called as mosaics or panoramas. The entire process of acquiring multiple image and converting them into such panoramas is called as image mosaicking. And finally, we have one beautiful big and large photograph of the scenic view.</p>
+<p>Another method for achieving this, is by using wide angle lens in your camera. What a wide angle lens does, is effectively increase your field of view. The output, will differ (obviously). But for the purposes of this tutorial, let&rsquo;s get into how to create panoramas using computers and not lens :P </p>
+<h3 id="setting-up-the-environment">Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Permanent link">&para;</a></h3>
+<p>Please note that your system is setup with Python 2.7 (Code implementation is in python2.7 if you have other versions, please modify the code accordingly) and OpenCV 3.0 . We will be using OpenCV&rsquo;s helper utilities for reading images, writing images and conversion of color spaces. Once the images are obtained, the entire computation of the panorama will be done using a home brewed function.  This blog article is divided into three major parts. </p>
+<p><strong>*</strong> Input, read and process images : image paths from text files. Each textfile contains the list of paths to each image. <strong>Make sure that the paths are in left_to_right order of orientation.</strong></p>
+<p><strong>*</strong> Computation relative orientation of images w.r.t each other : pairwise</p>
+<p><strong>*</strong> The stitching / mix and match module : which essentially joins the two images at a time</p>
+<h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
+<p>The algorithm for performing image stitching is pretty straightforward.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">images</span> <span class="p">[]</span> <span class="o">&lt;--</span> <span class="n">Input</span> <span class="n">images</span>
+    <span class="n">Assuming</span><span class="p">,</span> <span class="n">that</span> <span class="n">the</span> <span class="n">center</span> <span class="n">image</span> <span class="ow">is</span> <span class="n">no_of_images</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">let</span> <span class="n">centerIdx</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+    <span class="k">for</span> <span class="n">each</span> <span class="n">images</span><span class="p">[]</span> <span class="n">at</span> <span class="n">positions</span> <span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">centerIdx</span> <span class="p">:</span>
+        <span class="n">perform</span> <span class="n">leftward</span> <span class="n">stitching</span>
+
+    <span class="k">for</span> <span class="n">each</span> <span class="n">images</span><span class="p">[]</span> <span class="n">at</span> <span class="n">positions</span> <span class="n">centerIdx</span> <span class="o">-&gt;</span> <span class="n">length</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="n">perform</span> <span class="n">rightward</span> <span class="n">stitching</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The output will be a complete mosaic of the input images.</p>
+<p><strong>Some Constraints</strong>
+The algorithm is time consuming, due to the number of iterations involved, it is best that hte input number of images is not too high or not of very high resolution (eg. 4000x3000). 
+My implementation is based on a 2 GB RAM computer having intel i3 processor (Not tested it on my machine yet !). Feel free to upgrade/scale this model using higher specs, or maybe GPU&rsquo;s .It&rsquo;s never too late to try.</p>
+<h3 id="project-architecture">Project Architecture :<a class="headerlink" href="#project-architecture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p">|</span>_<span class="w"> </span>code<span class="w"> </span>-<span class="p">|</span>
+<span class="w">    </span><span class="p">|</span><span class="w">        </span><span class="p">|</span>--<span class="w"> </span>pano.py
+<span class="w">    </span><span class="p">|</span><span class="w">        </span><span class="p">|</span>--<span class="w"> </span>txtlists-<span class="p">|</span>
+<span class="w">    </span><span class="p">|</span><span class="w">                     </span><span class="p">|</span>--files1.txt<span class="w"> </span>....<span class="w"> </span>
+<span class="w">    </span><span class="p">|</span><span class="w">   </span>
+<span class="w">    </span><span class="p">|</span>_<span class="w"> </span>images<span class="w"> </span>-<span class="w"> </span><span class="p">|</span>
+<span class="w">    </span><span class="p">|</span><span class="w">           </span><span class="p">|</span>-<span class="w"> </span>img1.jpg
+<span class="w">    </span><span class="p">|</span><span class="w">           </span><span class="p">|</span>-<span class="w"> </span>abc.jpg<span class="w"> </span>
+<span class="w">    </span><span class="p">|</span><span class="w">           </span>....<span class="w"> </span>and<span class="w"> </span>so<span class="w"> </span>on<span class="w"> </span>...
+</code></pre></div>
+
+<p><br></p>
+<h2 id="__-click-here-to-check-out-the-code-on-github-__">__ <a href="https://github.com/kushalvyas/Python-Multiple-Image-Stitching">Click here to check out the code</a> on <a href="https://github.com/kushalvyas" target="_blank">Github</a> __<a class="headerlink" href="#__-click-here-to-check-out-the-code-on-github-__" title="Permanent link">&para;</a></h2>
+<p><br></p>
+<p>The project architecture is as follows. The code directory contains the main <code>pano.py</code> file. Also it contains a <code>txtlists/</code> directory which contains files having the paths to images in the panorama. These images are individually stored inside <code>images/ directory</code></p>
+<p>In this tutorial, I will be using images from <a href="http://www.cvl.isy.liu.se/en/research/datasets/passta/" target="_blank">PASSTA Datasets</a>. It contains 2 datasets, Lunchroom and Synthetic.
+Also, to test, I will be using images from <a href="http://study.marearts.com/2013/11/opencv-stitching-example-stitcher-class.html" target="_blank">Mare&rsquo;s Computer Vision blog</a>. . I&rsquo;ll be using <a href="https://github.com/daeyun/Image-Stitching/tree/master/img/hill" target="_blank">daeyun&rsquo;s</a> test hill images as well. and <a href="">tsherlock</a> too !! (<strong>For respective usage and citations , take a look at the references</strong>)</p>
+<h3 id="now-the-real-part">Now the real part.<a class="headerlink" href="#now-the-real-part" title="Permanent link">&para;</a></h3>
+<p>To understand either of the leftward stitching or rightward stitching module, first let&rsquo;s get some vision concepts straight. They being: </p>
+<ul>
+<li>*Homography : Oh I love this !</li>
+<li>*Warping : Cause, without warping, homography would feel a bit lonely</li>
+<li>*Blending : Cause intensity differences are a bit too mainstream</li>
+</ul>
+<p><strong>Homography</strong></p>
+<p>Okay, so assume you&rsquo;re looking at a scenery. You will be having a field of view and that field of view is of what you want to make a panorama. You can rotate your head and cover a big area. But while you are looking straight, looking directly perpendicularly at a sub-scene, the remaining part of the scenery appears slightly inclined or slightly narrowed out. This is due to simple physics. Since you are facing in one direction, the things to your extreme periphery appears unclear, reduced in dimension and not necessarily straight/normal (a bit inclined). This is exactly what we will be exploiting.</p>
+<p>Consider the images shown in the above figure. Every image will contain some common portion with the other images. Due to this commonness we are able to say that <span class="math">\(image \text{ x}\)</span> will either lie on to the right or left side of <span class="math">\(image \text{ y }\)</span>.  </p>
+<p>Anyway, now that I&rsquo;ve made that clear, let&rsquo;s proceed as to how do we calculate homography. Say you have a pair of images <span class="math">\(I1 \text{ , } I2\)</span> . You capture the first image. Then you decide to rotate your camera, or maybe perform some translation  or maybe a combination of rotation / translation motion. Then having update your new camera position , you capture a second image. The problem now at hand is, How do you solve for a system wherein you&rsquo;re required to create a transformation that efficiently maps a point that is being projected in both the images. Or in simple terms, How do you visualize one image w.r.t another point of view, given there is some information available about both your points of views.</p>
+<p><center>
+<img src="images/stitching/per.png" width="400" height="300" >
+<br>
+<caption>Types of transforms</caption>
+</center></p>
+<p>Each of the above transformations performs some sorts of image transformation. For eg. a projective (well in your case,homography ) transform will preserve straight lines, .. etc. Moving on, a homography matrix is such that , if applied to any image, transforms image plane P1 to another image plane P2.</p>
+<p>See the pic below, you&rsquo;ll understand what i’m talking about.
+<center>
+<img src="images/stitching/mix.png">
+<br>
+<caption>Source :<a href="http://stackoverflow.com/questions/13570140/how-to-use-homography-to-transform-pictures-in-opencv">This SO Post</a> </caption>
+</center></p>
+<p>What you see above, can be an output of applying homography from <span class="math">\(I1=H \times I2\)</span> . <a href="http://stackoverflow.com/questions/13570140/how-to-use-homography-to-transform-pictures-in-opencv">HOW TO use Homography</a> to transform pictures in OpenCV? ( Check out this answer too. these pics have been taken from the aforementioned post ).</p>
+<p>You can use <a href="http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html?highlight=findhomography#findhomography">opencv findhomography ( )</a> method to solve for homography. For finding <span class="math">\(I1=H \times I2\)</span> you will need to pass coordinates of points in original image 1 plane and coordinates of target points in image 2 to the method. Once through, the method will spit out the homography matrix</p>
+<p><br></p>
+<p><strong>How to identify points to calculate homography !</strong></p>
+<p>One of the straight forward methods is as follows</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">Compute</span><span class="w"> </span><span class="k">similar</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">both</span><span class="w"> </span><span class="n">images</span>
+
+<span class="w">    </span><span class="k">Out</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">good</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="p">(</span><span class="n">you</span><span class="err">&#39;</span><span class="n">ll</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">plenty</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">tutorials</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">Make</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">array</span><span class="w"> </span><span class="n">sorts</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">featuresofI1</span><span class="w"> </span><span class="o">==&gt;</span><span class="w"> </span><span class="o">[</span><span class="n">srcPoints</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">featuresofI2</span><span class="w"> </span><span class="o">==&gt;[</span><span class="n">dstPoints</span><span class="o">]</span><span class="w"> </span><span class="p">(</span><span class="k">using</span><span class="w"> </span><span class="n">opencv</span><span class="w"> </span><span class="n">nomenclature</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">Compute</span><span class="w"> </span><span class="n">Homography</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">RANSAC</span><span class="w"> </span><span class="n">algorithm</span>
+</code></pre></div>
+
+<p><br>
+__ Step 1: Feature extraction__:</p>
+<p>We shall be using opencv_contrib&rsquo;s SIFT descriptor. SIFT , as in Scale Invariant Feature Transform, is a very powerful CV algorithm. Please read my <a href="./BOV.html">Bag of Visual Words for Image classification post</a> to understand more about features.
+Also, check out <a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_intro.html">OpenCV&rsquo;s docs on SIFT</a>. They are a pretty good resource as well! </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">sift_obj</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">xfeatures2d</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+    <span class="n">descriptors</span><span class="p">,</span> <span class="n">keypoints</span> <span class="o">=</span> <span class="n">sift_obj</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">image_gray</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<p>If you plot the features, this is how it will look .
+(Image on left shows actual image. Image on the right is annotated with features detected by SIFT)</p>
+<p>Example 1 : using Lunchroom image
+<center>
+<img src="images/stitching/sift_keypoints101.jpg"  >
+<br>
+<caption>Lunchroom image : PASSTA Dataset</caption>
+</center></p>
+<!-- Example 2 : using building image
+<center>
+<img src="images/stitching/building_sift.png" width="400" height="300" >
+</center> -->
+
+<p>__ Step 2: Matching correspondences between images __:</p>
+<p>Once you have got the descriptors and keypoints of 2 images, i.e. an image pair, we will find correspondences between them. Why do we do this ? Well, in order to join any two images into a bigger images, we must obtain as to what are the overlapping points. These overlapping points will give us an idea of the orientation of the second image w.r.t to the other one. And based on these common points, we get an idea whether the second image has just slid into the bigger image  or has it been rotated and then overlapped, or maybe scaled down/up and then fitted. All such information is yielded by establishing correspondences. This process is called <strong>registration</strong> .</p>
+<p>For matching, one can use either FLANN or BFMatcher, that is provided by opencv. </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="c1"># FLANN parameters</span>
+    <span class="n">FLANN_INDEX_KDTREE</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">index_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">algorithm</span> <span class="o">=</span> <span class="n">FLANN_INDEX_KDTREE</span><span class="p">,</span> <span class="n">trees</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">search_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">checks</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>   <span class="c1"># or pass empty dictionary</span>
+
+    <span class="n">flann</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FlannBasedMatcher</span><span class="p">(</span><span class="n">index_params</span><span class="p">,</span><span class="n">search_params</span><span class="p">)</span>
+
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">flann</span><span class="o">.</span><span class="n">knnMatch</span><span class="p">(</span><span class="n">des1</span><span class="p">,</span><span class="n">des2</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">img3</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">drawMatchesKnn</span><span class="p">(</span><span class="n">img1c</span><span class="p">,</span><span class="n">kp1</span><span class="p">,</span><span class="n">img2c</span><span class="p">,</span><span class="n">kp2</span><span class="p">,</span><span class="n">matches</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="o">**</span><span class="n">draw_params</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;correspondences&quot;</span><span class="p">,</span> <span class="n">img3</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Having computed the matches, you get a similar output : </p>
+<p>With the Lunchroom dataset
+<center>
+<img src="images/stitching/matches12.png" > 
+<br>
+<caption>Feature matching on lunchroom images</caption>
+</center></p>
+<p>With the Hill example:
+<center>
+<img src="images/stitching/img31.png" width="400" height="300" >
+<br>
+<caption>Feature matching on hill example image</caption>
+</center></p>
+<!-- With the building example:
+<center>
+<img src="images/stitching/img3.png" width="400" height="300" >
+</center> -->
+
+<p><strong>Step 3: Compute Homography</strong></p>
+<p>Yes, once we have obtained matches between the images, our next step is to calculate the homography matrix. As described above, the homography matrix will use these matching points, to estimate a relative orientation transform within the two images.
+i.e. it&rsquo;ll solve for the equation
+<center></p>
+<div class="math">$$I_x = H \times I_y $$</div>
+<p> </center>
+Hence, it solves for the matrix <span class="math">\(H\)</span></p>
+<p>Well,  to estimate the homography is a simple task. If you are using opencv, it&rsquo;s a two line code. However , I&rsquo;d recommend that one implements oneself.</p>
+<div class="highlight"><pre><span></span><code><span class="n">H</span><span class="p">,</span> <span class="n">__</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">findHomography</span><span class="p">(</span><span class="n">srcPoints</span><span class="p">,</span> <span class="n">dstPoints</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">RANSAC</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Viola ! Our homography matrix looks something like this  &hellip;</p>
+<p><center>
+    </p>
+<div class="math">$$ \begin{bmatrix}
+h_\text{11} &amp; h_\text{12}  &amp; h_\text{13} \\ 
+h_\text{21} &amp; h_\text{22} &amp; h_\text{23}  \\ 
+h_\text{31} &amp; h_\text{32}   &amp; h_\text{33}
+\end{bmatrix} $$</div>
+<p></center></p>
+<p>Anyway, putting the pretty graphics aside, understand what the homography matrix is . Homography preserves the straight lines in an image. Hence the only possible transformations possible are translations, affines, etc. For example, for an affine transform, </p>
+<div class="math">$$\begin{bmatrix} h_\text{31} &amp; h_\text{32}   &amp; h_\text{33} \end{bmatrix} = \text{[0 0 1]}$$</div>
+<p>
+Also, you can play around with <span class="math">\(h_\text{13} \text{ and } \  h_\text{23}\)</span> for translation</p>
+<p>__ Step 4 : Warping &amp; Stitching __:</p>
+<p>To understand stitching, I&rsquo;d like to recommend <a href="http://www.pyimagesearch.com/2016/01/11/opencv-panorama-stitching/" target="_blank">Adrian Rosebrock&rsquo;s blog post on OpenCV Panorama stitching</a>. His blog provides a wonderful explanation as to how to proceed with image stitching and panorama construction using 2 images.</p>
+<p>So , once we have established a homography, i.e. we know how the second image (let&rsquo;s say the image to the right) will look from the current image&rsquo;s perspective, we need to transform it into a new space. This transformation mimics the phenomenon that we undergo. That is, the slightly distorted, and altered image that we see from our periphery . This process is called warping. We are converting an image, based on a new transformation. In this case, Im using a planar warping. What I&rsquo;m doing, is essentially change the plane of my field of view. Whereas, the &ldquo;panorama apps&rdquo; use something called as a Cylindrical and spherical warps ! </p>
+<p>Types of warping : </p>
+<ul>
+<li>*Planar : wherein every image is an element of a plane surface, subject to translation and rotations &hellip; </li>
+<li>*Cylindrical : wherein every image is represented as if the coordinate system was cylindrical. and the image was plotted on the curved surface of the cylinder.</li>
+<li>*Spherical : the above appends, instead of a cylinder, the reference model is a sphere.</li>
+</ul>
+<p>Each model has its&rsquo; own application. For the purposes of this tutorial, I&rsquo;ll stick to planar homography and warping.</p>
+<p>So , to warp, essentially change the field of view, we apply the homography matrix to the image.</p>
+<div class="highlight"><pre><span></span><code><span class="n">warped_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">homography_matrix</span><span class="p">,</span> <span class="n">dimension_of_warped_image</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Here is some visualization  ....  below are left warped and right warped images Note the orientation and projective-ness of each image. </p>
+<p><center>
+<img src="images/stitching/merge123.png" class="img-fluid">
+<br>
+<caption>Warping Images of Lunchroom !</caption>
+</center></p>
+<!-- 
+<center>
+<img src="images/stitching/merge12.jpg"  >
+</center> -->
+
+<p>__Stitching &lsquo;em up ! __</p>
+<p>Once, we have obtained a warped image, we simply add the warped image along with the second image. Repeat this over through leftward stitching and rightward stitching, and viola! We have our output.</p>
+<p>I&rsquo;ll get  a bit deeper as to how to perform the image joining part. Say, we have a homography matrix <span class="math">\(H\)</span> . If the starting coordinate of each image is <span class="math">\((0 ,0)\)</span> and end point is <span class="math">\((r_e, c_e)\)</span> , we can get the new warped image dimension by <span class="math">\(start_p = H \times [0, 0]\)</span> uptill <span class="math">\(end_p = H \times [r_e, c_e]\)</span>. <strong>Note : If start_pt comes out to be negative</strong> , account for a translational shift. i.e. &ldquo;perform translation shift to the image by <span class="math">\( |start_p |\)</span>&rdquo;. Also make sure that the homography matrix normalized such that the last row amounts to a unit vector.</p>
+<p>You can checkout the above mentioned explanation below 
+This is the implementation snippet from the actual code. Please look at the full code to understand in accordance with the post.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="nf">leftstitch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># self.left_list = reversed(self.left_list)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher_obj</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;Homography is : &quot;</span><span class="p">,</span> <span class="n">H</span>
+            <span class="n">xh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;Inverse Homography :&quot;</span><span class="p">,</span> <span class="n">xh</span>
+            <span class="c1"># start_p is denoted by f1</span>
+            <span class="n">f1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">f1</span> <span class="o">=</span> <span class="n">f1</span><span class="o">/</span><span class="n">f1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># transforming the matrix </span>
+            <span class="n">xh</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">xh</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">]))</span>
+            <span class="n">offsety</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">offsetx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="c1"># dimension of warped image</span>
+            <span class="n">dsize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="n">offsetx</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">offsety</span><span class="p">)</span>
+            <span class="nb">print</span> <span class="s2">&quot;image dsize =&gt;&quot;</span><span class="p">,</span> <span class="n">dsize</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">xh</span><span class="p">,</span> <span class="n">dsize</span><span class="p">)</span>
+            <span class="c1"># cv2.imshow(&quot;warped&quot;, tmp)</span>
+            <span class="c1"># cv2.waitKey()</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">offsety</span><span class="p">:</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">offsety</span><span class="p">,</span> <span class="n">offsetx</span><span class="p">:</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">offsetx</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">tmp</span>
+</code></pre></div></td></tr></table></div>
+
+<p><br></p>
+<p>__ Another method : __ 
+There is another method, i.e. using <code>basic for looping constructs</code> and overlay the two images.
+The logic is simple. Input to the method will be the steadyimage and warpedImage. Iterate through both images, and if pixels are equal, put pixel as that value. else give preference to a non black pixel .. </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="nf">mix_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leftImage</span><span class="p">,</span> <span class="n">warpedImage</span><span class="p">)</span>
+        <span class="n">i1y</span><span class="p">,</span> <span class="n">i1x</span> <span class="o">=</span> <span class="n">leftImage</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">i2y</span><span class="p">,</span> <span class="n">i2x</span> <span class="o">=</span> <span class="n">warpedImage</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i1x</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i1y</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span> <span class="ow">and</span>  \
+                        <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))):</span>
+                        <span class="c1"># print &quot;BLACK&quot;</span>
+                        <span class="c1"># instead of just putting it with black, </span>
+                        <span class="c1"># take average of all nearby values and avg it.</span>
+                        <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])):</span>
+                            <span class="c1"># print &quot;PIXEL&quot;</span>
+                            <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]):</span>
+                                <span class="n">bl</span><span class="p">,</span><span class="n">gl</span><span class="p">,</span><span class="n">rl</span> <span class="o">=</span> <span class="n">leftImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>                               
+                                <span class="n">warpedImage</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bl</span><span class="p">,</span><span class="n">gl</span><span class="p">,</span><span class="n">rl</span><span class="p">]</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">pass</span>
+        <span class="c1"># cv2.imshow(&quot;waRPED mix&quot;, warpedImage)</span>
+        <span class="c1"># cv2.waitKey()</span>
+        <span class="k">return</span> <span class="n">warpedImage</span>
+</code></pre></div></td></tr></table></div>
+
+<p><br>
+But this method will iterate over soooo many pixels. .. It&rsquo;s very slow, for two reasons. Firstly , it involves heavy iteration. And, well, I&rsquo;d personally execute such heavy loops in C++ and not python. </p>
+<p>So, basically, this is how my main function looks &hellip; the heart and core of all implementations</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;txtlists/files1.txt&quot;</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="s2">&quot;Parameters : &quot;</span><span class="p">,</span> <span class="n">args</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">Stitch</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">leftshift</span><span class="p">()</span>
+        <span class="c1"># s.showImage(&#39;left&#39;)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">rightshift</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="s2">&quot;done&quot;</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;test.jpg&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">leftImage</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="s2">&quot;image written&quot;</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+
+<p><br></p>
+<h3 id="implementation-details-check-out-the-code">Implementation details : Check out the <a href="https://github.com/kushalvyas/Python-Multiple-Image-Stitching">code</a><a class="headerlink" href="#implementation-details-check-out-the-code" title="Permanent link">&para;</a></h3>
+<h3 id="results">Results !!!<a class="headerlink" href="#results" title="Permanent link">&para;</a></h3>
+<p>Well, I&rsquo;ve run the code on following pictures ..
+You can click as well as test on other sources which deal in panorama and image stitching.</p>
+<p><center>
+<img src="images/stitching/lunchroom_ultimate.jpg" ><br>
+<caption>Stitching with Lunchroom dataset</caption>
+<br><br>
+<img src="images/stitching/444.png"><br>
+<img src="images/stitching/wd123.jpg" ><br>
+<caption>Stitching with my house&rsquo;s dining table :P</caption>
+<br><br>
+<img src="images/stitching/test12345678.jpg" class="img-fluid" ><br>
+<caption>Stitching with synthetic dataset</caption>
+<br><br>
+</center></p>
+<p>Below are other images taken from github and various online sources. View references for more.
+<center>
+<img src="images/stitching/333.png"><br>
+<img src="images/stitching/test.jpg" class="img-fluid" ><br>
+<caption>Stitching with building example</caption>
+<br><br>
+<img src="images/stitching/222.png"><br>
+<img src="images/stitching/test12.jpg" class="img-fluid"><br>
+<caption>Stitching using Hill example</caption>
+<br><br>
+<img src="images/stitching/111.png"><br>
+<img src="images/stitching/test1.jpg" class="img-fluid"><br>
+<caption>Stitching using room example</caption>
+<br>
+</center></p>
+<p><br></p>
+<h2 id="__-click-here-to-check-out-the-code-on-github-___1">__ <a href="https://github.com/kushalvyas/Python-Multiple-Image-Stitching">Click here to check out the code</a> on <a href="https://github.com/kushalvyas">Github</a> __<a class="headerlink" href="#__-click-here-to-check-out-the-code-on-github-___1" title="Permanent link">&para;</a></h2>
+<p>I&rsquo;ll cover cylindrical warping and how opencv actually implements stitching in a different post.
+<br></p>
+<p><br><br><br><br></p>
+<h3 id="references">References :<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<p>Base paper for panorama using scale invariant features :</p>
+<p>[1] &ldquo;Automatic Panoramic Image Stitching using Invariant Features&rdquo;, Download.springer.com, 2016. [Online]. Available: matthewalunbrown.com/papers/ijcv2007.pdf</p>
+<p>Test images taken from :</p>
+<p>[2]&rdquo;PASSTA Datasets&rdquo;, Cvl.isy.liu.se, 2016. [Online]. Available: http://www.cvl.isy.liu.se/en/research/datasets/passta/.</p>
+<p>[3] &ldquo;OpenCV Stitching example (Stitcher class, Panorama)&rdquo;, Study.marearts.com, 2013. [Online]. Available: http://study.marearts.com/2013/11/opencv-stitching-example-stitcher-class.html.</p>
+<p>[4] &ldquo;Github daeyun Image-Stitching Test Images&rdquo;, 2016. [Online]. Available: https://github.com/daeyun/Image-Stitching/tree/master/img/hill. </p>
+<p>[5] &ldquo;Github tsherlock Test Images&rdquo;, 2016. [Online]. Available: .  https://github.com/tsherlock/panorama/</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

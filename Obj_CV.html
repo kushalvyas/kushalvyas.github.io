@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Simple Object Recognition techniques</h1>
+            <h4 class="mb-3"> <p>A brief introduction on object recognition techniques in  CV</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <p>Object recognition is one of the hot topics in computer vision. Particularly, of much significance, it has various applications in robotics, identification, interpretation and such image oriented tasks. </p>
+<p>One can ramify between Object recognition into 4 major subsets such as :</p>
+<ol>
+<li>
+<p><strong>Template based approach</strong> : We take the object and match the object with distribution pattern of intensities. It&rsquo;s quite exhaustive is not invariant to geometric transformations inside search image
+    Eg: Template Matching . However, this isint much sturdy.</p>
+</li>
+<li>
+<p><strong>Geometric approach</strong> : Recognize the object on basis of edges, corners, angles. Then we create a one 2  one match and then make a transformation that handles rotation, scaling, etx.<br />
+    Eg: Matching w.r.t positioning of objects. Classifying patterns</p>
+</li>
+<li>
+<p><strong>Graph based approach</strong> : we match similar types of structures. Encode the relationship between structures rather than the geometry of the figure.  </p>
+</li>
+<li>
+<p><strong>Bag of Visual Words</strong> : I will cover Bag of Words in a seperate post <a href="./BOV.html">Bag of Words</a>.</p>
+</li>
+</ol>
+<p><strong>I&rsquo;ll be going through a couple of common techniques. Firstly I&rsquo;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using BOW models coupled with SVM , or feature extrapolation and recognition using neural nets.</strong></p>
+<p><strong>Template based aproach</strong> 
+Well, there are  a few contentions i;d like to make when we use this approach. Shape based approach is not the key or the best method for recognition. But , in industry, all methods have their perks. Say we have an industry converyor belt that is suppossed to carry only boxes or T- Joints or anything so simply extrapolable and uniform that it is feasible to use shape matching rather than going for complex approaches like using nets, or using SVM along with bag of words. Then I&rsquo;d say, template matching or shape based matching is the best bet in terms of accuracy as well as speed. </p>
+<p>Lets dive a little deeper in the aforementioned topic.
+I&rsquo;ll be using template matching as an example to explain how Shape based matching works. Consider two images. The template image (T) and the actual image (I). We say that we want to find the location / occurence of template inside the actual image.</p>
+<p>In simple words I can say, return True, iff <span class="math">\(T \subseteq I\)</span>. But life aint so simple. In reality, every pixel needs to be iterated over and checked. It can be said that the a template is belonging to a particular image iff, all pixels match exactly. i.e. the sum of ( Absolute Difference between every pixel must be zero).</p>
+<div class="math">$$SAD(x, y) = \sum_{i=0}^{T_{\text{rows}}}\sum_{j=0}^{T_{\text{cols}}} {\text{Diff}(x+i, y+j,i,j)}$$</div>
+<p>Here&rsquo;s how the above formula works.</p>
+<p><span class="math">\(SAD\)</span> : sum of absolute differences.
+<span class="math">\(SAD (x, y)\)</span> : the SAD of a particular pixel location in the actual Image <span class="math">\(I\)</span> </p>
+<p>Each pixel in <span class="math">\(I\)</span> can be represented using <span class="math">\((x, y)\)</span>. It has an intensity, or color value expresed as <span class="math">\(Intensity(I(x,y))\)</span>.</p>
+<p>Now, a pixel in template image <span class="math">\(T(p,q)\)</span> will have intensity as <span class="math">\(Intensity(T(p,q))\)</span>.</p>
+<p>A search window is created that is of the size of template image. The window is then slid over the actual Image I and every time SAD is computed. For checking single occurence of template the iterations can be stopped once SAD is <span class="math">\(0\)</span>, or else it can be continued until the end of <span class="math">\(I\)</span> is reached. </p>
+<p>We&rsquo;ll be implementing the algorithm using opencv , python </p>
+<div class="gist">
+    <script src='https://gist.github.com/c151fd726bb3d439b721b264f3d50843.js'></script>
+    <noscript>
+        <pre><code>"""
+Template matching using opencv
+
+Run : python file.py <templateImage> <actualImage>
+
+
+"""
+
+import sys, cv2
+import numpy as np
+
+def main(template, actualImage):
+	tImage = cv2.imread(template, 0)
+	aImage = cv2.imread(actualImage)
+	aCopy = aImage.copy()
+	aImage = cv2.cvtColor(aImage, cv2.COLOR_BGR2GRAY)
+	th, tw = tImage.shape[:2]
+
+	match = cv2.matchTemplate(aImage, tImage, cv2.TM_SQDIFF)
+	minmaxlocs = cv2.minMaxLoc(match)
+	topcorner = minmaxlocs[-2]
+	bottomcorner=  (topcorner[0] + tw, topcorner[1]+th)
+	cv2.rectangle(aCopy, topcorner, bottomcorner, (0, 0, 255), 2)
+
+	cv2.imshow("actual Iamge", aCopy)
+	cv2.waitKey()
+
+
+if __name__ == '__main__':
+	args = sys.argv[1:]
+	print args
+	if (len(args) is not 2):
+		print "Please pass cmd args for template and actual image"
+		sys.exit(-1)
+
+	main(args[0], args[1])</code></pre>
+    </noscript>
+</div>
+<p>Take a look at <span class="math">\(line 14\)</span>, it states <code>cv2.TM_SQDIFF</code> parameter in matchTemplate(). Opencv&rsquo;s rendition for SAD can be delineated as : 
+</p>
+<div class="math">$$R(x, y) = \sum_{i, j}\ {(\text{T}(i,j) - \text{I}(x+i, y+j))^2}$$</div>
+<p>And here is the output ! We will search a pair of glares from this paraphenalia
+<center>
+<img alt="crop" src="./images/tempCrop.jpg" /> </p>
+<p><img alt="original" src="./images/optemplate.png" />
+</center></p>
+<p>Okay, so template matching can be established using the opencv api. Its&rsquo; quite simple to implement in plain ol c++ as well. Not a biggie.  We&rsquo;ll use the helper functions for image reading , accessing pixel value, etc. but the rest can be quite easily implemented using a bunch of <code>for loops</code></p>
+<div class="gist">
+    <script src='https://gist.github.com/0667c6a249f3397ee7de1db0cf04555d.js'></script>
+    <noscript>
+        <pre><code>/*
+Author : Kushal Vyas
+Code for template matching as implemented by opencv.
+
+*/
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
+#include "iostream"
+#include "cmath"
+
+using namespace std;
+using namespace cv;
+
+int main(){
+	cout<<"Template matching \n";
+	Mat tImage, aImage, aCopy;
+	tImage = imread("tempCrop.jpg",0);
+	aImage = imread("temA1.jpg",0);
+	aCopy = imread("temA1.jpg");
+
+
+	// performing template matching using SAD method
+	Size Tsize, Isize ;
+	Tsize = tImage.size();
+	Isize = aImage.size();
+
+	
+	long int minSAD = 999999999999, SAD=0;
+	int xloc=0, yloc=0, sadloc=0;
+	// loop through the actual image
+	int a_i, a_j;
+	for (a_i =0; a_i < Isize.height - Tsize.height; a_i++){
+		for (a_j=0; a_j < Isize.width - Tsize.width; a_j++){
+			SAD = 0;
+
+			// check every pixel of actual image with the template image
+			// loop through the template image
+			for(int t_j=0; t_j < Tsize.width; t_j++){
+				for(int t_i=0; t_i < Tsize.height; t_i++){
+					uchar aT = aImage.at<uchar>( a_i+t_i, a_j+t_j );
+					uchar tT = tImage.at<uchar>(t_i, t_j);
+					SAD += pow(abs(int(aT) - int(tT)),2);
+				}
+			}
+			// cout <<"SASD sis "<<SAD<<endl; 
+			// save the best found position
+			if(minSAD > SAD ){
+				cout <<" SAD "<< SAD<<endl;
+				minSAD = SAD;
+				yloc = a_i;
+				xloc = a_j;
+				sadloc = SAD;
+			}
+		}
+	}
+
+	cout<<"Template size"<<Tsize<<endl;
+	cout<<"Image size"<<Isize<<endl;
+
+	cout<<a_i<<" "<<a_j<<endl;
+
+	cout<<xloc<<","<<yloc<<" SAD is "<<sadloc<<endl;
+
+	// create a rectangle to demarkate the region
+	rectangle(aCopy, Point(xloc, yloc), Point(xloc+Tsize.width, yloc+Tsize.height), Scalar(0,0,255), 2);
+
+	// imshow("Template image", tImage);
+	imshow("Actual image", aImage);
+	imshow("Matched Image", aCopy);
+	waitKey();
+	destroyAllWindows();
+
+	return 0;
+}</code></pre>
+    </noscript>
+</div>
+<p><em>You can find my remaining code on <a href="https://github.com/kushalvyas/ObjectDetectionPython">Github</a></em></p>
+<p>__ remaining posts on other approaches coming soon &hellip; __</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

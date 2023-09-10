@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Using GigE Cameras with <br> Aravis | OpenCV | Gstreamer [UPDATED]</h1>
+            <h4 class="mb-3"> <p>Configuring Imaging Source GigE Cameras on Ubuntu 14.04 / Linux using Aravis, and OpenCV (Updated with Python-Aravis)</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <p>I have written a wrapper for using Aravis with OpenCV&rsquo;s IplImage or Mat type. Check it out here <a href="https://github.com/kushalvyas/Aravis-OpenCV-Wrapper">https://github.com/kushalvyas/Aravis-OpenCV-Wrapper</a></p>
+<p>So I&rsquo;m working on this awesome vision project and I&rsquo;m using the Imaging Source&rsquo;s DML 33GR0134 camera which is POE ! (powered over ethernet). This is cool!. Still I&rsquo;m using the 12V supply rather than the 48V. Anyway, here&rsquo;s a tutorial on how to configure these camera for ubuntu. Imaging Source gives Windows softwares and have provided a github repository as well.</p>
+<p><a href="https://github.com/TheImagingSource/tiscamera">https://github.com/TheImagingSource/tiscamera</a></p>
+<p>Here you go!</p>
+<p>Now Ill move on to the article. I&rsquo;ll start with setting up the above repository, followed by tutorials on aravis, and lastly using opencv with it.</p>
+<p>Thing covered: </p>
+<ol>
+<li>Setting up <a href="https://github.com/TheImagingSource/tiscamera"><code>tiscamera</code></a> (Imaging Source Module)</li>
+<li>Setting up <a href="https://github.com/AravisProject/aravis"><code>Aravis</code></a> (Utility for GigE cameras)</li>
+<li>Using Aravis : <code>arv.h</code></li>
+<li>Opencv with Aravis</li>
+</ol>
+<p><img alt="im3" src="./images/gige_cam/im3.jpg" /></p>
+<p>The camera is a GigE camera ; meaning Gigabit Ethernet Camera. <a href="https://en.wikipedia.org/wiki/GigE_Vision">GigE Vision</a> as described on Wiki, is an industrial standard for high performance camera. You can connect multiple cameras over ethernet networks. One of the manufacturers is <a href="https://www.theimagingsource.com/">Imaging Source</a>. </p>
+<p>Lets proceed </p>
+<h3 id="tiscamera">TISCAMERA<a class="headerlink" href="#tiscamera" title="Permanent link">&para;</a></h3>
+<p>This is the <code>The Imaging Source Linux Repository</code> and it has multiple elements such as </p>
+<ol>
+<li>gstreamer elements</li>
+<li>gobject introspection</li>
+<li>uvc extensions</li>
+<li>firmware update tools</li>
+<li>examples on how to interact with your camera</li>
+</ol>
+<p><strong>Installing TISCAMERA</strong></p>
+<p>All of it is mentioned on the repository&rsquo;s README. I&rsquo;m just rewriting it here. these instructions are simply copied from their README.</p>
+<p>Firstly, for TISCAMERA , we will need to download the following packages</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">git</span><span class="w"> </span><span class="n">cmake</span><span class="w"> </span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="n">libudev</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libtinyxml</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libgstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libglib2</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libgirepository1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libusb</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libzip</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">setuptools</span><span class="w"> </span><span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libaudit</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libpcap</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libnotify</span><span class="o">-</span><span class="n">dev</span>
+</code></pre></div>
+
+<p>you can simply do <code>sudo apt-get install</code> followed by the above list. If some of the packages are unable to get located, just google search with the packages&rsquo; name, and you&rsquo;ll get the alternative. </p>
+<p>For Ubuntu 14.04,  you can just wrap it up in </p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1"># Build dependencies</span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">g</span><span class="o">++</span><span class="w"> </span><span class="n">cmake</span><span class="w"> </span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="n">libudev</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libudev1</span><span class="w"> </span><span class="n">libtinyxml</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libgstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libgstreamer</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">base1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libglib2</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libgirepository1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libusb</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libzip</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">uvcdynctrl</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">setuptools</span><span class="w"> </span><span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libpcap</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libaudit</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libnotify</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">autoconf</span><span class="w"> </span><span class="n">intltool</span><span class="w"> </span><span class="n">gtk</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">tools</span>
+
+<span class="w">    </span><span class="c1"># Runtime dependencies</span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">tools</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">base</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">good</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">bad</span><span class="w"> </span><span class="n">gstreamer1</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">plugins</span><span class="o">-</span><span class="n">ugly</span><span class="w"> </span><span class="n">libxml2</span><span class="w"> </span><span class="n">libpcap0</span><span class="o">.</span><span class="mi">8</span><span class="w"> </span><span class="n">libaudit1</span><span class="w"> </span><span class="n">libnotify4</span>
+</code></pre></div>
+
+<p><br></p>
+<p><strong>Building TISCAMERA</strong></p>
+<p>First , clone the repository </p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">recursive</span><span class="w"> </span><span class="n">https</span><span class="err">:</span><span class="c1">//github.com/TheImagingSource/tiscamera.git</span>
+<span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="n">tiscamera</span>
+<span class="w">    </span><span class="n">mkdir</span><span class="w"> </span><span class="n">build</span>
+<span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="n">build</span>
+</code></pre></div>
+
+<p><br>
+Now, we want to build with ARAVIS,  because GigE camera&rsquo;s use ARAVIS. Hence, </p>
+<div class="highlight"><pre><span></span><code>    # With ARAVIS:
+    cmake -DBUILD_ARAVIS=ON -DBUILD_GST_1_0=ON -DBUILD_TOOLS=ON -DBUILD_V4L2=ON -DCMAKE_INSTALL_PREFIX=/usr ..
+    # Without ARAVIS
+    cmake -DBUILD_ARAVIS=OFF -DBUILD_GST_1_0=ON -DBUILD_TOOLS=ON -DBUILD_V4L2=ON -DCMAKE_INSTALL_PREFIX=/usr ..
+
+    make
+    sudo make install
+</code></pre></div>
+
+<p>And that&rsquo;s all. You have finished installing TISCAMERA and ARAVIS together.</p>
+<p><br></p>
+<p><strong>Running the <code>gige-daemon</code> on TISCAMERA</strong></p>
+<p>The gige-daemon is a daemon process to check the incoming of the gige camera. Once your TISCAMERA has been installed, goto <code>build/tools/gige-daemon</code> where you can run this process.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="o">&lt;</span><span class="n">path_to_tiscamera</span><span class="o">&gt;/</span><span class="n">build</span><span class="o">/</span><span class="n">tools</span><span class="o">/</span><span class="n">gige</span><span class="o">-</span><span class="n">daemon</span><span class="o">/./</span><span class="n">gige</span><span class="o">-</span><span class="n">daemon</span><span class="w"> </span><span class="n">start</span><span class="w">  </span><span class="c1"># this starts the daemon</span>
+</code></pre></div>
+
+<p><br><br></p>
+<h3 id="configuring-a-gige-camera-for-tiscamera">Configuring a GigE camera for tiscamera:<a class="headerlink" href="#configuring-a-gige-camera-for-tiscamera" title="Permanent link">&para;</a></h3>
+<p>This is W.R.T Imaging Source GigE camera (please check their documentation for more options). We will setup a static IP address over the Ethernet port.</p>
+<p><img alt="img_network" src="./images/gige_cam/network.png" /></p>
+<p><br></p>
+<h3 id="only-after-doing-this-will-you-be-able-to-even-detect-the-camera"><strong>Only after doing this, will you be able to even detect the camera</strong><a class="headerlink" href="#only-after-doing-this-will-you-be-able-to-even-detect-the-camera" title="Permanent link">&para;</a></h3>
+<p><br></p>
+<h3 id="building-aravis-if-you-have-already-not-done-it-with-tiscamera">Building ARAVIS (if you have already not done it with TISCAMERA)<a class="headerlink" href="#building-aravis-if-you-have-already-not-done-it-with-tiscamera" title="Permanent link">&para;</a></h3>
+<p>Clone the repository from <a href="https://github.com/AravisProject/aravis">https://github.com/AravisProject/aravis</a></p>
+<p>Run <code>./configure</code> (you can check for options by doing ./configure &ndash;help)
+Then run <code>make</code>
+Eventually <code>make install</code></p>
+<p>And we&rsquo;re done.</p>
+<p><strong>Test it</strong></p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">arv</span><span class="o">-</span><span class="k">tool</span><span class="o">-&lt;</span><span class="n">version_number</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span>
+</code></pre></div>
+
+<p>This gives you the connected IP camera</p>
+<p>Lastly, add this to your profile / bsarhc / or_where_ever_you store your paths</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">#### aravis exports #####</span>
+<span class="w">    </span><span class="k">export</span><span class="w"> </span><span class="n">GI_TYPELIB_PATH</span><span class="o">=</span><span class="s2">&quot;$GI_TYPELIB_PATH:&lt;path to aravis&gt;/src&quot;</span>
+<span class="w">    </span><span class="k">export</span><span class="w"> </span><span class="n">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">&quot;$LD_LIBRARY_PATH:&lt;path to aravis&gt;/src/.libs&quot;</span>
+</code></pre></div>
+
+<h3 id="building-aravis-with-opencv">Building ARAVIS with OpenCV<a class="headerlink" href="#building-aravis-with-opencv" title="Permanent link">&para;</a></h3>
+<p>This is also as small as the above installation. </p>
+<ol>
+<li>Clone the repository at <a href="https://github.com/opencv/opencv">https://github.com/opencv/opencv</a>. OpenCV has ARAVIS support from version 3.2. You can look at the <a href="https://github.com/opencv/opencv/wiki/ChangeLog#version32">Changelog</a> (thanks to @ArkadiuszRaj) </li>
+<li>cd &lt;opencv_source_path&gt;</li>
+<li>mkdir build &amp;&amp; cd build</li>
+<li>Run CMAKE <div class="highlight"><pre><span></span><code>cmake -D CMAKE_BUILD_TYPE=RELEASE -D INSTALL_C_EXAMPLES=OFF -D PYTHON_EXECUTABLE=&lt;path_to_python_venv&gt;/aravis_opencv/gige_py/bin/python -D WITH_GSTREAMER=ON  -D WITH_ARAVIS=ON  ..
+</code></pre></div>
+
+</li>
+</ol>
+<p><strong>Make sure you have a <code>WITH_ARAVIS=ON</code> flag as your CMAKE parameter</strong></p>
+<ol>
+<li>make -j4</li>
+<li>sudo make install / make install (if you plan to link and include opencv with every c/c++ program)</li>
+</ol>
+<h3 id="using-aravis-standalone">Using ARAVIS standalone<a class="headerlink" href="#using-aravis-standalone" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="cm">/*  TEST SETUP FOR CAMERA  */</span>
+
+<span class="w">    </span><span class="c1">// system and aravis includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;glib.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;arv.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+
+<span class="w">        </span><span class="n">ArvCamera</span><span class="w"> </span><span class="o">*</span><span class="n">camera</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ArvBuffer</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;test.png&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arv_camera_new</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">        </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arv_camera_acquisition</span><span class="w"> </span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ARV_IS_BUFFER</span><span class="w"> </span><span class="p">(</span><span class="n">buffer</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Image successfully acquired</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">arv_save_png</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Failed to acquire a single image</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">           </span><span class="p">}</span>
+<span class="w">        </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">camera</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<p>To compile use the following G++ Command</p>
+<div class="highlight"><pre><span></span><code><span class="nv">g</span><span class="o">++</span><span class="w"> </span><span class="o">-</span><span class="nv">o</span><span class="w"> </span><span class="nv">main</span><span class="w">  </span><span class="nv">main</span>.<span class="nv">cpp</span><span class="w"> </span><span class="o">-</span><span class="nv">L</span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="w"> </span><span class="o">-</span><span class="nv">L</span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">local</span><span class="o">/</span><span class="nv">lib</span><span class="w"> </span><span class="o">-</span><span class="nv">I</span><span class="o">/</span><span class="nv">home</span><span class="o">/</span><span class="nv">path_to_installs</span><span class="o">/</span><span class="nv">gige</span><span class="o">/</span><span class="nv">utils</span><span class="o">/</span><span class="nv">aravis</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="nv">L</span><span class="o">/</span><span class="nv">home</span><span class="o">/</span><span class="nv">path_to_installs</span><span class="o">/</span><span class="nv">gige</span><span class="o">/</span><span class="nv">utils</span><span class="o">/</span><span class="nv">aravis</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span>.<span class="nv">libs</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="nv">I</span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="k">include</span><span class="o">/</span><span class="nv">glib</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="o">/</span><span class="w"> </span><span class="o">-</span><span class="nv">I</span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">x86_64</span><span class="o">-</span><span class="nv">linux</span><span class="o">-</span><span class="nv">gnu</span><span class="o">/</span><span class="nv">glib</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="o">/</span><span class="k">include</span><span class="w"> </span><span class="o">-</span><span class="nv">laravis</span><span class="o">-</span><span class="mi">0</span>.<span class="mi">6</span><span class="w"> </span><span class="o">-</span><span class="nv">lglib</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="nv">lm</span><span class="w"> </span><span class="o">-</span><span class="nv">pthread</span><span class="w"> </span><span class="o">-</span><span class="nv">lgio</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="nv">lgobject</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="nv">lxml2</span><span class="w"> </span><span class="o">-</span><span class="nv">lgthread</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="nv">lglib</span><span class="o">-</span><span class="mi">2</span>.<span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="nv">lz</span><span class="w"> </span><span class="o">-</span><span class="nv">lusb</span><span class="o">-</span><span class="mi">1</span>.<span class="mi">0</span><span class="w">  </span><span class="o">-</span><span class="nv">lpng</span>
+</code></pre></div>
+
+<h3 id="using-opencv-with-aravis">Using Opencv with ARAVIS<a class="headerlink" href="#using-opencv-with-aravis" title="Permanent link">&para;</a></h3>
+<p>If you open opencv&rsquo;s video I/O source code, you can find the following lines</p>
+<p><img alt="aravis_doc" src="./images/gige_cam/aravis_doc.png" /></p>
+<p><code>as seen, the flag is CAP_ARAVIS, which has a value of 2100</code> </p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*  TEST SETUP FOR CAMERA  */</span>
+
+<span class="w">    </span><span class="c1">// system and aravis includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;glib.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;arv.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+
+<span class="w">    </span><span class="c1">// opencv includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;opencv2/opencv.hpp&quot;</span>
+
+
+<span class="w">    </span><span class="kr">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;OpenCV Version : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">CV_VERSION</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Value of CAP_ARAVIS is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">CAP_ARAVIS</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cv</span><span class="o">::</span><span class="n">VideoCapture</span><span class="w"> </span><span class="n">cam</span><span class="p">;</span><span class="w"> </span><span class="c1">// constant for ARAVIS SDK</span>
+<span class="w">        </span><span class="n">cam</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="mi">2100</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera Status : &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">isOpened</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">cam</span><span class="p">.</span><span class="n">isOpened</span><span class="p">()){</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Error in opening camera</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">cv</span><span class="o">::</span><span class="n">namedWindow</span><span class="p">(</span><span class="s">&quot;frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="kr">true</span><span class="p">){</span>
+<span class="w">            </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">frame</span><span class="p">;</span>
+<span class="w">            </span><span class="kr">bool</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">frame</span><span class="p">);</span>
+<span class="w">            </span><span class="n">cv</span><span class="o">::</span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="p">);</span>
+<span class="w">            </span><span class="kr">int</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">;</span><span class="w"> </span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ch</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">27</span><span class="p">){</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">cam</span><span class="p">.</span><span class="nf">release</span><span class="p">();</span>
+<span class="w">        </span><span class="n">cv</span><span class="o">::</span><span class="n">destroyAllWindows</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<h3 id="converting-aravis-packet-to-opencv-mat-iplimage">Converting ARAVIS Packet to OpenCV Mat/ IPLImage<a class="headerlink" href="#converting-aravis-packet-to-opencv-mat-iplimage" title="Permanent link">&para;</a></h3>
+<p>But, there&rsquo;s is one problem here. There are many places, and even I have personally faced that using <code>VideoCaptures</code> set property methods sometimes don&rsquo;t yield the desired results. Hence, one can actually set them through <code>Aravis</code> and then use the aravis acquired image through opencv. This is what I&rsquo;m covering next. </p>
+<p>I&rsquo;ll just use the above code to explain what additions are made</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="c1">// system and aravis includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;glib.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;arv.h&quot;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;signal.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="w">    </span><span class="c1">// my includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;camera_settings.h&quot;</span>
+
+<span class="w">    </span><span class="c1">// awesome github repo for saving aravis buffers to png</span>
+<span class="w">    </span><span class="c1">// check it out at https://github.com/szmoore/aravis-save-png</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;save_png.c&quot;</span>
+
+<span class="w">    </span><span class="c1">// opencv includes</span>
+<span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;opencv2/opencv.hpp&quot;</span>
+
+<span class="w">    </span><span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="nn">cv</span><span class="p">;</span>
+<span class="w">    </span><span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="kr">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kr">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kr">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">){</span>
+<span class="w">        </span><span class="n">ArvCamera</span><span class="w"> </span><span class="o">*</span><span class="n">camera</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ArvBuffer</span><span class="w"> </span><span class="o">*</span><span class="nf">buffer</span><span class="p">;</span>
+<span class="w">        </span><span class="kr">void</span><span class="w"> </span><span class="o">*</span><span class="n">framebuffer</span><span class="p">;</span>
+<span class="w">        </span><span class="n">framebuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">        </span><span class="n">IplImage</span><span class="w"> </span><span class="o">*</span><span class="n">frame</span><span class="p">;</span>
+<span class="w">        </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arv_camera_new</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+
+<span class="w">        </span><span class="cm">/*</span>
+<span class="cm">            Here I am setting gain to 5.85 db</span>
+
+<span class="cm">         */</span>
+<span class="w">        </span><span class="n">arv_camera_set_gain</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="mf">5.85</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nf">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arv_camera_acquisition</span><span class="w"> </span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ARV_IS_BUFFER</span><span class="w"> </span><span class="p">(</span><span class="nf">buffer</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Image successfully acquired</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot; Converting Image to MAT</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">IplImage</span><span class="w"> </span><span class="n">src</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">size_t</span><span class="w"> </span><span class="n">buffer_size</span><span class="p">;</span>
+<span class="w">            </span><span class="n">framebuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kr">void</span><span class="o">*</span><span class="p">)</span><span class="n">arv_buffer_get_data</span><span class="w"> </span><span class="p">(</span><span class="nf">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">buffer_size</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">cvInitImageHeader</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">cvSize</span><span class="p">(</span><span class="w"> </span><span class="mi">1280</span><span class="p">,</span><span class="w"> </span><span class="mi">960</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">IPL_DEPTH_8U</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">IPL_ORIGIN_TL</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">);</span>
+<span class="w">            </span><span class="n">cvSetData</span><span class="p">(</span><span class="o">&amp;</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">framebuffer</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="n">widthStep</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">frame</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">frame</span><span class="o">-&gt;</span><span class="nf">width</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="nf">width</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>\
+<span class="w">                </span><span class="n">frame</span><span class="o">-&gt;</span><span class="nf">height</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="nf">height</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>\
+<span class="w">                </span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">depth</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="n">depth</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>\
+<span class="w">                </span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">nChannels</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="n">nChannels</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">cvReleaseImage</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">frame</span><span class="w"> </span><span class="p">);</span>
+<span class="w">                    </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cvCreateImage</span><span class="p">(</span><span class="w"> </span><span class="n">cvGetSize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">src</span><span class="p">),</span><span class="w"> </span><span class="n">src</span><span class="p">.</span><span class="n">depth</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">cvCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="p">);</span><span class="w">    </span>
+<span class="w">            </span><span class="n">cv</span><span class="o">::</span><span class="n">Mat</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv</span><span class="o">::</span><span class="n">cvarrToMat</span><span class="p">(</span><span class="n">frame</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">imshow</span><span class="p">(</span><span class="s">&quot;frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">);</span>
+<span class="w">            </span><span class="n">waitKey</span><span class="p">();</span>
+<span class="w">            </span><span class="n">destroyAllWindows</span><span class="p">();</span>
+
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;Failed to acquire a single image</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">camera</span><span class="p">);</span>
+<span class="w">        </span><span class="n">g_clear_object</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="nf">buffer</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<p><br></p>
+<p>In the above code, do check out <code>save_png.c</code>, created by <code>git-@szmoore</code>. This is the repo link : https://github.com/szmoore/aravis-save-png</p>
+<p>We&rsquo;re done with simple connection of camera and single photo capture using Aravis and OpenCv, now&rsquo;s the time to write a live video preview application. Aravis uses GLIB to manage threading, and handle callbacks. So will we!. We&rsquo;ll integrate gstreamer, aravis for streaming. Also, feel free to incorporate features like controlling camera properties using a GUI/much like <code>ARAVIS Viewer</code>.</p>
+<p>Just an FYI, there are some of the properties one can set using a <code>DMK[A-Za-z0-9]+</code> camera (yea.. that was regexp :P). </p>
+<ol>
+<li><code>arv_camera_set_region()</code></li>
+<li><code>arv_camera_set_binning()</code></li>
+<li><code>arv_camera_set_pixel_format()</code></li>
+<li><code>arv_camera_set_acquisition_mode()</code></li>
+<li><code>arv_camera_set_frame_count()</code></li>
+<li><code>arv_camera_set_frame_rate()</code></li>
+<li>and many more</li>
+</ol>
+<p><a href="https://aravisproject.github.io/docs/aravis-0.5/ArvCamera.html">Check out the docs here. there&rsquo;s a big list of such implementations that will help make the best use of the camera.</a></p>
+<p>It&rsquo;s just amazing to use Glib. (it&rsquo;s my first time with using glib)</p>
+<p>I&rsquo;m shifting systems from Ubuntu to Debian. So till then enjoy. Also, Big thanks to <a href="https://github.com/AravisProject/aravis">THE ARAVIS PROJECT</a> for making our lives easy :)</p>
+<h3 id="updated-with-python-ararvis"><strong>UPDATED WITH PYTHON-ARARVIS</strong><a class="headerlink" href="#updated-with-python-ararvis" title="Permanent link">&para;</a></h3>
+<p>So aravis has beautiful python bindings, making my job a lot lot easier (atleast in the prototyping phase. However, I&rsquo;ll have to write in bare bones C for deployment on DebianRT. Can&rsquo;t use python everywhere :P ). Hence I&rsquo;ll just illustrate a short example on capturing frames with aravis in Python.</p>
+<p>Now, you can connect a real camera to the ehternet card, or use the ARV-FAKE-GV-CAM, with the command <code>arv-fake-gv-camera-0.6</code>. </p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span>kushal@kushal:~/kushalvyas.github.io$<span class="w"> </span>arv-fake-gv-camera-0.6
+
+<span class="w">    </span>And<span class="w"> </span>to<span class="w"> </span>see<span class="w"> </span>the<span class="w"> </span>output,<span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span>arv-tool
+
+<span class="w">    </span>kushal@kushal:~/kushalvyas.github.io$<span class="w"> </span>arv-tool-0.6<span class="w"> </span>
+<span class="w">    </span>&gt;&gt;&gt;<span class="w"> </span>Aravis-GV01<span class="w"> </span><span class="o">(</span><span class="m">127</span>.0.0.1<span class="o">)</span>
+</code></pre></div>
+
+<p><br></p>
+<p>I&rsquo;m assuming that the reader has already &ldquo;build and make&rdquo; Aravis, so the python bindings are already generated. Also, the <code>gi-repository</code> in python has been installed.</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1"># Ararvis python videcapture</span>
+    <span class="kn">import</span> <span class="nn">gi</span>
+    <span class="n">gi</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="s2">&quot;Aravis&quot;</span><span class="p">,</span> <span class="s2">&quot;0.6&quot;</span><span class="p">)</span> <span class="c1"># or whatever version number you have installed</span>
+    <span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Aravis</span>
+
+    <span class="c1"># other imports</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
+    <span class="kn">import</span> <span class="nn">ctypes</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</code></pre></div>
+
+<p><br></p>
+<p>Initializing Aravis, setup Camera, Buffer, and Stream. As seen in the above C code, we had initialized Aravis camera, buffer and stream pointers. We do the same in python.</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1">#continue code from above</span>
+
+    <span class="n">Aravis</span><span class="o">.</span><span class="n">enable_interface</span><span class="p">(</span><span class="s2">&quot;Fake&quot;</span><span class="p">)</span> <span class="c1"># using arv-fake-gv-camera-0.6</span>
+    <span class="n">camera</span> <span class="o">=</span> <span class="n">Aravis</span><span class="o">.</span><span class="n">Camera</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">create_stream</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_payload</span> <span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
+        <span class="n">stream</span><span class="o">.</span><span class="n">push_buffer</span> <span class="p">(</span><span class="n">Aravis</span><span class="o">.</span><span class="n">Buffer</span><span class="o">.</span><span class="n">new_allocate</span> <span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; explained later &#39;&#39;&#39;</span>
+</code></pre></div>
+
+<p>Moving on, to video capture.</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1">#continue code from above</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;Start acquisition&quot;</span>
+    <span class="n">camera</span><span class="o">.</span><span class="n">start_acquisition</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">try_pop_buffer</span><span class="p">()</span>
+        <span class="nb">print</span> <span class="n">buffer</span> 
+        <span class="k">if</span> <span class="n">buffer</span><span class="p">:</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+            <span class="n">stream</span><span class="o">.</span><span class="n">push_buffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="c1">#push buffer back into stream</span>
+
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="mi">27</span> <span class="ow">or</span> <span class="n">ch</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">):</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;imagename.png&quot;</span><span class="p">,</span><span class="n">frame</span><span class="p">)</span>
+
+
+    <span class="n">camera</span><span class="o">.</span><span class="n">stop_acquisition</span><span class="p">()</span>
+
+<span class="c1">###################################################################</span>
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<p><img alt="output" src="./images/gige_cam/output.png" /></p>
+<p><br>
+As seen in the above code snippet, I have used a function <code>convert(buffer)</code>. This method converts the Aravis buffer to a numpy array. It&rsquo;s source can be found at the <code>Python-Aravis binding</code> on github: <a href="https://github.com/SintefRaufossManufacturing/python-aravis">https://github.com/SintefRaufossManufacturing/python-aravis</a>. However i&rsquo;ll still put it here. All credits goes to <code>https://github.com/SintefRaufossManufacturing/python-aravis</code> for creating it. Plus, they have awesome examples on their repository, so check it out too.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
+<span class="sd">    https://github.com/SintefRaufossManufacturing/python-aravis/blob/master/aravis.py#L181</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">buf</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">pixel_format</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_image_pixel_format</span><span class="p">()</span>
+        <span class="n">bits_per_pixel</span> <span class="o">=</span> <span class="n">pixel_format</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span> <span class="o">&amp;</span> <span class="mh">0xff</span>
+        <span class="k">if</span> <span class="n">bits_per_pixel</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="n">INTP</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint8</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">INTP</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint16</span><span class="p">)</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="n">ptr</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">INTP</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ctypeslib</span><span class="o">.</span><span class="n">as_array</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="p">(</span><span class="n">buf</span><span class="o">.</span><span class="n">get_image_height</span><span class="p">(),</span> <span class="n">buf</span><span class="o">.</span><span class="n">get_image_width</span><span class="p">()))</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">im</span>
+</code></pre></div>
+
+<p><br>
+<strong>Lastly, since I&rsquo;ll be exploring more of gige cams, using them with Glib / python / opencv / c I&rsquo;ll keep updating this article continuously with new snippets.</strong></p>
+<h4 id="also-a-small-trick-for-opencv-users-there-are-many-time-even-i-have-faced-such-where-using-the-opencv-set-property-method-for-videocapture-objects-doesnt-seem-to-work-one-fix-that-ive-used-is-to-first-use-aravis-camera-to-set-the-property-as-shown-above-then-call-a-g_object_clearcamera-and-then-call-opencvs-videocapture-cam2100-the-camera-inherits-the-last-setting">Also, a small trick for OpenCv users. There are many time (even I have faced such) where using the <code>Opencv set property</code> method for VideoCapture objects doesn&rsquo;t seem to work. One fix that I&rsquo;ve used is to first use <code>Aravis *camera</code> to set the property as shown above. Then call a <code>g_object_clear(camera)</code>, and then call OpenCV&rsquo;s <code>VideoCapture cam(2100);</code>. The camera inherits the last setting.<a class="headerlink" href="#also-a-small-trick-for-opencv-users-there-are-many-time-even-i-have-faced-such-where-using-the-opencv-set-property-method-for-videocapture-objects-doesnt-seem-to-work-one-fix-that-ive-used-is-to-first-use-aravis-camera-to-set-the-property-as-shown-above-then-call-a-g_object_clearcamera-and-then-call-opencvs-videocapture-cam2100-the-camera-inherits-the-last-setting" title="Permanent link">&para;</a></h4>
+<h3 id="update-w-gstreamer-gst-launch">UPDATE w:  Gstreamer GST-Launch<a class="headerlink" href="#update-w-gstreamer-gst-launch" title="Permanent link">&para;</a></h3>
+<p>I&rsquo;ll list down the Gstreamer command that can launch Aravis supported cameras. So when you build aravis from source, there will be a folder called <code>gst</code>and <code>gst-0.10</code> being created . This contains the gstreamer plugin for Aravis cameras.</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">aravis</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">dir</span>
+<span class="w">        </span><span class="o">|</span><span class="w">   </span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">...</span><span class="w"> </span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">...</span><span class="w"> </span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gst</span><span class="w"> </span><span class="p">(</span><span class="n">gstreamer</span><span class="o">-</span><span class="mf">1.0</span><span class="w"> </span><span class="n">plugin</span><span class="p">)</span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gst</span><span class="o">-</span><span class="mf">0.10</span><span class="w"> </span><span class="p">(</span><span class="n">gstreamer</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="n">plugin</span><span class="p">)</span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">tools</span>
+<span class="w">        </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">aravis_viewer</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">needs</span><span class="w"> </span><span class="n">gtk</span><span class="o">-</span><span class="mi">3</span><span class="o">+</span><span class="p">,</span><span class="w"> </span><span class="n">glib</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">gobject</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">compiling</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Firstly, make sure Aravis gstremer directories are added to this environment variable <code>GST_PLUGIN_PATH_1_0</code> (since I use gst-1.0 ) . </p>
+<p>And then run the command : </p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="n">gst</span><span class="o">-</span><span class="n">launch</span><span class="o">-</span><span class="mf">1.0</span><span class="w"> </span><span class="n">aravissrc</span><span class="w"> </span><span class="nb">camera</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Aravis-GV01&quot;</span><span class="w"> </span><span class="err">!</span><span class="w"> </span><span class="n">videoconvert</span><span class="w"> </span><span class="err">!</span><span class="w"> </span><span class="n">xvimagesink</span>
+</code></pre></div>
+
+<p>The following output is expected</p>
+<p><img alt="xim" src="./images/gige_cam/aravissrc.png" /></p>
+<p>That&rsquo;s all for now. Enjoy using gige!</p>
+<h3 id="references">References:<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<p>[1]. <a href="https://github.com/AravisProject/aravis">Aravis : https://github.com/AravisProject/aravis</a></p>
+<p>[2]. <a href="https://github.com/szmoore/aravis-save-png">Save_png.c : https://github.com/szmoore/aravis-save-png</a> </p>
+<p>[3]. <a href="https://github.com/SintefRaufossManufacturing/python-aravis">Python-Aravis Bindings : https://github.com/SintefRaufossManufacturing/python-aravis</a></p>
+<p>[4]. <a href="https://github.com/TheImagingSource/tiscamera">The Imaging Source Linux Repository</a></p>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

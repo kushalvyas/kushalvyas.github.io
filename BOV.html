@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Bag of Visual Words Model for Image Classification and Recognition</h1>
+            <h4 class="mb-3"> <p>Implementing Bag of Visual words for Object Recognition</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <p>Bag of Visual Words is an extention to the NLP algorithm Bag of Words used for image classification. Other than CNN, it is quite widely used. I sure want to tell that BOVW is one of the finest things I&rsquo;ve encountered in my vision explorations until now.</p>
+<p>So what&rsquo;s the difference between Object Detection and Objet Recognition .. !! 
+Well, recognition simply involves stating whether an image contains a specific object or no. whereas detection also demands the position of the object inside the image. So say, there is an input image containing a cup, saucer, bottle, etc. The task is to be able to recognize which of the objects are contained in the image.</p>
+<p><br></p>
+<p>BOV was developed by <a href="" target="_blank">CSurka et. al</a> essentially creates a vocabulary that can best describe the image in terms of extrapolable features. It follows 4 simple steps
+- Determination of Image features of a given label 
+- Construction of visual vocabulary by clustering, followed by frequency analysis
+- Classification of images based on vocabulary genereated
+- Obtain most optimum class for query image </p>
+<p><br></p>
+<p>To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed version)</p>
+<p>Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, DOG , etc. And to ease out our troubles, <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">David Lowe</a> developed <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">SIFT</a> : Scale Invariant Feature Transform. SIFT is extensively used today. We will be using SIFT as well. Please note, that algorithms such as SIFT, SURF which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or VLFEAT (You may want to check out my <a href="./setup_env.html">previous post on environment settings </a>).</p>
+<p>Lets begin with a few introductory concepts required Bag of words. We shall cover 4 parts (so keep scrolling !)</p>
+<ul>
+<li>Clustering</li>
+<li>Bag of Visual Words Model</li>
+<li>Generating Vocabulary</li>
+<li>Training and testing</li>
+</ul>
+<p><br></br></p>
+<p><strong>Clustering</strong> : Lets say there is a bunch of Wrigleys Skittles. And someone is to tell you to group them according to their color. It&rsquo;s quite simple .. aint it! Simply seperate all red, blue, green, etc in different parts of the room. Here, we differentiated and seperated them on basis of <strong>color only</strong>.<br />
+So moving on to a more complex situation that would give a much profound meaning to clustering. Suppose there is a room full of utilities, be it accesories, clothing, utensils, electronics, etc. Now, if someone is told to seperate out into well formed groups of similar items, one would essentially be performing clustering. </p>
+<p>So yes, clustering can be said as the grouping a set of objects in such a way that objects in the same group are much similar, than to those in other groups/sets</p>
+<p>Moving on, lets&rsquo; decide as to how we perform clustering. The selection of clustering algorithm depends more on what kind of similarity model is to be chosen. There are cases wherein, the plain&rsquo;ol clustering impression that everyone so simply elucidates may not be the right choice. For example, there exists various models, such as centroid oriented - Kmeans, or Distribution based models - that involve clustering for statistical data; such places require Density based clustering (DBSCAN) , etc. </p>
+<p>Beginning with <strong>KMeans clustering</strong>. Suppose there are X objects, that are to be divided into K clusters. The input can be a set of features, <span class="math">\(X = \{ x_1, x_2, ..., x_n \}\)</span>. The goal is basically to minimize the distance between each point in the scatter cloud and the assigned centroids. </p>
+<div class="math">$$ {\underset {\mathbf {S} }{\operatorname {arg\,min} }}\sum _{i=1}^{k}\sum _{\mathbf {x} \in S_{i}}\left\|\mathbf {x} -{\boldsymbol {\mu }}_{i}\right\|^{2}
+ $$</div>
+<p>where <span class="math">\(\mu\)</span>   is mean of points for each <span class="math">\(S_i\)</span>(cluster) and <span class="math">\(S\)</span> denotes set of points partitioned into clusters of <span class="math">\(\{ S_1, S_2, ... S_i \}\)</span> </p>
+<p>Hence it can be said that for each cluster centroid, there exists a group of point around it, known as the center. </p>
+<ul>
+<li>
+<p>We first define an initial random solution. This initial solution can be called as the cluster centroids. They need to be randomly placed within the bounds of data , and not so callously random. </p>
+</li>
+<li>
+<p>Second comes the <strong>Assignment Step</strong>. What happens here, is that KMeans iterates over each of the input feature / datapoint and decides which is the closest cluster centroid w.r.t itself. Once the closest centroid is established, it is then alloted to that particular centroid.</p>
+</li>
+<li>
+<p>Next is the <strong>Average &amp; Update Step</strong>. Once we are able to perform the first, most crude clustering, we shall relocate the cluster centroids. The newly computed cluster centroids can be said to be the aggregate of all members of that particular cluster. Hence the centroid moves more inwards for a tightly alligned distribution and more outwards otherwise.</p>
+</li>
+<li>
+<p>Once the avergaing step is accomplished, and the new clusters are computed, the same process is repeated over and over again. Untill &hellip; !!! </p>
+</li>
+<li>
+<p>The ideal condition for stoppage is when there is no change in position of the newly computed cluster centroid with respect to its previous position. This can be further interpreted as that the distance of every datapoint inside its cluster will be minimum w.r.t its mean i.e its centroid. However, there can be a minimum threshold value to stop the clustering process from going on and on.</p>
+</li>
+</ul>
+<p>Okay, below is a snippet showing how to use KMeans clustering algorithm as provided in <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">scikit</a>.</p>
+<div class="gist">
+    <script src='https://gist.github.com/590b7e1adad10656793cfb78f041193a.js'></script>
+    <noscript>
+        <pre><code>
+n_samples = 1000
+n_features = 5;
+n_clusters = 3;
+
+# aint this sweet 
+X, y = make_blobs(n_samples, n_features) 
+# X => array of shape [nsamples,nfeatures] ;;; y => array of shape[nsamples]
+
+# X : generated samples, y : integer labels for cluster membership of each sample
+# performing KMeans clustering
+
+ret =  KMeans(n_clusters = n_clusters).fit_predict(X)</code></pre>
+    </noscript>
+</div>
+<!-- output -->
+<p><img alt="clusteroutput" class="img-fluid" src="./images/clusterplot1.png" /></p>
+<p>Here&rsquo;s a sample output for clustering using 3 clusters on a set of 1000 samples</p>
+<p><strong>Why are we using Clusterng &hellip; Why Kmeans &hellip;:</strong>
+KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &hellip; umm. let&rsquo;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image contain,</p>
+<p><u>Some Prerequisites :</u>  </p>
+<ul>
+<li>
+<p>First of all, you need a training set. If you&rsquo;re using a personal computer, I&rsquo;d recommend to use a truncated version of any publically available image datasets (if you&rsquo;re worried about your PC taking up too much time during training) or perhaps train using a minimally bounded set of features. I&rsquo;d recommend using <a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/">Caltech101</a>. Also check out Caltech256, CIFAR10 datasets. They&rsquo;re good !! As in real good. </p>
+</li>
+<li>
+<p>Secondly please set up either LIBSVM , SKLEARN,  VLFEAT ( for enhanced vision algos&hellip; like sift) Library, or Any python machine learning toolkit that will provide basic SVM , Kmeans functionaliy. You can visit my previous post on <a href="./setup_env.html">setting up environments</a>.</p>
+</li>
+<li>
+<p>Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code modular.</p>
+</li>
+</ul>
+<p>So lets&rsquo; proceed. </p>
+<h1 id="bag-of-visual-words"><strong>Bag of Visual Words</strong><a class="headerlink" href="#bag-of-visual-words" title="Permanent link">&para;</a></h1>
+<p>This is a supervised learning model. There will be a training set and a testing set.
+You can find my implementation on <a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python" target="_blank">Github</a>. </p>
+<ol>
+<li>
+<p>Split the downloaded dataset into training and testing. You can use the 70-30 ratio or 80-20. But keep in mind, if the training data is not good , there WILL be discrepencies in the output.</p>
+</li>
+<li>
+<p>BOVW is an example of supervised learning. It&rsquo;s always better to keep a mapping of which images belong to what classification label ( a label can be defined as a key/value for identifying to what class/category does the object belongs).</p>
+</li>
+<li>
+<p>Extract features from the training image sets. One can use opencv_contrib/ vl feat  for <a href="{filename}/articles/features.md">Feature Extration</a>(SIFT, SURF more popularly). This essentially converts the image into a feature vector. </p>
+</li>
+<li>
+<p>The final step is codebook generation. A codebook can be thought of as a dictionary that registers corresponding mappings between features and their definition in the object. We need to define set of words (essentially the features marked by words) that provides an analogous relation of an object ( being trained) w.r.t. a set of features. </p>
+</li>
+</ol>
+<!-- 
+[gist:id=4e5044cc533096f45323de43b85000be]
+ -->
+
+<p>Project Architecture : </p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="n">root</span> <span class="nb">dir</span><span class="o">/</span>
+    <span class="o">|-</span> <span class="n">images</span><span class="o">/</span>
+            <span class="o">|-</span> <span class="n">test</span> <span class="o">/</span>
+                <span class="o">|-</span> <span class="n">obj1</span><span class="o">/</span>
+                <span class="o">|-</span> <span class="n">obj2</span><span class="o">/</span>
+
+            <span class="o">|-</span> <span class="n">train</span> <span class="o">/</span>
+                <span class="o">|-</span> <span class="n">obj1</span><span class="o">/</span>
+                <span class="o">|-</span> <span class="n">obj2</span><span class="o">/</span>
+
+    <span class="o">|-</span> <span class="n">helpers</span><span class="o">.</span><span class="n">py</span>
+    <span class="o">|-</span> <span class="n">Bag</span><span class="o">.</span><span class="n">py</span>
+
+
+<span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">python</span> <span class="n">Bag</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">train_set</span> <span class="n">images</span><span class="o">/</span><span class="n">train</span><span class="o">/</span> <span class="o">--</span><span class="n">test_set</span> <span class="n">images</span><span class="o">/</span><span class="n">test</span><span class="o">/</span>
+</code></pre></div>
+
+<p><span class="math">\(images\)</span> directory contains testing and training images. Provide the path to test and train images to <span class="math">\(Bag.py\)</span> file.</p>
+<p>We shall go through each module, step by step. <code>Bag.py</code> contains the main. We have the methods <code>trainModel</code> and <code>testModel</code>. <code>Heplers.py</code> contains various helper functionalities. It contains Imagehelpers, FileHelper, BOVhelpers. Imagehelpers contains colorscheme conversion, feature detection. FileHelper returns a dictionary of each object-name with a corresponding list of all images. It also returns total image count. (required later)</p>
+<p>FileHelper will return the training set. It returns a dictionary with <code>key = object_name</code> and <code>value = list of images</code> and total number of images.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FileHelper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">getFiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    - returns  a dictionary of all files </span>
+<span class="sd">    having key =&gt; value as  objectname =&gt; image path</span>
+<span class="sd">    - returns total number of files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">imlist</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;*&quot;</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">each</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">print</span> <span class="s2">&quot; #### Reading image category &quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="s2">&quot; ##### &quot;</span>
+        <span class="n">imlist</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">imagefile</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="n">word</span><span class="o">+</span><span class="s2">&quot;/*&quot;</span><span class="p">):</span>
+            <span class="nb">print</span> <span class="s2">&quot;Reading file &quot;</span><span class="p">,</span> <span class="n">imagefile</span>
+            <span class="n">im</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imagefile</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">imlist</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span><span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">imlist</span><span class="p">,</span> <span class="n">count</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>ImageHelpers&rsquo;s primary function is to provide with SIFT features present in an image. We require these image features to develop our vocabulary.(I&rsquo;ll explain what it means in the coming parts .. ). </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ImageHelpers</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sift_object</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">xfeatures2d</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">gray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gray</span>
+
+    <span class="k">def</span> <span class="nf">features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        <span class="n">keypoints</span><span class="p">,</span> <span class="n">descriptors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sift_object</span><span class="o">.</span><span class="n">detectAndCompute</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">keypoints</span><span class="p">,</span> <span class="n">descriptors</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p><br></br></p>
+<p>I will reiterate the algorithm once again, and now step by step. With the input image list, firstly compute features. You&rsquo;ll need objects of all helper classes. So please initialize them in your main module. Having detected and computed SIFT features, we need to process a vocabulary.</p>
+<h2 id="how-to-develop-visual-vocabulary"><strong>How to develop visual vocabulary ?</strong><a class="headerlink" href="#how-to-develop-visual-vocabulary" title="Permanent link">&para;</a></h2>
+<p>&ldquo;A picture is worth a thousand words &hellip; &ldquo;</p>
+<p>Suppose I say, there is an image of a shoe. Humans tend to describe using normal english language words. A person will probably descibe a shoe as a shoe! A bit elaborated version may be , something having laces and small netted structures. Go a bit further, and it&rsquo;ll seem to have small holes/circles, a few curved lines, a bunch of very striking corner points, a few patches having high contrast. Now you&rsquo;re speaking in terms of a vision. One can dumb down the idea of descriptors / features in an image as striking/significant portions of the image that help describe it. Every image contains multiple features i.e. if we were to mathematically express an image in terms of features, we would say that an Image is a collection of features , where every feature may have a certain frequency of occurence.</p>
+<p>If it is so, how can we differentiate w.r.t features. !!! The answer comes from a much natural origin. Suppose a human was asked to differentiate between a shoe and a lipstick :P . He/she would start describing each of the aforementioned item. Shoe would have small circular pathes, long laces, much curved portions, etc. On the other hand, a lipstick is quite cylindrical and has a top buldge. So i can say , 
+<br></br>
+__ for a set of given features, there exists a weighted combination of features that describe an image individually __
+<br></br>
+and that <br></br>
+<strong>Every feature present in an image, can be used as means for describing the same image</strong>
+<br></br></p>
+<p>From the above two statements, we define what a visual word is. Simply any thing that can be used to describe an image , we consider them as a visual word. Thus, our image becomes a combination of visual words (that are essentially features). And to make it more mathematical, we define this structure as a histogram. Essentially, histogram is just a measure of frequency occurence of a particular item, here in our case, we will be describing each image as a histogram of features. How many features out of the total vocabulary are required to make sense of what the computer is looking at . </p>
+<h3 id="linking-vocabulary-and-clustering"><strong>Linking vocabulary and clustering </strong>:<a class="headerlink" href="#linking-vocabulary-and-clustering" title="Permanent link">&para;</a></h3>
+<p>Using SIFT, we detect and compute features inside each image. SIFT returns us a <span class="math">\(m \times 128\)</span> dimension array, where m is the number of features extrapolated. Similarly, for multiple images, say 1000 images, we shall obtain </p>
+<div class="math">$$ \begin{bmatrix}
+features_0\\ 
+features_1\\ 
+    ....      \\ 
+    ....       \\
+    ....       \\
+features_{n}\\
+\end{bmatrix}
+$$</div>
+<div class="math">$$ where \  features_i \ \ is \ \ a  \ \ array \  of  \ \ dimension \ \  m \times 128 $$</div>
+<p>We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms .... Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said process.</p>
+<p>If we were to allot a definition to any of the similar words, we can simply refer them by their cluster number.</p>
+<p><center>
+<img alt="image" class="img-fluid" src="./images/grid.png" /></p>
+<!-- ![image]({filename}/images/vocab.png) </center> -->
+
+<p>A more illustrative visualization of the histogram can be observed in the adjacent figure.</p>
+<p><img alt="image" class="img-fluid" src="./images/vocab_unnormalized.png" /></p>
+<p>The above image shows how a collective vocabulary will look like. Encomprising of the total number of each type of feature/word present in the training set in totality.</p>
+<p></center></p>
+<p>Here&rsquo;s some implementation snippet as to how one would implement this</p>
+<div class="gist">
+    <script src='https://gist.github.com/ad29abbc3b68b1cf530490bbe4eaec73.js'></script>
+    <noscript>
+        <pre><code>def developVocabulary(self,n_images, descriptor_list, kmeans_ret = None):
+		
+		"""
+		Each cluster denotes a particular visual word 
+		Every image can be represeted as a combination of multiple 
+		visual words. The best method is to generate a sparse histogram
+		that contains the frequency of occurence of each visual word 
+
+		Thus the vocabulary comprises of a set of histograms of encompassing
+		all descriptions for all images
+
+		"""
+
+		self.mega_histogram = np.array([np.zeros(self.n_clusters) for i in range(n_images)])
+		old_count = 0
+		for i in range(n_images):
+			l = len(descriptor_list[i])
+			for j in range(l):
+				if kmeans_ret is None:
+					idx = self.kmeans_ret[old_count+j]
+				else:
+					idx = kmeans_ret[old_count+j]
+				self.mega_histogram[i][idx] += 1
+			old_count += l
+		print "Vocabulary Histogram Generated"
+</code></pre>
+    </noscript>
+</div>
+<p>As seen, the input is n_images i.e. the total number of images and descriptor_list, that contains the feature descriptor array ( one discussed above, the full stacked up list of features). Our histogram is therefore of the size <span class="math">\(n\_images \times n\_clusters\)</span> thereby defining each image in terms of generated vocabulary. During the definition phase, we need to locate the cluster that contains the features i.e the cluster number whose cluster centroid is nearest to the location of the current feature. </p>
+<p>This completes the most important part of the vocabulary generation. Now time to train the machine.</p>
+<h3 id="training-the-machine-to-understand-the-images-using-svm"><u> Training the machine to understand the images using SVM   </u><a class="headerlink" href="#training-the-machine-to-understand-the-images-using-svm" title="Permanent link">&para;</a></h3>
+<p>Our <span class="math">\(mega\_histrogram\)</span> is basically an array of size <span class="math">\(n\_samples, n\_significantFeatures\)</span>. Meaning, the number of rows, that are defined as the <span class="math">\(n\_imagses\)</span> in the above snippet, are nothing but samples we need to train. Each row contains a distribution/combination of visual words used to describe the image. All we need is a multiclass classifier to distinguish between similar images and to define classes for the same.</p>
+<p>for classification purposes, I&rsquo;d recommend to use sklearn. Its by far the most easily adaptable API i&rsquo;ve used. And goes very well with numpy datastructures. </p>
+<p>Just so you know, Coding up an SVM on your own is a herculean task, hence we follow a 1-2-3 methodology as projected by SKLEARN.</p>
+<div class="highlight"><pre><span></span><code><span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span> <span class="c1"># make classifier object</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">)</span> <span class="c1"># train the model</span>
+<span class="p">[</span><span class="n">classes</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span> <span class="c1">#returns a list of prediction for each test_data</span>
+</code></pre></div>
+
+<p>That&rsquo;s it !! Once trained, the model is ready for testing !! </p>
+<h3 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h3>
+<p>Please maintain the aforementioned project dir structure and follow naming conventions. You may want to read the repositories readme for further details. Here&rsquo;s what predictions I obtained on testing and training the model against a trimmed version of Caltech101 dataset. </p>
+<p><center></p>
+<p>There are a few snaps of outputs when the model was tested on the limited version of the dataset .</p>
+<p><img alt="im1" src="./images/ac1.png" />
+<img alt="im2" src="./images/bk1.png" />
+<img alt="im3" src="./images/bk2.png" />
+<img alt="im4" src="./images/dollar1.png" />
+<img alt="im5" src="./images/sbb3.png" /></p>
+<p></center></p>
+<h3 id="checking-for-accuracy">Checking for Accuracy<a class="headerlink" href="#checking-for-accuracy" title="Permanent link">&para;</a></h3>
+<p>Accuracy measure is one of the most important steps in ML algorithms .A Confusion matrix is basically how many test cases were correctly classified. Hence, a confusion matrix is used to determine the accuracy of classification. On having tried it on the limited dataset, below is the CF. </p>
+<p><center>
+    <img alt="imc" src="./images/normalized_7.png" />
+</center></p>
+<p>So now you know how to write your own Image Classifiers and Recognizers&hellip; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a <a href="">Confusion Matrix</a> .Meanwhile, use the <a href="./BOV.html">Bag of Visual Words</a> and create some cool stuff</p>
+<p>__ Check out the <a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python">Code</a> on <a href="https://www.github.com/kushalvyas/">Github</a>__</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+            </script>
+            <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+            </script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <style>
+            .navbar-nav {
+                margin-left: auto;
+            };
+            .jumbotron_class{
+                background-image: "background.jpeg";
+            };
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            
+        </style>
+
+        <script>
+            $("document").ready(function(){
+                $("#backdrop_image").click(function(e){
+                    e.preventDefault();
+                });
+
+                $("#page_banner").click(function(e){
+                    window.location.href = "./"
+                });
+            });
+        </script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+    <nav class="navbar navbar-expand-md bg-light">
+        
+        <a class="nav-link" href="./">&nbsp; HOME &#124;	 &nbsp; </a>
+        <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        
+        <a class="navbar-brand abs" href="https://github.com/kushalvyas"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></a>
+
+
+        <!-- <a class="navbar-brand abs"></a>     -->
+
+        <ul class="navbar-nav ms-auto navbar-right">
+            <li class="nav-item">
+                <a class="nav-link" href="./about.html">
+                  About
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./blog.html">
+                  Blog
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./photography.html">
+                  Photography
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>        <div id="page_banner">
+<div>
+    <!-- Jumbotron -->
+    <div class="p-5 text-center bg-image rounded-3">
+      <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <div class="text-white">
+            <h1 class="mb-3">Structured Light 3D Reconstruction</h1>
+            <h4 class="mb-3"> <p>A few results on 3D reconstruction</p> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+    </div>        </div>
+        
+<div class="container">
+    <div class="justify-content-center">
+    <article>
+        <div class="justify-content-center">
+            <h3 id="disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load">Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to load.<a class="headerlink" href="#disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year">Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last year.<a class="headerlink" href="#secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year" title="Permanent link">&para;</a></h3>
+<hr>
+
+<h3 id="cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files">Cool stuff: I&rsquo;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &hellip; all the way to working with 3D files.<a class="headerlink" href="#cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="ill-probably-host-it-as-a-gitbook">I&rsquo;ll probably host it as a GitBook. :)<a class="headerlink" href="#ill-probably-host-it-as-a-gitbook" title="Permanent link">&para;</a></h3>
+<hr>
+
+<h2 id="setup">Setup:<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&rsquo;s paper on using a single-camera-projector arrangement for 3D geometry acquisition.</p>
+<!-- <center>
+    ![setup1]({filename}/images/sl_3d/setup1.jpg)
+    <br>
+    Initial Chessboard for calibration
+    <br><br>
+    ![setup2]({filename}/images/sl_3d/setup2.jpg)
+    <br>
+    Setup Image (backview)
+    <br><br>
+    ![setup3]({filename}/images/sl_3d/setup3.jpg)
+    <br>
+    Setup Image (side view)
+    <br><br>
+</center> -->
+<p><center>
+    <img alt="setup1" src="./images/sl_3d/th_op/crop-1.jpg" />
+    <br>
+    Initial Setup using projector and camera
+    <br><br>
+    <img alt="setup2" src="./images/sl_3d/th_op/c1.jpg" width:400px_="width:400px;" />
+    <img alt="setup3" src="./images/sl_3d/th_op/c2.jpg" />
+    <br>
+    Camera Calibration using SL patterns
+    <br><br>
+    <img alt="setup4" src="./images/sl_3d/th_op/draw3.png" />
+</center></p>
+<hr>
+
+<h2 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">&para;</a></h2>
+<hr>
+
+<p><center>
+    <img alt="crop12" src="./images/sl_3d/th_op/crop-12.jpg" />
+    <br>
+    Registration of David Bust, and Bottle
+</center></p>
+<hr>
+
+<p><center>
+    <img alt="david1" src="./images/sl_3d/david1.png" />
+    <br>
+    Surface View 1 of David Scan (from dataset)
+    <br><br>
+    <img alt="david3" src="./images/sl_3d/david3.png" />
+    <br>
+    Surface View 2 of David Scan (from dataset)
+    <br><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sqdaPVvP_BU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+    <br><br>
+</center></p>
+<hr>
+<p><center>
+    Although, for live condition, there is a lot of noise.
+    <br>
+    <img alt="bottle_set" src="./images/sl_3d/th_op/montage_bottle.png" />
+    <br>
+    Structured Light in runtime with Bottle example
+    <br><br>
+    <img alt="bottle1" src="./images/sl_3d/bottle1.png" />
+    <br>
+    Tupperware Bottle Scan - Stage 1 (Improves later on)
+    <br><br>
+    <img alt="cap" src="./images/sl_3d/bottle_closeup.png" />
+    <br>
+    Closeup of Bottle Scan (next stage). If you look closely, I have made a dimension as well. The cap length shows to be 26.23 mm.
+    <br><br>
+    <img alt="images_crop4" src="./images/sl_3d/th_op/crop-4.jpg" />
+</center></p>
+<hr>
+
+<p><center>
+    <img alt="im_crop5" src="./images/sl_3d/th_op/montage_bindi.png" />
+    <br>
+    Structured Light Sequences projected on Bottle 2
+    <br><br>
+    <img alt="bottle2" src="./images/sl_3d/bottle2.png" />
+    <br>
+    Random Bottle Scan (later stage). I cannot find a picture set for the above tupperware bottle.
+    <br><br>
+    <img alt="bottle_closeup2" src="./images/sl_3d/bclose.jpg" />
+    <br>
+    Cleaner scan of above object (End Stage)
+    <br><br></p>
+<p></center></p>
+<hr>
+<p><center>
+    <img alt="woodlandmontage" src="./images/sl_3d/th_op/montage_woodland.png" />
+    <br>
+    Structured Light Sequences on Woodland Shoes
+    <br><br>
+    <img alt="woodland" src="./images/sl_3d/woodland1.png" />
+    <img alt="woodland" src="./images/sl_3d/th_op/crop-7.jpg" />
+    <br>
+    And here&rsquo;s a 3D scan of my shoes :P 
+    <br><br>
+</center></p>
+<hr>
+
+<h3 id="the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year">the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&rsquo;s for sure to be expected by the coming year.<a class="headerlink" href="#the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year" title="Permanent link">&para;</a></h3>
+<hr>
+<h3 id="results-and-summary">Results and Summary :<a class="headerlink" href="#results-and-summary" title="Permanent link">&para;</a></h3>
+<p><center>
+<img alt="results" src="./images/sl_3d/th_op/crop-11.jpg" />
+<br><br>
+As seen, there is a error of about 3mm. Which can be resolved by further robust calibration, and less interference/disturbance of surrounding light  - SO that an accurate BRDF value can be computed. Also, the material/object under scanning can be coated with a MATT-FINISH POLISH, to avoid surface reflection (as seen in the bottle).
+</center></p>
+<hr>
+
+<p>Anyways.. I&rsquo;ll get the complete series online soon. Stay tuned ! ;)</p>
+        </div>
+    </article>
+    </div>
+</div>
+        
+    </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(248,249,250);">
+      Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+    </div>
+    <!-- Copyright -->
+</footer>
+</body>
+</html>
