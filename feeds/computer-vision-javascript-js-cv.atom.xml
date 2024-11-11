@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas - Computer Vision, Javascript, JS, CV</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/computer-vision-javascript-js-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-07-04T00:40:00-05:00</updated><entry><title>Computer Vision in the Browser Trying out Tracking.JS</title><link href="https://kushalvyas.github.io/cv_js.html" rel="alternate"></link><published>2017-07-04T00:40:00-05:00</published><updated>2017-07-04T00:40:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-07-04:/cv_js.html</id><summary type="html">&lt;p&gt;Using Computer Vision in the browser ( with TrackingJS)&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;I had written this article during last year, and was waiting for it to get  printed in &lt;a href="http://opensourceforu.com/" target="_blank"&gt;Open Source For You&lt;/a&gt; . You can read my article &lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So, computer vision is growing by the day. I constantly keep coming across amazing and fascinating research papers , uploaded to &lt;a href="http://arxiv.org/" target="_blank"&gt;arXiv&lt;/a&gt;. Awesome new algorithms are being developed involving deep learning, geometric  or shape primitives, 3D vision, etc. The list keeps going on. However, there&amp;rsquo;s this parallel movement of everything becoming cloud based. And the browser , being the stairway to that heaven :P , which is why I felt to develop something using &lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;According to GitHub, tracking.js is a lightweight JS library that offers a variety of computer vision algorithms with HTML5 and JS. Some algorithms implemented here are for colour tracking, face detection, feature descrip tors and the other utility functions. &lt;/p&gt;
+&lt;p&gt;So let&amp;rsquo;s get started ! &lt;/p&gt;
+&lt;h2 id="things-required"&gt;Things Required:&lt;a class="headerlink" href="#things-required" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Browser : This tutorial is w.r.t Chrome . I really don&amp;rsquo;t know how other browsers will perform.&lt;/li&gt;
+&lt;li&gt;Tracking JS library : You can download it github | &lt;a href="https://github.com/eduardolundgren/tracking.js/archive/master.zip" target="_blank"&gt;click here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Probably a good JS text editor ( Sublime Text is fine )&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&amp;rsquo;m assuming basic knowledge in HTML, CSS and JS. This tutorial is aim at a very basic level of the aforementioned languages.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank"&gt;You can refer to the example code on my Github&lt;/a&gt; . All the code is present in the &lt;code&gt;src&lt;/code&gt; directory ; and the TrackingJS library is present in the  &lt;code&gt;TRACKING&lt;/code&gt; library. &lt;/p&gt;
+&lt;h2 id="basic-computer-vision-in-the-browser"&gt;Basic Computer vision in the browser:&lt;a class="headerlink" href="#basic-computer-vision-in-the-browser" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Computations are carried out upon images, with the fundamental unit being a pixel. Algorithms involve mathematical operations on a pixel or a group of pixels. This article addresses a few hackneyed CV algorithms and their ports to a front-end system. To start with, basic concepts like images and canvas are to be understood first.&lt;/p&gt;
+&lt;p&gt;An HTML image element refers to the &lt;code&gt;&amp;lt;img&amp;gt;&amp;lt;/img&amp;gt;&lt;/code&gt; tag. It is, essentially, adding an image to a Web page. Similarly, to process or display any graphical units, the &lt;code&gt;&amp;lt;canvas&amp;gt;&amp;lt;/canvas&amp;gt;&lt;/code&gt; element is used. Each of these elements has attributes such as height, width, etc, and is referred to via an ID. The computation part is done using JavaScript (JS). A JS file can be included either at the head or body of an HTML document. It contains functions that will implement the aforementioned operations. For drawing any content upon a canvas, a 2D rendering reference called &lt;code&gt;context&lt;/code&gt; is supposed to be made.&lt;/p&gt;
+&lt;p&gt;Here’s how to access images, as well as canvas and context, from JS:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;//getting image, canvas and context&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;im&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;image_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;canvas_id&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getContext&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2d&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;//accessing a rectangular set of pixels through context interface&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;//displaying image data&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;putImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;start_point_x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;start_point_y&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;** In this tutorial I&amp;rsquo;ll be covering :**&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Basic Image Color Space conversion using JS&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Real - time Color Tracking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. Face Capture and tag ( Temporary, not permanant storage of face vectors)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;4. Feature Detection in Images&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="basic-image-color-space-conversion-using-js"&gt;Basic Image Color Space conversion using JS:&lt;a class="headerlink" href="#basic-image-color-space-conversion-using-js" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For this, let&amp;rsquo;s create a small application involving a live video feed from the webcam and then converting it to gray and thresholding it using RGB threshold values.&lt;/p&gt;
+&lt;p&gt;First, we will access the webcam. Accessing a Web cam from the browser first requires user consent. Local files with a URL pattern such as &lt;code&gt;file://&lt;/code&gt; are not allowed. Regular &lt;code&gt;https://&lt;/code&gt; URLs are permitted to access media. Whenever this feature is executed, the user’s consent will be required. Any image or video captured by a camera is essentially media. Hence, there has to be a media object to set up, initialise and handle any data received by the Web cam. This ability of seamless integration is due to media APIs provided by the browser.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/d637763f19d9f29e60f897c81a732b45.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Camera Feed :  Color Tracking&lt;/title&gt;
+    &lt;!--load css ... use bootstrap--&gt;
+    &lt;link href="../../dependencies/css/bootstrap.css" rel="stylesheet"&gt;
+    &lt;script src="watch_video.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body bgcolor="#bdb76b"&gt;
+
+&lt;!--get the webcam feed--&gt;
+&lt;!--webcam access in permitted in HTML 5 only--&gt;
+    &lt;br&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-3 col-md-offset-3"&gt;
+                &lt;div id="webcam_container"&gt;
+                    &lt;video autoplay="true" id="myVideo" width="480" height="320"&gt;&lt;/video&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;br&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-4 col-md-offset-4"&gt;
+                &lt;div class="row"&gt;
+                    &lt;button class="btn btn-primary" id="btnCapture"&gt;Capture&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnGray"&gt;Gray&lt;/button&gt;
+                    &lt;button class="btn btn-primary" id="btnBinary"&gt;Binary&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;br&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-3 col-md-offset-3"&gt;
+                &lt;canvas id="canvas" width="480" height="320"&gt;&lt;/canvas&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;script&gt;INSERT RESPECTIVE JS SCRIPT FROM THE SRC@KUSHALVYAS.GITHUB.COM/TRACKINGJS_OFY;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;
+As seen, there is a &lt;code&gt;video&lt;/code&gt; element, a &lt;code&gt;canvas&lt;/code&gt; and a couple of buttons to trigger any transform that we want. Thus we write the appropriate Javascript to access the webcam and then, using the &lt;code&gt;context&lt;/code&gt; mentioned in above, convert the color spaces.&lt;/p&gt;
+&lt;div class="gist"&gt;
+    &lt;script src='https://gist.github.com/ddd8ef11f764c37b831558bd644c6568.js'&gt;&lt;/script&gt;
+    &lt;noscript&gt;
+        &lt;pre&gt;&lt;code&gt;/**
+ * Created by kushal 
+ *
+ * Usage :
+ * To access local system webcam on the internet/
+ * Couple of points to be remembered:
+ *
+ *  - Accessing the webcam using HTML5 and JS requires permission from
+ *  the browser. The url of the file has to be a valid one. Url such as file:/// in your browser will not permit the browser to access local webcam.
+ *  - Whereas, an http or https url will surely make a paved way for it. Hence, while developing, one can use Xampp, Wamp or the LAMP Stack.
+ *  - Secondly, every browser has it's own Media API. Using the browser's media api. The MediaDevices interface will provide access to connected media input devides such as microphones, camera, etc. This interface (MediaDevices) will enable a developer to access the local webcam. The method being MediaDevices.getUserMedia();
+ *
+ *
+ *  The ability of web applications to handle media in such seamless manner has been possible due to Media API.What we require is the Navigator.MediaDevices() method. This returns a mediadevices object which provides accerss to connected media.
+ *
+ *  - Apparently, not all browsers follow the same interface class designs. Hence, to make a model that is cross - browser compatible, we much check for all avaible interfacing methods with which the webcam can be accesssed.
+ *      Hence,
+ *              navigator.getUserMedia = (
+ *            //        check for all available media
+ *            //    chrome
+ *            navigator.getUserMedia ||
+ *            navigator.webkitGetUserMedia ||
+ *            navigator.mozGetUserMedia ||
+ *            navigator.msGetUserMedia );
+ *
+ *      This will return an object that is browser specific for media device interchange.
+ *
+ *
+ *
+ */
+
+var video_frame;
+var canvas ;
+var btnCapture, btnGray, btnBinary;
+var imcanvas;
+var captureFlag = false;
+
+function watch_video(){
+
+
+    /*
+        Initialize all selectors.
+        Get access of required element
+        setup event triggers.
+     */
+    //select the elements relevant to video and capture
+    video_frame = document.getElementById("myVideo");
+    canvas = document.getElementById("canvas");
+    btnCapture = document.getElementById("btnCapture");
+    btnGray = document.getElementById("btnGray");
+    btnBinary = document.getElementById("btnBinary");
+
+
+    imcanvas = canvas.getContext("2d");
+
+    //set up event listeners ..
+    btnCapture.addEventListener("click", capture);
+    btnGray.addEventListener("click", gray);
+    btnBinary.addEventListener("click", binary);
+
+
+
+
+    /*
+
+     This part of javascript code will capture frames from
+     the webcam and display on webpage.
+     */
+
+//    obtain access to browser local system connected media ..
+
+    navigator.getUserMedia = (
+    //        check for all available media
+    //    chrome
+        navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                    navigator.msGetUserMedia );
+
+    //this will set a read-only boolean property to the
+//            obtained list of media devices
+
+    if(navigator.getUserMedia){
+        //log ... print in the JS console in browser
+        console.log("Browser supports media api");
+        //specify what type of media if required.
+        /*
+            navigator.getUserMedia({
+                    params include :
+                        -&gt; video
+                        -&gt; audio
+               })
+
+         */
+        navigator.getUserMedia({
+            video : true,
+        //   audio : true, //if microphone access was required
+        }, success_stream, error_stream);
+
+    }else{
+        alert("The browser does not support Media Interface");
+    }
+
+
+}
+
+function success_stream(stream){
+    //This is a callback. Please refer to javascripts callbacks for futher information
+    console.log("Streaming successful");
+//    once we have the webcam stream, we shall display it in the
+//    html video element created
+    video_frame.src = window.URL.createObjectURL(stream);
+}
+
+function error_stream(error){
+    console.log("error has occured" + error);
+}
+
+function capture(){
+    /*
+     When the button is called, this function is called.
+     Once the button is clicked, the canvas will be updated with current frame
+     */
+    captureFlag = true;
+    console.log("Button is clicked");
+    imcanvas.drawImage(video_frame, 0, 0, canvas.width, canvas.height);
+    // ipcanvas.getContext("2d").drawImage(video_frame, 0, 0, 640, 480);
+}
+
+
+function gray(){
+    /*
+    convert the image to gray scale ...
+    the formula to convert an image to gray scale is quite simple
+    every pixel  = I(x,y) -&gt; G(a,b)
+    such that G(a,b) = 0.21R + 0.72G + 0.07B
+     */
+
+    capture();
+    console.log("Gray operation to be performed");
+    // 32 bit image
+    var image = imcanvas.getImageData(0, 0, canvas.width, canvas.height);
+    console.log(image.data.length);
+    console.log(image);
+    var channels = image.data.length/4;
+    for(var i=0;i&lt;channels;i++){
+        var r = image.data[i*4 + 0];
+        var g = image.data[i*4 + 1];
+        var b = image.data[i*4 + 2];
+        var gray =  Math.round(0.21*r + 0.72*g + 0.07*b);
+        image.data[i*4 + 0] = gray;
+        image.data[i*4 + 1] = gray;
+        image.data[i*4 + 2] = gray;
+    }
+
+    console.log(image);
+    imcanvas.putImageData(image, 0, 0);
+    //imcanvas.putImageData(image.toDataURL(), 0, 0, canvas.width, canvas.height);
+    // imcanvas.drawImage();
+}
+
+function binary(){
+
+    /*
+       To convert image into binary , we will threshold it.
+       Based upon the threshold value
+
+       thresh_red, thresh_blue, thresh_green ==&gt; are the respective red, blue and green color threshold values. Any thing above this threshold value will be denoted by white color and anything below will be black
+
+     */
+
+    capture();
+    var image = imcanvas.getImageData(0, 0, canvas.width, canvas.height);
+    var thresh_red = 100;
+    var thresh_green = 100;
+    var thresh_blue = 100;
+
+    var channels = image.data.length/4;
+    for(var i=0;i&lt;channels;i++){
+        var r = image.data[i*4 + 0];
+        var g = image.data[i*4 + 1];
+        var b = image.data[i*4 + 2];
+        if( r&gt;= thresh_red &amp;&amp; g&gt;= thresh_green &amp;&amp; b&gt;=thresh_blue ){
+            image.data[i*4 + 0] = 255;
+            image.data[i*4 + 1] = 255;
+            image.data[i*4 + 2] = 255;
+        }else{
+            image.data[i*4 + 0] = 0;
+            image.data[i*4 + 1] = 0;
+            image.data[i*4 + 2] = 0;
+        }
+    }
+    imcanvas.putImageData(image, 0,  0);
+
+
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/noscript&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;
+In the above code, navigator.getUserMedia will be set if the media exists. To get control of media (refers to camera), use the following code:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;navigator&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getUserMedia&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;video&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="nx"&gt;handle_video&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;report_error&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On the successful reception of a frame, the success_stream handler is called. In case of any error, error_stream is called. The success_stream function has the video stream as input, and will display each frame in the &lt;code&gt;video_frame&lt;/code&gt; (HTML video element) .&lt;/p&gt;
+&lt;p&gt;Any of the button , if clicked, will call it&amp;rsquo;s respective function. This is seen and mapped in the above JS-GIST. &lt;/p&gt;
+&lt;p&gt;JS stores an image as a &lt;strong&gt;linear array&lt;/strong&gt; in RGBA format. Each image can be split into its respective channels, as shown below:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getImageData&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;channels&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;channels&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;red_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;green_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+For the computation of gray scale images, A gray scale image is one in which all colour components are normalised to have equal weightage. If an 8-bit image is considered, the colour gray is obtained when the number of RGB bits equals 1.
+To solve this, there is a simple formula, which creates a weighted sum of pixel values to yield a gray image:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.21&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;red_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.72&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;green_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.07&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;On applying the above formula to each pixel, split into its components, one gets an equivalent gray pixel.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;For computation of binary and inverted images : A binary image is in black and white (BW). The conversion of an image from colour to BW is done through a process called thresholding, which classifies each pixel as white or black based on its value. If the value is greater than a particular threshold, it will be set to 255, else 0.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;red_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;threshold_red&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;green_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;threshold_green&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;blue_component_pixel&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;threshold_blue&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;//make pixel == white&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;255&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;pixel&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Just as we have negatives for a photograph, similarly, the inversion of colour space of any image converts all pixels into a negative. This can simply be done by subtracting each pixel value from 255&lt;/p&gt;
+&lt;p&gt;The logic is well commented within the GIST. So please refer the Gist.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id="real-time-color-tracking"&gt;Real Time Color Tracking&lt;a class="headerlink" href="#real-time-color-tracking" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;For implementing this, we&amp;rsquo;ll use the &lt;code&gt;tracking.js&lt;/code&gt; library.&lt;/p&gt;
+&lt;p&gt;In your &lt;code&gt;head&lt;/code&gt; tag of the &lt;code&gt;HTML&lt;/code&gt; document, include the following script
+&lt;br&gt;
+*    &lt;script src="../../TRACKING/build/tracking.js"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;From now, for the HTML templates, please refer the source@github. I&amp;rsquo;ll continue with explaining the javascript part. The process of declaring a video object and capturing frames in javascript remains same as above. To start using TrackingJs, we declare a &lt;strong&gt;color-tracker&lt;/strong&gt; object.&lt;/p&gt;
+&lt;p&gt;To initialise a colour tracker, first use the following commands:
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myTracker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ColorTracker&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;yellow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;myTracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;track&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;color_tracking_callback&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;mT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;track&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#myVideo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myTracker&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;In the above code snippet, color_tracking_callback is a callback which will receive a list of all possible locations where the given colour is present. Each location is a rectangle object, comprising attributes which are ‘x, y, width and height’. x and y are the starting points of the rectangle.&lt;/p&gt;
+&lt;p&gt;The natural action for tracking is to make a bounding box around the region we are interested in. Therefore, the boundingBox function plots a rectangle around the region of interest. Context variable is used here to perform any canvas drawing methods. context.stroke() eventually prints it on the canvas.
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;color_tracking_callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;list_rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;list_rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beginPath&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;strokeStyle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lineWidth&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;rect&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;stroke&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;    &lt;/p&gt;
+&lt;p&gt;Tracking.JS also provides with a trigger to either &lt;code&gt;start&lt;/code&gt; or &lt;code&gt;stop&lt;/code&gt; the streaming process.&lt;/p&gt;
+&lt;p&gt;Incase you want to track a custom RGB range of colors, you can refer to this snippet below.
+As seen, the input to a colour tracker is a list of probable colours (e.g., [yellow]). As the definition suggests, a colour tracker must be able to track colours. Tracking.js provides a method registerColor that handles user-specified custom colours.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ColorTracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;registerColor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;color_name&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;callback_color&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+The &lt;code&gt;callback_color&lt;/code&gt; callback will have input arguments as red, blue and green values. Since this is a custom colour, one has to define the RGB ranges. If the RGB argument meets the range,the function returns true, else it’ll return false.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;callback_color&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;r_low&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;r_high&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;g&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;g_low&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;g&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;g_high&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b_low&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b_high&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+Here, r_low, r_high, etc, refer to the lower and upper bounds of the threshold values, respectively. Having registered the colour, one can simply append color_name to color_list in tracking.ColorTracker (color_list).&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3 id="face-capture-and-tag-temporary-not-permanant-storage-of-face-vectors"&gt;Face Capture and tag ( Temporary, not permanant storage of face vectors)&lt;a class="headerlink" href="#face-capture-and-tag-temporary-not-permanant-storage-of-face-vectors" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Face detection in Tracking.js uses the &lt;a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework" target="_blank"&gt;&lt;strong&gt;Viola-Jones Framework&lt;/strong&gt;&lt;/a&gt;. You can look it up in &lt;a href="https://trackingjs.com/docs.html#viola-jones" target="_blank"&gt;the documentation&lt;/a&gt;. It also has the popular &lt;code&gt;opencv_haarcascade&lt;/code&gt; in the repository&amp;rsquo;s utils folder. &lt;/p&gt;
+&lt;p&gt;As seen in the previous examples, this code involves the same, video capture and processing function blocks. What is added is the new tracking.js face detector.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;new&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ObjectTracker&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;face&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// tuning params&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setInitialScale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;//set initial scale for featureblock scaling&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setEdgesDensity&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;//check to skip edge&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setStepSize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;//block step size&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// tracker on video&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;mTracker&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;track&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#myVideo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;camera&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;face_tracker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;track&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;handle_faces&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;face_tracker&lt;/code&gt; is actually an object detector (uses the viola jones object detection framework). &lt;/p&gt;
+&lt;p&gt;Make sure, to run the face detection, the following js includes must be made&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;TRACKING/build/tracking.js&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TRACKING/build/data/face-min.js&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One can refer the &lt;a href="https://trackingjs.com/api/tracking.ObjectTracker.html" target="_blank"&gt;documentation&lt;/a&gt; to know about all the methods supported by the object tracker. Feel free to experient with different values as well. Default value&amp;rsquo;s are mentioned in the block.&lt;/p&gt;
+&lt;p&gt;Once a face is detected, a JS prompt is created to enter the name for the person. &lt;/p&gt;
+&lt;p&gt;**Note : This is all happening in a real time video . Hence , there may be multiple occurences that a prompt for the face pops up, if the face previously detected undergoes disturbance/disappears from the frame, etc. **&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;handle_new_faces&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;imcanvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;clearRect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;canvas2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;data_cx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ow"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;data_cx&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;prompt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;enter name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;p_name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;innerHTML&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;drawBoundingBox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;updateIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This will create a face-tag for a single person and continue to track that person. Incase if anyone wants to implement a multi person &amp;lsquo;tag n track&amp;rsquo;, what one can do is detect all possible faces in a video frame, and tag each face with it&amp;rsquo;s features. Once that is done, in the next frame, compare the newly detected faces with the stored features, minimizing the euclidean distance between the previously and newly detected facial features&lt;/p&gt;
+&lt;h2 id="features-extraction-and-matching"&gt;Features extraction and matching&lt;a class="headerlink" href="#features-extraction-and-matching" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In simple terms, any significant discernible parts of the image can be defined as a feature. These can be corner points, edges or even a group of vectors oriented independently. The process of extracting such information is called feature extraction. Various implementations exist for feature extraction and descriptors, such as SIFT, SURF (feature descriptors) and FAST (corner detection). Tracking.js implements BRIEF (Binary Robust Independent Elementary Features) and FAST (Features from Accelerated Segmentation Test). Input to the system is first a gray image. The following code extracts corner points (points of interest) based on FAST.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;grayscale&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;input_image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;corners&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Fast&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;findCorners&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;height&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+Each feature point can be referred to as a location. But to be able to perform any operations, these locations are converted into descriptors, which can be considered as a list of vectors that define a given feature. Comparison operators are applied upon these vectors. To find descriptors, tracking.js uses the BRIEF framework to extrapolate descriptor vectors from given feature points.
+&lt;br&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;descriptors&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Brief&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getDescriptors&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gray&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;width&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;corners&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+Having got the points of interest from an image as well as their descriptors, we can design a scenario wherein one can track based on templates. Given a video frame and a fixed image, features can be used to match and identify where the fixed image can be located. However, there can be false positives.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tracking&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Brief&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;reciprocalMatch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;corner_scene&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;descriptor_scene&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nx"&gt;corner_target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;descriptor_target&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// calculates the matching points between the scene and the target image.&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;//matches can be further filtered by using a sorting functin&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// Either sort according to number of matches found:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// or sort according to confidence value:&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;b&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;confidence&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;confidence&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+The matches obtained can be sorted on the basis of their length, i.e., the number of matches obtained, and on their confidence value, as to how well the points match. Having arranged the matches, efficient matching of the target template image and the scene image can be carried out. It is simply a task of graphics now. Just iterate over the two arrays and mark the appropriate feature points on the canvas, as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;plot_matches&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;color&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;red&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lineWidth&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2px&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;fillStyle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;strokeStyle&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;color&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beginPath&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;arc&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;keypoint1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;keypoint1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nx"&gt;context&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;stroke&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+The above function plots the matches only for the scene image, since the reference context is made with respect to one canvas element. For plotting matches on the target template image, a context reference has to be made to its respective canvas element.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id="here-are-some-cool-experiments-that-i-did-with-trackingjs"&gt;Here are some cool experiments that I did with tracking.js&lt;a class="headerlink" href="#here-are-some-cool-experiments-that-i-did-with-trackingjs" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;p&gt;Oringal webcam image&lt;/p&gt;
+&lt;p&gt;&lt;img alt="original" src="https://kushalvyas.github.io/images/cv_js/1.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Grayscale conversion&lt;/p&gt;
+&lt;p&gt;&lt;img alt="gray" src="https://kushalvyas.github.io/images/cv_js/3.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Binary Conversion&lt;/p&gt;
+&lt;p&gt;&lt;img alt="binary" src="https://kushalvyas.github.io/images/cv_js/2.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="color-tracking" src="https://kushalvyas.github.io/images/cv_js/5.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="face" src="https://kushalvyas.github.io/images/cv_js/7.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;For complete implementation , please refer to the article in Opensource For You as well as the &lt;a href="https://github.com/kushalvyas/trackingjs_ofy" target="_blank"&gt;Github link&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also refer the Tracking.JS website. It is very well documented , with awesome examples. &lt;/p&gt;
+&lt;p&gt;So, using tracking.js, one can develop browser based computer vision applications with much ease. &lt;/p&gt;
+&lt;h2 id="references"&gt;References:&lt;a class="headerlink" href="#references" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;[1]&lt;a href="https://trackingjs.com/" target="_blank"&gt;TrackingJS&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;[2]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D" target="_blank"&gt;Developer Mozilla CanvasRenderingContext2D API&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;[3]&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator" target="_blank"&gt;Developer Mozilla Media API&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[4]&lt;a href="http://opensourceforu.com/2017/04/exploring-front-end-computer-vision/" target="_blank"&gt;Exploring Front-end Computer Vision - Open Source For You&lt;/a&gt;&lt;/p&gt;</content><category term="Computer Vision, Javascript, JS, CV"></category><category term="ObjectRecognition"></category></entry></feed>

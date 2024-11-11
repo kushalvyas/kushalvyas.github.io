@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas - CV</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2018-05-13T20:40:00-05:00</updated><entry><title>Demystifying Geometric Camera Calibration for Intrinsic Matrix</title><link href="https://kushalvyas.github.io/calib.html" rel="alternate"></link><published>2018-05-13T20:40:00-05:00</published><updated>2018-05-13T20:40:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2018-05-13:/calib.html</id><summary type="html">&lt;p&gt;Using Zhangs method to compute the intrinsic matrix using Python NumPy&lt;/p&gt;</summary><content type="html">&lt;h2 id="computing-the-intrinsic-camera-matrix-using-zhangs-algorithm"&gt;Computing the intrinsic camera matrix using Zhangs algorithm&lt;a class="headerlink" href="#computing-the-intrinsic-camera-matrix-using-zhangs-algorithm" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Long time no blogging; but i am very interested in writing this article - the reason being i first used camera calibration in my second year, but that time I had OpenCV to use. ALthough, since that time I had decided to write a tutorial explaining the aspects of it as well. So first things first. I&amp;rsquo;ll start this off mentioning about 2 articles that helped me get a clearer understanding of the method of calibration, then I will start off with what it is, how it is useful, which parameters it computes, etc. Also, to mention, this article delineates about the intrinsic matrix, and I will be covering {R|T} matrices along with distortion coefficients and image undistortion in an upcoming update to the blog article.&lt;/p&gt;
+&lt;p&gt;Firstly, some resources:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://ieeexplore.ieee.org/document/888718/" target="_blank"&gt;Original Paper by Zhengyou Zhang &amp;ndash; &amp;ldquo;A flexible new technique for camera calibration&amp;rdquo;&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.microsoft.com/en-us/research/publication/a-flexible-new-technique-for-camera-calibration/" target="_blank"&gt;Microsoft Technical Report for Camera Calibration&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://staff.fh-hagenberg.at/burger/publications/reports/2016Calibration/Burger-CameraCalibration-20160516.pdf" target="_blank"&gt;Zhang’s Camera Calibration Algorithm: In-Depth Tutorial and Implementation - Report by Wilhelm Burger&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;I have also made my own notes, which is basically information from the above resources. &lt;a href="{filename}/extra/Calibnotes.pdf" target="_blank"&gt;Uploaded it here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Implementation and source code for article : &lt;a href="https://github.com/kushalvyas/CameraCalibration" target="_blank"&gt;https://github.com/kushalvyas/CameraCalibration&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I think one must read all of them to understand this subtle art of calibrating cameras. Although, I&amp;rsquo;d like to recommend the &lt;code&gt;Microsoft technical report&lt;/code&gt; as well as the &lt;code&gt;In-depth tutorial&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Proceeding with the blog article. I shall cover the article in the following sequence.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Image formation in a Camera &lt;span class="math"&gt;\(\rightarrow\)&lt;/span&gt; World and Image points&lt;/li&gt;
+&lt;li&gt;Concept of Camera Calibration&lt;/li&gt;
+&lt;li&gt;Intrinsic and Extrinsic Parameters&lt;/li&gt;
+&lt;li&gt;Types of distortions (Radial, Barrel, Pincushion)&lt;/li&gt;
+&lt;li&gt;Computation of the intrinsic camera calibration matrix&lt;/li&gt;
+&lt;li&gt;Computation of extrinsic parameters (To be Updated)&lt;/li&gt;
+&lt;li&gt;Distortion Coefficients and Undistortion (TO be Updated)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s begin!&lt;/p&gt;
+&lt;p&gt;So here&amp;rsquo;s how a pinhole camera works. Consider the image below. &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="im1" src="https://kushalvyas.github.io/images/calib/im1.png" /&gt; &lt;br&gt;&lt;a href="https://www.mathworks.com/help/vision/ug/camera-calibration.html" target="_blank"&gt;Source: Mathworks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As seen, the visual pipeline is capturing the object in 3D from the World coordinate space and converting it through the the aperture ( pinhole, in this case) and projects onto the camera image plane. This leads to the formation of the image. &lt;!-- Once this image has been extracted from the 3D world space, it is difficult (will need additional views) to reverse engineer the mere 2D representation of the image and try to reconstruct it back to the 3D world scene --&gt; &lt;/p&gt;
+&lt;p&gt;The concept to be understood is that any point in the 3D world coordinate space is represented by &lt;span class="math"&gt;\(P = (X, Y, Z)^T\)&lt;/span&gt;. There is an essential conversion of the 3D world point &lt;span class="math"&gt;\(P\)&lt;/span&gt; to a local image coordinate space point, let&amp;rsquo;s say &lt;span class="math"&gt;\(p = (u, v)^T\)&lt;/span&gt;. Hence for conversion of the points &lt;span class="math"&gt;\(P \rightarrow p\)&lt;/span&gt;, there is an effective projection transform ( just a matrix ) which enables so. The aim of calibration is to find the effective projection transform hence yielding significant information regarding the vision system such as focal lengths, camera pose, camera center, etc. I&amp;rsquo;ll get to it too. Thus formulating a basic equation for the above paragraph, we can write it as:&lt;/p&gt;
+&lt;div class="math"&gt;$$ [p] = M.[P] $$&lt;/div&gt;
+&lt;p&gt;where M is a projection matrix converting the World &lt;span class="math"&gt;\((X, Y, Z, 1)\)&lt;/span&gt; point to the Image &lt;span class="math"&gt;\((u, v, 1)\)&lt;/span&gt; point. This is a very casual representation of the above process happening through the visual pipeline.&lt;/p&gt;
+&lt;p&gt;On a broad view, the camera calibration yields us an intrinsic camera matrix, extrinsic parameters and the distortion coefficients. The basic model for a camera is a pinhole camera model, but today&amp;rsquo;s cheap camera&amp;rsquo;s incorporate high levels of noise/distortion in the images. For a simple visualization, I&amp;rsquo;ll put 2 images below. Note that the image on the left shows an image captured by my logitech webcam, followed by the image on the right which shows an &lt;code&gt;undistorted&lt;/code&gt; image. The straight lines appear to be bent (curved) in the left image, whereas in the right one it appears normal. &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="im2" height="136px" src="https://kushalvyas.github.io/images/calib/calib_radial.jpg" width="136px" /&gt;
+&lt;img alt="im3" height="136px" src="https://kushalvyas.github.io/images/calib/calib_result.jpg" width="136px" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;Source :&lt;a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_calib3d/py_calibration/py_calibration.html" target="_blank"&gt;OpenCV Camera Calibration docs&lt;/a&gt;&lt;/center&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Hence, the camera calibration process is useful in providing an accurate input image to any computer vision system in the first place. (computer vision system which deal with pixel/real measurements. For other applications, it is not needed to compute this process). &lt;/p&gt;
+&lt;p&gt;So let&amp;rsquo;s start with the camera calibration algorithm.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Camera calibration&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We have established the the there basically is a transform that converts the world 3D point to an image point. However, there are a series of sub transforms in between that enable that. The 3D world coordinates undergo a Rigid Body Transform to get the same 3D World coordinates w.r.t the camera space. This newly obtained 3D set of coordinates are then projected into the camera&amp;rsquo;s image plane yielding a 2D coordinate.&lt;/p&gt;
+&lt;div class="math"&gt;$$ P (X, Y, Z) \overset{\mbox{\{Rigid Transform\}}}{\longrightarrow} P(X, Y, Z) \ w.r.t. camera's frame \overset{\mbox{\{Projective Transform\}}}{\longrightarrow} p(u, v)$$&lt;/div&gt;
+&lt;p&gt;The conversion due to the rigid transformation is due to the &amp;ldquo;extrinsic parameters&amp;rdquo;, which comprise of rotation and translation vectors, namely &lt;span class="math"&gt;\(R\)&lt;/span&gt; &amp;amp; &lt;span class="math"&gt;\(T\)&lt;/span&gt;. On the other hand, the &amp;ldquo;intrinsic parameters&amp;rdquo; is the &amp;ldquo;camera matrix&amp;rdquo; which is a &lt;span class="math"&gt;\(3\text{ x }3\)&lt;/span&gt; matrix ( the projective transform).&lt;/p&gt;
+&lt;p&gt;This is how each of the matrices look like&lt;/p&gt;
+&lt;p&gt;__ Camera Matrix :(A) __&lt;/p&gt;
+&lt;p&gt;Where &lt;span class="math"&gt;\(\alpha, \ \beta\)&lt;/span&gt; is the focal length (&lt;span class="math"&gt;\(f_x\)&lt;/span&gt;, &lt;span class="math"&gt;\(f_y\)&lt;/span&gt;); &lt;span class="math"&gt;\(\gamma\)&lt;/span&gt; is pixel skew; (&lt;span class="math"&gt;\(u_c,\  v_c\)&lt;/span&gt;) is the camera center (origin) &lt;/center&gt;&lt;/p&gt;
+&lt;div class="math"&gt;$$ \begin{bmatrix}
+\alpha &amp;amp; \gamma &amp;amp; u_c\\
+0 &amp;amp; \beta &amp;amp; v_c\\
+0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Algorithm for Camera Calibration&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The essence of camera calibration starts with estimating a matrix/transform which maps the World Coordinates to Image Plane coordinates. As described above, it eventually ends up being a equation in matrix form. However, let us start with preparing the initial data.&lt;/p&gt;
+&lt;p&gt;To estimate the transform, Zhang’s method requires images of a fixed geometric pattern; the images of which are taken from multiple views. Let&amp;rsquo;s say the total number of views are &lt;span class="math"&gt;\(M\)&lt;/span&gt;. Given &lt;span class="math"&gt;\(M\)&lt;/span&gt; views, each view comprises of a set of points for which image and world coordinates are established. Consider &lt;span class="math"&gt;\(N\)&lt;/span&gt; points per view.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;For &lt;span class="math"&gt;\(M\)&lt;/span&gt; views, consider &lt;span class="math"&gt;\(M\)&lt;/span&gt; images from &lt;span class="math"&gt;\(I_0\)&lt;/span&gt; to &lt;span class="math"&gt;\(I_{M-1}\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For each image &lt;span class="math"&gt;\(I_i\)&lt;/span&gt; where i = (0 &amp;hellip; M-1) : &lt;span class="math"&gt;\(N\)&lt;/span&gt; correspondence points are computed: &lt;br&gt;
+For the above function one can use OpenCV&amp;rsquo;s findchessboardcorners function. &lt;a href="https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html#findchessboardcorners" target="_blank"&gt;cv2.findChessboardCorners&lt;/a&gt; which returns a list of chessboard corners in the image. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Let the observed points be denoted as &lt;span class="math"&gt;\(U\)&lt;/span&gt; and the model points be represented as &lt;span class="math"&gt;\(X\)&lt;/span&gt;. For the image/observed points (U) extracted from the M views, let each point be denoted bu &lt;span class="math"&gt;\(U_{i,j}\)&lt;/span&gt;, where &lt;span class="math"&gt;\(i\)&lt;/span&gt; is the view ; and &lt;span class="math"&gt;\(j\)&lt;/span&gt; represents the extracted point (chessboard). Hence, &lt;span class="math"&gt;\(U_{i,j} = ( u, v)\)&lt;/span&gt;. At the same time, &lt;span class="math"&gt;\(X\)&lt;/span&gt; represents a similar structure as &lt;span class="math"&gt;\(U\)&lt;/span&gt;, with each point &lt;span class="math"&gt;\(X_{i,j} = (X, Y, Z)\)&lt;/span&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From each correspondence between model points and image points, compute an associated homography between the points. For each view, compute the homography.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From the set of estimated homographies, compute intrinsic parameters &lt;span class="math"&gt;\(\alpha, \gamma, u_c, \beta , v_c\)&lt;/span&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Update parameters using the LM-Optimizer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the intrinsics are computed, Rotation and Translation Vectors (extrinsic) are estimated. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Using intrinsic and extrinsic parameters as initial guess for the LM Optimizer, refine all parameters.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I&amp;rsquo;ve described the complete algorithm for Zhang’s camera calibration. However this article will cover till point 6 -&amp;gt; pertaining to the intrinsic params.&lt;/p&gt;
+&lt;h2 id="implementation"&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;a class="headerlink" href="#implementation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We divide the implementation in the following parts&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Computing observed and model points correspondences.&lt;/li&gt;
+&lt;li&gt;Normalization&lt;/li&gt;
+&lt;li&gt;Compute view-wise homographies. &lt;/li&gt;
+&lt;li&gt;Refine Homography&lt;/li&gt;
+&lt;li&gt;Estimate Camera Intrinsic from homographies. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Computing observed and model points&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;First of all steps is to collect sample images ( remember, there are M model views to be taken into account.) That means one has to capture &lt;span class="math"&gt;\(M\)&lt;/span&gt; images through the camera, such that each of the &lt;span class="math"&gt;\(M\)&lt;/span&gt; images are at a unique position in the camera&amp;rsquo;s field of view. Once those image sets are captures, we proceed to marking correspondences between the model and the images.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s just mention the imports and other variables.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;print_function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;division&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;glob&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+    &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cv2&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;optimize&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;opt&lt;/span&gt;
+
+
+    &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_printoptions&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;suppress&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;puts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pprint&lt;/span&gt;
+
+    &lt;span class="n"&gt;DATA_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/&amp;lt;path to data&amp;gt;/data/&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;DEBUG_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;/&amp;lt;path to data&amp;gt;/data/debug/&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;SQUARE_SIZE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;The post will use OpenCV&amp;rsquo;s &lt;code&gt;cv2.findChessboardCorners&lt;/code&gt; function for locating chessboard corners from the image. Other than that everything is computed using &lt;code&gt;NumPy&lt;/code&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Store the images in a &lt;code&gt;DATA&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Make an additional directory &lt;code&gt;DATA/DEBUG/&lt;/code&gt; to store debug images &lt;br&gt;.&lt;br&gt;.  &lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;show_image&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imshow&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;waitKey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# read images from DATA_DIR, one at a time&lt;/span&gt;
+    &lt;span class="c1"&gt;# returns image path, as well as image in grayscale&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_camera_images&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;images&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_DIR&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;*.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+        &lt;span class="n"&gt;images&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Computing the Chessboard corners using the &lt;code&gt;cv2.findChessboardCorners&lt;/code&gt; function. One can note 
+there is an array for &lt;code&gt;image_points&lt;/code&gt; which holds the image coordinates for the chessboard corners. 
+Also, the array named &lt;code&gt;object_points&lt;/code&gt; holds the world coordinates for the same.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;WHY CHESSBOARD!&lt;/strong&gt; : Zhangs method, or even camera calibration in general is concerned with obtaining an transform from real world 3D to image 2D coordinates. Since the grid pattern formed on a chessboard is a really simple,  linear pattern, it is natural to go with it. That being said, geometric calibration also requires a mapping for the world and image coordinates. The reason i emphasize on this point is to understand the structure and &amp;ldquo;shape&amp;rdquo; (numpy users will be familiar to &amp;ldquo;shape&amp;rdquo;) of the previously defined &lt;span class="math"&gt;\(U\)&lt;/span&gt; and &lt;span class="math"&gt;\(X\)&lt;/span&gt; data points. &lt;/p&gt;
+&lt;p&gt;Now, &lt;span class="math"&gt;\(U\)&lt;/span&gt; is a array/list/matrix/data structure containing of all points in an image &lt;span class="math"&gt;\(U_i\)&lt;/span&gt;. So a given points inside an image will be &lt;span class="math"&gt;\(U_{i,j} = (u, v)\)&lt;/span&gt; given that &lt;span class="math"&gt;\(i\)&lt;/span&gt; is the &lt;span class="math"&gt;\(i^{th}\)&lt;/span&gt; model view ( &lt;span class="math"&gt;\(i = (0, M-1)\)&lt;/span&gt; , and &lt;span class="math"&gt;\(j\)&lt;/span&gt; is the &lt;span class="math"&gt;\(j^{th}\)&lt;/span&gt; point inside the &lt;span class="math"&gt;\(i^{th}\)&lt;/span&gt; image, where &lt;span class="math"&gt;\(j = (0, N-1)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;One can image it as a vector as follows&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+    u_{0, 0} = (u_0, v_0) \\
+    u_{0, 1} = (u_1, v_1) \\
+    \vdots \\
+    u_{0, N-1} = (u_{N-1}, v_{N-1})  
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;and eventually, for all &lt;span class="math"&gt;\(M\)&lt;/span&gt; Views : &lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+    u_{0, 0} = (u_0, v_0) \\
+    \vdots \\
+    u_{0, N-1} = (u_{N-1}, v_{N-1})  
+    \vdots \\
+    \vdots \\
+    \vdots \\
+    \vdots \\
+    u_{N-1, 0} = (u_0, v_0) \\
+    \vdots \\
+    u_{N-1, N-1} = (u_{N-1}, v_{N-1})   \\
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Hence, the above mention.&lt;/p&gt;
+&lt;p&gt;Secondly, as mentioned previously in the introduction, we are there has to be correspondences established before we compute the transfer matrix. Every point belonging to the image plane has coordinates &lt;span class="math"&gt;\((u,v)\)&lt;/span&gt;. The real world 3D point corresponding to it will be of the format &lt;span class="math"&gt;\((X, Y, Z)\)&lt;/span&gt;. So technically, there needs to be a transform that maps, &lt;/p&gt;
+&lt;div class="math"&gt;$$
+U(u, v, 1)^T = [M] . P(X, Y, Z, 1)^T
+$$&lt;/div&gt;
+&lt;p&gt;Hence, we also create an array for the model/realworld points which establishes the correspondences. I have mentioned a parameter &lt;code&gt;SQUARE_SIZE&lt;/code&gt; previously which is the size of the chessboard square (cm). the next step is to create &lt;span class="math"&gt;\(P\)&lt;/span&gt; array of shape &lt;span class="math"&gt;\(M \times (N \times 3)\)&lt;/span&gt;. For each of the &lt;span class="math"&gt;\(M\)&lt;/span&gt; views, the array is a &lt;span class="math"&gt;\(N \times 3\)&lt;/span&gt; array which has &lt;span class="math"&gt;\(N\)&lt;/span&gt; rows, each of the &lt;span class="math"&gt;\(N\)&lt;/span&gt; rows having &lt;span class="math"&gt;\((X, Y, Z)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Since we are using a chessboard, and we know the chessboard square size, it is easy to virtually compute physical locations of the chessboard corners in real world . Assuming a Point &lt;span class="math"&gt;\(A = (0 ,0)\)&lt;/span&gt;, every point can be expressed as &lt;span class="math"&gt;\((A\hat{i} + A\hat{j}) + ( k \times \text{SQUARE_SIZE} (\hat{i} + \hat{j}))\)&lt;/span&gt;, where k ranges upto &lt;code&gt;PATTERN_SIZE&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="chessboard" src="https://kushalvyas.github.io/images/calib/left1.jpg" /&gt;
+&lt;img alt="chessboard1" src="https://kushalvyas.github.io/images/calib/draw0.png" /&gt;
+&lt;/center&gt;
+Below is the code for detecting chessboard_corners, and establishing correspondences between image_points(U) and model points (X).&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;
+&lt;span class="normal"&gt;25&lt;/span&gt;
+&lt;span class="normal"&gt;26&lt;/span&gt;
+&lt;span class="normal"&gt;27&lt;/span&gt;
+&lt;span class="normal"&gt;28&lt;/span&gt;
+&lt;span class="normal"&gt;29&lt;/span&gt;
+&lt;span class="normal"&gt;30&lt;/span&gt;
+&lt;span class="normal"&gt;31&lt;/span&gt;
+&lt;span class="normal"&gt;32&lt;/span&gt;
+&lt;span class="normal"&gt;33&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;getChessboardCorners&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;visualize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;objp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;objp&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;indices&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;objp&lt;/span&gt; &lt;span class="o"&gt;*=&lt;/span&gt; &lt;span class="n"&gt;SQUARE_SIZE&lt;/span&gt;
+
+            &lt;span class="n"&gt;chessboard_corners&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+            &lt;span class="n"&gt;image_points&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+            &lt;span class="n"&gt;object_points&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+            &lt;span class="n"&gt;correspondences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+            &lt;span class="n"&gt;ctr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;get_camera_images&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt; &lt;span class="c1"&gt;#images:&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Processing Image : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;corners&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findChessboardCorners&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;patternSize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Chessboard Detected &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                    &lt;span class="n"&gt;corners&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;corners&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;corners&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;objp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;
+                        &lt;span class="c1"&gt;# print(objp[:,:-1].shape)&lt;/span&gt;
+                        &lt;span class="n"&gt;image_points&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;corners&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                        &lt;span class="n"&gt;object_points&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;objp&lt;/span&gt;&lt;span class="p"&gt;[:,:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="c1"&gt;#append only World_X, World_Y. Because World_Z is ZERO. Just a simple modification for get_normalization_matrix&lt;/span&gt;
+                        &lt;span class="n"&gt;correspondences&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;corners&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;int&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;objp&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+                    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;visualize&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                        &lt;span class="c1"&gt;# Draw and display the corners&lt;/span&gt;
+                        &lt;span class="n"&gt;ec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cvtColor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;each&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;COLOR_GRAY2BGR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                        &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drawChessboardCorners&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ec&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;PATTERN_SIZE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;corners&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                        &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DEBUG_DIR&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ctr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.png&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ec&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+                &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Error in detection points&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ctr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+                &lt;span class="n"&gt;ctr&lt;/span&gt;&lt;span class="o"&gt;+=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;correspondences&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;corners&lt;/code&gt;: image points returned by &lt;code&gt;cv2.findChessboardCorners&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;image_points&lt;/code&gt; : array for containing all points extracted. (&lt;span class="math"&gt;\(u, v)\)&lt;/span&gt; format&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;object_points&lt;/code&gt; : object points &lt;span class="math"&gt;\((X, Y, | Z=0)\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt; : One important point to be noted during Zhang&amp;rsquo;s algorithm is that for any object points P(X, Y, Z), since it is a planar method, &lt;span class="math"&gt;\(Z=0\)&lt;/span&gt;. To visualize this, consider the following diagram. As seen, below is sample origin of the chessboard real world system. X-Y Axis belong inside the plane of the chessboard, and Z-axis is normal to the chessboard.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="image" src="https://kushalvyas.github.io/images/calib/axis.jpeg" /&gt;&lt;/p&gt;
+&lt;p&gt;Note that the Z-Axis is normal to the board, hence for every real world point Z=0
+&lt;/center&gt;&lt;/p&gt;
+&lt;h3 id="representation-of-the-correspondence"&gt;&lt;strong&gt;Representation of the correspondence&lt;/strong&gt;:&lt;a class="headerlink" href="#representation-of-the-correspondence" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This section details the construction of the transformation matrices required through this process. Let the image point be denoted by &lt;span class="math"&gt;\(p\)&lt;/span&gt; or &lt;span class="math"&gt;\(U\)&lt;/span&gt; (I&amp;rsquo;ll keep alternating between these notations throughout). Also the model/world points are : &lt;span class="math"&gt;\(X\)&lt;/span&gt; or &lt;span class="math"&gt;\(P\)&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;The conversion of model points to image points is as &lt;/p&gt;
+&lt;div class="math"&gt;$$ P (X, Y, Z) \overset{\mbox{\{Rigid Transform\}}}{\longrightarrow} P(X, Y, Z) \ w.r.t. camera's frame \overset{\mbox{\{Projective Transform\}}}{\longrightarrow} p(u, v)$$&lt;/div&gt;
+&lt;p&gt;eventually leading to &lt;/p&gt;
+&lt;div class="math"&gt;$$ p(u, v) = M . P(X, Y, Z)$$&lt;/div&gt;
+&lt;p&gt;where Matrix &lt;span class="math"&gt;\(M\)&lt;/span&gt; represents the required transformation from world to image point. However, there are 2 aspects in the above conversion. One is the rigid transform  ( extrinsic parameters) and then that is passed on to the intrinsic camera transform.&lt;/p&gt;
+&lt;p&gt;Hence, we can split the M-matrix into sub matrices , thus breaking down the flow into multiple blocks. Also, note that now the computations will be carried in homogeneous coordinate spaces, so, &lt;span class="math"&gt;\(p(u,v) \rightarrow p(u, v, 1)\)&lt;/span&gt; and &lt;span class="math"&gt;\(P(X, Y, Z) \rightarrow P(X, Y, Z, 1)\)&lt;/span&gt;. &lt;/p&gt;
+&lt;div class="math"&gt;$$p(u, v, 1) = M. P(X, Y, Z, 1)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$p = A.[R | t]. \text{ } P$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(A\)&lt;/span&gt; resembles the intrinsic camera matrix (projective transform) and &lt;span class="math"&gt;\([R | t]\)&lt;/span&gt; resembles the rotation and translation of the camera pose. (extrinsic)&lt;/p&gt;
+&lt;p&gt;Assessing the shapes of each matrix, we can deduce that: &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(p\)&lt;/span&gt; is a &lt;span class="math"&gt;\(3 \times 1\)&lt;/span&gt; matrix,&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(A\)&lt;/span&gt; is a &lt;span class="math"&gt;\(3 \times 3\)&lt;/span&gt; matrix,&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\([ R | t]\)&lt;/span&gt; is a &lt;span class="math"&gt;\(3 \times 4\)&lt;/span&gt; matrix,&lt;/li&gt;
+&lt;li&gt;&lt;span class="math"&gt;\(P\)&lt;/span&gt; is a &lt;span class="math"&gt;\(4 \times 1\)&lt;/span&gt; matrix.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Therefore, 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$p_{3 \times 1} = A_{3 \times 3} . [ R | t ]_{3 \times 4} .  P_{4 \times 1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+u \\
+v \\ 
+1
+\end{bmatrix} = 
+\begin{bmatrix}
+a_{00} &amp;amp; a_{01} &amp;amp; a_{02} \\
+a_{10} &amp;amp; a_{11} &amp;amp; a_{12} \\
+a_{20} &amp;amp; a_{21} &amp;amp; a_{22} 
+\end{bmatrix}
+\begin{bmatrix}
+R_{00} &amp;amp; R_{01} &amp;amp; R_{02} &amp;amp; T_{03} \\
+R_{10} &amp;amp; R_{11} &amp;amp; R_{12} &amp;amp; T_{13} \\
+R_{20} &amp;amp; R_{21} &amp;amp; R_{22} &amp;amp; T_{23} 
+\end{bmatrix}
+\begin{bmatrix}
+X \\
+Y \\ 
+Z = 0 \\
+1
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Since &lt;span class="math"&gt;\(Z=0\)&lt;/span&gt;, we can eliminate the third column of &lt;span class="math"&gt;\([R|t]\)&lt;/span&gt;, because the multiplication of that entire column will coincide with Z=0, resulting in a zero contribution. Hence, we can eliminate &lt;span class="math"&gt;\(Z\)&lt;/span&gt; from &lt;span class="math"&gt;\(P\)&lt;/span&gt; and the third column from &lt;span class="math"&gt;\([R|t]\)&lt;/span&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="im323" src="https://kushalvyas.github.io/images/calib/reduce1.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Hence, the system reduces to a complete &lt;span class="math"&gt;\(3 \times 3\)&lt;/span&gt;  system.&lt;/p&gt;
+&lt;div class="math"&gt;$$p_{3 \times 1} = A_{3 \times 3} . [ R - R_{:,3} | t ]_{3 \times 3} .  [P_{P-Z}]_{3 \times 1}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+u \\
+v \\ 
+1
+\end{bmatrix} = 
+\begin{bmatrix}
+a_{00} &amp;amp; a_{01} &amp;amp; a_{02} \\
+a_{10} &amp;amp; a_{11} &amp;amp; a_{12} \\
+a_{20} &amp;amp; a_{21} &amp;amp; a_{22} 
+\end{bmatrix}
+\begin{bmatrix}
+R_{00} &amp;amp; R_{01}  &amp;amp; T_{03} \\
+R_{10} &amp;amp; R_{11}  &amp;amp; T_{13} \\
+R_{20} &amp;amp; R_{21}  &amp;amp; T_{23} 
+\end{bmatrix}
+\begin{bmatrix}
+X \\
+Y \\ 
+1
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;h3 id="normalization-estimate-view-homographies"&gt;&lt;strong&gt;Normalization &amp;amp; Estimate View Homographies&lt;/strong&gt;:&lt;a class="headerlink" href="#normalization-estimate-view-homographies" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The next step in the algorithm is to estimate homographies for each of the &lt;span class="math"&gt;\(M\)&lt;/span&gt; views. However, there is an intermediate step to normalize the points (refer to normaliztion function in the source code ).
+An essential part of the estimating view homographies is to obtain a solution using Direct Linear transformation (will conver it in a later section). This requires normalization of the input data points around its mean. This makes sure the there is a finite DLT solution for the equations obtained while estimating the homography. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is homography&lt;/strong&gt; : So i used  the word homography in the above paragraph. A Homography can be said a transform/matrix which essentially converts points from one coordinate space to another, like how the world points &lt;span class="math"&gt;\(P\)&lt;/span&gt; are being converted to image points &lt;span class="math"&gt;\(p\)&lt;/span&gt; through the matrix &lt;span class="math"&gt;\([M]\)&lt;/span&gt;. Hence, for each view,  there is a homography associated to it which converets &lt;span class="math"&gt;\(P\)&lt;/span&gt; to &lt;span class="math"&gt;\(p\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Hence, &lt;span class="math"&gt;\(p \leftarrow [M].X\)&lt;/span&gt;. This can be considered as the base equation from which we will compute &lt;span class="math"&gt;\([M]\)&lt;/span&gt;. I&amp;rsquo;ll actually write &lt;span class="math"&gt;\(H\)&lt;/span&gt; instead of &lt;span class="math"&gt;\(M\)&lt;/span&gt;, so that it doesnt conflict with the number of views (M views ). &lt;/p&gt;
+&lt;div class="math"&gt;$$ p \leftarrow H. X$$&lt;/div&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+u \\
+v \\
+1
+\end{bmatrix} = 
+\begin{bmatrix}
+h_{00} &amp;amp; h_{01} &amp;amp; h_{02} \\
+h_{10} &amp;amp; h_{11} &amp;amp; h_{12} \\
+h_{20} &amp;amp; h_{21} &amp;amp; h_{22} 
+\end{bmatrix}
+\begin{bmatrix}
+X \\
+Y \\
+1
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Hence, on obtaining the results, &lt;/p&gt;
+&lt;div class="math"&gt;$$ u = \frac{h_{00}. X + h_{01}. Y + h_{02}}{h_{20}. X + h_{21}. Y + h_{22}}$$&lt;/div&gt;
+&lt;div class="math"&gt;$$ v = \frac{h_{10}. X + h_{11}. Y + h_{12}}{h_{20}. X + h_{21}. Y + h_{22}}$$&lt;/div&gt;
+&lt;p&gt;Hence, &lt;/p&gt;
+&lt;div class="math"&gt;$$u.({h_{20}. X + h_{21}. Y + h_{22}}) - (h_{00}. X + h_{01}. Y + h_{02}) = 0$$&lt;/div&gt;
+&lt;div class="math"&gt;$$v.({h_{20}. X + h_{21}. Y + h_{22}}) - (h_{10}. X + h_{11}. Y + h_{12}) = 0$$&lt;/div&gt;
+&lt;p&gt;We can remodel the above equation a simpler wayy..&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{pmatrix}
+-X &amp;amp; -Y &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; u.X &amp;amp; u.Y &amp;amp; u \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; -X &amp;amp; -Y &amp;amp; -1 &amp;amp; v.X &amp;amp; v.Y &amp;amp; v
+\end{pmatrix}
+\begin{pmatrix}
+h_{00} \\
+h_{01} \\
+h_{02} \\
+h_{10} \\
+h_{11} \\
+h_{12} \\
+h_{20} \\
+h_{21} \\
+h_{22} 
+\end{pmatrix} = 0
+$$&lt;/div&gt;
+&lt;div class="math"&gt;$$A.x = 0 \text{}$$&lt;/div&gt;
+&lt;p&gt;This is for only one point located in one image. For &lt;span class="math"&gt;\(N\)&lt;/span&gt; points per image, just vertically stack the above matrix, and solve &lt;code&gt;AX=0&lt;/code&gt; for the above system of points. For each point out of the N points, there are 2 rows obtained in the above representation. Hence, for N points, it will be &lt;span class="math"&gt;\(2 \times N\)&lt;/span&gt; rows. &lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{pmatrix}
+-X_0 &amp;amp; -Y_0 &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; u_0 . X_0 &amp;amp; u_0 . Y_0 &amp;amp; u_0 \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; -X_0 &amp;amp; -Y_0 &amp;amp; -1 &amp;amp; v_0 . X_0 &amp;amp; v_0 . Y_0 &amp;amp; v_0 \\
+\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \\
+\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \\
+\vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots &amp;amp; \vdots \\
+-X_{N-1} &amp;amp; -Y_{N-1} &amp;amp; -1 &amp;amp; 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; u_{N-1} . X_{N-1} &amp;amp; u_{N-1} . Y_{N-1} &amp;amp; u_{N-1} \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; -X_{N-1} &amp;amp; -Y_{N-1} &amp;amp; -1 &amp;amp; v_{N-1} . X_{N-1} &amp;amp; v_{N-1} . Y_{N-1} &amp;amp; v_{N-1} \\
+\end{pmatrix}_{(2 \times N, 9)}. \vec{h} = 0
+$$&lt;/div&gt;
+&lt;p&gt;The formulation of the above matrix can be written in this loop&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# repeat these steps for each view&lt;/span&gt;
+
+    &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image_points&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Number of points in current view : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;M&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Shape of Matrix M : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# create row wise allotment for each 0-2i rows&lt;/span&gt;
+    &lt;span class="c1"&gt;# that means 2 rows.. &lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalized_object_points&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;#model points&lt;/span&gt;
+        &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalized_image_points&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;#image points&lt;/span&gt;
+
+        &lt;span class="n"&gt;row_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="n"&gt;row_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;row_1&lt;/span&gt;
+        &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;row_2&lt;/span&gt;
+
+        &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;p_model &lt;/span&gt;&lt;span class="si"&gt;{0}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt; p_obs &lt;/span&gt;&lt;span class="si"&gt;{1}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Computing the homography&lt;/strong&gt;: &lt;/p&gt;
+&lt;p&gt;The above system shows an &lt;code&gt;Ax=0&lt;/code&gt; system. The solution can be of two ways. The obvious trivial solution is &lt;code&gt;x=0&lt;/code&gt;, however we are not looking for that. The other solution is to find a non-trivial finite solution such that Ax ~ 0, if not zero. However, the explaination to this lies along the lines of using a Null Space of vector A, such that the &lt;span class="math"&gt;\( ||Ax||^2 \rightarrow min\)&lt;/span&gt; . The solution for such a system can be computed using SVD. (SVD provides orthonormal vectors). &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="imsvd" src="https://kushalvyas.github.io/images/calib/svd.png" /&gt;&lt;/p&gt;
+&lt;p&gt;source: &lt;a href="https://en.wikipedia.org/wiki/Singular-value_decomposition"&gt;SVD - Wikipedia&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Similarly in our system, &lt;code&gt;A&lt;/code&gt; matrix is of shape &lt;span class="math"&gt;\((2 \times N, 9)\)&lt;/span&gt;. Thus the decomposition of &lt;code&gt;A&lt;/code&gt; returns &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;U : Shape - &lt;span class="math"&gt;\((2 \times N, 2 \times N)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;S : Shape - &lt;span class="math"&gt;\((2 \times N, 9)\)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;V_transpose : Shape - &lt;span class="math"&gt;\(9 \times 9\)&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thus, computing solution for &lt;span class="math"&gt;\(h\)&lt;/span&gt;, we obtain&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;        &lt;span class="n"&gt;Solution&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;Ax&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v_t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;svd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v_t&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;argmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Since v_t is a &lt;span class="math"&gt;\(9 \times 9\)&lt;/span&gt; matrix, it indicates to have 9 rows, each row having other 9 elements. The solution &lt;code&gt;x&lt;/code&gt; is obtained by picking the eigen vector corresponding to the minimum  value in S. This is obtained by selecting the row number, such that its index is same as the index of min value in S. Eventually leads to a row vectors of 9 columns. Thus the final solution to x : in our case (where it is a &lt;span class="math"&gt;\(3 \times 3\)&lt;/span&gt; matrix) is to reshape it.&lt;/p&gt;
+&lt;p&gt;Below is the python snippet for computing numpy svd, and returns a normalized homography matrix. The homography matrix need to be de-normalized as well, since the initial points are in a raw/de-normalized form. Normalization is used to make DLT (direct linear transformation) give an optimal solution.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="c1"&gt;# M.h  = 0 . solve system of linear equations using SVD&lt;/span&gt;
+    &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linalg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;svd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Computing SVD of M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# print(&amp;quot;U : Shape {0} : {1}&amp;quot;.format(u.shape, u))&lt;/span&gt;
+    &lt;span class="c1"&gt;# print(&amp;quot;S : Shape {0} : {1}&amp;quot;.format(s.shape, s))&lt;/span&gt;
+    &lt;span class="c1"&gt;# print(&amp;quot;V_t : Shape {0} : {1}&amp;quot;.format(vh.shape, vh))&lt;/span&gt;
+    &lt;span class="c1"&gt;# print(s, np.argmin(s))&lt;/span&gt;
+
+    &lt;span class="n"&gt;h_norm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vh&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;h_norm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;h_norm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;returns&lt;/span&gt; &lt;span class="n"&gt;mormalized&lt;/span&gt; &lt;span class="n"&gt;homography&lt;/span&gt; &lt;span class="n"&gt;matrix&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Refining Homographies&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;To refine the homography, obtained per view, a non liner optimizer: Levenberg Marquadt is used. This can be done using &lt;code&gt;scipy.optimize&lt;/code&gt;.    Refer the source code on github to know more about the &lt;code&gt;minimizer function&lt;/code&gt; and the &lt;code&gt;jacobian&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalized_object_points&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;object_points&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatten&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;Y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;image_points&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatten&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;h&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatten&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;#H is homography for given view.&lt;/span&gt;
+    &lt;span class="n"&gt;h_prime&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;opt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;least_squares&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;minimizer_func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; \
+                &lt;span class="n"&gt;x0&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jac&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;jac_function&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;lm&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; \
+                &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;h&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;h_prime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;H&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="n"&gt;h_prime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;H&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Computing intrinsic params&lt;/strong&gt;:
+For each view we compute a homography. Let us maintain an array of size (M), where M being the number of views (donot confuse M - the number of views with the matrix M in M.h =0) Hence, for each of the M views, (i.e. M chessboard images), there are M homographies obtained. &lt;/p&gt;
+&lt;p&gt;thus, &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;compute_view_homography&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;But what was homography in the first place ?&lt;/strong&gt; : We said that that &lt;/p&gt;
+&lt;div class="math"&gt;$$ p(u, v, 1) \leftarrow H.P(X, Y, Z, 1) $$&lt;/div&gt;
+&lt;p&gt;Hence, the homography per view computed comprises of the intrinsic projection transform as well as the extrinsic rigid body transform. Hence, we can say that:&lt;/p&gt;
+&lt;div class="math"&gt;$$ H = A. [R  | t]$$&lt;/div&gt;
+&lt;p&gt;At the same time, one can say that&lt;/p&gt;
+&lt;div class="math"&gt;$$ p(u, v) = A [R  | t ]. P(X, Y, Z)$$&lt;/div&gt;
+&lt;p&gt;
+If I mention the above equation in a strict column form, I get, &lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+u \\
+v \\
+1
+\end{bmatrix} =
+\begin{bmatrix}
+A_0 &amp;amp; A_1  &amp;amp; A_2
+\end{bmatrix}
+\begin{bmatrix}
+R_0 &amp;amp; R_1  &amp;amp; t_2
+\end{bmatrix}
+\begin{bmatrix}
+X \\
+Y \\
+1
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;where, &lt;span class="math"&gt;\(H = A [R_0 , R_1, T_2]\)&lt;/span&gt;, therefore: using the same column representation:&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+h_0 &amp;amp; h_1 &amp;amp; h_2 
+\end{bmatrix} = 
+\lambda \times A \times [R_0 , R_1, T_2]
+$$&lt;/div&gt;
+&lt;p&gt;Given that &lt;span class="math"&gt;\(R_0\)&lt;/span&gt;, and &lt;span class="math"&gt;\(R_1\)&lt;/span&gt; are orthonomal, their dot products is 0.Therefore, 
+&lt;span class="math"&gt;\(h_0 = \lambda \times A \times R_0\)&lt;/span&gt; and &lt;span class="math"&gt;\(h_1 = \lambda \times A \times R_1\)&lt;/span&gt;. Thus, 
+&lt;span class="math"&gt;\(R_0 = A^{-1}. h_0\)&lt;/span&gt;, and similarly for &lt;span class="math"&gt;\(R_1\)&lt;/span&gt;. This yields us &lt;span class="math"&gt;\(R_0\)&lt;/span&gt; and &lt;span class="math"&gt;\(R_1\)&lt;/span&gt;, and their dot product gives &lt;span class="math"&gt;\(R^{T}_{0} . R_{1} = 0\)&lt;/span&gt;. &lt;/p&gt;
+&lt;div class="math"&gt;$$ h^{T}_{0}. (A^{-1})^{T} . (A^{-1}) . h_{1} = 0$$&lt;/div&gt;
+&lt;p&gt;Let &lt;span class="math"&gt;\(B = (A^{-1})^{T} . (A^{-1})\)&lt;/span&gt; (according to zhang&amp;rsquo;s paper)
+we define a symmetric matrix, B as :&lt;/p&gt;
+&lt;div class="math"&gt;$$B = \begin{pmatrix}
+B_{0} &amp;amp; B_{1} &amp;amp; B_{3} \\
+B_{1} &amp;amp; B_{2} &amp;amp; B_{4} \\
+B_{3} &amp;amp; B_{4} &amp;amp; B_{5} \\
+\end{pmatrix} \text{or} 
+\begin{pmatrix}
+B_{11} &amp;amp; B_{12} &amp;amp; B_{13} \\
+B_{21} &amp;amp; B_{22} &amp;amp; B_{23} \\
+B_{31} &amp;amp; B_{32} &amp;amp; B_{33} 
+\end{pmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;The next step is to build a matrix &lt;span class="math"&gt;\(v\)&lt;/span&gt; (note , small v), such that&lt;/p&gt;
+&lt;div class="math"&gt;$$v_{ij} = 
+\begin{bmatrix}
+h_{i0}.h_{j0} \\ h_{i0}.h_{j1} + h_{i1}.h_{j0} \\ h_{i1}.h_{j1} \\
+h_{i2}.h_{j0} + h_{i0}.h_{j2} \\ h_{i2}.h_{j1} + h_{i1}.h{_j2} \\ h{_i2}.h_{j2}
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Therefore, using the dot product constraint for &lt;span class="math"&gt;\(B\)&lt;/span&gt; mentioned above, we can get, &lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+v^{T}_{12} \\
+(v_{11} - v_{22})
+\end{bmatrix} . b = V.b = 0
+$$&lt;/div&gt;
+&lt;p&gt;where &lt;span class="math"&gt;\(b\)&lt;/span&gt; is a representation of &lt;span class="math"&gt;\(B\)&lt;/span&gt; as a six dimensional vector &lt;span class="math"&gt;\([B_0, B_1, B_2, B_3, B_4, B_5]\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Again, the system is of the form Ax = 0, and the solution is computed using the &lt;code&gt;SVD(V)&lt;/code&gt; which yields us &lt;span class="math"&gt;\(b\)&lt;/span&gt;, and by extension &lt;span class="math"&gt;\(B\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;&lt;span class="normal"&gt; 1&lt;/span&gt;
+&lt;span class="normal"&gt; 2&lt;/span&gt;
+&lt;span class="normal"&gt; 3&lt;/span&gt;
+&lt;span class="normal"&gt; 4&lt;/span&gt;
+&lt;span class="normal"&gt; 5&lt;/span&gt;
+&lt;span class="normal"&gt; 6&lt;/span&gt;
+&lt;span class="normal"&gt; 7&lt;/span&gt;
+&lt;span class="normal"&gt; 8&lt;/span&gt;
+&lt;span class="normal"&gt; 9&lt;/span&gt;
+&lt;span class="normal"&gt;10&lt;/span&gt;
+&lt;span class="normal"&gt;11&lt;/span&gt;
+&lt;span class="normal"&gt;12&lt;/span&gt;
+&lt;span class="normal"&gt;13&lt;/span&gt;
+&lt;span class="normal"&gt;14&lt;/span&gt;
+&lt;span class="normal"&gt;15&lt;/span&gt;
+&lt;span class="normal"&gt;16&lt;/span&gt;
+&lt;span class="normal"&gt;17&lt;/span&gt;
+&lt;span class="normal"&gt;18&lt;/span&gt;
+&lt;span class="normal"&gt;19&lt;/span&gt;
+&lt;span class="normal"&gt;20&lt;/span&gt;
+&lt;span class="normal"&gt;21&lt;/span&gt;
+&lt;span class="normal"&gt;22&lt;/span&gt;
+&lt;span class="normal"&gt;23&lt;/span&gt;
+&lt;span class="normal"&gt;24&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_intrinsic_parameters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;H_r&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;M&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;H_r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;V&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;zeros&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;v_pq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                    &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+                &lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;M&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;H&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H_r&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;v_pq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subtract&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v_pq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;v_pq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;H&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+        &lt;span class="c1"&gt;# solve V.b = 0&lt;/span&gt;
+        &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linalg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;svd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vh&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;V.b = 0 Solution : &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;Estimating intrinsic params: &lt;span class="math"&gt;\(\alpha, \beta, \gamma, u_c, v_c\)&lt;/span&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Once, &lt;span class="math"&gt;\(B\)&lt;/span&gt; is computed, it is pretty straightforward to compute the intrinsic parameters.&lt;/p&gt;
+&lt;div class="math"&gt;$$v_c = (b[1] . b[3] - b[0] . b[4])/(b[0] . b[2] - b[1]^2)$$&lt;/div&gt;
+&lt;div class="math"&gt;$$l = b[5] - (b[3]^2 + vc . (b[1] . b[2] - b[0] . b[4]))/b[0]$$&lt;/div&gt;
+&lt;div class="math"&gt;$$alpha = np.sqrt((l/b[0]))$$&lt;/div&gt;
+&lt;div class="math"&gt;$$beta = np.sqrt(((l . b[0])/(b[0] . b[2] - b[1]^2)))$$&lt;/div&gt;
+&lt;div class="math"&gt;$$gamma = -1 . ((b[1]) . (alpha^2)  . (beta/l))$$&lt;/div&gt;
+&lt;div class="math"&gt;$$uc = (gamma . vc/beta) - (b[3] . (alpha^2)/l)$$&lt;/div&gt;
+&lt;p&gt;Hence, &lt;strong&gt;A&lt;/strong&gt; is: &lt;/p&gt;
+&lt;div class="math"&gt;$$ A = \begin{bmatrix}
+\alpha &amp;amp; \gamma &amp;amp; u_c\\
+0 &amp;amp; \beta &amp;amp; v_c\\
+0 &amp;amp; 0 &amp;amp; 1
+\end{bmatrix} $$&lt;/div&gt;
+&lt;p&gt;Furthermore, A can be upudated along with the complete set of intrinsic and extrinsic parameters using Levenberg Marquadt.&lt;/p&gt;
+&lt;h3 id="results"&gt;Results&lt;a class="headerlink" href="#results" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I implemented using Python 2.7, and NumPy 1.12. for the given dataset of images, the following values are returned.&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="pics_calib" src="https://kushalvyas.github.io/images/calib/calibpics.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Camera Matrix:&lt;/p&gt;
+&lt;div class="math"&gt;$$\begin{bmatrix}
+826.53065764 &amp;amp;  -1.58262613 &amp;amp;  271.85569445 \\
+  0.         &amp;amp; 826.80638173 &amp;amp;  223.27202318 \\
+  0.         &amp;amp;   0.         &amp;amp;    1.         
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Using on OpenCV&amp;rsquo;s sample images:
+&lt;center&gt;
+&lt;img alt="imagepics2calib" src="https://kushalvyas.github.io/images/calib/calibpics2.png" /&gt;
+&lt;/center&gt;
+Opencv &lt;code&gt;cv2.calibrateCamera() function&lt;/code&gt; Camera MAtrix: 
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+532.79536563 &amp;amp;    0.        &amp;amp;  342.4582516 \\
+ 0.          &amp;amp; 532.91928339 &amp;amp; 233.90060514 \\
+ 0.          &amp;amp;   0.         &amp;amp;   1.         
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Camera matrix (above code):
+&lt;/p&gt;
+&lt;div class="math"&gt;$$
+\begin{bmatrix}
+535.85981472 &amp;amp;  -2.33641346 &amp;amp; 351.72727058 \\
+  0.         &amp;amp; 537.44026588 &amp;amp; 235.75125989 \\
+  0.         &amp;amp;   0.         &amp;amp;   1.         
+\end{bmatrix}
+$$&lt;/div&gt;
+&lt;p&gt;Implementation can be found at my github. &lt;a href="https://github.com/kushalvyas/CameraCalibration" target="_blank"&gt;https://github.com/kushalvyas/CameraCalibration&lt;/a&gt;.&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="CV"></category><category term="Camera Calibration"></category></entry><entry><title>Setup Computer Vision Environment</title><link href="https://kushalvyas.github.io/setup_env.html" rel="alternate"></link><published>2016-06-20T00:00:00-05:00</published><updated>2016-06-20T00:00:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-06-20:/setup_env.html</id><summary type="html">&lt;p&gt;Setting up computer vision env&lt;/p&gt;</summary><content type="html">&lt;p&gt;Well, If this is a blog on some of the cool stuff in Computer vision, I think i must mention about the api&amp;rsquo;s that one can use, or how to setup your system.&lt;/p&gt;
+&lt;p&gt;So yes, there is a myraid choice available to start developing. I personally like &lt;a href="http://opencv.org/"&gt;OpenCV&lt;/a&gt; because of its&amp;rsquo; enormous community support along with its multiplatform facilities.&lt;/p&gt;
+&lt;p&gt;Apart from this, there is &lt;a href="http://in.mathworks.com/products/matlab/"&gt;MATLAB&lt;/a&gt;. 
+Whoaaa&amp;hellip; this is like a computing powerhouse. With so many easy to use functionality, and 
+simply clicking your way into outputs, MATLAB has one hell of a pricetag.&lt;/p&gt;
+&lt;p&gt;Apart from these, there are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;SimpleCV&lt;/strong&gt; : This is actually computer vision made easy.There is no need to spend endless time in figuring out data structures, Matrices, what color format to select ( 8UC1, 32FC1,etc)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VxL Libraries&lt;/strong&gt; (I like them too.. I&amp;rsquo;ll use them the day I make a robot :P )&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VLFeat&lt;/strong&gt; : This may come out very handy !! It contains some of the finest implementations in vision as well as image understanding algorithms&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ImageJ&lt;/strong&gt; : A java library for primarily image processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CCV&lt;/strong&gt; ( Haven&amp;rsquo;t used it yet, so .. what do i know )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Anyway, moving on to the installation, there are plenty of online resources that can be used for downloading and setting up OpenCV.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For compiling opencv c++&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use CMAKE. It&amp;rsquo;s much simpler to compile using cmake&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can use this boiler plate file if incase .&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# Filename : CMakeLists.txt&lt;/span&gt;
+&lt;span class="n"&gt;cmake_minimum_required&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VERSION&lt;/span&gt; &lt;span class="mf"&gt;2.8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;project_name&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;find_package&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;OpenCV&lt;/span&gt; &lt;span class="n"&gt;REQUIRED&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;add_executable&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;project_name&lt;/span&gt; &lt;span class="n"&gt;project_name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cpp&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;target_link_libraries&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;project_name&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;OpenCV_LIBS&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;simply execute : &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cmake&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; 
+&lt;span class="o"&gt;./&lt;/span&gt;&lt;span class="n"&gt;project_name&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Incase you&amp;rsquo;re using &lt;strong&gt;python&lt;/strong&gt;, &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;To be continued&lt;/strong&gt;&lt;/p&gt;</content><category term="CV"></category><category term="CV"></category></entry><entry><title>An introduction to Computer Vision</title><link href="https://kushalvyas.github.io/CV.html" rel="alternate"></link><published>2016-04-04T08:00:00-05:00</published><updated>2016-04-04T08:00:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-04-04:/CV.html</id><summary type="html">&lt;p&gt;Basically , everything about CV&lt;/p&gt;</summary><content type="html">&lt;h3 id="computer-vision"&gt;Computer Vision&lt;a class="headerlink" href="#computer-vision" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Computer vision involves image processing, a bit of AI and various algorithms. Basically every gesture effect that you see today,  or the &lt;a href="http://www.digitalspy.com/tech/news/a476446/intel-magic-mirror-allows-shoppers-to-try-on-clothes-virtually/"&gt;Intel Magic Mirror&lt;/a&gt; all dumbs down to a few concepts of CV. One can say , that CV is the next big thing that&amp;rsquo;s there today &amp;hellip; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;But there&amp;rsquo;s this one great hell of a snag .. that is &lt;strong&gt;Illumination&lt;/strong&gt;&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;However, there are methods to overcome that too.&lt;/p&gt;
+&lt;p&gt;In this blog, I&amp;rsquo;ll be discussing various Image Processing and Computer vision fundamentals and posting small implementable snippets.&lt;/p&gt;</content><category term="CV"></category><category term="CV"></category></entry></feed>

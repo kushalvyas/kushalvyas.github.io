@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas - 3D Reconstruction, 3D, stereo, CV</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/3d-reconstruction-3d-stereo-cv.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2017-12-03T20:40:00-06:00</updated><entry><title>Structured Light 3D Reconstruction</title><link href="https://kushalvyas.github.io/sl_3d.html" rel="alternate"></link><published>2017-12-03T20:40:00-06:00</published><updated>2017-12-03T20:40:00-06:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2017-12-03:/sl_3d.html</id><summary type="html">&lt;p&gt;A few results on 3D reconstruction&lt;/p&gt;</summary><content type="html">&lt;h3 id="disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load"&gt;Disclaimer : This post contains lots of Highdef images. Please be patient and wait for them to load.&lt;a class="headerlink" href="#disclaimer-this-post-contains-lots-of-highdef-images-please-be-patient-and-wait-for-them-to-load" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id="secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year"&gt;Secondly, this post just displays my outputs in 3D reconstruction. I had developed a 3D reconstruction arrangement this last year.&lt;a class="headerlink" href="#secondly-this-post-just-displays-my-outputs-in-3d-reconstruction-i-had-developed-a-3d-reconstruction-arrangement-this-last-year" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h3 id="cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files"&gt;Cool stuff: I&amp;rsquo;ll be making a complete blog series on making a 3D reconstruction program. Everything from using the camera, &amp;hellip; all the way to working with 3D files.&lt;a class="headerlink" href="#cool-stuff-ill-be-making-a-complete-blog-series-on-making-a-3d-reconstruction-program-everything-from-using-the-camera-all-the-way-to-working-with-3d-files" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id="ill-probably-host-it-as-a-gitbook"&gt;I&amp;rsquo;ll probably host it as a GitBook. :)&lt;a class="headerlink" href="#ill-probably-host-it-as-a-gitbook" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;hr&gt;
+
+&lt;h2 id="setup"&gt;Setup:&lt;a class="headerlink" href="#setup" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I used the single camera and projector setup. Most stereo setups use a 2 camera setup for stereo vision. However, I was implementing Brown University&amp;rsquo;s paper on using a single-camera-projector arrangement for 3D geometry acquisition.&lt;/p&gt;
+&lt;!-- &lt;center&gt;
+    ![setup1]({filename}/images/sl_3d/setup1.jpg)
+    &lt;br&gt;
+    Initial Chessboard for calibration
+    &lt;br&gt;&lt;br&gt;
+    ![setup2]({filename}/images/sl_3d/setup2.jpg)
+    &lt;br&gt;
+    Setup Image (backview)
+    &lt;br&gt;&lt;br&gt;
+    ![setup3]({filename}/images/sl_3d/setup3.jpg)
+    &lt;br&gt;
+    Setup Image (side view)
+    &lt;br&gt;&lt;br&gt;
+&lt;/center&gt; --&gt;
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="setup1" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-1.jpg" /&gt;
+    &lt;br&gt;
+    Initial Setup using projector and camera
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="setup2" src="https://kushalvyas.github.io/images/sl_3d/th_op/c1.jpg" width:400px_="width:400px;" /&gt;
+    &lt;img alt="setup3" src="https://kushalvyas.github.io/images/sl_3d/th_op/c2.jpg" /&gt;
+    &lt;br&gt;
+    Camera Calibration using SL patterns
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="setup4" src="https://kushalvyas.github.io/images/sl_3d/th_op/draw3.png" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;h2 id="outputs"&gt;Outputs&lt;a class="headerlink" href="#outputs" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;hr&gt;
+
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="crop12" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-12.jpg" /&gt;
+    &lt;br&gt;
+    Registration of David Bust, and Bottle
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="david1" src="https://kushalvyas.github.io/images/sl_3d/david1.png" /&gt;
+    &lt;br&gt;
+    Surface View 1 of David Scan (from dataset)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="david3" src="https://kushalvyas.github.io/images/sl_3d/david3.png" /&gt;
+    &lt;br&gt;
+    Surface View 2 of David Scan (from dataset)
+    &lt;br&gt;&lt;br&gt;
+    &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/sqdaPVvP_BU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;
+    &lt;br&gt;&lt;br&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;center&gt;
+    Although, for live condition, there is a lot of noise.
+    &lt;br&gt;
+    &lt;img alt="bottle_set" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_bottle.png" /&gt;
+    &lt;br&gt;
+    Structured Light in runtime with Bottle example
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="bottle1" src="https://kushalvyas.github.io/images/sl_3d/bottle1.png" /&gt;
+    &lt;br&gt;
+    Tupperware Bottle Scan - Stage 1 (Improves later on)
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="cap" src="https://kushalvyas.github.io/images/sl_3d/bottle_closeup.png" /&gt;
+    &lt;br&gt;
+    Closeup of Bottle Scan (next stage). If you look closely, I have made a dimension as well. The cap length shows to be 26.23 mm.
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="images_crop4" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-4.jpg" /&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="im_crop5" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_bindi.png" /&gt;
+    &lt;br&gt;
+    Structured Light Sequences projected on Bottle 2
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="bottle2" src="https://kushalvyas.github.io/images/sl_3d/bottle2.png" /&gt;
+    &lt;br&gt;
+    Random Bottle Scan (later stage). I cannot find a picture set for the above tupperware bottle.
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="bottle_closeup2" src="https://kushalvyas.github.io/images/sl_3d/bclose.jpg" /&gt;
+    &lt;br&gt;
+    Cleaner scan of above object (End Stage)
+    &lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;center&gt;
+    &lt;img alt="woodlandmontage" src="https://kushalvyas.github.io/images/sl_3d/th_op/montage_woodland.png" /&gt;
+    &lt;br&gt;
+    Structured Light Sequences on Woodland Shoes
+    &lt;br&gt;&lt;br&gt;
+    &lt;img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/woodland1.png" /&gt;
+    &lt;img alt="woodland" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-7.jpg" /&gt;
+    &lt;br&gt;
+    And here&amp;rsquo;s a 3D scan of my shoes :P 
+    &lt;br&gt;&lt;br&gt;
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;h3 id="the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year"&gt;the current outputs are just as a temporary showcase. I will be hosting the complete steps of how to make a structured light 3D reconstruction engine, with only 1 camera and 1 projector soon. That&amp;rsquo;s for sure to be expected by the coming year.&lt;a class="headerlink" href="#the-current-outputs-are-just-as-a-temporary-showcase-i-will-be-hosting-the-complete-steps-of-how-to-make-a-structured-light-3d-reconstruction-engine-with-only-1-camera-and-1-projector-soon-thats-for-sure-to-be-expected-by-the-coming-year" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id="results-and-summary"&gt;Results and Summary :&lt;a class="headerlink" href="#results-and-summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;center&gt;
+&lt;img alt="results" src="https://kushalvyas.github.io/images/sl_3d/th_op/crop-11.jpg" /&gt;
+&lt;br&gt;&lt;br&gt;
+As seen, there is a error of about 3mm. Which can be resolved by further robust calibration, and less interference/disturbance of surrounding light  - SO that an accurate BRDF value can be computed. Also, the material/object under scanning can be coated with a MATT-FINISH POLISH, to avoid surface reflection (as seen in the bottle).
+&lt;/center&gt;&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;p&gt;Anyways.. I&amp;rsquo;ll get the complete series online soon. Stay tuned ! ;)&lt;/p&gt;</content><category term="3D Reconstruction, 3D, stereo, CV"></category><category term="3D"></category></entry></feed>
