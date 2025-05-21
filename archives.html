@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -38,7 +38,21 @@
                 //     window.location.href = "./"
                 // });
             });
-        </script>   
+        </script>
+
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
+
+        <style>
+            li {
+                margin: 0;
+                padding: 0em;
+            }
+        </style>
+
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -57,94 +71,109 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/about.html">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="./about.html">
                   About
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
-                  Blog
+                <a class="nav-link" href="./photography.html">
+                  Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
-                  Creative Media
+                <a class="nav-link" href="./blog.html">
+                  Blog
                 </a>
             </li>
         </ul>
     </nav>
 
 </div>        <div id="page_banner">
-<div>
-<!-- Jumbotron -->
-<div class="p-5 text-center bg-image rounded-3 img-fluid" style="
-    background-image: url('https://kushalvyas.github.io/theme/images/KushalVyasDV_Pano.jpg');
-    background-size: cover; height: 400px;
-  " id="backdrop_image">
-  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    <div class="d-flex h-100 justify-content-center align-items-center">
-      <div class="text-white">
-        <h1 class="">Kushal Vyas</h1>
-        <img src="https://kushalvyas.github.io/theme/images/myface.png" class="rounded-circle" height="150px" width="auto">
-        <h4 class="">PhD Student @ RICE University</h4>
-        <h5 class="">Previously: Samsung Research America, Carnegie Mellon University</h5>
-      </div>
+
+
+ <div class="container py-4">
+  <div class="row align-items-center">
+    
+    <!-- Image Column -->
+    <div class="col-12 col-md-3 d-flex justify-content-center mb-3 mb-md-0">
+      <img src="./theme/images/myface.png" class="rounded-circle img-fluid"
+           style="max-height: 180px; width: auto;">
     </div>
+
+    <!-- Text Column -->
+    <div class="col-12 col-md-9 d-flex flex-column justify-content-center">
+      <h2 class="mb-1 text-center text-md-start">Kushal Vyas</h2>
+      <h6 class="mb-2 text-center text-md-start">PhD Student @ RICE University</h6>
+      <p p class="mb-0 small text-center text-md-start" style="text-align: justify;">
+        <p>I am currently a second year PhD student in the ECE department at <a href="https://www.rice.edu/">RICE University</a> advised by Profs. <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> and <a href="https://www.guhabalakrishnan.com/">Guha Balakrishnan</a>. Previously, I was a Senior Machine Learning Research Engineer at <a href="https://sra.samsung.com/">Samsung Research America</a> working in computational imaging and photography. Before that, I did my masters in Computer Vision (MSCV) at the <a href="https://www.ri.cmu.edu/">Robotics Institute, Carnegie Mellon University</a> where I worked under Prof. <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Simon Lucey</a>.</p>
+<p><strong>Email:</strong> <span><font id="email" style="display-inline">&ldquo;oi.h@ykmglmcssaaluvka&rdquo;<a href="#" onclick="emailScramble.initAnimatedBubbleSort();return false;">unscramble</a></font></span></p>
+<script>
+    emailScramble = new scrambledString(document.getElementById('email'),
+        'emailScramble', 'oi.h@ykmglmcssaaluvka',
+        [19, 15, 17, 3, 11, 8, 0, 13, 12, 16, 20, 18, 10, 2, 9, 4, 5, 1, 7, 6, 14]);
+</script>
+      </p>
+    </div>
+
   </div>
-</div>
-<!-- Jumbotron -->
 </div>        </div>
         
     <h2>Archives for Kushal Vyas</h2>
 
     <dl>
             <dt>Sun 10 November 2024</dt>
-            <dd><a href="https://kushalvyas.github.io/strainer.html">Learning Transferable Features for Implicit Neural Representations</a></dd>
+            <dd><a href="./strainer.html">Learning Transferable Features for Implicit Neural Representations</a></dd>
             <dt>Sun 13 May 2018</dt>
-            <dd><a href="https://kushalvyas.github.io/calib.html">Demystifying Geometric Camera Calibration for Intrinsic Matrix</a></dd>
+            <dd><a href="./calib.html">Demystifying Geometric Camera Calibration for Intrinsic Matrix</a></dd>
             <dt>Fri 05 January 2018</dt>
-            <dd><a href="https://kushalvyas.github.io/gige_ubuntu.html">Using GigE Cameras with <br> Aravis | OpenCV | Gstreamer [UPDATED]</a></dd>
+            <dd><a href="./gige_ubuntu.html">Using GigE Cameras with <br> Aravis | OpenCV | Gstreamer [UPDATED]</a></dd>
             <dt>Sun 03 December 2017</dt>
-            <dd><a href="https://kushalvyas.github.io/sl_3d.html">Structured Light 3D Reconstruction</a></dd>
+            <dd><a href="./sl_3d.html">Structured Light 3D Reconstruction</a></dd>
             <dt>Tue 04 July 2017</dt>
-            <dd><a href="https://kushalvyas.github.io/cv_js.html">Computer Vision in the Browser <br> Trying out Tracking.JS</a></dd>
+            <dd><a href="./cv_js.html">Computer Vision in the Browser <br> Trying out Tracking.JS</a></dd>
             <dt>Fri 20 January 2017</dt>
-            <dd><a href="https://kushalvyas.github.io/caffe_cnn.html">Caffe + ConvNets : Visual Recognition Made Easy</a></dd>
+            <dd><a href="./caffe_cnn.html">Caffe + ConvNets : Visual Recognition Made Easy</a></dd>
             <dt>Sun 25 September 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/stitching.html">Image Stitching: A Simplistic Tutorial</a></dd>
+            <dd><a href="./stitching.html">Image Stitching: A Simplistic Tutorial</a></dd>
             <dt>Thu 18 August 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/gen_8Q.html">Solving 8 Queens using Genetic Algorithms - Evolution</a></dd>
+            <dd><a href="./gen_8Q.html">Solving 8 Queens using Genetic Algorithms - Evolution</a></dd>
             <dt>Wed 13 July 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/BOV.html">Bag of Visual Words Model for Image Classification and Recognition</a></dd>
+            <dd><a href="./BOV.html">Bag of Visual Words Model for Image Classification and Recognition</a></dd>
             <dt>Wed 13 July 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/Obj_CV.html">Simple Object Recognition techniques</a></dd>
+            <dd><a href="./Obj_CV.html">Simple Object Recognition techniques</a></dd>
             <dt>Mon 20 June 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/setup_env.html">Setup Computer Vision Environment</a></dd>
+            <dd><a href="./setup_env.html">Setup Computer Vision Environment</a></dd>
             <dt>Tue 12 April 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/wiki_lookup.html">Wiki Lookup</a></dd>
+            <dd><a href="./wiki_lookup.html">Wiki Lookup</a></dd>
             <dt>Thu 07 April 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/Samba SSH.html">Using the Samba Server and SSH</a></dd>
+            <dd><a href="./Samba SSH.html">Using the Samba Server and SSH</a></dd>
             <dt>Tue 05 April 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/graph_py.html">Python Graphs and Topological Sort</a></dd>
+            <dd><a href="./graph_py.html">Python Graphs and Topological Sort</a></dd>
             <dt>Mon 04 April 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/CV.html">An introduction to Computer Vision</a></dd>
+            <dd><a href="./CV.html">An introduction to Computer Vision</a></dd>
             <dt>Thu 24 March 2016</dt>
-            <dd><a href="https://kushalvyas.github.io/utils.html">\'The Social Network\' where it all started</a></dd>
+            <dd><a href="./utils.html">\'The Social Network\' where it all started</a></dd>
     </dl>
         
     </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
+
     <div class="text-center p-3" style="background-color: rgba(248,249,250);">
       Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
     </div>
-    <!-- Copyright -->
+
 </footer>
+
+<!-- <footer style="background-color: #f8f9fa; text-align: center; margin-top: auto; position: sticky; top: 100vh;">
+  <div style="padding: 1rem; background-color: rgba(248,249,250);">
+    Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+  </div>
+</footer> -->
 </body>
 </html>

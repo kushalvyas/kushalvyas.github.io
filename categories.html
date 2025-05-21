@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -38,7 +38,21 @@
                 //     window.location.href = "./"
                 // });
             });
-        </script>   
+        </script>
+
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
+
+        <style>
+            li {
+                margin: 0;
+                padding: 0em;
+            }
+        </style>
+
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -57,74 +71,89 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/about.html">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="./about.html">
                   About
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
-                  Blog
+                <a class="nav-link" href="./photography.html">
+                  Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
-                  Creative Media
+                <a class="nav-link" href="./blog.html">
+                  Blog
                 </a>
             </li>
         </ul>
     </nav>
 
 </div>        <div id="page_banner">
-<div>
-<!-- Jumbotron -->
-<div class="p-5 text-center bg-image rounded-3 img-fluid" style="
-    background-image: url('https://kushalvyas.github.io/theme/images/KushalVyasDV_Pano.jpg');
-    background-size: cover; height: 400px;
-  " id="backdrop_image">
-  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    <div class="d-flex h-100 justify-content-center align-items-center">
-      <div class="text-white">
-        <h1 class="">Kushal Vyas</h1>
-        <img src="https://kushalvyas.github.io/theme/images/myface.png" class="rounded-circle" height="150px" width="auto">
-        <h4 class="">PhD Student @ RICE University</h4>
-        <h5 class="">Previously: Samsung Research America, Carnegie Mellon University</h5>
-      </div>
+
+
+ <div class="container py-4">
+  <div class="row align-items-center">
+    
+    <!-- Image Column -->
+    <div class="col-12 col-md-3 d-flex justify-content-center mb-3 mb-md-0">
+      <img src="./theme/images/myface.png" class="rounded-circle img-fluid"
+           style="max-height: 180px; width: auto;">
     </div>
+
+    <!-- Text Column -->
+    <div class="col-12 col-md-9 d-flex flex-column justify-content-center">
+      <h2 class="mb-1 text-center text-md-start">Kushal Vyas</h2>
+      <h6 class="mb-2 text-center text-md-start">PhD Student @ RICE University</h6>
+      <p p class="mb-0 small text-center text-md-start" style="text-align: justify;">
+        <p>I am currently a second year PhD student in the ECE department at <a href="https://www.rice.edu/">RICE University</a> advised by Profs. <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> and <a href="https://www.guhabalakrishnan.com/">Guha Balakrishnan</a>. Previously, I was a Senior Machine Learning Research Engineer at <a href="https://sra.samsung.com/">Samsung Research America</a> working in computational imaging and photography. Before that, I did my masters in Computer Vision (MSCV) at the <a href="https://www.ri.cmu.edu/">Robotics Institute, Carnegie Mellon University</a> where I worked under Prof. <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Simon Lucey</a>.</p>
+<p><strong>Email:</strong> <span><font id="email" style="display-inline">&ldquo;oi.h@ykmglmcssaaluvka&rdquo;<a href="#" onclick="emailScramble.initAnimatedBubbleSort();return false;">unscramble</a></font></span></p>
+<script>
+    emailScramble = new scrambledString(document.getElementById('email'),
+        'emailScramble', 'oi.h@ykmglmcssaaluvka',
+        [19, 15, 17, 3, 11, 8, 0, 13, 12, 16, 20, 18, 10, 2, 9, 4, 5, 1, 7, 6, 14]);
+</script>
+      </p>
+    </div>
+
   </div>
-</div>
-<!-- Jumbotron -->
 </div>        </div>
         
     <h2>Categories on Kushal Vyas</h2>
     <ul>
-            <li><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (3)</li>
-            <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
-            <li><a href="https://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/paper.html">paper</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/technical-dev.html">technical, dev</a> (1)</li>
-            <li><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
+            <li><a href="./category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
+            <li><a href="./category/ai.html">AI</a> (1)</li>
+            <li><a href="./category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
+            <li><a href="./category/cv.html">CV</a> (3)</li>
+            <li><a href="./category/cv-ip.html">CV, IP</a> (1)</li>
+            <li><a href="./category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
+            <li><a href="./category/graph_py.html">graph_py</a> (1)</li>
+            <li><a href="./category/networks.html">networks</a> (1)</li>
+            <li><a href="./category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
+            <li><a href="./category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
+            <li><a href="./category/paper.html">paper</a> (1)</li>
+            <li><a href="./category/technical-dev.html">technical, dev</a> (1)</li>
+            <li><a href="./category/utils.html">utils</a> (1)</li>
     </ul>
         
     </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
+
     <div class="text-center p-3" style="background-color: rgba(248,249,250);">
       Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
     </div>
-    <!-- Copyright -->
+
 </footer>
+
+<!-- <footer style="background-color: #f8f9fa; text-align: center; margin-top: auto; position: sticky; top: 100vh;">
+  <div style="padding: 1rem; background-color: rgba(248,249,250);">
+    Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+  </div>
+</footer> -->
 </body>
 </html>

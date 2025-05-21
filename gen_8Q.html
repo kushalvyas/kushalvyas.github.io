@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -38,7 +38,21 @@
                 //     window.location.href = "./"
                 // });
             });
-        </script>   
+        </script>
+
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
+
+        <style>
+            li {
+                margin: 0;
+                padding: 0em;
+            }
+        </style>
+
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -57,23 +71,23 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/about.html">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="./about.html">
                   About
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
-                  Blog
+                <a class="nav-link" href="./photography.html">
+                  Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
-                  Creative Media
+                <a class="nav-link" href="./blog.html">
+                  Blog
                 </a>
             </li>
         </ul>
@@ -102,8 +116,8 @@
             <div class="justify-content-center">
                 <h1 id="the-8-queens-problem-an-introduction">The 8 Queens Problem : An Introduction<a class="headerlink" href="#the-8-queens-problem-an-introduction" title="Permanent link">&para;</a></h1>
 <p>8 queens is a classic computer science problem. To find possible arrangements of 8 queens on a standard <span class="math">\(8\)</span> x <span class="math">\(8\)</span> chessboard such that no queens every end up in an attacking configuration. Now, if one knows the basics of chess, one can say that a queen can travel either horizontally, vertically, or diagonally. Hence, for 2 or more queens to be in an attacking state, they have to lie either horizontally or vertically or diagonally in-line with the other queen. The figure on the left illustrates that what all are the attacking positions with respect to a queen. As seen, the attacking positions are those where in the queen can move either horizontally, vertically, or diagonally along the chessboard.&rdquo; <span class="math">\(OK\)</span> &rdquo; resembles the chessboard square which is considered a safe and non-attacking position. Whereas the one marked with an &rdquo; <span class="math">\(X\)</span> &rdquo; is an attacking placement. The figure on right, shows one of the possible arrangements that serve as a solution to the 8 queens problem.</p>
-<p><center><img alt="attacking_queen" src="https://kushalvyas.github.io/images/queen_attacking.png" /> &nbsp; &nbsp;
-<img alt="solution_queen" src="https://kushalvyas.github.io/images/solution.jpg" /></p>
+<p><center><img alt="attacking_queen" src="./images/queen_attacking.png" /> &nbsp; &nbsp;
+<img alt="solution_queen" src="./images/solution.jpg" /></p>
 <p><i>Images taken from chegg.com and indiamedic</i></center></p>
 <p>There are various methods to solve the 8 queens problem. The most common being <strong>BackTracking</strong>. It can also be solved using a variety of approaches such as as Hill climbing, Genetic Algorithms - evolution, etc. In this post, I&rsquo;ll explain how we approach 8 queens problem using <strong>Genetic Algorithms - Evolution</strong>.</p>
 <h1 id="first-a-bit-of-biology">First,  a bit of Biology&hellip;<a class="headerlink" href="#first-a-bit-of-biology" title="Permanent link">&para;</a></h1>
@@ -112,12 +126,12 @@
 <p>Consider 2 cells. Each cell has something called as pairs of chromosomes. A chromosome is what carries the genetic traits. The pairs and number of chromosomes isin&rsquo;t much of relevance. What is important is how the process of cell production causes the genes to propagate into an offspring. This method is called as meiosis. Well, there&rsquo;s another way called as mitosis, but in mitosis, there is no genetic diversity that is being propagated (Explained later in post). Till now we have established that the cells contain pairs of chromosomes. And that 2 cells are required for essential cell division. </p>
 <p>Given below is an illustration as to how the division takes place. (Image taken from askabiologist.com)</p>
 <p><center>
-<img alt="celldv" src="https://kushalvyas.github.io/images/meiosis.png" />
+<img alt="celldv" src="./images/meiosis.png" />
 </center>
 <br>
 <center>
 Process of meiosis.
-<img alt="celldv1" src="https://kushalvyas.github.io/images/crossover.png" /></p>
+<img alt="celldv1" src="./images/crossover.png" /></p>
 <p>Chromosme crossover
 </center></p>
 <p><strong>Crossover - In Detail</strong>: When 2 cells meet, the respective chromosome from cell1 and cell2 come together and mix. The mixing involves random parts of chromosome1 to get over-written by chromosome2. And the same in case of chromosome2. Hence, we are left with an inter mixed pair of chromosomes. Since chromosomes are carriers of genetic material, when there is mixing and intermingling of 2 chromosomes, there is also creation of new genetic sequences. Hence, this ensures genetic diversity. The formation of a more dominant / enhanced trait or a relatively sober trait can be attributed to such crossing over of chromosomes. Once crossover is through, the new offspring contains mixed characteristics for both the parents.</p>
@@ -252,7 +266,7 @@ def generatePopulation(population_size = 100):
 <p>Any of the three cases is still capable of producing a next generation. The only difference will be regarding the probability of that offspring to yield a substantially fit offspring.</p>
 <p>**Mutation : **
 Biologically and statistically, mutation is continously occuring at very low frequencies. In human genetic theory, mutation involves alteration within the structure of the chromosome, within the structure of the gene. To replicate this for 8 queens problem, one can simply alter a board arrangement. </p>
-<p><center><img alt="fitness_cros" src="https://kushalvyas.github.io/images/fitness_cros.png" /></p>
+<p><center><img alt="fitness_cros" src="./images/fitness_cros.png" /></p>
 <p><em>Source : Peter norvig genetic algorithm illustration</em>
 </center></p>
 <p>The above illustrates the entire flow from initial population to fitness
@@ -267,7 +281,7 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
 <h1 id="output-and-termination-criteria">Output and termination criteria :<a class="headerlink" href="#output-and-termination-criteria" title="Permanent link">&para;</a></h1>
 <p>Well, it seems that such an algorithm will keep producing offsprings and again their offsprings. When to stop. In my implementation , I&rsquo;ve kept a limit of iteration. This is just for purposes of conviniece. However, at anytime, the most optimal solution can be described as the <strong>most fit board position</strong>.</p>
 <p><center>
-    <img alt="im" src="https://kushalvyas.github.io/images/op8q.png" /></p>
+    <img alt="im" src="./images/op8q.png" /></p>
 <p></center></p>
 <p><strong>You can check out the <a href="https://gist.github.com/kushalvyas/7f777c24880c8d1dee744ecb8125e50f">code</a> at <a href="https://www.github.com/kushalvyas/">Github</a>.</strong></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
@@ -341,11 +355,17 @@ function calculation, to selection to cross-over and finally mutation. <strong>N
     </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
+
     <div class="text-center p-3" style="background-color: rgba(248,249,250);">
       Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
     </div>
-    <!-- Copyright -->
+
 </footer>
+
+<!-- <footer style="background-color: #f8f9fa; text-align: center; margin-top: auto; position: sticky; top: 100vh;">
+  <div style="padding: 1rem; background-color: rgba(248,249,250);">
+    Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+  </div>
+</footer> -->
 </body>
 </html>

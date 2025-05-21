@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -38,7 +38,21 @@
                 //     window.location.href = "./"
                 // });
             });
-        </script>   
+        </script>
+
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
+
+        <style>
+            li {
+                margin: 0;
+                padding: 0em;
+            }
+        </style>
+
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -57,23 +71,23 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/about.html">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="./about.html">
                   About
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
-                  Blog
+                <a class="nav-link" href="./photography.html">
+                  Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
-                  Creative Media
+                <a class="nav-link" href="./blog.html">
+                  Blog
                 </a>
             </li>
         </ul>
@@ -190,11 +204,17 @@ you can create a class.</p>
     </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
+
     <div class="text-center p-3" style="background-color: rgba(248,249,250);">
       Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
     </div>
-    <!-- Copyright -->
+
 </footer>
+
+<!-- <footer style="background-color: #f8f9fa; text-align: center; margin-top: auto; position: sticky; top: 100vh;">
+  <div style="padding: 1rem; background-color: rgba(248,249,250);">
+    Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+  </div>
+</footer> -->
 </body>
 </html>

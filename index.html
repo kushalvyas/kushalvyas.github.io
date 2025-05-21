@@ -4,10 +4,10 @@
 
 <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -38,7 +38,21 @@
                 //     window.location.href = "./"
                 // });
             });
-        </script>   
+        </script>
+
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
+
+        <style>
+            li {
+                margin: 0;
+                padding: 0em;
+            }
+        </style>
+
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -57,67 +71,113 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/about.html">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="./about.html">
                   About
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
-                  Blog
+                <a class="nav-link" href="./photography.html">
+                  Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
-                  Creative Media
+                <a class="nav-link" href="./blog.html">
+                  Blog
                 </a>
             </li>
         </ul>
     </nav>
 
 </div>        <div id="page_banner">
-<div>
-<!-- Jumbotron -->
-<div class="p-5 text-center bg-image rounded-3 img-fluid" style="
-    background-image: url('https://kushalvyas.github.io/theme/images/KushalVyasDV_Pano.jpg');
-    background-size: cover; height: 400px;
-  " id="backdrop_image">
-  <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    <div class="d-flex h-100 justify-content-center align-items-center">
-      <div class="text-white">
-        <h1 class="">Kushal Vyas</h1>
-        <img src="https://kushalvyas.github.io/theme/images/myface.png" class="rounded-circle" height="150px" width="auto">
-        <h4 class="">PhD Student @ RICE University</h4>
-        <h5 class="">Previously: Samsung Research America, Carnegie Mellon University</h5>
-      </div>
+
+
+ <div class="container py-4">
+  <div class="row align-items-center">
+    
+    <!-- Image Column -->
+    <div class="col-12 col-md-3 d-flex justify-content-center mb-3 mb-md-0">
+      <img src="./theme/images/myface.png" class="rounded-circle img-fluid"
+           style="max-height: 180px; width: auto;">
     </div>
+
+    <!-- Text Column -->
+    <div class="col-12 col-md-9 d-flex flex-column justify-content-center">
+      <h2 class="mb-1 text-center text-md-start">Kushal Vyas</h2>
+      <h6 class="mb-2 text-center text-md-start">PhD Student @ RICE University</h6>
+      <p p class="mb-0 small text-center text-md-start" style="text-align: justify;">
+        <p>I am currently a second year PhD student in the ECE department at <a href="https://www.rice.edu/">RICE University</a> advised by Profs. <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> and <a href="https://www.guhabalakrishnan.com/">Guha Balakrishnan</a>. Previously, I was a Senior Machine Learning Research Engineer at <a href="https://sra.samsung.com/">Samsung Research America</a> working in computational imaging and photography. Before that, I did my masters in Computer Vision (MSCV) at the <a href="https://www.ri.cmu.edu/">Robotics Institute, Carnegie Mellon University</a> where I worked under Prof. <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Simon Lucey</a>.</p>
+<p><strong>Email:</strong> <span><font id="email" style="display-inline">&ldquo;oi.h@ykmglmcssaaluvka&rdquo;<a href="#" onclick="emailScramble.initAnimatedBubbleSort();return false;">unscramble</a></font></span></p>
+<script>
+    emailScramble = new scrambledString(document.getElementById('email'),
+        'emailScramble', 'oi.h@ykmglmcssaaluvka',
+        [19, 15, 17, 3, 11, 8, 0, 13, 12, 16, 20, 18, 10, 2, 9, 4, 5, 1, 7, 6, 14]);
+</script>
+      </p>
+    </div>
+
   </div>
-</div>
-<!-- Jumbotron -->
 </div>        </div>
         
 
 <div class="container">
 
     <div class="justify-content-center">
-        <p><br></p>
-<p>I&rsquo;m a second year PhD student at <a href="https://www.rice.edu/" target="_blank">RICE University.</a> working in areas of computational imaging, machine learning, and neural representations for Digital Health. I&rsquo;m gratefully advised by <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> and <a href="https://www.guhabalakrishnan.com/home">Guha Balakrishnan</a>.</p>
-<p>I am a seasoned engineer, meticulous researcher, and have previously led research directions and teams through the idea-prototype-product lifecycle. Before Rice, I was a senior ML researcher at <a href="https://sra.samsung.com/">Samsung Research America&rsquo;s</a> Think Tank Team, working in the area of computer vision, machine learning and computational photography. My work in Samsung has been transformative and led to <a href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en">10+ patents</a>.</p>
-<p>My vision is to work towards holistic AI integration in camera technology, explore newer forms of representing information, and work towards AI for health and sustainability.</p>
-<p>I obtained my MS in Computer Vision (MSCV) from <a href="https://www.ri.cmu.edu/" target="_blank">The Robotics Institute, Carnegie Mellon University.</a>  where I worked with <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Dr. Simon Lucey</a>, and B.E. in Computer Engineering from <a href="https://djsce.ac.in/">D. J. Sanghvi College of Engineering, Univ. of Mumbai</a></p>
+        <!-- 
+I'm a second year PhD student at <a href="https://www.rice.edu/" target="_blank">RICE University.</a> working in areas of computational imaging, machine learning, and neural representations for Digital Health. I'm gratefully advised by <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> and <a href="https://www.guhabalakrishnan.com/home">Guha Balakrishnan</a>. -->
+
+<!-- 
+I am a seasoned engineer, meticulous researcher, and have previously led research directions and teams through the idea-prototype-product lifecycle. Before Rice, I was a senior ML researcher at <a href="https://sra.samsung.com/">Samsung Research America's</a> Think Tank Team, working in the area of computer vision, machine learning and computational photography. My work in Samsung has been transformative and led to <a href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en">10+ patents</a>.
+
+My vision is to work towards holistic AI integration in camera technology, explore newer forms of representing information, and work towards AI for health and sustainability.
+
+I obtained my MS in Computer Vision (MSCV) from <a href="https://www.ri.cmu.edu/" target="_blank">The Robotics Institute, Carnegie Mellon University.</a>  where I worked with <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Dr. Simon Lucey</a>, and B.E. in Computer Engineering from <a href="https://djsce.ac.in/">D. J. Sanghvi College of Engineering, Univ. of Mumbai</a>
+
+--------
+
+ -->
 <hr />
+<p>My vision is to work towards holistic AI integration in camera technology, explore newer forms of representing information, and work towards AI for health and sustainability.</p>
+<p>My primary areas of interest are:</p>
+<ul>
+<li>
+<p>Large signal machine learning   </p>
+</li>
+<li>
+<p>Optics and computational imaging</p>
+</li>
+<li>
+<p>Novel data representations</p>
+</li>
+<li>
+<p>Digital health and medical imaging</p>
+</li>
+</ul>
+<p>At Samsung, I was a ML researcher for 3.5 years at the multidiscplinary <strong>Think Tank Team</strong> where I reported to  <a href="https://sajidsadi.com/">Sajid Sadi</a> and <a href="https://www.rehmi.io/">Rehmi Post</a>. I led and developed a variety of projects in computer vision, smartphone photography, and machine learning. My work has been transformative and led to 10+ patents.</p>
 
     </div>
 
     <div class="justify-content-center">
             <div class="">
-                <p><span style="color:red"><h3 style='color:red'><u>Latest News</u></h3></span></p>
+                <h4 style='color:black'><u>Latest News</u></h4>
+
 <ul>
-<li><a href="strainer.html"><strong>Learning Transferable features for Implicit Neural Representations</strong></a>, Kushal Vyas, Ahmed Imtiaz Humayun, Aniket Dashpute, Richard G. Baranuik, Ashok Veeraraghavan and Guha Balakrishnan, accepted at NeurIPS 2024!</li>
+<li>
+<p>Invited as a <span style="color:blue"><strong>reviewer for NeurIPS&lsquo;25</strong></span>.</p>
+</li>
+<li>
+<p>Paper submitted to <span style="color:blue"><strong>MICCAI&lsquo;25</strong></span>.</p>
+</li>
+<li>
+<p><a href=""><strong>Alpine PyTorch Library is now released</strong></a>. Excited to announce that Alpine - a flexible, distributed and user-friendly library for implicit neural representations is now released! Paper accepted at CVPR 2025, Workshop on Neural Fields beyond Conventional Cameras. </p>
+</li>
+<li>
+<p><a href="strainer.html"><strong>Learning Transferable features for Implicit Neural Representations</strong></a>, Kushal Vyas, Ahmed Imtiaz Humayun, Aniket Dashpute, Richard G. Baranuik, Ashok Veeraraghavan and Guha Balakrishnan, accepted at <strong>NeurIPS 2024</strong>!</p>
+</li>
 </ul>
 <hr />
             </div>
@@ -129,11 +189,17 @@
     </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <!-- Copyright -->
+
     <div class="text-center p-3" style="background-color: rgba(248,249,250);">
       Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
     </div>
-    <!-- Copyright -->
+
 </footer>
+
+<!-- <footer style="background-color: #f8f9fa; text-align: center; margin-top: auto; position: sticky; top: 100vh;">
+  <div style="padding: 1rem; background-color: rgba(248,249,250);">
+    Created this website using Python, Pelican, Markdown, Jinja, Bootstrap, JQuery, FontAwesome, MDBootstrap
+  </div>
+</footer> -->
 </body>
 </html>
