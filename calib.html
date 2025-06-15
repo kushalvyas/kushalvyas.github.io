@@ -8,18 +8,18 @@
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL03DLW9KF"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-EL03DLW9KF');
+            gtag('config', 'G-EL03DLW9KF');
         </script>
-        
 
-        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
-        <script src="./theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
+        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -52,10 +52,10 @@
             });
         </script>
 
-         <script src="./theme/js/photoswipe.umd.min.js"></script>
-        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
-        <link rel="stylesheet" href="./theme/css/photoswipe.css">
-        <script src="./theme/js/scramble.js"></script>
+         <script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
+        <script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
+        <script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
 
         <style>
             li {
@@ -64,7 +64,7 @@
             }
         </style>
 
-        <script src="./theme/js/spotlight.bundle.js"></script>   
+        <script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -83,17 +83,17 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="./research.html">
+              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
                 Research
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./photography.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
                   Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./blog.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
                   Blog
                 </a>
             </li>
@@ -144,15 +144,15 @@
 </ol>
 <p>Let&rsquo;s begin!</p>
 <p>So here&rsquo;s how a pinhole camera works. Consider the image below. </p>
-<p><center><img alt="im1" src="./images/calib/im1.png" /> <br><a href="https://www.mathworks.com/help/vision/ug/camera-calibration.html" target="_blank">Source: Mathworks</a></p>
+<p><center><img alt="im1" src="https://kushalvyas.github.io/images/calib/im1.png" /> <br><a href="https://www.mathworks.com/help/vision/ug/camera-calibration.html" target="_blank">Source: Mathworks</a></p>
 <p>As seen, the visual pipeline is capturing the object in 3D from the World coordinate space and converting it through the the aperture ( pinhole, in this case) and projects onto the camera image plane. This leads to the formation of the image. <!-- Once this image has been extracted from the 3D world space, it is difficult (will need additional views) to reverse engineer the mere 2D representation of the image and try to reconstruct it back to the 3D world scene --> </p>
 <p>The concept to be understood is that any point in the 3D world coordinate space is represented by <span class="math">\(P = (X, Y, Z)^T\)</span>. There is an essential conversion of the 3D world point <span class="math">\(P\)</span> to a local image coordinate space point, let&rsquo;s say <span class="math">\(p = (u, v)^T\)</span>. Hence for conversion of the points <span class="math">\(P \rightarrow p\)</span>, there is an effective projection transform ( just a matrix ) which enables so. The aim of calibration is to find the effective projection transform hence yielding significant information regarding the vision system such as focal lengths, camera pose, camera center, etc. I&rsquo;ll get to it too. Thus formulating a basic equation for the above paragraph, we can write it as:</p>
 <div class="math">$$ [p] = M.[P] $$</div>
 <p>where M is a projection matrix converting the World <span class="math">\((X, Y, Z, 1)\)</span> point to the Image <span class="math">\((u, v, 1)\)</span> point. This is a very casual representation of the above process happening through the visual pipeline.</p>
 <p>On a broad view, the camera calibration yields us an intrinsic camera matrix, extrinsic parameters and the distortion coefficients. The basic model for a camera is a pinhole camera model, but today&rsquo;s cheap camera&rsquo;s incorporate high levels of noise/distortion in the images. For a simple visualization, I&rsquo;ll put 2 images below. Note that the image on the left shows an image captured by my logitech webcam, followed by the image on the right which shows an <code>undistorted</code> image. The straight lines appear to be bent (curved) in the left image, whereas in the right one it appears normal. </p>
 <p><center>
-<img alt="im2" height="136px" src="./images/calib/calib_radial.jpg" width="136px" />
-<img alt="im3" height="136px" src="./images/calib/calib_result.jpg" width="136px" /></p>
+<img alt="im2" height="136px" src="https://kushalvyas.github.io/images/calib/calib_radial.jpg" width="136px" />
+<img alt="im3" height="136px" src="https://kushalvyas.github.io/images/calib/calib_result.jpg" width="136px" /></p>
 <p><center>Source :<a href="https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_calib3d/py_calibration/py_calibration.html" target="_blank">OpenCV Camera Calibration docs</a></center>
 </center></p>
 <p>Hence, the camera calibration process is useful in providing an accurate input image to any computer vision system in the first place. (computer vision system which deal with pixel/real measurements. For other applications, it is not needed to compute this process). </p>
@@ -321,8 +321,8 @@ $$</div>
 <p>Hence, we also create an array for the model/realworld points which establishes the correspondences. I have mentioned a parameter <code>SQUARE_SIZE</code> previously which is the size of the chessboard square (cm). the next step is to create <span class="math">\(P\)</span> array of shape <span class="math">\(M \times (N \times 3)\)</span>. For each of the <span class="math">\(M\)</span> views, the array is a <span class="math">\(N \times 3\)</span> array which has <span class="math">\(N\)</span> rows, each of the <span class="math">\(N\)</span> rows having <span class="math">\((X, Y, Z)\)</span></p>
 <p>Since we are using a chessboard, and we know the chessboard square size, it is easy to virtually compute physical locations of the chessboard corners in real world . Assuming a Point <span class="math">\(A = (0 ,0)\)</span>, every point can be expressed as <span class="math">\((A\hat{i} + A\hat{j}) + ( k \times \text{SQUARE_SIZE} (\hat{i} + \hat{j}))\)</span>, where k ranges upto <code>PATTERN_SIZE</code></p>
 <p><center>
-<img alt="chessboard" src="./images/calib/left1.jpg" />
-<img alt="chessboard1" src="./images/calib/draw0.png" />
+<img alt="chessboard" src="https://kushalvyas.github.io/images/calib/left1.jpg" />
+<img alt="chessboard1" src="https://kushalvyas.github.io/images/calib/draw0.png" />
 </center>
 Below is the code for detecting chessboard_corners, and establishing correspondences between image_points(U) and model points (X).</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
@@ -399,7 +399,7 @@ Below is the code for detecting chessboard_corners, and establishing corresponde
 </ol>
 <p><strong>Important</strong> : One important point to be noted during Zhang&rsquo;s algorithm is that for any object points P(X, Y, Z), since it is a planar method, <span class="math">\(Z=0\)</span>. To visualize this, consider the following diagram. As seen, below is sample origin of the chessboard real world system. X-Y Axis belong inside the plane of the chessboard, and Z-axis is normal to the chessboard.</p>
 <p><center>
-<img alt="image" src="./images/calib/axis.jpeg" /></p>
+<img alt="image" src="https://kushalvyas.github.io/images/calib/axis.jpeg" /></p>
 <p>Note that the Z-Axis is normal to the board, hence for every real world point Z=0
 </center></p>
 <h3 id="representation-of-the-correspondence"><strong>Representation of the correspondence</strong>:<a class="headerlink" href="#representation-of-the-correspondence" title="Permanent link">&para;</a></h3>
@@ -450,7 +450,7 @@ Z = 0 \\
 $$</div>
 <p>Since <span class="math">\(Z=0\)</span>, we can eliminate the third column of <span class="math">\([R|t]\)</span>, because the multiplication of that entire column will coincide with Z=0, resulting in a zero contribution. Hence, we can eliminate <span class="math">\(Z\)</span> from <span class="math">\(P\)</span> and the third column from <span class="math">\([R|t]\)</span>. </p>
 <p><center>
-<img alt="im323" src="./images/calib/reduce1.png" />
+<img alt="im323" src="https://kushalvyas.github.io/images/calib/reduce1.png" />
 </center></p>
 <p>Hence, the system reduces to a complete <span class="math">\(3 \times 3\)</span>  system.</p>
 <div class="math">$$p_{3 \times 1} = A_{3 \times 3} . [ R - R_{:,3} | t ]_{3 \times 3} .  [P_{P-Z}]_{3 \times 1}$$</div>
@@ -582,7 +582,7 @@ $$</div>
 <p><strong>Computing the homography</strong>: </p>
 <p>The above system shows an <code>Ax=0</code> system. The solution can be of two ways. The obvious trivial solution is <code>x=0</code>, however we are not looking for that. The other solution is to find a non-trivial finite solution such that Ax ~ 0, if not zero. However, the explaination to this lies along the lines of using a Null Space of vector A, such that the <span class="math">\( ||Ax||^2 \rightarrow min\)</span> . The solution for such a system can be computed using SVD. (SVD provides orthonormal vectors). </p>
 <p><center>
-<img alt="imsvd" src="./images/calib/svd.png" /></p>
+<img alt="imsvd" src="https://kushalvyas.github.io/images/calib/svd.png" /></p>
 <p>source: <a href="https://en.wikipedia.org/wiki/Singular-value_decomposition">SVD - Wikipedia</a></p>
 <p></center></p>
 <p>Similarly in our system, <code>A</code> matrix is of shape <span class="math">\((2 \times N, 9)\)</span>. Thus the decomposition of <code>A</code> returns </p>
@@ -782,7 +782,7 @@ $$</div>
 <h3 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h3>
 <p>I implemented using Python 2.7, and NumPy 1.12. for the given dataset of images, the following values are returned.</p>
 <p><center>
-<img alt="pics_calib" src="./images/calib/calibpics.png" />
+<img alt="pics_calib" src="https://kushalvyas.github.io/images/calib/calibpics.png" />
 </center></p>
 <p>Camera Matrix:</p>
 <div class="math">$$\begin{bmatrix}
@@ -793,7 +793,7 @@ $$</div>
 $$</div>
 <p>Using on OpenCV&rsquo;s sample images:
 <center>
-<img alt="imagepics2calib" src="./images/calib/calibpics2.png" />
+<img alt="imagepics2calib" src="https://kushalvyas.github.io/images/calib/calibpics2.png" />
 </center>
 Opencv <code>cv2.calibrateCamera() function</code> Camera MAtrix: 
 </p>

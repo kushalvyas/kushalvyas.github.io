@@ -8,18 +8,18 @@
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL03DLW9KF"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-EL03DLW9KF');
+            gtag('config', 'G-EL03DLW9KF');
         </script>
-        
 
-        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
-        <script src="./theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
+        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -52,10 +52,10 @@
             });
         </script>
 
-         <script src="./theme/js/photoswipe.umd.min.js"></script>
-        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
-        <link rel="stylesheet" href="./theme/css/photoswipe.css">
-        <script src="./theme/js/scramble.js"></script>
+         <script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
+        <script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
+        <script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
 
         <style>
             li {
@@ -64,7 +64,7 @@
             }
         </style>
 
-        <script src="./theme/js/spotlight.bundle.js"></script>   
+        <script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -83,17 +83,17 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="./research.html">
+              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
                 Research
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./photography.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
                   Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./blog.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
                   Blog
                 </a>
             </li>
@@ -132,7 +132,7 @@ Well, recognition simply involves stating whether an image contains a specific o
 - Obtain most optimum class for query image </p>
 <p><br></p>
 <p>To implement this, we shall be using : Opencv (3.x), sklearn (0.17), caltech101 dataset( trimmed version)</p>
-<p>Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, DOG , etc. And to ease out our troubles, <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">David Lowe</a> developed <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">SIFT</a> : Scale Invariant Feature Transform. SIFT is extensively used today. We will be using SIFT as well. Please note, that algorithms such as SIFT, SURF which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or VLFEAT (You may want to check out my <a href="./setup_env.html">previous post on environment settings </a>).</p>
+<p>Lets first understand what a feature is. One can say that a feauture is any discernable, and a significant point/group of points in an image. What to select as a feature depends on the application such as corner points, edges, blobs, DOG , etc. And to ease out our troubles, <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">David Lowe</a> developed <a href="http://www.cs.ubc.ca/~lowe/keypoints/" target="_blank">SIFT</a> : Scale Invariant Feature Transform. SIFT is extensively used today. We will be using SIFT as well. Please note, that algorithms such as SIFT, SURF which are patented are not available in the master version of Opencv-Itseez. To be able to use it, either install opencv_contrib or VLFEAT (You may want to check out my <a href="https://kushalvyas.github.io/setup_env.html">previous post on environment settings </a>).</p>
 <p>Lets begin with a few introductory concepts required Bag of words. We shall cover 4 parts (so keep scrolling !)</p>
 <ul>
 <li>Clustering</li>
@@ -187,7 +187,7 @@ ret =  KMeans(n_clusters = n_clusters).fit_predict(X)</code></pre>
     </noscript>
 </div>
 <!-- output -->
-<p><img alt="clusteroutput" class="img-fluid" src="./images/clusterplot1.png" /></p>
+<p><img alt="clusteroutput" class="img-fluid" src="https://kushalvyas.github.io/images/clusterplot1.png" /></p>
 <p>Here&rsquo;s a sample output for clustering using 3 clusters on a set of 1000 samples</p>
 <p><strong>Why are we using Clusterng &hellip; Why Kmeans &hellip;:</strong>
 KMeans performs clustering. It is one of the widely used algorithms when it comes to unsupervised learning. Bag of visual words uses a training regimen that involves, firstly, to partition similar features that are extrapolated from the training set of images. To make it more easily understandable, think of it this way. Every image has certain discernable features, patterns with which humans decide as to what the object perceived is. When you see a image of &hellip; umm. let&rsquo;s say a motorbike -  significant features are being extrapolated. This features together help in deciding whether what is being seen is actually a motorbike. The collection as well as frequency of particular features is what helps in estimating what object does the image contain,</p>
@@ -197,7 +197,7 @@ KMeans performs clustering. It is one of the widely used algorithms when it come
 <p>First of all, you need a training set. If you&rsquo;re using a personal computer, I&rsquo;d recommend to use a truncated version of any publically available image datasets (if you&rsquo;re worried about your PC taking up too much time during training) or perhaps train using a minimally bounded set of features. I&rsquo;d recommend using <a href="http://www.vision.caltech.edu/Image_Datasets/Caltech101/">Caltech101</a>. Also check out Caltech256, CIFAR10 datasets. They&rsquo;re good !! As in real good. </p>
 </li>
 <li>
-<p>Secondly please set up either LIBSVM , SKLEARN,  VLFEAT ( for enhanced vision algos&hellip; like sift) Library, or Any python machine learning toolkit that will provide basic SVM , Kmeans functionaliy. You can visit my previous post on <a href="./setup_env.html">setting up environments</a>.</p>
+<p>Secondly please set up either LIBSVM , SKLEARN,  VLFEAT ( for enhanced vision algos&hellip; like sift) Library, or Any python machine learning toolkit that will provide basic SVM , Kmeans functionaliy. You can visit my previous post on <a href="https://kushalvyas.github.io/setup_env.html">setting up environments</a>.</p>
 </li>
 <li>
 <p>Third, please maintain a descent project directory structure. Well documented and well assembled as to where input , output and logs will be stored. This will help a lot for further projects and especially when it comes to making your code modular.</p>
@@ -339,11 +339,11 @@ $$</div>
 <p>We now have a full stacked up list of what visual words are being used for every image. The next task is to group similar features. Think of it as synonyms .... Similar features can provide an approximate estimate as to what the image is, just as synonyms tend to express upon the gist of a sentence. Therefore when the machine is trained over several images, similar features that are able to describe similar portions of the image are grouped together to develop a vast vocabulary base. Each of these group collectively represent the a word and all groups in totality yields us the complete vocabulary generated from the training data. Hence there is a screaming need for clustering in the said process.</p>
 <p>If we were to allot a definition to any of the similar words, we can simply refer them by their cluster number.</p>
 <p><center>
-<img alt="image" class="img-fluid" src="./images/grid.png" /></p>
+<img alt="image" class="img-fluid" src="https://kushalvyas.github.io/images/grid.png" /></p>
 <!-- ![image]({filename}/images/vocab.png) </center> -->
 
 <p>A more illustrative visualization of the histogram can be observed in the adjacent figure.</p>
-<p><img alt="image" class="img-fluid" src="./images/vocab_unnormalized.png" /></p>
+<p><img alt="image" class="img-fluid" src="https://kushalvyas.github.io/images/vocab_unnormalized.png" /></p>
 <p>The above image shows how a collective vocabulary will look like. Encomprising of the total number of each type of feature/word present in the training set in totality.</p>
 <p></center></p>
 <p>Here&rsquo;s some implementation snippet as to how one would implement this</p>
@@ -394,18 +394,18 @@ $$</div>
 <p>Please maintain the aforementioned project dir structure and follow naming conventions. You may want to read the repositories readme for further details. Here&rsquo;s what predictions I obtained on testing and training the model against a trimmed version of Caltech101 dataset. </p>
 <p><center></p>
 <p>There are a few snaps of outputs when the model was tested on the limited version of the dataset .</p>
-<p><img alt="im1" src="./images/ac1.png" />
-<img alt="im2" src="./images/bk1.png" />
-<img alt="im3" src="./images/bk2.png" />
-<img alt="im4" src="./images/dollar1.png" />
-<img alt="im5" src="./images/sbb3.png" /></p>
+<p><img alt="im1" src="https://kushalvyas.github.io/images/ac1.png" />
+<img alt="im2" src="https://kushalvyas.github.io/images/bk1.png" />
+<img alt="im3" src="https://kushalvyas.github.io/images/bk2.png" />
+<img alt="im4" src="https://kushalvyas.github.io/images/dollar1.png" />
+<img alt="im5" src="https://kushalvyas.github.io/images/sbb3.png" /></p>
 <p></center></p>
 <h3 id="checking-for-accuracy">Checking for Accuracy<a class="headerlink" href="#checking-for-accuracy" title="Permanent link">&para;</a></h3>
 <p>Accuracy measure is one of the most important steps in ML algorithms .A Confusion matrix is basically how many test cases were correctly classified. Hence, a confusion matrix is used to determine the accuracy of classification. On having tried it on the limited dataset, below is the CF. </p>
 <p><center>
-    <img alt="imc" src="./images/normalized_7.png" />
+    <img alt="imc" src="https://kushalvyas.github.io/images/normalized_7.png" />
 </center></p>
-<p>So now you know how to write your own Image Classifiers and Recognizers&hellip; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a <a href="">Confusion Matrix</a> .Meanwhile, use the <a href="./BOV.html">Bag of Visual Words</a> and create some cool stuff</p>
+<p>So now you know how to write your own Image Classifiers and Recognizers&hellip; !! Hurrayy !! There are tremendous application when it comes to intelligence and computer vision. Especially in this field. If you wanna check for accuracy measures in classification, be sure to implement a <a href="">Confusion Matrix</a> .Meanwhile, use the <a href="https://kushalvyas.github.io/BOV.html">Bag of Visual Words</a> and create some cool stuff</p>
 <p>__ Check out the <a href="https://github.com/kushalvyas/Bag-of-Visual-Words-Python">Code</a> on <a href="https://www.github.com/kushalvyas/">Github</a>__</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",

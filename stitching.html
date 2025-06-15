@@ -8,18 +8,18 @@
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL03DLW9KF"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'G-EL03DLW9KF');
+            gtag('config', 'G-EL03DLW9KF');
         </script>
-        
 
-        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
-        <script src="./theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
+
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
+        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -52,10 +52,10 @@
             });
         </script>
 
-         <script src="./theme/js/photoswipe.umd.min.js"></script>
-        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
-        <link rel="stylesheet" href="./theme/css/photoswipe.css">
-        <script src="./theme/js/scramble.js"></script>
+         <script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
+        <script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
+        <script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
 
         <style>
             li {
@@ -64,7 +64,7 @@
             }
         </style>
 
-        <script src="./theme/js/spotlight.bundle.js"></script>   
+        <script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -83,17 +83,17 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="./research.html">
+              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
                 Research
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./photography.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
                   Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./blog.html">
+                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
                   Blog
                 </a>
             </li>
@@ -229,7 +229,7 @@ Also, to test, I will be using images from <a href="http://study.marearts.com/20
 
 <p><br>
 __ Step 1: Feature extraction__:</p>
-<p>We shall be using opencv_contrib&rsquo;s SIFT descriptor. SIFT , as in Scale Invariant Feature Transform, is a very powerful CV algorithm. Please read my <a href="./BOV.html">Bag of Visual Words for Image classification post</a> to understand more about features.
+<p>We shall be using opencv_contrib&rsquo;s SIFT descriptor. SIFT , as in Scale Invariant Feature Transform, is a very powerful CV algorithm. Please read my <a href="https://kushalvyas.github.io/BOV.html">Bag of Visual Words for Image classification post</a> to understand more about features.
 Also, check out <a href="http://docs.opencv.org/3.1.0/da/df5/tutorial_py_sift_intro.html">OpenCV&rsquo;s docs on SIFT</a>. They are a pretty good resource as well! </p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">sift_obj</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">xfeatures2d</span><span class="o">.</span><span class="n">SIFT_create</span><span class="p">()</span>
