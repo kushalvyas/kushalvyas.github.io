@@ -1,11 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2025-07-28T00:00:00-05:00</updated><entry><title>Fit pixels, get lables: Meta-learned implciit networks for image segmentation</title><link href="https://kushalvyas.github.io/metaseg.html" rel="alternate"></link><published>2025-07-28T00:00:00-05:00</published><updated>2025-07-28T00:00:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2025-07-28:/metaseg.html</id><summary type="html">&lt;p&gt;None&lt;/p&gt;</summary><content type="html">&lt;h2&gt; Page and code coming soon &lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/all.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2025-07-28T00:00:00-05:00</updated><entry><title>Fit pixels, get lables: Meta-learned implciit networks for image segmentation</title><link href="https://kushalvyas.github.io/metaseg.html" rel="alternate"></link><published>2025-07-28T00:00:00-05:00</published><updated>2025-07-28T00:00:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2025-07-28:/metaseg.html</id><summary type="html">&lt;p&gt;None&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;Abstract&lt;/strong&gt;: Implicit neural representations (INRs) have achieved remarkable successes in learning expressive yet compact signal representations. However, they are not naturally amenable to predictive tasks such as segmentation, where they must learn semantic structures over a distribution of signals. In this study, we introduce &lt;b&gt;MetaSeg&lt;/b&gt;, a meta-learning framework to train INRs for medical image segmentation. &lt;b&gt;MetaSeg&lt;/b&gt; uses an underlying INR that simultaneously predicts per pixel intensity values and class labels. It then uses a meta-learning procedure to find optimal initial parameters for this INR over a training dataset of images and segmentation maps, such that the INR can simply be fine-tuned to fit pixels of an unseen test image, and automatically decode its class labels. We evaluated &lt;b&gt;MetaSeg&lt;/b&gt; on 2D and 3D brain MRI segmentation tasks and report Dice scores comparable to commonly used U-Net models, but with &lt;span class="math"&gt;\(90\%\)&lt;/span&gt; fewer parameters. &lt;b&gt;MetaSeg&lt;/b&gt; offers a fresh, scalable alternative to traditional resource-heavy architectures such as U-Nets and vision transformers for medical image segmentation.&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
 &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Citation&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Coming soon!&lt;/p&gt;</content><category term="paper"></category></entry><entry><title>Learning Transferable Features for Implicit Neural Representations</title><link href="https://kushalvyas.github.io/strainer.html" rel="alternate"></link><published>2024-11-10T00:00:00-06:00</published><updated>2024-11-10T00:00:00-06:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2024-11-10:/strainer.html</id><summary type="html">&lt;p&gt;None&lt;/p&gt;</summary><content type="html">&lt;!-- | ![img](projects/images/strainer/strainer.png){width="80%"} | 
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/metaseg_coverfigure.png" alt="metaseg cover fig" width="80%"/&gt;
+  &lt;figcaption align="center"&gt;
+    &lt;b&gt;Overview of MetaSeg.&lt;/b&gt;  
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We use a meta-learning framework (shown in (a)) to learn optimal initial parameters &lt;span class="math"&gt;\(\theta^*, \phi^*\)&lt;/span&gt; for an INR consisting of an &lt;span class="math"&gt;\(L\)&lt;/span&gt;-layer reconstruction network &lt;span class="math"&gt;\(f_\theta(\cdot)\)&lt;/span&gt; and shallow segmentation head &lt;span class="math"&gt;\(g_\phi(\cdot)\)&lt;/span&gt;.  At test time (b), optimally initialized INR &lt;span class="math"&gt;\(f_{\theta^*}\)&lt;/span&gt; is iteratively fit to the pixels of an unseen test scan. After convergence, the penultimate features &lt;span class="math"&gt;\(f_{\theta^*}^{L-1}(x)\)&lt;/span&gt; are fed as input to the segmentation head &lt;span class="math"&gt;\(g_{\phi^*}(\cdot)\)&lt;/span&gt; to predict per-pixel class labels.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h4&gt;MetaSeg Architecture&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/metaseg_architecture.png" alt="metaseg arch fig" width="70%"/&gt;
+  &lt;figcaption align="center"&gt;
+    MetaSeg architecture.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We use a Siren-INR where we share the initial layers of the INR are shared across a reconstruction head that fits the signal and a segmentation head which decodes learned INR features into per-pixel segmentation maps. We learn a semantically generalizable INR initialization for the INR and segmentation head using a meta-learning framework &lt;em&gt;(&lt;/em&gt;Section 2 of paper)*. At test time, we fit the INR to the pixels of an unseen image and use the learned features to predict segmentation maps.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h4&gt;Test-time: Fit pixels, get labels!&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/metaseg_progression.png" alt="metaseg test time fig" width="70%"/&gt;
+  &lt;figcaption align="center"&gt;
+    MetaSeg Test-time fitting progression.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;At test-time, MetaSeg initialized INRs along with its frozen segmentation head iteratively &lt;strong&gt;only fit the signal (intensity)&lt;/strong&gt; while the segmentation head simultaneously decodes learned INR features of each pixel into a per-pixel segmentation map. it&amp;rsquo;s that simple: Fit pixels, to get labels! Further, thanks to the meta learned initalization, MetaSeg fits the signal faster and better than a randomly initialized INR &lt;em&gt;(refer ablation table and discussion section in paper)&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;h4&gt; MetaSeg achieves comparable segmentation to U-Nets with 90% fewer parameters&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/metaseg_results_table.png" alt="metaseg results fig" width="80%"/&gt;
+  &lt;figcaption align="center"&gt;
+    MetaSeg evaluated on OASIS-MRI dataset
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h4&gt;Generalization of MetaSeg to small and large structures&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/small_large_structures.png" alt="metaseg structures fig" width="80%"/&gt;
+  &lt;figcaption align="center"&gt;
+    Qualitative visualization of MetaSeg segmentation on varying brain anatomies.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;We further depict qualitatively, that MetaSeg&amp;rsquo;s semantic initialization generalizes well to varying brain anatomies, accurately accommodating large and small structures. Here we observe that high structural variances shown in the grey matter and brain stem are easily captured by MetaSeg. Deeper and delicate structures such as the hippocampus and ventricles (which can be a few pixels wide) are also segmented accurately by MetaSeg.&lt;/p&gt;
+&lt;h4&gt;High quality 3D segmentation and generating cross-sectionv views with MetaSeg&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/metaseg3d.png" alt="metaseg3d fig" width="80%"/&gt;
+  &lt;figcaption align="center"&gt;
+    MetaSeg 3D segmentation and cross-section generation for 3D T-1 MRI scans.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;MetaSeg also scales to 3D signals readily and yields high quality 3d segmentation by only fitting 3D MRI scans. Further, since INRs are naturally interpolating models, we can query MetaSeg to obtain the segmentation of any section of the brain. As shown, MetaSeg can generate high quality cross sections with a dice of 0.93, which is in high agreement with the ground truth&lt;/p&gt;
+&lt;h4&gt;Analysis of learned MetaSeg features&lt;/h4&gt;
+&lt;figure align="center"&gt;
+  &lt;img src="projects/images/metaseg/pca_features.png" alt="metaseg pca fig" width="80%"/&gt;
+  &lt;figcaption align="center"&gt;
+    MetaSeg architecture.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;MetaSeg has shown impressive performance on 2D and 3D segmentation. To further understand the benefits of MetaSeg’s initialization and design, we visualize the principal components of MetaSeg’s learned INR feature space. We find that unlike a typical INR which would only fit to intensity, yielding seeming random deep principal components, MetaSeg’s feature space embeds semantic regions. As seen in components 3-5, regions such as ventricles, hippocampus, and white-grey matter boundary is strongly encoded in MetaSeg&amp;rsquo;s feature space.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For more details, please refer &lt;a href="https://papers.miccai.org/miccai-2025/paper/3113_paper.pdf"&gt;full paper&lt;/a&gt;!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id="citation"&gt;&lt;strong&gt;Citation&lt;/strong&gt;&lt;a class="headerlink" href="#citation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nv"&gt;@InProceedings&lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="n"&gt;vyas2025metaseg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Vyas, Kushal&lt;/span&gt;
+&lt;span class="ss"&gt;                    and Veeraraghavan, Ashok&lt;/span&gt;
+&lt;span class="ss"&gt;                    and Balakrishnan, Guha&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Fit Pixels, Get Labels: Meta-learned Implicit Networks for Image Segmentation&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;booktitle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Medical Image Computing and Computer Assisted Intervention -- MICCAI 2025&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nf"&gt;year&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;2026&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;publisher&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;Springer Nature Switzerland&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;194--203&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="n"&gt;isbn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="ss"&gt;&amp;quot;978-3-032-04947-6&amp;quot;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="paper"></category></entry><entry><title>Learning Transferable Features for Implicit Neural Representations</title><link href="https://kushalvyas.github.io/strainer.html" rel="alternate"></link><published>2024-11-10T00:00:00-06:00</published><updated>2024-11-10T00:00:00-06:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2024-11-10:/strainer.html</id><summary type="html">&lt;p&gt;None&lt;/p&gt;</summary><content type="html">&lt;!-- | ![img](projects/images/strainer/strainer.png){width="80%"} | 
 |:--:| 
 | *STRAINER - Learning Transferable Features for Implicit Neural Representations. During training time (a), STRAINER divides an INR into encoder and decoder layers. STRAINER fits similar signals while sharing the encoder layers, capturing a rich set of transferrable features. At test- time, STRAINER serves as powerful initialization for fitting a new signal (b). An INR initialized with STRAINER’s learned encoder features achieves (c) faster convergence and better quality reconstruction compared to baseline SIREN models.* | --&gt;
 
