@@ -16,10 +16,10 @@
         </script>
 
 
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
-        <script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
-        <link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/bootstrap.min.css">
+        <script src="./theme/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./theme/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./theme/css/styles.css">
         <script src=
         "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
             </script>
@@ -52,10 +52,10 @@
             });
         </script>
 
-         <script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
-        <script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
-        <link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
-        <script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
+         <script src="./theme/js/photoswipe.umd.min.js"></script>
+        <script src="./theme/js/photoswipe-lightbox.umd.min.js"></script>
+        <link rel="stylesheet" href="./theme/css/photoswipe.css">
+        <script src="./theme/js/scramble.js"></script>
 
         <style>
             li {
@@ -64,7 +64,7 @@
             }
         </style>
 
-        <script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
+        <script src="./theme/js/spotlight.bundle.js"></script>   
 </head>
 <body>
     <div class="container">
@@ -83,17 +83,17 @@
 
         <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+              <a class="nav-link" href="./research.html">
                 Research
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
+                <a class="nav-link" href="./photography.html">
                   Photography & Music
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
+                <a class="nav-link" href="./blog.html">
                   Blog
                 </a>
             </li>
@@ -136,7 +136,7 @@
 <p><strong>Graph based approach</strong> : we match similar types of structures. Encode the relationship between structures rather than the geometry of the figure.  </p>
 </li>
 <li>
-<p><strong>Bag of Visual Words</strong> : I will cover Bag of Words in a seperate post <a href="https://kushalvyas.github.io/BOV.html">Bag of Words</a>.</p>
+<p><strong>Bag of Visual Words</strong> : I will cover Bag of Words in a seperate post <a href="./BOV.html">Bag of Words</a>.</p>
 </li>
 </ol>
 <p><strong>I&rsquo;ll be going through a couple of common techniques. Firstly I&rsquo;ll introduce template matching and in the follow, using probabilistic recognition , then moving on to Machine learning applications such as using BOW models coupled with SVM , or feature extrapolation and recognition using neural nets.</strong></p>
@@ -199,8 +199,8 @@ if __name__ == '__main__':
 <div class="math">$$R(x, y) = \sum_{i, j}\ {(\text{T}(i,j) - \text{I}(x+i, y+j))^2}$$</div>
 <p>And here is the output ! We will search a pair of glares from this paraphenalia
 <center>
-<img alt="crop" src="https://kushalvyas.github.io/images/tempCrop.jpg" /> </p>
-<p><img alt="original" src="https://kushalvyas.github.io/images/optemplate.png" />
+<img alt="crop" src="./images/tempCrop.jpg" /> </p>
+<p><img alt="original" src="./images/optemplate.png" />
 </center></p>
 <p>Okay, so template matching can be established using the opencv api. Its&rsquo; quite simple to implement in plain ol c++ as well. Not a biggie.  We&rsquo;ll use the helper functions for image reading , accessing pixel value, etc. but the rest can be quite easily implemented using a bunch of <code>for loops</code></p>
 <div class="gist">
