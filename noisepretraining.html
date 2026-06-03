@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+    content="Kushal Vyas — PhD Student at Rice University. Research in computer vision, machine learning, and computational photography.">
+<title>Kushal Vyas</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://kushalvyas.github.io/theme/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="https://kushalvyas.github.io/theme/images/favicon.png">
+<link rel="apple-touch-icon" href="https://kushalvyas.github.io/theme/images/favicon.png">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kushal Vyas">
+<meta property="og:description"
+    content="PhD Student at Rice University — research in computer vision, deep learning, and computational photography. NeurIPS, CVPR, MICCAI.">
+<meta property="og:image" content="https://kushalvyas.github.io/theme/images/favicon.png">
+<meta property="og:url" content="https://kushalvyas.github.io/">
+<meta property="og:site_name" content="Kushal Vyas">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kushal Vyas">
+<meta name="twitter:description"
+    content="PhD Student at Rice University — research in computer vision, deep learning, and computational photography.">
+<meta name="twitter:image" content="https://kushalvyas.github.io/theme/images/favicon.png">
+
+<!-- Smooth scroll -->
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EL03DLW9KF"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-EL03DLW9KF');
+</script>
+
+<!-- Google Fonts: Inter + Roboto Slab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Slab:wght@500;700&display=swap"
+    rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
+<script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
+
+<!-- Custom styles -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+
+<!-- Color scheme (set COLOR_SCHEME in pelicanconf.py) -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/colorschemes/chic_warm.css">
+
+<!-- jQuery & Popper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#backdrop_image").click(function (e) {
+            e.preventDefault();
+        });
+    });
+</script>
+
+<!-- PhotoSwipe -->
+<script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
+<script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
+<link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
+<script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
+
+<!-- Spotlight -->
+<script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+  <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+
+    <a class="navbar-brand nav-link-home" href="./">&nbsp;KUSHAL VYAS&nbsp;</a>
+
+    <!-- Social icons — always visible -->
+    <div class="d-flex align-items-center order-md-1 ms-md-2 me-2">
+      <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/" aria-label="LinkedIn"><svg
+          xmlns="http://www.w3.org/2000/svg" width="1.3em" height="20" viewBox="0 0 24 24">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg></a>
+
+      <a class="navbar-brand abs" href="https://github.com/kushalvyas" aria-label="GitHub"><svg
+          xmlns="http://www.w3.org/2000/svg" height="1.3em"
+          viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+        </svg></a>
+
+      <a class="navbar-brand abs" href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en"
+        aria-label="Google Scholar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          height="1.3em"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M390.9 298.5c0 0 0 .1 .1 .1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64h0c1.7-3.6 3.6-7.2 5.6-10.7c4.4-7.6 9.4-14.7 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7 256 0 512 202.7l-94.7 77.1z" />
+        </svg></a>
+    </div>
+
+    <!-- Hamburger toggler for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible nav links -->
+    <div class="collapse navbar-collapse order-md-2" id="navbarNav">
+      <ul class="navbar-nav ms-auto navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+            Publications
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/talks.html">
+            Talks
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
+            Photography & Music
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
+            Blog
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>        <div id="page_banner">
+        </div>
+        
+
+
+<div class="project-hero">
+    <h1 class="project-title">The Surprising Effectiveness of Noise Pretraining for Implicit Neural Representations</h1>
+
+    <div class="project-venue">CVPR, 2026</div>
+
+    <div class="project-authors">
+        <a href="https://kushalvyas.github.io/"><b>Kushal Vyas</b></a>
+        <a href="https://alpoler.github.io/">Alper Kayabasi</a>
+        <a href="https://daniel360kim.github.io/">Daniel Kim</a>
+        <a href="https://vishwa91.github.io/">Vishwanath Saragadam</a>
+        <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a>
+        <a href="https://www.guhabalakrishnan.com/home">Guha Balakrishnan</a>
+    </div>
+
+    <div class="project-actions">
+        <a href="https://arxiv.org/abs/2603.29034">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 4H5v7a2 2 0 0 0 2 2h3v-2H7.5a.5.5 0 0 1 0-1H10V9H7.5a.5.5 0 0 1 0-1H10V5z" />
+            </svg>
+            Paper
+        </a>
+        <a href="https://github.com/kushalvyas/Structured-Noise-Pretraining-for-INRs">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z" />
+            </svg>
+            Code
+        </a>
+        <a href="https://cvpr.thecvf.com/virtual/2026/poster/36601" class="btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                <path fill-rule="evenodd"
+                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+            </svg>
+            CVPR/CVF
+        </a>
+    </div>
+</div>
+
+<div class="project-page">
+    <div class="project-content">
+        <p><strong>Abstract</strong>: The approximation and convergence properties of implicit neural representations (INRs) are known to be highly sensitive to parameter initialization strategies. Several data-driven INR parameter initialization methods demonstrate significant improvement over standard random sampling, but the reason for their successes &ndash; whether they encode classical statistical signal priors or something more sophisticated &ndash; is not well understood. In this study, we explore this topic with a series of experimental analyses leveraging noise pretraining. In particular, we pretrain INRs on noise signals of different classes (e.g., Gaussian, Dead Leaves, Spectral), and measure their abilities at both fitting unseen signals and encoding priors for an inverse imaging task (denoising). Our analyses on image and video data reveal the highly surprising finding that simply pretraining on unstructured noise (Uniform, Gaussian) results in a dramatic improvement in signal fitting capacity compared to all other baselines. However, unstructured noise also yields poor deep image priors for denoising. In contrast, noise with the classic 1/f spectral structure of natural images yields an excellent balance of both signal fitting and inverse imaging capabilities on par with the best data-driven initialization methods. This finding can enable more efficient training of INRs in applications without sufficient prior domain-specific data.</p>
+<p><br>
+<br></p>
+<figure align="center">
+  <img src="projects/images/noisepretraining/noisepretraining_coverfigure.png" alt="noisepretraining cover fig" width="80%"/>
+  <figcaption align="center">
+    <b>Overview of Noise Pretraining for INRs.</b>  
+    </figcaption>
+</figure>
+
+<p><strong>In this study, we explore the effectiveness of initializing INR parameters with signals from noise classes with different properties.</strong>: (a) Samples of a few of the signal types we consider in this study: natural images, noise with the classic ``<span class="math">\(1/|f^\alpha|\)</span>&rsquo;&rsquo; spectral signature of natural images, Dead Leaves noise, and Uniform noise. (b) We propose SNP, a simple but powerful data-driven INR parameter initialization method using noise samples leveraging the STRAINER initialization framework. We pretrain an INR encoder with signal-specific decoder heads on noise samples from one class. (c) At test time, the pretrained encoder may be fine-tuned with a randomized decoder on a new (real) signal. (d) Surprising test-time signal fitting results on Celeb-A-HQ: SNP initialization using Uniform noise performs dramatically better on signal fitting compared to all other methods.
+<br>
+<br></p>
+<h3 id="on-high-frequency-reconstruction-abilities-of-noise-pretrained-inrs">On high-frequency reconstruction abilities of noise pretrained INRs<a class="headerlink" href="#on-high-frequency-reconstruction-abilities-of-noise-pretrained-inrs" title="Permanent link">&para;</a></h3>
+<figure align="center">
+  <img src="projects/images/noisepretraining/cat_qualitative.png" alt="highfreq snp"/>
+  <figcaption align="center">
+    <b>STRAINER, SNP (Spectrum and Uniform) learn high quality reconstructions in $200$ steps (PSNR$\approx40db+$), while the SIREN output remains blurry. Power spectrum insets show that: SNP (Uniform) matches closely with the ground truth, STRAINER has a noisy high-frequency coverage, and SNP (Spectrum) recovers most high frequencies while SIREN lacks critical frequencies.</b>  
+    </figcaption>
+</figure>
+
+<p>We find that pretraining INRs on uniform noise yields to quickest convergence. Power spectrum insets show reconstructed images have near perfect frequency spectrum. INRs pretraied on Spectrum noise also depict similar results. Siren , on the other hand, suffers from spectral bias and converges to lower frequencies while taking longer to fit to higher frequencies. </p>
+<h3 id="implicit-prior-vs-signal-fitting-ability">Implicit Prior v/s signal fitting ability<a class="headerlink" href="#implicit-prior-vs-signal-fitting-ability" title="Permanent link">&para;</a></h3>
+<figure align="center">
+  <img src="projects/images/noisepretraining/prior_tradeoff.png" alt="prior trade off" width="40%"/>
+  <figcaption align="center">
+    <b>Inverse trade off between an implicit prior v/s fitting capacity as a function of noise-based initialization</b>  
+    </figcaption>
+</figure>
+
+<p><strong>Tradeoff in signal representation and denoising ability of SNP INRs on Celeb-A-HQ images.</strong> At early stages of signal fitting (<span class="math">\(T=500\)</span>) and denoising (<span class="math">\(T=50\)</span>), SNP (Spectrum) and STRAINER perform well. In contrast, we find that SNP (Uniform,Gaussian) excel at signal fitting, but are poor denoisers. SIREN is a good denoiser but a poor signal fitter. Hence, there is a tradeoff to consider when choosing an appropriate initialization method for a task.
+<br>
+<br></p>
+<h3 id="noise-pretraining-inrs-internal-geometry-and-connection-to-hash-encoding-type-approaches">Noise Pretraining, INR&rsquo;s internal geometry, and connection to Hash-encoding type approaches!<a class="headerlink" href="#noise-pretraining-inrs-internal-geometry-and-connection-to-hash-encoding-type-approaches" title="Permanent link">&para;</a></h3>
+<figure align="center">
+  <img src="projects/images/noisepretraining/splines.png" alt="splines and geometry" width="50%"/>
+  <figcaption align="center">
+    <b>Internal geometry of INR for pretraining on uniform noise reveals complex random encoding of input space whereas data-driven or spectrum-based pretraining showcases more priors</b>  
+    </figcaption>
+</figure>
+
+<p>In our study, we show that INRs pretrained on unstructured noise such as Uniform and Gaussian noise causes initial layers of the INR to behave as complex random encoding functions. We observe similar parallels in Instant-NGP or hash-encoding based models - both, demonstrate significantly increased fitting performance. We also show that by pretraining on structured spectrum noise / in-domain face images/ ImageNet natural images, the INRs exhibit strong spatial and frequency guided internal geometry useful for inverse problems.
+<br>
+<br></p>
+<h3 id="noise-pretraining-for-video-inrs">Noise pretraining for Video INRs<a class="headerlink" href="#noise-pretraining-for-video-inrs" title="Permanent link">&para;</a></h3>
+<figure align="center">
+  <img src="projects/images/noisepretraining/resfields_video.png" alt="splines and geometry"/>
+  <figcaption align="center">
+    <b>Noise pretraining for video INRs</b>  
+    </figcaption>
+</figure>
+
+<p>We also demonstrate that noise pretraining is effective for video INRs.  We use ResFields[29], a popular video INR method. We show frames from representation of two example videos with randomly initialized (vanilla) ResFields~\cite{resfield}, and SNP-Spectrum-initialized Resfields. In both examples, SNP-initialization results in a higher accuracy with clearer visible details. </p>
+<p><strong>For more details, please refer <a href="">full paper</a>!</strong></p>
+<p><br></p>
+<h2 id="citation"><strong>Citation</strong><a class="headerlink" href="#citation" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code><span class="w">            </span><span class="nv">@inproceedings</span><span class="err">{</span><span class="n">vyas2026cvpr_snp</span><span class="p">,</span>
+<span class="w">                </span><span class="n">author</span><span class="o">=</span><span class="err">{</span><span class="n">Vyas</span><span class="p">,</span><span class="w"> </span><span class="n">Kushal</span>
+<span class="w">                    </span><span class="ow">and</span><span class="w"> </span><span class="n">Kayabasi</span><span class="p">,</span><span class="w"> </span><span class="n">Alper</span>
+<span class="w">                    </span><span class="ow">and</span><span class="w"> </span><span class="n">Kim</span><span class="p">,</span><span class="w"> </span><span class="n">Daniel</span>
+<span class="w">                    </span><span class="ow">and</span><span class="w"> </span><span class="n">Saragadam</span><span class="p">,</span><span class="w"> </span><span class="n">Vishwanath</span><span class="p">,</span>
+<span class="w">                    </span><span class="ow">and</span><span class="w"> </span><span class="n">Veeraraghavan</span><span class="p">,</span><span class="w"> </span><span class="n">Ashok</span>
+<span class="w">                    </span><span class="ow">and</span><span class="w"> </span><span class="n">Balakrishnan</span><span class="p">,</span><span class="w"> </span><span class="n">Guha</span><span class="err">}</span><span class="p">,</span>
+<span class="w">                </span><span class="n">title</span><span class="o">=</span><span class="err">{</span><span class="n">The</span><span class="w"> </span><span class="n">Surprising</span><span class="w"> </span><span class="n">Effectiveness</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Noise</span><span class="w"> </span><span class="n">Pretraining</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Implicit</span><span class="w"> </span><span class="n">Neural</span><span class="w"> </span><span class="n">Representations</span><span class="err">}</span><span class="p">,</span>
+<span class="w">                </span><span class="n">booktitle</span><span class="o">=</span><span class="err">{</span><span class="n">Computer</span><span class="w"> </span><span class="n">Vision</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Pattern</span><span class="w"> </span><span class="n">Recognition</span><span class="w"> </span><span class="p">(</span><span class="n">CVPR</span><span class="p">)</span><span class="err">}</span><span class="p">,</span>
+<span class="w">                </span><span class="nf">year</span><span class="o">=</span><span class="err">{</span><span class="mi">2026</span><span class="err">}</span><span class="p">,</span>
+<span class="w">            </span><span class="err">}</span>
+</code></pre></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+    </div>
+</div>
+
+        
+    </div>
+
+<footer class="site-footer">
+  <div class="container text-center">
+    Built with Python, Pelican, Markdown &amp; Bootstrap &mdash; &copy; Kushal Vyas
+  </div>
+</footer>
+</body>
+</html>

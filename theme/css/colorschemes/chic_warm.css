@@ -1,0 +1,23 @@
+/* ============================================================
+   Color Scheme: chic_warm
+   Warm pastels — dusty plum, terracotta & cream
+   ============================================================ */
+:root {
+    --color-primary: #6b5b7b;
+    --color-primary-light: #8b7ba0;
+    --color-primary-dark: #4a3d5c;
+    --color-accent: #c9956b;
+    --color-accent-light: #dbb896;
+
+    --color-bg: #fdfbf8;
+    --color-bg-alt: #f5f0ea;
+    --color-bg-hero: linear-gradient(135deg, #f5f0ea 0%, #ede4da 100%);
+    --color-bg-card: #ffffff;
+    --color-text: #3a3a3a;
+    --color-text-muted: #8a8585;
+    --color-border: #e6dfd6;
+
+    --shadow-sm: 0 1px 4px rgba(107, 91, 123, 0.06);
+    --shadow-md: 0 4px 16px rgba(107, 91, 123, 0.10);
+    --shadow-lg: 0 8px 32px rgba(107, 91, 123, 0.12);
+}

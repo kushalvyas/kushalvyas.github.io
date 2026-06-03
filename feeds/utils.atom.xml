@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kushal Vyas - utils</title><link href="https://kushalvyas.github.io/" rel="alternate"></link><link href="https://kushalvyas.github.io/feeds/utils.atom.xml" rel="self"></link><id>https://kushalvyas.github.io/</id><updated>2016-03-24T10:20:00-05:00</updated><entry><title>\'The Social Network\' where it all started</title><link href="https://kushalvyas.github.io/utils.html" rel="alternate"></link><published>2016-03-24T10:20:00-05:00</published><updated>2016-03-24T10:20:00-05:00</updated><author><name>Kushal Vyas</name></author><id>tag:kushalvyas.github.io,2016-03-24:/utils.html</id><summary type="html">&lt;p&gt;A few utilities , good practices and other stuff&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;Disclaimer : &lt;/em&gt;If ur a windows user &amp;hellip; forgive me&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Moving on, i think every person starting off with linux, must know a few things ..
+Specially, if you,ve just watched &lt;em&gt;&lt;a href="http://www.imdb.com/title/tt1285016/"&gt;The Social Network&lt;/a&gt;&lt;/em&gt; and you&amp;rsquo;ve seen  Jesse Eisenberg hacking away at his screen&amp;hellip; &lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;img alt="gif" src="https://kushalvyas.github.io/images/mkz.gif" /&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;You&amp;rsquo;re probably wondering what is &lt;em&gt;wget&lt;/em&gt;, &lt;em&gt;emacs&lt;/em&gt;, &lt;em&gt;apache&lt;/em&gt; and much more. If not, please rewatch the movie with subtitiles.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Wget&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.gnu.org/software/wget/" target="_blank"&gt;Wget&lt;/a&gt; is a basic downloading utility, actually calling it basic would be an understatement
+You can download files, directories, recursive download, filter through files and download them, ftp, multiple downloads, get selected elements and crawl through pages&amp;hellip;It&amp;rsquo;s an amazing utility. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you don&amp;rsquo;t have wget, simple run an apt-get wget &lt;br&gt;&lt;code&gt;wget http://www.example.com&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Or if you want to get all files from the browser directory, &lt;br&gt; &lt;code&gt;wget -r --no-parent http://your_directory_url&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;or if you go all SPARTA on the website, &lt;br&gt;&lt;code&gt;wget 
+     --recursive 
+     --no-clobber 
+     --page-requisites 
+     --html-extension 
+     --convert-links 
+     --restrict-file-names=windows 
+     --domains url_domain 
+     --no-parent 
+         url&lt;/code&gt;
+more details, check out this &lt;a href="http://www.linuxjournal.com/content/downloading-entire-web-site-wget" target="_blank"&gt;linux journal post&lt;/a&gt; or head out to &lt;a href="https://www.gnu.org/manual/manual.html" target="_blank"&gt;Wget&lt;/a&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Go through the docs .. find whatever suits your need&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Emacs &amp;amp; VI&lt;/strong&gt; : &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Editor_war"&gt;Emacs or VI&lt;/a&gt; , you&amp;rsquo;d better end up choosing one and not telling the other side. People will go to war with you, if you say emacs is better than VI or vice versa .
+&lt;center&gt;&lt;img alt="evn" src="http://kalyanvarma.net/images/struggle1.gif" /&gt;&lt;/p&gt;
+&lt;p&gt;And the my favourite .. click to play
+&lt;center&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/R0Kzgno5wxA" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/center&gt;&lt;!-- 
+&lt;a href="https://www.youtube.com/watch?v=R0Kzgno5wxA" title="Should I Learn Emacs or Vi?"&gt;klzzwxh:0016&lt;/a&gt;{:target='_blank'} --&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;Learning either is useful. These are highly customizable editors. You will absolutely stop using other tools once u get accustomed to either of these. Read along &lt;a href="http://unix.stackexchange.com/questions/986/what-are-the-pros-and-cons-of-vim-and-emacs" target="_blank"&gt;this SO post&lt;/a&gt; to uncover more.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GREP :&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;GREP, is by far my favourite utility. An amazing tools to perform searches. It uses a regular expression pattern matcher, so it&amp;rsquo;s quite easy to detect substrings.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Using grep for cli searches:&lt;br&gt;&lt;code&gt;ls --all | grep filname&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Using grep with wget to cli search a webpage&lt;br&gt;&lt;code&gt;wget -O - url | grep keyword&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;center&gt;&lt;a href="https://kushalvyas.github.io/images/blog_grep.png"&gt;&lt;img alt="grep" src="https://kushalvyas.github.io/images/blog_grep.png" /&gt;&lt;/a&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;I can go on and on about the utilities, but now I think, it&amp;rsquo;s time to check them 
+out yourself.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Last thing, before I sign out .. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;C-Matrix&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So, pretending to be a hacker, like in those MATRIX movies, is pretty cool.. and probably, you can pick up someone (let&amp;rsquo;s assume that , that&amp;rsquo;s possible)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo apt-get install cmatrix&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;and this is the beauty of it
+&lt;center&gt;
+&lt;img alt="cmatrix" src="https://kushalvyas.github.io/images/cmatrix.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;strong&gt;Enjoy , Browse, " Make the world a better place"(Courtesy : &lt;a href="https://www.youtube.com/watch?v=69V__a49xtw"&gt;Silicon Valley&lt;/a&gt; ) :P  &lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;</content><category term="utils"></category><category term="utils"></category></entry></feed>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+    content="Kushal Vyas — PhD Student at Rice University. Research in computer vision, machine learning, and computational photography.">
+<title>Kushal Vyas</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://kushalvyas.github.io/theme/images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="256x256" href="https://kushalvyas.github.io/theme/images/favicon.png">
+<link rel="apple-touch-icon" href="https://kushalvyas.github.io/theme/images/favicon.png">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kushal Vyas">
+<meta property="og:description"
+    content="PhD Student at Rice University — research in computer vision, deep learning, and computational photography. NeurIPS, CVPR, MICCAI.">
+<meta property="og:image" content="https://kushalvyas.github.io/theme/images/favicon.png">
+<meta property="og:url" content="https://kushalvyas.github.io/">
+<meta property="og:site_name" content="Kushal Vyas">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kushal Vyas">
+<meta name="twitter:description"
+    content="PhD Student at Rice University — research in computer vision, deep learning, and computational photography.">
+<meta name="twitter:image" content="https://kushalvyas.github.io/theme/images/favicon.png">
+
+<!-- Smooth scroll -->
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EL03DLW9KF"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-EL03DLW9KF');
+</script>
+
+<!-- Google Fonts: Inter + Roboto Slab -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Slab:wght@500;700&display=swap"
+    rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/bootstrap.min.css">
+<script src="https://kushalvyas.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- FontAwesome -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/fontawesome/css/fontawesome.min.css">
+
+<!-- Custom styles -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/styles.css">
+
+<!-- Color scheme (set COLOR_SCHEME in pelicanconf.py) -->
+<link rel="stylesheet" type="text/css" href="https://kushalvyas.github.io/theme/css/colorschemes/chic_warm.css">
+
+<!-- jQuery & Popper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#backdrop_image").click(function (e) {
+            e.preventDefault();
+        });
+    });
+</script>
+
+<!-- PhotoSwipe -->
+<script src="https://kushalvyas.github.io/theme/js/photoswipe.umd.min.js"></script>
+<script src="https://kushalvyas.github.io/theme/js/photoswipe-lightbox.umd.min.js"></script>
+<link rel="stylesheet" href="https://kushalvyas.github.io/theme/css/photoswipe.css">
+<script src="https://kushalvyas.github.io/theme/js/scramble.js"></script>
+
+<!-- Spotlight -->
+<script src="https://kushalvyas.github.io/theme/js/spotlight.bundle.js"></script>   
+</head>
+<body>
+    <div class="container">
+<div id="page_header">
+  <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+
+    <a class="navbar-brand nav-link-home" href="./">&nbsp;KUSHAL VYAS&nbsp;</a>
+
+    <!-- Social icons — always visible -->
+    <div class="d-flex align-items-center order-md-1 ms-md-2 me-2">
+      <a class="navbar-brand abs" href="https://www.linkedin.com/in/kushalvyaskv/" aria-label="LinkedIn"><svg
+          xmlns="http://www.w3.org/2000/svg" width="1.3em" height="20" viewBox="0 0 24 24">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg></a>
+
+      <a class="navbar-brand abs" href="https://github.com/kushalvyas" aria-label="GitHub"><svg
+          xmlns="http://www.w3.org/2000/svg" height="1.3em"
+          viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+        </svg></a>
+
+      <a class="navbar-brand abs" href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en"
+        aria-label="Google Scholar"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          height="1.3em"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M390.9 298.5c0 0 0 .1 .1 .1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64h0c1.7-3.6 3.6-7.2 5.6-10.7c4.4-7.6 9.4-14.7 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7 256 0 512 202.7l-94.7 77.1z" />
+        </svg></a>
+    </div>
+
+    <!-- Hamburger toggler for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible nav links -->
+    <div class="collapse navbar-collapse order-md-2" id="navbarNav">
+      <ul class="navbar-nav ms-auto navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/research.html">
+            Publications
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/talks.html">
+            Talks
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/photography.html">
+            Photography & Music
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://kushalvyas.github.io/blog.html">
+            Blog
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>        <div id="page_banner">
+<div class="hero-section">
+  <div class="container py-4">
+    <div class="row align-items-center">
+
+      <!-- Image Column -->
+      <div class="col-12 col-md-3 d-flex justify-content-center mb-3 mb-md-0">
+        <img src="https://kushalvyas.github.io/theme/images/myface.png" class="rounded-circle img-fluid"
+          style="max-height: 180px; width: auto;" alt="Kushal Vyas">
+      </div>
+
+      <!-- Text Column -->
+      <div class="col-12 col-md-9 d-flex flex-column justify-content-center">
+        <h4 class="mb-2 text-center text-md-start" style="font-family: var(--font-heading); font-weight: 700;">PhD
+          Student @ Rice University</h4>
+        <div class="fact-card text-center text-md-start">
+          <!-- - 🎓 <span id="phd-year"></span>-year PhD at <a href="https://www.rice.edu/">Rice University</a> (advisors: <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> &amp; <a href="https://www.guhabalakrishnan.com/">Guha Balakrishnan</a>)<br>MS in Computer Vision, <a href="https://www.ri.cmu.edu/">CMU Robotics Institute</a> (advisor: <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Simon Lucey</a>)
+- 🔬 Building efficient, scalable neural signal representations for scene representation,<br>multimodal AI, and medical / scientific imaging.
+- 🏆 MICCAI &rsquo;25 Best Paper · Hershel M. Rich Invention Award &rsquo;26 · <a href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en"><br><b>10+ US patents</b></a> from <a href="https://sra.samsung.com/">Samsung Research America</a> (former Senior ML Engineer) -->
+
+<ul>
+<li>🎓 <span id="phd-year"></span> year PhD, <a href="https://www.rice.edu/">Rice University</a> · Advisors: <a href="https://profiles.rice.edu/faculty/ashok-veeraraghavan">Ashok Veeraraghavan</a> &amp; <a href="https://www.guhabalakrishnan.com/">Guha Balakrishnan</a></li>
+<li>🔬 Research: Efficient &amp; scalable neural signal representations, computer vision, medical imaging</li>
+<li>🏢 Previously: Senior ML Engineer @ <a href="https://sra.samsung.com/">Samsung Research America</a> · <a href="https://scholar.google.com/citations?user=0SxLnLcAAAAJ&hl=en"><b>10+ US patents</b></a></li>
+<li>🎓 MS Computer Vision, <a href="https://www.ri.cmu.edu/">CMU Robotics Institute</a> · Advisor: <a href="https://researchers.adelaide.edu.au/profile/simon.lucey">Simon Lucey</a></li>
+<li>🏆 Hershel M Rich Invention Award&lsquo;26, MICCAI&lsquo;25 Best paper award</li>
+</ul>
+<p><strong>Email:</strong> <span><font id="email" style="display-inline">&ldquo;oi.h@ykmglmcssaaluvka&rdquo;<a href="#" onclick="emailScramble.initAnimatedBubbleSort();return false;">unscramble</a></font></span></p>
+<script>
+    emailScramble = new scrambledString(document.getElementById('email'),
+        'emailScramble', 'oi.h@ykmglmcssaaluvka',
+        [19, 15, 17, 3, 11, 8, 0, 13, 12, 16, 20, 18, 10, 2, 9, 4, 5, 1, 7, 6, 14]);
+
+    // Auto-compute PhD year from Aug 2023 start date
+    (function() {
+        var start = new Date(2023, 7, 1); // Aug 2023 (month is 0-indexed)
+        var now = new Date();
+        var months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+        var year = Math.floor(months / 12) + 1;
+        var suffix = ['th','st','nd','rd'];
+        var s = (year % 100 >= 11 && year % 100 <= 13) ? 'th' : (suffix[year % 10] || 'th');
+        document.getElementById('phd-year').textContent = year + s;
+    })();
+</script>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>        </div>
+        
+    <h2>Categories on Kushal Vyas</h2>
+    <ul>
+            <li><a href="https://kushalvyas.github.io/category/3d-reconstruction-3d-stereo-cv.html">3D Reconstruction, 3D, stereo, CV</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/ai.html">AI</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/computer-vision-javascript-js-cv.html">Computer Vision, Javascript, JS, CV</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/cv.html">CV</a> (3)</li>
+            <li><a href="https://kushalvyas.github.io/category/cv-ip.html">CV, IP</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/cv-machine-vision-camera.html">CV, Machine Vision, Camera</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/graph_py.html">graph_py</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/networks.html">networks</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/object-recognition-classification-cv.html">Object Recognition, Classification, CV</a> (2)</li>
+            <li><a href="https://kushalvyas.github.io/category/object-recognitioncv.html">Object Recognition,CV</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/paper.html">paper</a> (3)</li>
+            <li><a href="https://kushalvyas.github.io/category/technical-dev.html">technical, dev</a> (1)</li>
+            <li><a href="https://kushalvyas.github.io/category/utils.html">utils</a> (1)</li>
+    </ul>
+        
+    </div>
+
+<footer class="site-footer">
+  <div class="container text-center">
+    Built with Python, Pelican, Markdown &amp; Bootstrap &mdash; &copy; Kushal Vyas
+  </div>
+</footer>
+</body>
+</html>

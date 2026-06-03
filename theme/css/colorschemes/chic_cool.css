@@ -1,0 +1,33 @@
+/* ============================================================
+   Color Scheme: chic_cool
+   Cool pastels — slate blue, sage & icy lavender
+   ============================================================ */
+:root {
+    --color-primary: #546e8a;
+    /* dusty steel blue    */
+    --color-primary-light: #7a9bb5;
+    /* soft sky            */
+    --color-primary-dark: #3b5068;
+    /* deep slate          */
+    --color-accent: #7ba09b;
+    /* sage / muted teal   */
+    --color-accent-light: #a3c4bf;
+    /* light mint          */
+
+    --color-bg: #f8fafb;
+    /* cool off-white      */
+    --color-bg-alt: #edf2f4;
+    /* icy lavender        */
+    --color-bg-hero: linear-gradient(135deg, #edf2f4 0%, #dfe6ec 100%);
+    --color-bg-card: #ffffff;
+    --color-text: #2e3740;
+    /* cool charcoal       */
+    --color-text-muted: #7b8a95;
+    /* steel gray          */
+    --color-border: #d5dde3;
+    /* cool border         */
+
+    --shadow-sm: 0 1px 4px rgba(84, 110, 138, 0.06);
+    --shadow-md: 0 4px 16px rgba(84, 110, 138, 0.10);
+    --shadow-lg: 0 8px 32px rgba(84, 110, 138, 0.12);
+}
