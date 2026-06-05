@@ -1,0 +1,26 @@
+/* ============================================================
+   Color Scheme: academic_bright
+   Bright, airy & modern — Stripe-inspired (not copied).
+   Cool off-white canvas, confident indigo "blurple" identity,
+   soft pastel multi-hue hero gradient, and a warm coral accent
+   for a lively pop. Pastel tones, never fluorescent.
+   ============================================================ */
+:root {
+    --color-primary: #635bff;
+    --color-primary-light: #6e66ff;
+    --color-primary-dark: #32325d;
+    --color-accent: #fa755a;
+    --color-accent-light: #ffb1a0;
+
+    --color-bg: #fbfbfd;
+    --color-bg-alt: #f5f8fd;
+    --color-bg-hero: linear-gradient(135deg, #f5f7ff 0%, #eef1ff 45%, #faf0fb 100%);
+    --color-bg-card: #ffffff;
+    --color-text: #2e2e4a;
+    --color-text-muted: #6b7280;
+    --color-border: #e7e9f3;
+
+    --shadow-sm: 0 1px 4px rgba(50, 50, 93, 0.08);
+    --shadow-md: 0 8px 24px rgba(50, 50, 93, 0.12);
+    --shadow-lg: 0 18px 48px rgba(50, 50, 93, 0.16);
+}

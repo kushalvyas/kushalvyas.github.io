@@ -1,0 +1,37 @@
+/* ============================================================
+   Color Scheme: conference_theme
+   Clean, modern, high-contrast conference / research-lab look.
+   White base, charcoal structure, strong blue links, readable
+   cards, and restrained green highlights for achievements.
+   ============================================================ */
+:root {
+    /* Strong blue: links, buttons, primary interactive elements */
+    --color-primary: #2563EB;
+    --color-primary-light: #2563EB;
+    /* Charcoal: navbar, footer, structural anchors */
+    --color-primary-dark: #111827;
+
+    /* Blue accent — borders, section markers, timeline, tags */
+    --color-accent: #2563EB;
+    --color-accent-light: #DBEAFE;
+
+    --color-bg: #FCFCFD;
+    --color-bg-alt: #EEF4FF;
+    --color-bg-hero: linear-gradient(180deg, #EEF4FF 0%, #FCFCFD 100%);
+    --color-bg-card: #FFFFFF;
+    --color-text: #111827;
+    --color-text-muted: #6B7280;
+    --color-border: #E5E7EB;
+
+    /* Subtle charcoal-tinted shadows */
+    --shadow-sm: 0 1px 3px rgba(17, 24, 39, 0.06);
+    --shadow-md: 0 8px 24px rgba(17, 24, 39, 0.08);
+    --shadow-lg: 0 18px 48px rgba(17, 24, 39, 0.12);
+
+    /* Semantic helpers */
+    --color-heading: #1F2937;
+    --color-secondary-hover: #1D4ED8;
+    --color-success: #10B981;
+    --color-soft-blue: #DBEAFE;
+    --color-charcoal-deep: #030712;
+}

@@ -1,0 +1,37 @@
+/* ============================================================
+   Color Scheme: rice_bright
+   Bright, academic, polished — Rice University-inspired identity.
+   Authoritative navy anchor on a clean white/blue base, with a
+   teal research accent and a reserved gold for awards. Never a
+   dark page; navy is an accent, not the background.
+   ============================================================ */
+:root {
+    /* Navy anchor: navbar, footer, headings, primary buttons */
+    --color-primary: #00205B;
+    /* Links (secondary blue) */
+    --color-primary-light: #005A9C;
+    /* Deep navy for navbar gradient / footer / button hover */
+    --color-primary-dark: #001A47;
+
+    /* Research accent — borders, tags, section markers, timeline */
+    --color-accent: #118AB2;
+    --color-accent-light: #7FC4DD;
+
+    --color-bg: #F8FAFC;
+    --color-bg-alt: #EAF3FA;
+    --color-bg-hero: linear-gradient(135deg, #EAF3FA 0%, #DCEBF7 100%);
+    --color-bg-card: #FFFFFF;
+    --color-text: #172033;
+    --color-text-muted: #64748B;
+    --color-border: #D8E2EA;
+
+    /* Subtle navy-tinted shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 32, 91, 0.06);
+    --shadow-md: 0 8px 24px rgba(0, 32, 91, 0.08);
+    --shadow-lg: 0 18px 48px rgba(0, 32, 91, 0.12);
+
+    /* Semantic helpers */
+    --color-secondary-hover: #0077B6;
+    --color-award: #F2C94C;
+    --color-neutral: #7C7E7F;
+}
